@@ -9,15 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Cabañas y alquiler\**" />
-    <Compile Remove="Informes\**" />
-    <EmbeddedResource Remove="Cabañas y alquiler\**" />
-    <EmbeddedResource Remove="Informes\**" />
-    <None Remove="Cabañas y alquiler\**" />
-    <None Remove="Informes\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,6 +33,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cabañas y alquiler\" />
+    <Folder Include="Informes\" />
   </ItemGroup>
 
 </Project>
