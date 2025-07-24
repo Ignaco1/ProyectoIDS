@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_cabañas_abm));
             panel1 = new Panel();
             gb_carga = new GroupBox();
+            btn_borrar = new PictureBox();
             txt_descripcion = new TextBox();
             txt_precioNoche = new TextBox();
             flowLayoutPanel_imagenes = new FlowLayoutPanel();
@@ -65,6 +67,7 @@
             openFileDialog1 = new OpenFileDialog();
             panel1.SuspendLayout();
             gb_carga.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btn_borrar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_imagenes).BeginInit();
             panel2.SuspendLayout();
             gb_grilla.SuspendLayout();
@@ -84,6 +87,7 @@
             // 
             // gb_carga
             // 
+            gb_carga.Controls.Add(btn_borrar);
             gb_carga.Controls.Add(txt_descripcion);
             gb_carga.Controls.Add(txt_precioNoche);
             gb_carga.Controls.Add(flowLayoutPanel_imagenes);
@@ -106,30 +110,41 @@
             gb_carga.TabStop = false;
             gb_carga.Text = "Carga de datos";
             // 
+            // btn_borrar
+            // 
+            btn_borrar.Image = (Image)resources.GetObject("btn_borrar.Image");
+            btn_borrar.Location = new Point(234, 286);
+            btn_borrar.Name = "btn_borrar";
+            btn_borrar.Size = new Size(44, 50);
+            btn_borrar.SizeMode = PictureBoxSizeMode.Zoom;
+            btn_borrar.TabIndex = 33;
+            btn_borrar.TabStop = false;
+            btn_borrar.Click += btn_borrar_Click;
+            // 
             // txt_descripcion
             // 
-            txt_descripcion.Location = new Point(121, 219);
+            txt_descripcion.Location = new Point(121, 177);
             txt_descripcion.Name = "txt_descripcion";
             txt_descripcion.Size = new Size(151, 23);
             txt_descripcion.TabIndex = 32;
             // 
             // txt_precioNoche
             // 
-            txt_precioNoche.Location = new Point(121, 176);
+            txt_precioNoche.Location = new Point(121, 134);
             txt_precioNoche.Name = "txt_precioNoche";
             txt_precioNoche.Size = new Size(151, 23);
             txt_precioNoche.TabIndex = 31;
             // 
             // flowLayoutPanel_imagenes
             // 
-            flowLayoutPanel_imagenes.Location = new Point(6, 309);
+            flowLayoutPanel_imagenes.Location = new Point(6, 342);
             flowLayoutPanel_imagenes.Name = "flowLayoutPanel_imagenes";
             flowLayoutPanel_imagenes.Size = new Size(272, 81);
             flowLayoutPanel_imagenes.TabIndex = 30;
             // 
             // btn_imagenes
             // 
-            btn_imagenes.Location = new Point(170, 263);
+            btn_imagenes.Location = new Point(170, 296);
             btn_imagenes.Name = "btn_imagenes";
             btn_imagenes.Size = new Size(47, 28);
             btn_imagenes.TabIndex = 29;
@@ -139,7 +154,7 @@
             // 
             // pictureBox_imagenes
             // 
-            pictureBox_imagenes.Location = new Point(46, 429);
+            pictureBox_imagenes.Location = new Point(46, 462);
             pictureBox_imagenes.Name = "pictureBox_imagenes";
             pictureBox_imagenes.Size = new Size(197, 158);
             pictureBox_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
@@ -149,7 +164,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(3, 270);
+            label6.Location = new Point(3, 303);
             label6.Name = "label6";
             label6.Size = new Size(61, 15);
             label6.TabIndex = 27;
@@ -180,7 +195,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 134);
+            label2.Location = new Point(3, 92);
             label2.Name = "label2";
             label2.Size = new Size(66, 15);
             label2.TabIndex = 22;
@@ -188,14 +203,14 @@
             // 
             // txt_capacidad
             // 
-            txt_capacidad.Location = new Point(121, 131);
+            txt_capacidad.Location = new Point(121, 89);
             txt_capacidad.Name = "txt_capacidad";
             txt_capacidad.Size = new Size(151, 23);
             txt_capacidad.TabIndex = 19;
             // 
             // txt_nombre
             // 
-            txt_nombre.Location = new Point(121, 89);
+            txt_nombre.Location = new Point(121, 47);
             txt_nombre.Name = "txt_nombre";
             txt_nombre.Size = new Size(151, 23);
             txt_nombre.TabIndex = 18;
@@ -203,7 +218,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(3, 222);
+            label5.Location = new Point(3, 180);
             label5.Name = "label5";
             label5.Size = new Size(72, 15);
             label5.TabIndex = 16;
@@ -212,7 +227,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 179);
+            label4.Location = new Point(3, 137);
             label4.Name = "label4";
             label4.Size = new Size(100, 15);
             label4.TabIndex = 15;
@@ -221,7 +236,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 92);
+            label3.Location = new Point(3, 50);
             label3.Name = "label3";
             label3.Size = new Size(54, 15);
             label3.TabIndex = 14;
@@ -259,6 +274,7 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.Size = new Size(874, 511);
             dataGridView1.TabIndex = 2;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // panel4
             // 
@@ -429,6 +445,7 @@
             panel1.ResumeLayout(false);
             gb_carga.ResumeLayout(false);
             gb_carga.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btn_borrar).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_imagenes).EndInit();
             panel2.ResumeLayout(false);
             gb_grilla.ResumeLayout(false);
@@ -479,5 +496,6 @@
         private TextBox txt_descripcion;
         private TextBox txt_precioNoche;
         private OpenFileDialog openFileDialog1;
+        private PictureBox btn_borrar;
     }
 }
