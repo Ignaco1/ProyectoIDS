@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAPA_COMUN;
 using CAPA_COMUN.Cache;
+using VISTA.ABM;
 
 namespace VISTA
 {
@@ -231,6 +232,11 @@ namespace VISTA
         private void btn_ajustes_Click(object sender, EventArgs e)
         {
             AbrirForms(new Form_ajustesUsuario());
+        }
+
+        private void btn_ABM_cabañas_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_cabañas_abm());
         }
     }
 }

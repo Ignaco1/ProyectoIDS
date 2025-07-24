@@ -217,6 +217,7 @@
             btn_ABM_cabañas.Text = "ABM de Cabañas";
             btn_ABM_cabañas.TextAlign = ContentAlignment.MiddleLeft;
             btn_ABM_cabañas.UseVisualStyleBackColor = true;
+            btn_ABM_cabañas.Click += btn_ABM_cabañas_Click;
             // 
             // btn_ABM_clientes
             // 

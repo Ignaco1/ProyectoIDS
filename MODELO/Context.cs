@@ -19,6 +19,7 @@ namespace MODELO
         public DbSet<Permiso> Permisos { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
+        public DbSet<ImagenCabaña> ImagenesCabaña { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
 
