@@ -85,8 +85,7 @@ namespace CONTROLADORA
 
             using (var context = new Context())
             {
-                var cabañaDB = context.Cabañas.Include(c => c.Imagenes)
-                    .FirstOrDefault(c => c.CabañaId == cabaña.CabañaId);
+                var cabañaDB = context.Cabañas.Include(c => c.Imagenes).FirstOrDefault(c => c.CabañaId == cabaña.CabañaId);
 
                 if (cabañaDB == null)
                     return "No se encontró la cabaña.";
@@ -115,6 +114,32 @@ namespace CONTROLADORA
 
         }
 
+        public string ModificarActividadCabaña(Cabaña cabaña)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    context.Update(cabaña);
+                    context.SaveChanges();
+                    if(cabaña.Activa == true)
+                    {
+                        return $"Cabaña activada con exito.";
+                    }
+                    else
+                    {
+                        return $"Cabaña desactivada con exito.";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return "Ocurrio un error en el sistema:  " + ex.Message;
+                }
+            }
+
+
+        }
+
         public string EliminarCabaña(Cabaña cabaña)
         {
 
@@ -132,6 +157,7 @@ namespace CONTROLADORA
                 }
             }
         }
+
 
         public bool ValidaCabaña(string nombre, int id)
         {

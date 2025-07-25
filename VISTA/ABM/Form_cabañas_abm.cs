@@ -21,7 +21,7 @@ namespace VISTA.ABM
         private int indice;
         private List<Cabaña> listaCabañasFiltro = new List<Cabaña>();
         private List<int> imagenesAEliminar = new List<int>();
-        private string variF = "";  
+        private string variF = "";
         private PictureBox imagenSeleccionada = null;
 
         public Form_cabañas_abm()
@@ -51,7 +51,9 @@ namespace VISTA.ABM
                     c.Nombre,
                     c.Capacidad,
                     c.PrecioPorNoche,
-                    c.Descripcion
+                    c.Descripcion,
+                    c.Activa
+
                 }).ToList();
 
             dataGridView1.DataSource = cabaña;
@@ -106,32 +108,40 @@ namespace VISTA.ABM
                 cabaña = contro_caba.ListarCabañas()[indice];
             }
 
-            txt_nombre.Text = cabaña.Nombre;
-            txt_capacidad.Text = cabaña.Capacidad.ToString();
-            txt_precioNoche.Text = cabaña.PrecioPorNoche.ToString();
-            txt_descripcion.Text = cabaña.Descripcion;
-
-            imagenesBytes.Clear();
-            imagenesAEliminar.Clear();
-            flowLayoutPanel_imagenes.Controls.Clear();
-            pictureBox_imagenes.Image = null;
-
-            foreach (var img in cabaña.Imagenes)
+            if (cabaña.Activa == true)
             {
-                imagenesBytes.Add(img.Imagen);
-                var pb = CrearMiniatura(img.Imagen);
-                flowLayoutPanel_imagenes.Controls.Add(pb);
-            }
+                txt_nombre.Text = cabaña.Nombre;
+                txt_capacidad.Text = cabaña.Capacidad.ToString();
+                txt_precioNoche.Text = cabaña.PrecioPorNoche.ToString();
+                txt_descripcion.Text = cabaña.Descripcion;
 
-            if (imagenesBytes.Count > 0)
-            {
-                using (MemoryStream ms = new MemoryStream(imagenesBytes[0]))
+                imagenesBytes.Clear();
+                imagenesAEliminar.Clear();
+                flowLayoutPanel_imagenes.Controls.Clear();
+                pictureBox_imagenes.Image = null;
+
+                foreach (var img in cabaña.Imagenes)
                 {
-                    pictureBox_imagenes.Image = Image.FromStream(ms);
+                    imagenesBytes.Add(img.Imagen);
+                    var pb = CrearMiniatura(img.Imagen);
+                    flowLayoutPanel_imagenes.Controls.Add(pb);
                 }
-            }
 
-            MODO_CARGA();
+                if (imagenesBytes.Count > 0)
+                {
+                    using (MemoryStream ms = new MemoryStream(imagenesBytes[0]))
+                    {
+                        pictureBox_imagenes.Image = Image.FromStream(ms);
+                    }
+                }
+
+                MODO_CARGA();
+            }
+            else
+            {
+                MessageBox.Show("Las cabañas inactivas no se pueden modificar.\n\nPara poder modificarla la cabaña debe estar activada.", "AVISO");
+                return;
+            }
 
         }
 
@@ -162,30 +172,38 @@ namespace VISTA.ABM
                 cabaña = contro_caba.ListarCabañas()[indice];
             }
 
-
-            DialogResult resultado = MessageBox.Show($"Está seguro que desea eliminar la cabaña:\n\nNombre: {cabaña.Nombre}\n\nCapacidad: {cabaña.Capacidad}\n\nPrecio por noche: {cabaña.PrecioPorNoche}\n\nDescripción: {cabaña.Descripcion}", "AVISO", MessageBoxButtons.YesNo);
-
-            if (resultado == DialogResult.Yes)
+            if (cabaña.Activa == true)
             {
-                try
-                {
-                    string respuesta = contro_caba.EliminarCabaña(cabaña);
-                    MessageBox.Show(respuesta);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al eliminar la cabaña:  " + ex.Message, "Error");
-                    return;
-                }
-            }
+                DialogResult resultado = MessageBox.Show($"Está seguro que desea eliminar la cabaña:\n\nNombre: {cabaña.Nombre}\n\nCapacidad: {cabaña.Capacidad}\n\nPrecio por noche: {cabaña.PrecioPorNoche}\n\nDescripción: {cabaña.Descripcion}", "AVISO", MessageBoxButtons.YesNo);
 
-            if (variF == "")
-            {
-                ARMA_GRILLA();
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string respuesta = contro_caba.EliminarCabaña(cabaña);
+                        MessageBox.Show(respuesta);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar la cabaña:  " + ex.Message, "Error");
+                        return;
+                    }
+                }
+
+
+                if (variF == "")
+                {
+                    ARMA_GRILLA();
+                }
+                else
+                {
+                    FILTRAR();
+                }
             }
             else
             {
-                FILTRAR();
+                MessageBox.Show("Las cabañas inactivas no se pueden eliminar.\n\nPara poder eliminarla la cabaña debe estar activada.", "AVISO");
+                return;
             }
 
         }
@@ -198,6 +216,67 @@ namespace VISTA.ABM
                 return;
             }
 
+            MODELO.Cabaña cabaña;
+
+            if (variF == "F")
+            {
+                cabaña = listaCabañasFiltro[indice];
+            }
+            else
+            {
+                cabaña = contro_caba.ListarCabañas()[indice];
+            }
+
+
+            if (cabaña.Activa == true)
+            {
+                DialogResult resultado = MessageBox.Show($"Está seguro que desea desactivar la cabaña:\n\nNombre: {cabaña.Nombre}\n\nCapacidad: {cabaña.Capacidad}\n\nPrecio por noche: {cabaña.PrecioPorNoche}\n\nDescripción: {cabaña.Descripcion}", "AVISO", MessageBoxButtons.YesNo);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        cabaña.Activa = false;
+
+                        string respuesta = contro_caba.ModificarActividadCabaña(cabaña);
+                        MessageBox.Show(respuesta, "AVISO");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al modificar la actividad de la cabaña:  " + ex.Message, "Error");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                DialogResult resultado = MessageBox.Show($"Está seguro que desea activar la cabaña:\n\nNombre: {cabaña.Nombre}\n\nCapacidad: {cabaña.Capacidad}\n\nPrecio por noche: {cabaña.PrecioPorNoche}\n\nDescripción: {cabaña.Descripcion}", "AVISO", MessageBoxButtons.YesNo);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        cabaña.Activa = true;
+
+                        string respuesta = contro_caba.ModificarActividadCabaña(cabaña);
+                        MessageBox.Show(respuesta);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al modificar la actividad de la cabaña:  " + ex.Message, "Error");
+                        return;
+                    }
+                }
+            }
+
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
 
         }
 
@@ -446,7 +525,8 @@ namespace VISTA.ABM
                 c.Nombre,
                 c.Capacidad,
                 c.PrecioPorNoche,
-                c.Descripcion
+                c.Descripcion,
+                c.Activa
 
             }).ToList();
 
@@ -482,5 +562,6 @@ namespace VISTA.ABM
             imagenSeleccionada = null;
             pictureBox_imagenes.Image = null;
         }
+
     }
 }
