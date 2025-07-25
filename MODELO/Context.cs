@@ -14,7 +14,7 @@ namespace MODELO
 
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Alquiler> Alquileres { get; set; }
+        public DbSet<Reserva> Reservas { get; set; }
         public DbSet<Cabaña> Cabañas { get; set; }
         public DbSet<Permiso> Permisos { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
