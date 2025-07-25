@@ -52,6 +52,7 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 var tarjeta = new UC_Cabaña();
                 tarjeta.CabañaNombre = cabaña.Nombre;
+                tarjeta.DatosCabaña = cabaña;
 
                 var imagenes = cabaña.Imagenes.Select(i => i.Imagen).ToList();
 
@@ -59,26 +60,21 @@ namespace VISTA.Cabañas_y_alquiler
 
                 tarjeta.SetAbrirFormulario(form =>
                 {
-                    // Intenta obtener el form principal desde el ParentForm
                     if (this.ParentForm is Form_principal fPrincipal)
                     {
-                        // Evento al cerrar el form de alquiler
                         form.FormClosed += (s, ev) =>
                         {
-                            if (form is Form_realizarAlquiler fra && fra.AlquilerConfirmado)
+                            if (form is Form_realizarAlquiler fra)
                             {
-                                // Alquiler confirmado → limpiar panel (mostrar solo logo)
-                                fPrincipal.panel_forms.Controls.Clear();
+
                             }
                             else
                             {
-                                // Cancelado o cerrado sin confirmar → volver a desplegar cabañas
                                 fPrincipal.AbrirForms(new Form_desplegarCabañas());
                             }
                         };
 
-                        // Mostrar el form en el panel
-                        form.Owner = fPrincipal; // IMPORTANTE para que funcione correctamente
+                        form.Owner = fPrincipal; 
                         fPrincipal.AbrirForms(form);
                     }
                     else
@@ -105,12 +101,14 @@ namespace VISTA.Cabañas_y_alquiler
             }
             
             CabañasFiltro();
+            btn_quitarFiltro.Enabled = true;
         }
 
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
         {
             ARMAR();
             LIMPIAR();
+            btn_quitarFiltro.Enabled = false;
         }
 
         private void CabañasFiltro()

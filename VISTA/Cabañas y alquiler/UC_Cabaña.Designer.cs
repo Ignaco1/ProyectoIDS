@@ -42,6 +42,7 @@
             // 
             // panel1
             // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btn_anterior);
             panel1.Controls.Add(btn_siguiente);
             panel1.Controls.Add(lb_descripcion);

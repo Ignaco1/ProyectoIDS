@@ -18,6 +18,7 @@ namespace VISTA
         private List<byte[]> imagenes = new List<byte[]>();
         private int indiceImagenActual = 0;
         private Action<Form> abrirFormulario;
+        public Cabaña DatosCabaña { get; set; }
 
         public UC_Cabaña()
         {
@@ -66,6 +67,7 @@ namespace VISTA
         private void UC_Cabaña_Click(object sender, EventArgs e)
         {
             var formAlquiler = new Form_realizarAlquiler();
+            var c = DatosCabaña;
 
             DialogResult resultado = MessageBox.Show($"Abrir formulario para alquilar la cabaña: {CabañaNombre}", "AVISO", MessageBoxButtons.YesNo);
 
@@ -73,6 +75,8 @@ namespace VISTA
             {
                 try
                 {
+                    formAlquiler.Configurar(c.Nombre, c.Capacidad, c.PrecioPorNoche, c.Descripcion, imagenes, c.CabañaId);
+
                     abrirFormulario?.Invoke(formAlquiler);
                 }
                 catch (Exception ex)

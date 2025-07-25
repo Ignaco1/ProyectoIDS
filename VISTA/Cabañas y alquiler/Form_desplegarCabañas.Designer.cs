@@ -86,7 +86,7 @@
             dtp_entrada.Name = "dtp_entrada";
             dtp_entrada.Size = new Size(200, 23);
             dtp_entrada.TabIndex = 48;
-            dtp_entrada.Value = new DateTime(2025, 7, 25, 10, 54, 19, 0);
+            dtp_entrada.Value = new DateTime(2025, 7, 25, 18, 57, 0, 0);
             // 
             // label3
             // 
@@ -215,7 +215,7 @@
             flp_cabañas.Size = new Size(1164, 532);
             flp_cabañas.TabIndex = 0;
             // 
-            // Form_realizarAlquiler
+            // Form_desplegarCabañas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -224,7 +224,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Form_realizarAlquiler";
+            Name = "Form_desplegarCabañas";
             Text = "Form_realizarAlquiler";
             Load += Form_realizarAlquiler_Load;
             panel1.ResumeLayout(false);

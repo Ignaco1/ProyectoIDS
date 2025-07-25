@@ -31,6 +31,7 @@
             panel1 = new Panel();
             btn_cerrar = new Button();
             panel2 = new Panel();
+            lb_descripcion = new Label();
             label1 = new Label();
             lb_nombre = new Label();
             btn_cancelar = new Button();
@@ -39,7 +40,6 @@
             mc_fechas = new MonthCalendar();
             btn_anterior = new Button();
             btn_siguiente = new Button();
-            lb_descripcion = new Label();
             lb_precio = new Label();
             lb_capacidad = new Label();
             pb_imagenes = new PictureBox();
@@ -71,6 +71,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(lb_descripcion);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(lb_nombre);
             panel2.Controls.Add(btn_cancelar);
@@ -79,7 +80,6 @@
             panel2.Controls.Add(mc_fechas);
             panel2.Controls.Add(btn_anterior);
             panel2.Controls.Add(btn_siguiente);
-            panel2.Controls.Add(lb_descripcion);
             panel2.Controls.Add(lb_precio);
             panel2.Controls.Add(lb_capacidad);
             panel2.Controls.Add(pb_imagenes);
@@ -89,30 +89,40 @@
             panel2.Size = new Size(1164, 619);
             panel2.TabIndex = 1;
             // 
+            // lb_descripcion
+            // 
+            lb_descripcion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lb_descripcion.Location = new Point(442, 93);
+            lb_descripcion.MaximumSize = new Size(500, 0);
+            lb_descripcion.Name = "lb_descripcion";
+            lb_descripcion.Size = new Size(320, 275);
+            lb_descripcion.TabIndex = 29;
+            lb_descripcion.Text = "Descripcion:";
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(698, 341);
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(740, 390);
             label1.Name = "label1";
-            label1.Size = new Size(56, 17);
+            label1.Size = new Size(64, 20);
             label1.TabIndex = 28;
             label1.Text = "Clientes:";
             // 
             // lb_nombre
             // 
             lb_nombre.AutoSize = true;
-            lb_nombre.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_nombre.Location = new Point(178, 23);
+            lb_nombre.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_nombre.Location = new Point(215, 33);
             lb_nombre.Name = "lb_nombre";
-            lb_nombre.Size = new Size(71, 21);
+            lb_nombre.Size = new Size(86, 25);
             lb_nombre.TabIndex = 27;
             lb_nombre.Text = "Nombre";
             // 
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_cancelar.Location = new Point(656, 484);
+            btn_cancelar.Location = new Point(659, 497);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(132, 43);
             btn_cancelar.TabIndex = 26;
@@ -123,7 +133,7 @@
             // btn_realizarReserva
             // 
             btn_realizarReserva.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_realizarReserva.Location = new Point(385, 484);
+            btn_realizarReserva.Location = new Point(388, 497);
             btn_realizarReserva.Name = "btn_realizarReserva";
             btn_realizarReserva.Size = new Size(132, 43);
             btn_realizarReserva.TabIndex = 25;
@@ -134,14 +144,15 @@
             // cb_clientes
             // 
             cb_clientes.FormattingEnabled = true;
-            cb_clientes.Location = new Point(760, 340);
+            cb_clientes.Location = new Point(810, 391);
             cb_clientes.Name = "cb_clientes";
-            cb_clientes.Size = new Size(179, 23);
+            cb_clientes.Size = new Size(243, 23);
             cb_clientes.TabIndex = 24;
             // 
             // mc_fechas
             // 
-            mc_fechas.Location = new Point(708, 42);
+            mc_fechas.Location = new Point(794, 76);
+            mc_fechas.MaxSelectionCount = 30;
             mc_fechas.Name = "mc_fechas";
             mc_fechas.TabIndex = 22;
             // 
@@ -155,11 +166,12 @@
             btn_anterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_anterior.Location = new Point(87, 61);
             btn_anterior.Name = "btn_anterior";
-            btn_anterior.Size = new Size(16, 227);
+            btn_anterior.Size = new Size(16, 292);
             btn_anterior.TabIndex = 21;
             btn_anterior.TabStop = false;
             btn_anterior.Text = "<";
             btn_anterior.UseVisualStyleBackColor = false;
+            btn_anterior.Click += btn_anterior_Click;
             // 
             // btn_siguiente
             // 
@@ -169,41 +181,32 @@
             btn_siguiente.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btn_siguiente.FlatStyle = FlatStyle.Flat;
             btn_siguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_siguiente.Location = new Point(326, 61);
+            btn_siguiente.Location = new Point(405, 61);
             btn_siguiente.Name = "btn_siguiente";
-            btn_siguiente.Size = new Size(16, 227);
+            btn_siguiente.Size = new Size(16, 292);
             btn_siguiente.TabIndex = 20;
             btn_siguiente.TabStop = false;
             btn_siguiente.Text = ">";
             btn_siguiente.UseVisualStyleBackColor = false;
-            // 
-            // lb_descripcion
-            // 
-            lb_descripcion.AutoSize = true;
-            lb_descripcion.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lb_descripcion.Location = new Point(363, 73);
-            lb_descripcion.Name = "lb_descripcion";
-            lb_descripcion.Size = new Size(79, 17);
-            lb_descripcion.TabIndex = 19;
-            lb_descripcion.Text = "Descripción:";
+            btn_siguiente.Click += btn_siguiente_Click;
             // 
             // lb_precio
             // 
             lb_precio.AutoSize = true;
-            lb_precio.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lb_precio.Location = new Point(116, 373);
+            lb_precio.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lb_precio.Location = new Point(134, 425);
             lb_precio.Name = "lb_precio";
-            lb_precio.Size = new Size(111, 17);
+            lb_precio.Size = new Size(124, 20);
             lb_precio.TabIndex = 18;
             lb_precio.Text = "Precio por noche:";
             // 
             // lb_capacidad
             // 
             lb_capacidad.AutoSize = true;
-            lb_capacidad.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lb_capacidad.Location = new Point(116, 323);
+            lb_capacidad.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lb_capacidad.Location = new Point(134, 375);
             lb_capacidad.Name = "lb_capacidad";
-            lb_capacidad.Size = new Size(73, 17);
+            lb_capacidad.Size = new Size(83, 20);
             lb_capacidad.TabIndex = 17;
             lb_capacidad.Text = "Capacidad:";
             // 
@@ -211,7 +214,7 @@
             // 
             pb_imagenes.Location = new Point(87, 61);
             pb_imagenes.Name = "pb_imagenes";
-            pb_imagenes.Size = new Size(255, 227);
+            pb_imagenes.Size = new Size(334, 292);
             pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pb_imagenes.TabIndex = 15;
             pb_imagenes.TabStop = false;
@@ -245,11 +248,11 @@
         private MonthCalendar mc_fechas;
         private Button btn_anterior;
         private Button btn_siguiente;
-        private Label lb_descripcion;
         private Label lb_precio;
         private Label lb_capacidad;
         private PictureBox pb_imagenes;
         private Label label1;
         private Label lb_nombre;
+        private Label lb_descripcion;
     }
 }

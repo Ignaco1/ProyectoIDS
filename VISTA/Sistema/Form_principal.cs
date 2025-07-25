@@ -123,6 +123,8 @@ namespace VISTA
 
             formActual = formNuevo;
 
+            //panel_forms.Controls.Clear();
+
             formNuevo.TopLevel = false;
             formNuevo.FormBorderStyle = FormBorderStyle.None;
             formNuevo.Dock = DockStyle.Fill;
@@ -176,7 +178,6 @@ namespace VISTA
         {
             Application.Exit();
         }
-
 
 
         private void btn_cerrarSesion_Click(object sender, EventArgs e)
