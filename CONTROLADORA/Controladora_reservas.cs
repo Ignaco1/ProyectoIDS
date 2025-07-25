@@ -1,40 +1,38 @@
-﻿using MODELO.Composite;
-using MODELO;
+﻿using MODELO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace CONTROLADORA
 {
-    public class Controladora_cabañas
+    public class Controladora_reservas
     {
-        private static Controladora_cabañas instancia;
-        public static Controladora_cabañas Instancia
+        private static Controladora_reservas instancia;
+        public static Controladora_reservas Instancia
         {
             get
             {
                 if (instancia == null)
                 {
-                    instancia = new Controladora_cabañas();
+                    instancia = new Controladora_reservas();
                 }
                 return instancia;
             }
         }
 
-        public Controladora_cabañas()
+        public Controladora_reservas()
         {
 
         }
 
-        public ReadOnlyCollection<Cabaña> ListarCabañas()
+        public ReadOnlyCollection<Reserva> ListarReservas()
         {
             using (var context = new Context())
             {
-                return context.Cabañas.Include(c => c.Imagenes).ToList().AsReadOnly();
+                return context.reseva.Include(r => r.Cabaña).ToList();
             }
         }
 
@@ -121,7 +119,7 @@ namespace CONTROLADORA
                 {
                     context.Update(cabaña);
                     context.SaveChanges();
-                    if(cabaña.Activa == true)
+                    if (cabaña.Activa == true)
                     {
                         return $"Cabaña activada con exito.";
                     }
@@ -166,7 +164,7 @@ namespace CONTROLADORA
 
                 foreach (var cabaña in cabañas)
                 {
-                    if (cabaña.Nombre == nombre  && cabaña.CabañaId != id)
+                    if (cabaña.Nombre == nombre && cabaña.CabañaId != id)
                     {
                         return true;
                     }
@@ -176,4 +174,5 @@ namespace CONTROLADORA
             }
         }
     }
+}
 }

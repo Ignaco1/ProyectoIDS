@@ -15,9 +15,11 @@ namespace VISTA.Cabañas_y_alquiler
     public partial class Form_realizarAlquiler : Form
     {
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
+        private List<Cabaña> listaCabañasFiltro = new List<Cabaña>();
         public Form_realizarAlquiler()
         {
             InitializeComponent();
+            btn_quitarFiltro.Enabled = false;
         }
 
         private void Form_realizarAlquiler_Load(object sender, EventArgs e)
@@ -33,7 +35,9 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void LIMPIAR()
         {
-
+            txt_nombreFiltro.Clear();
+            txt_capacidadFiltro.Clear();
+            txt_precioNocheFiltro.Clear();
         }
         
         private void CargarCabañas(List<Cabaña> lista)
@@ -46,11 +50,6 @@ namespace VISTA.Cabañas_y_alquiler
                 tarjeta.CabañaNombre = cabaña.Nombre;
 
                 List<byte[]> imagenes = cabaña.Imagenes.Select(i => i.Imagen).ToList();
-
-                //if (imagenes.Count == 0)
-                //{
-                //    imagenes.Add(Properties.Resources.imagen_defecto); 
-                //}
 
                 tarjeta.Configurar(cabaña.Nombre, cabaña.Capacidad, cabaña.PrecioPorNoche, cabaña.Descripcion, imagenes);
 
@@ -65,13 +64,49 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void btn_filtrar_Click(object sender, EventArgs e)
         {
-
+            CabañasFiltro();
+            LIMPIAR();
         }
 
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
         {
-            ARMAR();
-            
+            ARMAR();         
+        }
+
+        private void CabañasFiltro()
+        {
+            string nombreFiltro = txt_nombreFiltro.Text.Trim().ToLower();
+            bool filtrarCapacidad = int.TryParse(txt_capacidadFiltro.Text, out int capacidadFiltro);
+            bool filtrarPrecio = decimal.TryParse(txt_precioNocheFiltro.Text, out decimal precioFiltro);
+
+            DateTime fechaEntradaFiltro = dtp_entrada.Value.Date;
+            DateTime fechaSalidaFiltro = dtp_salida.Value.Date;
+
+            bool filtrarPorFechas = fechaEntradaFiltro <= fechaSalidaFiltro;
+
+
+            listaCabañasFiltro = contro_caba.ListarCabañas()
+                .Where(c =>
+                    (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
+                    (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
+                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) &&
+                )
+                .ToList();
+
+            var cabañasAmostrar = listaCabañasFiltro
+            .Select(c => new
+            {
+                c.CabañaId,
+                c.Nombre,
+                c.Capacidad,
+                c.PrecioPorNoche,
+                c.Descripcion,
+                c.Activa
+
+            }).ToList();
+
+            CargarCabañas(cabañasAmostrar);
+
         }
     }
 }

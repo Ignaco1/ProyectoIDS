@@ -26,8 +26,6 @@ namespace VISTA
                 c.Click += UC_Cabaña_Click;
             }
 
-            btn_siguiente.Click += btn_siguiente_Click;
-            btn_anterior.Click += btn_anterior_Click;
         }
 
         private void UC_Cabaña_Load(object sender, EventArgs e)
@@ -46,9 +44,9 @@ namespace VISTA
             lb_nombre.Text = nombre;
             lb_capacidad.Text = $"Capacidad: {capacidad}";
             lb_precio.Text = $"Precio por noche: ${precio}";
-            lb_descripcion.Text = $"Precio por noche: ${descripcion}";
+            lb_descripcion.Text = $"Descripción: {descripcion}";
 
-            imagenes = imagenesBytes;
+            imagenes = imagenesBytes.Select(i => i.ToArray()).ToList();
 
             if (imagenes.Count > 0)
             {

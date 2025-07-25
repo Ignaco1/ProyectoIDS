@@ -52,6 +52,7 @@
             // 
             // panel1
             // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(dtp_salida);
             panel1.Controls.Add(dtp_entrada);
             panel1.Controls.Add(label3);
@@ -83,6 +84,7 @@
             dtp_entrada.Name = "dtp_entrada";
             dtp_entrada.Size = new Size(200, 23);
             dtp_entrada.TabIndex = 48;
+            dtp_entrada.Value = new DateTime(2025, 7, 25, 10, 54, 19, 0);
             // 
             // label3
             // 
@@ -153,7 +155,7 @@
             // btn_quitarFiltro
             // 
             btn_quitarFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_quitarFiltro.Location = new Point(1050, 51);
+            btn_quitarFiltro.Location = new Point(1048, 51);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(102, 23);
             btn_quitarFiltro.TabIndex = 34;
@@ -164,7 +166,7 @@
             // btn_filtrar
             // 
             btn_filtrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_filtrar.Location = new Point(1050, 24);
+            btn_filtrar.Location = new Point(1048, 24);
             btn_filtrar.Name = "btn_filtrar";
             btn_filtrar.Size = new Size(102, 23);
             btn_filtrar.TabIndex = 28;
@@ -174,6 +176,7 @@
             // 
             // panel2
             // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(btn_cerrar);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 620);
@@ -184,7 +187,7 @@
             // btn_cerrar
             // 
             btn_cerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btn_cerrar.Location = new Point(1050, 10);
+            btn_cerrar.Location = new Point(1048, 8);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(102, 23);
             btn_cerrar.TabIndex = 8;

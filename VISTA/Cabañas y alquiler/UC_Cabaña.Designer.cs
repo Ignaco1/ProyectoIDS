@@ -92,7 +92,7 @@
             // lb_descripcion
             // 
             lb_descripcion.AutoSize = true;
-            lb_descripcion.Location = new Point(199, 123);
+            lb_descripcion.Location = new Point(196, 144);
             lb_descripcion.Name = "lb_descripcion";
             lb_descripcion.Size = new Size(72, 15);
             lb_descripcion.TabIndex = 12;
@@ -101,7 +101,7 @@
             // lb_precio
             // 
             lb_precio.AutoSize = true;
-            lb_precio.Location = new Point(199, 79);
+            lb_precio.Location = new Point(196, 100);
             lb_precio.Name = "lb_precio";
             lb_precio.Size = new Size(100, 15);
             lb_precio.TabIndex = 11;
@@ -110,7 +110,7 @@
             // lb_capacidad
             // 
             lb_capacidad.AutoSize = true;
-            lb_capacidad.Location = new Point(199, 37);
+            lb_capacidad.Location = new Point(196, 58);
             lb_capacidad.Name = "lb_capacidad";
             lb_capacidad.Size = new Size(66, 15);
             lb_capacidad.TabIndex = 10;

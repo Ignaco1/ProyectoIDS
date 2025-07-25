@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace MODELO
 {
-    public class Reservas
+    public class Reserva
     {
         public int ReservaId { get; set; }
         public int IdCliente { get; set; }
         public int IdCabaña { get; set; }
-        public DateTime FechaIngreso { get; set; }
-        public DateTime FechaEgreso { get; set; }
+        public DateTime FechaEntrada { get; set; }
+        public DateTime FechaSalida { get; set; }
+        public virtual Cabaña Cabaña { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }
