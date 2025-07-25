@@ -50,12 +50,42 @@ namespace VISTA.Cabañas_y_alquiler
 
             foreach (var cabaña in lista)
             {
-                UC_Cabaña tarjeta = new UC_Cabaña();
+                var tarjeta = new UC_Cabaña();
                 tarjeta.CabañaNombre = cabaña.Nombre;
 
-                List<byte[]> imagenes = cabaña.Imagenes.Select(i => i.Imagen).ToList();
+                var imagenes = cabaña.Imagenes.Select(i => i.Imagen).ToList();
 
                 tarjeta.Configurar(cabaña.Nombre, cabaña.Capacidad, cabaña.PrecioPorNoche, cabaña.Descripcion, imagenes);
+
+                tarjeta.SetAbrirFormulario(form =>
+                {
+                    // Intenta obtener el form principal desde el ParentForm
+                    if (this.ParentForm is Form_principal fPrincipal)
+                    {
+                        // Evento al cerrar el form de alquiler
+                        form.FormClosed += (s, ev) =>
+                        {
+                            if (form is Form_realizarAlquiler fra && fra.AlquilerConfirmado)
+                            {
+                                // Alquiler confirmado → limpiar panel (mostrar solo logo)
+                                fPrincipal.panel_forms.Controls.Clear();
+                            }
+                            else
+                            {
+                                // Cancelado o cerrado sin confirmar → volver a desplegar cabañas
+                                fPrincipal.AbrirForms(new Form_desplegarCabañas());
+                            }
+                        };
+
+                        // Mostrar el form en el panel
+                        form.Owner = fPrincipal; // IMPORTANTE para que funcione correctamente
+                        fPrincipal.AbrirForms(form);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el formulario principal.");
+                    }
+                });
 
                 flp_cabañas.Controls.Add(tarjeta);
             }

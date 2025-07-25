@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MODELO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VISTA.Cabañas_y_alquiler;
 
 namespace VISTA
 {
@@ -15,6 +17,7 @@ namespace VISTA
         public string CabañaNombre { get; set; }
         private List<byte[]> imagenes = new List<byte[]>();
         private int indiceImagenActual = 0;
+        private Action<Form> abrirFormulario;
 
         public UC_Cabaña()
         {
@@ -30,12 +33,7 @@ namespace VISTA
 
         private void UC_Cabaña_Load(object sender, EventArgs e)
         {
-            btn_siguiente.FlatStyle = FlatStyle.Flat;
-            btn_siguiente.FlatAppearance.BorderSize = 0;
-            btn_siguiente.BackColor = Color.Transparent;
-            btn_siguiente.TabStop = false;
-            btn_siguiente.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btn_siguiente.FlatAppearance.MouseOverBackColor = Color.Transparent;
+
         }
 
         public void Configurar(string nombre, int capacidad, decimal precio, string descripcion, List<byte[]> imagenesBytes)
@@ -46,7 +44,7 @@ namespace VISTA
             lb_precio.Text = $"Precio por noche: ${precio}";
             lb_descripcion.Text = $"Descripción: {descripcion}";
 
-            imagenes = imagenesBytes.Select(i => i.ToArray()).ToList();
+            imagenes = imagenesBytes;
 
             if (imagenes.Count > 0)
             {
@@ -67,7 +65,24 @@ namespace VISTA
 
         private void UC_Cabaña_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Abrir formulario para alquilar la cabaña nombre: {CabañaNombre}");
+            var formAlquiler = new Form_realizarAlquiler();
+
+            DialogResult resultado = MessageBox.Show($"Abrir formulario para alquilar la cabaña: {CabañaNombre}", "AVISO", MessageBoxButtons.YesNo);
+
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    abrirFormulario?.Invoke(formAlquiler);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al abrir el formulario de la cabaña: {CabañaNombre}  " + ex.Message, "Error");
+                    return;
+                }
+            }
+            
+
         }
 
         private void btn_siguiente_Click(object sender, EventArgs e)
@@ -85,5 +100,11 @@ namespace VISTA
             indiceImagenActual = (indiceImagenActual - 1 + imagenes.Count) % imagenes.Count;
             MostrarImagenActual();
         }
+
+        public void SetAbrirFormulario(Action<Form> llamadaAlForm)
+        {
+            abrirFormulario = llamadaAlForm;
+        }
+
     }
 }

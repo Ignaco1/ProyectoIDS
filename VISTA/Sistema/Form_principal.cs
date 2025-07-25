@@ -114,7 +114,7 @@ namespace VISTA
         }
 
         private Form formActual = null;
-        private void AbrirForms(Form formNuevo)
+        public void AbrirForms(Form formNuevo)
         {
             if (formActual != null)
             {
@@ -131,7 +131,6 @@ namespace VISTA
             formNuevo.BringToFront();
 
             formNuevo.Show();
-
         }
 
         private void Form_principal_Load(object sender, EventArgs e)

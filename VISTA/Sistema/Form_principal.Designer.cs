@@ -554,7 +554,6 @@
         private Panel panel_logo;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private Panel panel_forms;
         private PictureBox pictureBox2;
         private PictureBox btn_cerrar;
         private PictureBox btn_minimizar;
@@ -581,5 +580,6 @@
         private Button btn_gestionar_grupos;
         private Label lbl_usuario;
         private PictureBox btn_ajustes;
+        public Panel panel_forms;
     }
 }
