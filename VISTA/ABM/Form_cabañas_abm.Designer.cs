@@ -126,14 +126,14 @@
             txt_descripcion.Location = new Point(121, 177);
             txt_descripcion.Name = "txt_descripcion";
             txt_descripcion.Size = new Size(151, 23);
-            txt_descripcion.TabIndex = 32;
+            txt_descripcion.TabIndex = 21;
             // 
             // txt_precioNoche
             // 
             txt_precioNoche.Location = new Point(121, 134);
             txt_precioNoche.Name = "txt_precioNoche";
             txt_precioNoche.Size = new Size(151, 23);
-            txt_precioNoche.TabIndex = 31;
+            txt_precioNoche.TabIndex = 20;
             // 
             // flowLayoutPanel_imagenes
             // 
@@ -147,7 +147,7 @@
             btn_imagenes.Location = new Point(170, 296);
             btn_imagenes.Name = "btn_imagenes";
             btn_imagenes.Size = new Size(47, 28);
-            btn_imagenes.TabIndex = 29;
+            btn_imagenes.TabIndex = 22;
             btn_imagenes.Text = "...";
             btn_imagenes.UseVisualStyleBackColor = true;
             btn_imagenes.Click += btn_imagenes_Click;
@@ -176,7 +176,7 @@
             btn_cancelar.Location = new Point(179, 630);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(102, 23);
-            btn_cancelar.TabIndex = 26;
+            btn_cancelar.TabIndex = 24;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = true;
             btn_cancelar.Click += btn_cancelar_Click;
@@ -187,7 +187,7 @@
             btn_guardar.Location = new Point(3, 630);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(102, 23);
-            btn_guardar.TabIndex = 25;
+            btn_guardar.TabIndex = 23;
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = true;
             btn_guardar.Click += btn_guardar_Click;
