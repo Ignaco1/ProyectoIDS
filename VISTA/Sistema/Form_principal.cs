@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CAPA_COMUN;
 using CAPA_COMUN.Cache;
 using VISTA.ABM;
+using VISTA.Cabañas_y_alquiler;
 
 namespace VISTA
 {
@@ -206,7 +207,7 @@ namespace VISTA
 
         private void btn_reservas_Click(object sender, EventArgs e)
         {
-
+            AbrirForms(new Form_realizarAlquiler());
         }
 
         private void btn_gestionar_grupos_Click(object sender, EventArgs e)
