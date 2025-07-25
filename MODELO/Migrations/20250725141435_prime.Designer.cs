@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250722145205_Primera")]
-    partial class Primera
+    [Migration("20250725141435_prime")]
+    partial class prime
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -38,35 +38,6 @@ namespace MODELO.Migrations
                     b.HasIndex("PermisosPermisoId");
 
                     b.ToTable("GrupoPermisos", (string)null);
-                });
-
-            modelBuilder.Entity("MODELO.Alquiler", b =>
-                {
-                    b.Property<int>("AlquilerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlquilerId"));
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("Fecha_Fin")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly>("Fecha_Inicio")
-                        .HasColumnType("date");
-
-                    b.Property<int>("Nombre_cabañaCabañaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AlquilerId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("Nombre_cabañaCabañaId");
-
-                    b.ToTable("Alquileres");
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>
@@ -166,6 +137,28 @@ namespace MODELO.Migrations
                     b.ToTable("Permisos");
                 });
 
+            modelBuilder.Entity("MODELO.ImagenCabaña", b =>
+                {
+                    b.Property<int>("ImagenCabañaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenCabañaId"));
+
+                    b.Property<int>("CabañaId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("ImagenCabañaId");
+
+                    b.HasIndex("CabañaId");
+
+                    b.ToTable("ImagenesCabaña");
+                });
+
             modelBuilder.Entity("MODELO.Pago", b =>
                 {
                     b.Property<int>("PagoId")
@@ -190,6 +183,41 @@ namespace MODELO.Migrations
                     b.HasKey("PagoId");
 
                     b.ToTable("Pagos");
+                });
+
+            modelBuilder.Entity("MODELO.Reserva", b =>
+                {
+                    b.Property<int>("ReservaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservaId"));
+
+                    b.Property<int>("CabañaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaEntrada")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaSalida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdCabaña")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservaId");
+
+                    b.HasIndex("CabañaId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Reservas");
                 });
 
             modelBuilder.Entity("MODELO.Usuario", b =>
@@ -222,6 +250,9 @@ namespace MODELO.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("PrimerIngreso")
+                        .HasColumnType("bit");
+
                     b.HasKey("UsuarioId");
 
                     b.HasIndex("GrupoId");
@@ -244,23 +275,34 @@ namespace MODELO.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MODELO.Alquiler", b =>
+            modelBuilder.Entity("MODELO.ImagenCabaña", b =>
                 {
+                    b.HasOne("MODELO.Cabaña", "Cabaña")
+                        .WithMany("Imagenes")
+                        .HasForeignKey("CabañaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cabaña");
+                });
+
+            modelBuilder.Entity("MODELO.Reserva", b =>
+                {
+                    b.HasOne("MODELO.Cabaña", "Cabaña")
+                        .WithMany()
+                        .HasForeignKey("CabañaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MODELO.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MODELO.Cabaña", "Nombre_cabaña")
-                        .WithMany()
-                        .HasForeignKey("Nombre_cabañaCabañaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Cabaña");
 
                     b.Navigation("Cliente");
-
-                    b.Navigation("Nombre_cabaña");
                 });
 
             modelBuilder.Entity("MODELO.Usuario", b =>
@@ -272,6 +314,11 @@ namespace MODELO.Migrations
                         .IsRequired();
 
                     b.Navigation("Grupo");
+                });
+
+            modelBuilder.Entity("MODELO.Cabaña", b =>
+                {
+                    b.Navigation("Imagenes");
                 });
 #pragma warning restore 612, 618
         }

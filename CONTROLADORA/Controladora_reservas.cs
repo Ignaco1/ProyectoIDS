@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CONTROLADORA
 {
@@ -32,11 +33,11 @@ namespace CONTROLADORA
         {
             using (var context = new Context())
             {
-                return context.reseva.Include(r => r.Cabaña).ToList();
+                return context.Reservas.Include(r => r.Cabaña).Include(r => r.Cliente).ToList().AsReadOnly();
             }
         }
 
-        public Cabaña CrearCabaña(string nombre, int capacidad, decimal precioxnoche, string descripcion, bool activa, List<byte[]> imagenes)
+        public Cabaña CrearReserva(string nombre, int capacidad, decimal precioxnoche, string descripcion, bool activa, List<byte[]> imagenes)
         {
             Cabaña cabaña = new Cabaña();
 
@@ -175,4 +176,4 @@ namespace CONTROLADORA
         }
     }
 }
-}
+
