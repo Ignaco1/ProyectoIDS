@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,11 @@ namespace MODELO
         public bool Activa { get; set; }
 
         public virtual ICollection<ImagenCabaña> Imagenes { get; set; } = new List<ImagenCabaña>();
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
     }
 }

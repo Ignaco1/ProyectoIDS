@@ -175,5 +175,19 @@ namespace CONTROLADORA
                 return false;
             }
         }
+
+        public Cabaña ObtenerCabañaId(int id)
+        {
+            using (var context = new Context())
+            {
+                var cabaña = context.Cabañas.Include(c => c.Imagenes).ToList().FirstOrDefault(c => c.CabañaId == id);
+
+                if (cabaña == null)
+                    return null;
+
+                return cabaña;
+            }
+
+        }
     }
 }

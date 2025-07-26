@@ -37,37 +37,30 @@ namespace CONTROLADORA
             }
         }
 
-        public Cabaña CrearReserva(string nombre, int capacidad, decimal precioxnoche, string descripcion, bool activa, List<byte[]> imagenes)
+        public Reserva CrearReserva(int Idcabaña, int Idcliente, DateTime fecha_entrada, DateTime fecha_salida, decimal precio, string estado)
         {
-            Cabaña cabaña = new Cabaña();
+            Reserva reserva = new Reserva();
 
-            cabaña.Nombre = nombre;
-            cabaña.Capacidad = capacidad;
-            cabaña.PrecioPorNoche = precioxnoche;
-            cabaña.Descripcion = descripcion;
-            cabaña.Activa = activa;
+            reserva.IdCabaña = Idcabaña;
+            reserva.IdCliente = Idcliente;
+            reserva.FechaEntrada = fecha_entrada;
+            reserva.FechaSalida = fecha_salida;
+            reserva.Precio = precio;
+            reserva.Estado = estado;
 
-            foreach (var img in imagenes)
-            {
-                cabaña.Imagenes.Add(new ImagenCabaña
-                {
-                    Imagen = img
-                });
-            }
-
-            return cabaña;
+            return reserva;
         }
 
-        public string AgregarCabaña(Cabaña nuevaCabaña)
+        public string AgregarReserva(Reserva nuevaReserva)
         {
 
             using (var context = new Context())
             {
                 try
                 {
-                    context.Add(nuevaCabaña);
+                    context.Add(nuevaReserva);
                     context.SaveChanges();
-                    return $"Nueva cabaña agregada al sistema con exito";
+                    return $"Nueva reserva agregada al sistema con exito";
                 }
                 catch (Exception ex)
                 {
@@ -78,56 +71,15 @@ namespace CONTROLADORA
 
         }
 
-        public string ModificarCabaña(Cabaña cabaña, List<int> imagenesAEliminar)
-        {
-
-            using (var context = new Context())
-            {
-                var cabañaDB = context.Cabañas.Include(c => c.Imagenes).FirstOrDefault(c => c.CabañaId == cabaña.CabañaId);
-
-                if (cabañaDB == null)
-                    return "No se encontró la cabaña.";
-
-                cabañaDB.Nombre = cabaña.Nombre;
-                cabañaDB.Capacidad = cabaña.Capacidad;
-                cabañaDB.PrecioPorNoche = cabaña.PrecioPorNoche;
-                cabañaDB.Descripcion = cabaña.Descripcion;
-
-                foreach (var id in imagenesAEliminar)
-                {
-                    var img = cabañaDB.Imagenes.FirstOrDefault(i => i.ImagenCabañaId == id);
-                    if (img != null) context.ImagenesCabaña.Remove(img);
-                }
-
-                cabañaDB.Imagenes.Clear();
-                foreach (var img in cabaña.Imagenes)
-                {
-                    cabañaDB.Imagenes.Add(new ImagenCabaña { Imagen = img.Imagen });
-                }
-
-                context.SaveChanges();
-                return "Cabaña modificada correctamente.";
-            }
-
-
-        }
-
-        public string ModificarActividadCabaña(Cabaña cabaña)
+        public string ModificarReserva(Reserva reserva)
         {
             using (var context = new Context())
             {
                 try
                 {
-                    context.Update(cabaña);
+                    context.Update(reserva);
                     context.SaveChanges();
-                    if (cabaña.Activa == true)
-                    {
-                        return $"Cabaña activada con exito.";
-                    }
-                    else
-                    {
-                        return $"Cabaña desactivada con exito.";
-                    }
+                    return $"Reserva modificada con exito";
                 }
                 catch (Exception ex)
                 {
@@ -135,19 +87,19 @@ namespace CONTROLADORA
                 }
             }
 
-
         }
 
-        public string EliminarCabaña(Cabaña cabaña)
+
+        public string EliminarReserva(Reserva reserva)
         {
 
             using (var context = new Context())
             {
                 try
                 {
-                    context.Remove(cabaña);
+                    context.Remove(reserva);
                     context.SaveChanges();
-                    return $"Cabaña eliminada con exito";
+                    return $"Reserva eliminada con exito";
                 }
                 catch (Exception ex)
                 {
@@ -156,24 +108,26 @@ namespace CONTROLADORA
             }
         }
 
-
-        public bool ValidaCabaña(string nombre, int id)
+        public bool ValidaReserva(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
         {
             using (var context = new Context())
             {
-                var cabañas = context.Cabañas.ToList();
+                var reservas = context.Reservas
+                    .Where(r => r.IdCabaña == cabaña.CabañaId)
+                    .ToList();
 
-                foreach (var cabaña in cabañas)
+                foreach (var reserva in reservas)
                 {
-                    if (cabaña.Nombre == nombre && cabaña.CabañaId != id)
+                    if (!(fecha_salida < reserva.FechaEntrada || fecha_entrada > reserva.FechaSalida))
                     {
-                        return true;
+                        return true; 
                     }
                 }
 
-                return false;
+                return false; 
             }
         }
+
     }
 }
 

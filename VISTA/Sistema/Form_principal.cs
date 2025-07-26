@@ -239,6 +239,11 @@ namespace VISTA
         {
             AbrirForms(new Form_cabañas_abm());
         }
+
+        private void btn_ver_reservas_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_verReservas());
+        }
     }
 }
 

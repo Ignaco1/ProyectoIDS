@@ -122,7 +122,7 @@
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_cancelar.Location = new Point(659, 497);
+            btn_cancelar.Location = new Point(656, 516);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(132, 43);
             btn_cancelar.TabIndex = 26;
@@ -133,7 +133,7 @@
             // btn_realizarReserva
             // 
             btn_realizarReserva.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_realizarReserva.Location = new Point(388, 497);
+            btn_realizarReserva.Location = new Point(385, 516);
             btn_realizarReserva.Name = "btn_realizarReserva";
             btn_realizarReserva.Size = new Size(132, 43);
             btn_realizarReserva.TabIndex = 25;
@@ -143,6 +143,7 @@
             // 
             // cb_clientes
             // 
+            cb_clientes.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_clientes.FormattingEnabled = true;
             cb_clientes.Location = new Point(810, 391);
             cb_clientes.Name = "cb_clientes";

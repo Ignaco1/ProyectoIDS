@@ -173,7 +173,6 @@ namespace VISTA
                 {
                     var (usuario1, contra) = contro_us.CrearUsuario(cb_tipoUsuario.Text, txt_nombre.Text, txt_apellido.Text, txt_usuario.Text, txt_email.Text);
 
-
                     try
                     {
                         string resultado = contro_us.AgregarUsuario(usuario1);

@@ -30,17 +30,75 @@ namespace VISTA.Cabañas_y_alquiler
 
             foreach (var cliente in clientes)
             {
-                cb_clientes.Items.Add(cliente.Nombre + " " + cliente.Apellido + " - " + " (DNI: " + cliente.Dni + ")");
+                cb_clientes.Items.Add(cliente);
             }
         }
 
         private void btn_realizarReserva_Click(object sender, EventArgs e)
         {
+            MODELO.Reserva reserva = null;
+
+            #region VALIDACIONES
+
+            if (string.IsNullOrWhiteSpace(cb_clientes.Text))
+            {
+                MessageBox.Show("Seleccione a un cliente para realizar la reserva.", "Error");
+                return;
+            }
+
             DateTime fechaEntrada = mc_fechas.SelectionStart.Date;
             DateTime fechaSalida = mc_fechas.SelectionEnd.Date;
 
-            MessageBox.Show("Alquiler registrado correctamente.");
-            this.Close();
+            if (mc_fechas.SelectionStart == mc_fechas.SelectionEnd)
+            {
+                MessageBox.Show("Debe seleccionar un rango de fechas para la reserva (entrada y salida).", "Error");
+                return;
+            }
+
+            if (fechaEntrada > fechaSalida)
+            {
+                MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
+                return;
+            }
+
+            Cabaña cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
+
+            if (cabaña == null)
+            {
+                MessageBox.Show("No se pudo encontrar la cabaña seleccionada.", "Error");
+                return;
+            }
+
+            #endregion
+
+
+            Cliente cliente = cb_clientes.SelectedItem as Cliente;
+
+            decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
+
+            if (!contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida))
+            {
+                reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal, "Pendiente");
+
+                try
+                {
+                    string respuesta = contro_reser.AgregarReserva(reserva);
+                    MessageBox.Show(respuesta);
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al agregar la reserva:  " + ex.Message, "Error");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Esta reserva ya existe\n\nIntente con otras fechas", "AVISO");
+                return;
+            }
+
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -153,5 +211,16 @@ namespace VISTA.Cabañas_y_alquiler
 
             return resultado.ToString().Trim();
         }
+
+        private decimal ObtenerPrecioTotal(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
+        {
+            int cantidadNoches = (fecha_salida - fecha_entrada).Days + 1;
+
+            if (cantidadNoches <= 0)
+                return 0;
+
+            return cantidadNoches * cabaña.PrecioPorNoche;
+        }
+
     }
 }

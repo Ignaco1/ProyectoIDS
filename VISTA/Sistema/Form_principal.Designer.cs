@@ -154,6 +154,7 @@
             btn_ver_reservas.Text = "Ver reservas";
             btn_ver_reservas.TextAlign = ContentAlignment.MiddleLeft;
             btn_ver_reservas.UseVisualStyleBackColor = false;
+            btn_ver_reservas.Click += btn_ver_reservas_Click;
             // 
             // btn_realizar_alquilar
             // 
