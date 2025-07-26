@@ -223,6 +223,7 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.Size = new Size(885, 476);
             dataGridView1.TabIndex = 2;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // panel4
             // 

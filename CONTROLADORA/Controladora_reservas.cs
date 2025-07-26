@@ -108,23 +108,22 @@ namespace CONTROLADORA
             }
         }
 
-        public bool ValidaReserva(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
+        public bool ValidaReserva(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida, int? reservaIdExcluir = null)
         {
             using (var context = new Context())
             {
-                var reservas = context.Reservas
-                    .Where(r => r.IdCabaña == cabaña.CabañaId)
-                    .ToList();
+                var reservas = context.Reservas.Where(r => r.IdCabaña == cabaña.CabañaId).ToList();
 
                 foreach (var reserva in reservas)
                 {
+                    if (reservaIdExcluir.HasValue && reserva.ReservaId == reservaIdExcluir.Value)
+                        continue;
+
                     if (!(fecha_salida < reserva.FechaEntrada || fecha_entrada > reserva.FechaSalida))
-                    {
-                        return true; 
-                    }
+                        return true;
                 }
 
-                return false; 
+                return false;
             }
         }
 

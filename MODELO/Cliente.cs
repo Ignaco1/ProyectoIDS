@@ -22,6 +22,19 @@ namespace MODELO
             return Nombre + " " + Apellido + " - " + " (DNI: " + Dni + ")";
         }
 
-        
+        public override bool Equals(object obj)
+        {
+            if (obj is Cliente otro)
+                return this.ClienteId == otro.ClienteId;
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ClienteId.GetHashCode();
+        }
+
+
     }
 }

@@ -95,7 +95,7 @@ namespace VISTA.Cabañas_y_alquiler
             }
             else
             {
-                MessageBox.Show("Esta reserva ya existe\n\nIntente con otras fechas", "AVISO");
+                MessageBox.Show("La cabaña ya tiene reservas para esa fecha\n\nIntente con otras fechas", "AVISO");
                 return;
             }
 

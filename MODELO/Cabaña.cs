@@ -25,5 +25,18 @@ namespace MODELO
             return Nombre;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is Cabaña otra)
+                return this.CabañaId == otra.CabañaId;
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.CabañaId.GetHashCode();
+        }
+
     }
 }
