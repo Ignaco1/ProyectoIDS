@@ -7,15 +7,21 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+
 
 namespace VISTA.ABM
 {
     public partial class Form_cabañas_abm : Form
     {
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
+        CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         private List<byte[]> imagenesBytes = new List<byte[]>();
         private string vari;
         private int indice;
@@ -131,7 +137,7 @@ namespace VISTA.ABM
                 {
                     using (MemoryStream ms = new MemoryStream(imagenesBytes[0]))
                     {
-                        pictureBox_imagenes.Image = Image.FromStream(ms);
+                        pictureBox_imagenes.Image = System.Drawing.Image.FromStream(ms);
                     }
                 }
 
@@ -145,11 +151,11 @@ namespace VISTA.ABM
 
         }
 
-        private Image ByteArrayToImage(byte[] bytes)
+        private System.Drawing.Image ByteArrayToImage(byte[] bytes)
         {
             using (var ms = new MemoryStream(bytes))
             {
-                return Image.FromStream(ms);
+                return System.Drawing.Image.FromStream(ms);
             }
         }
 
@@ -239,6 +245,14 @@ namespace VISTA.ABM
                         cabaña.Activa = false;
 
                         string respuesta = contro_caba.ModificarActividadCabaña(cabaña);
+
+                        List<Cliente> clientesAfectados = contro_reser.CancelarReservasPorCabaña(cabaña.CabañaId);
+
+                        if (clientesAfectados.Any())
+                        {
+                            GenerarPDFClientes(clientesAfectados, cabaña.Nombre);
+                        }
+
                         MessageBox.Show(respuesta, "AVISO");
                     }
                     catch (Exception ex)
@@ -247,6 +261,8 @@ namespace VISTA.ABM
                         return;
                     }
                 }
+
+
             }
             else
             {
@@ -454,7 +470,7 @@ namespace VISTA.ABM
             PictureBox pb = new PictureBox();
             using (MemoryStream ms = new MemoryStream(imagen))
             {
-                pb.Image = Image.FromStream(ms);
+                pb.Image = System.Drawing.Image.FromStream(ms);
             }
             pb.Width = 40;
             pb.Height = 40;
@@ -561,6 +577,39 @@ namespace VISTA.ABM
             flowLayoutPanel_imagenes.Controls.RemoveAt(index);
             imagenSeleccionada = null;
             pictureBox_imagenes.Image = null;
+        }
+
+        private void GenerarPDFClientes(List<Cliente> clientes, string nombreCabaña)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "PDF Files|*.pdf";
+            saveFile.FileName = $"ClientesAfectados_{nombreCabaña}_{DateTime.Now:yyyyMMdd}.pdf";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fs = new FileStream(saveFile.FileName, FileMode.Create, FileAccess.Write))
+                {
+                    iTextSharp.text.Document doc = new iTextSharp.text.Document();
+                    PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+
+                    doc.Open();
+
+                    doc.Add(new Paragraph($"Clientes afectados por desactivación de la cabaña: {nombreCabaña}"));
+                    doc.Add(new Paragraph(" "));
+                    doc.Add(new Paragraph($"Fecha: {DateTime.Today:dd/MM/yyyy}"));
+                    doc.Add(new Paragraph(" "));
+                    doc.Add(new Paragraph(" "));
+
+                    foreach (var cliente in clientes)
+                    {
+                        doc.Add(new Paragraph($"Dni:{cliente.Dni} - Nombre: {cliente.Nombre} {cliente.Apellido} - Email: {cliente.Email} - Telefono: {cliente.Telefono}\n\n"));
+                    }
+
+                    doc.Close();
+                }
+
+                MessageBox.Show("PDF generado correctamente.", "Éxito");
+            }
         }
 
     }

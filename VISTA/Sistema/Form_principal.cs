@@ -197,6 +197,14 @@ namespace VISTA
 
         private void btn_cerrar_Click_1(object sender, EventArgs e)
         {
+            var usuario = contro_us.ObtenerUsuarioId(UsuarioCache.UsuarioId);
+
+            if (usuario.PrimerIngreso == true)
+            {
+                MessageBox.Show("Antes de salir usted debe cambiar su contraseña desde la parte de ajustes.\n\nGracias.", "AVISO");
+                return;
+            }
+
             Application.Exit();
         }
 
@@ -207,11 +215,11 @@ namespace VISTA
 
             if (usuario.PrimerIngreso == true)
             {
-                MessageBox.Show("Antes de salir usted debe cambiar su contraseña desde la parte de ajustes.\n\nGracias.", "Aviso");
+                MessageBox.Show("Antes de salir usted debe cambiar su contraseña desde la parte de ajustes.\n\nGracias.", "AVISO");
                 return;
             }
 
-            var resultado = MessageBox.Show("Esta seguro que desea cerrar sesión?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var resultado = MessageBox.Show("Esta seguro que desea cerrar sesión?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (resultado == DialogResult.Yes)
             {

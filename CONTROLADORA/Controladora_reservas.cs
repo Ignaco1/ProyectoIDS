@@ -150,6 +150,35 @@ namespace CONTROLADORA
             }
         }
 
+        public List<Cliente> CancelarReservasPorCabaña(int idCabaña)
+        {
+            using (var context = new Context())
+            {
+                DateTime hoy = DateTime.Today;
+                DateTime dentroDeUnMes = hoy.AddMonths(1);
+
+                var reservas = context.Reservas
+                    .Include(r => r.Cliente)
+                    .Where(r => r.IdCabaña == idCabaña
+                        && r.FechaEntrada >= hoy
+                        && r.FechaEntrada <= dentroDeUnMes
+                        && (r.Estado == "Pendiente" || r.Estado == "Activa"))
+                    .ToList();
+
+                List<Cliente> clientesAfectados = new List<Cliente>();
+
+                foreach (var reserva in reservas)
+                {
+                    reserva.Estado = "Cancelada";
+                    clientesAfectados.Add(reserva.Cliente);
+                }
+
+                context.SaveChanges();
+
+                return clientesAfectados;
+            }
+        }
+
     }
 }
 

@@ -93,6 +93,9 @@ namespace VISTA
         private void btn_agregar_Click(object sender, EventArgs e)
         {
             vari = "A";
+
+            CargarCombos(esModificacion: false);
+
             MODO_CARGA();
         }
 
@@ -126,12 +129,6 @@ namespace VISTA
                 return;
             }
 
-            if (cb_tipoUsuario.Text.Equals("SuperAdministrador", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("No se puede crear un usuario con el grupo 'SuperAdministrador'. Ya existe uno en el sistema.", "Error");
-                return;
-            }
-
 
             if (string.IsNullOrWhiteSpace(txt_nombre.Text))
             {
@@ -153,7 +150,7 @@ namespace VISTA
 
             if (txt_usuario.Text.Length < 4 || txt_usuario.Text.Contains(" "))
             {
-                MessageBox.Show("El Id de usuario debe tener al menos 4 caracteres y no contener espacios.", "Error");
+                MessageBox.Show("El nombre de usuario debe tener al menos 4 caracteres y no contener espacios.", "Error");
                 return;
             }
 
