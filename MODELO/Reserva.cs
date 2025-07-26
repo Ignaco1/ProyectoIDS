@@ -16,7 +16,7 @@ namespace MODELO
         public DateTime FechaEntrada { get; set; }
         public DateTime FechaSalida { get; set; }
         public decimal Precio {  get; set; }
-        public string Estado {  get; set; }
+        public string? Estado {  get; set; }
 
         [ForeignKey("IdCabaña")]
         public virtual Cabaña Cabaña { get; set; }

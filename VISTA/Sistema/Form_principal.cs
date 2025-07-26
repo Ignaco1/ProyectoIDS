@@ -18,6 +18,7 @@ namespace VISTA
     public partial class Form_principal : Form
     {
         CONTROLADORA.Controladora_usuarios contro_us = new CONTROLADORA.Controladora_usuarios();
+        private System.Windows.Forms.Timer timerActualizarEstados;
         public Form_principal()
         {
             InitializeComponent();
@@ -123,8 +124,6 @@ namespace VISTA
 
             formActual = formNuevo;
 
-            //panel_forms.Controls.Clear();
-
             formNuevo.TopLevel = false;
             formNuevo.FormBorderStyle = FormBorderStyle.None;
             formNuevo.Dock = DockStyle.Fill;
@@ -139,6 +138,28 @@ namespace VISTA
         {
             CargarLabels();
             HabilitarBotones(this);
+            IniciarTimerActualizador();
+        }
+
+        private void IniciarTimerActualizador()
+        {
+            timerActualizarEstados = new System.Windows.Forms.Timer();
+            timerActualizarEstados.Interval = 10 * 60 * 1000; 
+            timerActualizarEstados.Tick += TimerActualizarEstados_Tick;
+            timerActualizarEstados.Start();
+        }
+
+        private void TimerActualizarEstados_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                var contro_reser = new CONTROLADORA.Controladora_reservas();
+                contro_reser.ActualizarEstadosReservas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar estados: " + ex.Message);
+            }
         }
 
         private void CargarLabels()

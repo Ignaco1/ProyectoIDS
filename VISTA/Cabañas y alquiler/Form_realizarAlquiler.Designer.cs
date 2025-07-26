@@ -43,6 +43,8 @@
             lb_precio = new Label();
             lb_capacidad = new Label();
             pb_imagenes = new PictureBox();
+            label2 = new Label();
+            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_imagenes).BeginInit();
@@ -71,6 +73,8 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(label2);
             panel2.Controls.Add(lb_descripcion);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(lb_nombre);
@@ -92,7 +96,7 @@
             // lb_descripcion
             // 
             lb_descripcion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lb_descripcion.Location = new Point(442, 93);
+            lb_descripcion.Location = new Point(427, 90);
             lb_descripcion.MaximumSize = new Size(500, 0);
             lb_descripcion.Name = "lb_descripcion";
             lb_descripcion.Size = new Size(320, 275);
@@ -152,7 +156,7 @@
             // 
             // mc_fechas
             // 
-            mc_fechas.Location = new Point(794, 76);
+            mc_fechas.Location = new Point(790, 76);
             mc_fechas.MaxSelectionCount = 30;
             mc_fechas.Name = "mc_fechas";
             mc_fechas.TabIndex = 22;
@@ -220,6 +224,26 @@
             pb_imagenes.TabIndex = 15;
             pb_imagenes.TabStop = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(781, 271);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 21);
+            label2.TabIndex = 30;
+            label2.Text = "Negrita:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(849, 271);
+            label3.Name = "label3";
+            label3.Size = new Size(204, 21);
+            label3.TabIndex = 31;
+            label3.Text = "Dias ocupados de la cabaña.";
+            // 
             // Form_realizarAlquiler
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -255,5 +279,7 @@
         private Label label1;
         private Label lb_nombre;
         private Label lb_descripcion;
+        private Label label3;
+        private Label label2;
     }
 }

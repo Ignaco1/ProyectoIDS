@@ -27,6 +27,7 @@ namespace VISTA.Cabañas_y_alquiler
             ARMA_GRILLA();
             MODO_LISTA();
             btn_quitarFiltro.Enabled = false;
+            cb_cliente.Enabled = false;
         }
 
         private void Form_verReservas_Load(object sender, EventArgs e)
@@ -46,14 +47,14 @@ namespace VISTA.Cabañas_y_alquiler
             }
 
             cb_estado.Items.Clear();
-            cb_estado.Items.Add("Pendiente");
-            cb_estado.Items.Add("Activa");
-            cb_estado.Items.Add("Finalizada");
+            cb_estado.Items.AddRange(new string[] { "Pendiente", "Activa", "Finalizada", "Cancelada" });
             cb_estado.SelectedIndex = -1;
 
 
-            ActualizarEstadosReservas();
+            dtp_entradaFiltro.Value = DateTime.Today;
+            dtp_salidaFiltro.Value = DateTime.Today;
 
+            contro_reser.ActualizarEstadosReservas();
         }
 
         private void ARMA_GRILLA()
@@ -67,10 +68,10 @@ namespace VISTA.Cabañas_y_alquiler
                 {
                     r.ReservaId,
                     Cabaña = r.Cabaña?.Nombre ?? "Sin cabaña",
-                    Cliente = r.Cliente?.Nombre + " " + r.Cliente?.Apellido?? "Sin cliente",
+                    Cliente = r.Cliente?.Nombre + " " + r.Cliente?.Apellido ?? "Sin cliente",
                     Fecha_de_entrada = r.FechaEntrada,
                     Fecha_de_salida = r.FechaSalida,
-                    r.Precio,
+                    Precio = r.Precio.ToString("C2"),
                     r.Estado
 
                 }).ToList();
@@ -95,8 +96,10 @@ namespace VISTA.Cabañas_y_alquiler
             cb_cabaña.SelectedIndex = -1;
             cb_cliente.SelectedIndex = -1;
 
-            dtp_entrada.Value = DateTime.Today;
-            dtp_salida.Value = DateTime.Today;
+            mc_reservas.SelectionStart = DateTime.Today;
+            mc_reservas.SelectionEnd = DateTime.Today;
+            mc_reservas.BoldedDates = Array.Empty<DateTime>();
+            mc_reservas.UpdateBoldedDates();
         }
 
         private void btn_cerrar_Click(object sender, EventArgs e)
@@ -126,9 +129,8 @@ namespace VISTA.Cabañas_y_alquiler
 
             cb_cabaña.SelectedItem = reserva.Cabaña;
             cb_cliente.SelectedItem = reserva.Cliente;
-            dtp_entrada.Value = reserva.FechaEntrada;
-            dtp_salida.Value = reserva.FechaSalida;
 
+            MarcarFechasOcupadas(reserva.Cabaña);
 
             MODO_CARGA();
         }
@@ -176,6 +178,7 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 FILTRAR();
             }
+
         }
 
         private void btn_guardar_Click(object sender, EventArgs e)
@@ -200,10 +203,10 @@ namespace VISTA.Cabañas_y_alquiler
                 return;
             }
 
-            DateTime fechaEntrada = dtp_entrada.Value.Date;
-            DateTime fechaSalida = dtp_salida.Value.Date;
+            DateTime fechaEntrada = mc_reservas.SelectionStart.Date;
+            DateTime fechaSalida = mc_reservas.SelectionEnd.Date;
 
-            if (fechaEntrada == fechaSalida)
+            if (mc_reservas.SelectionStart == mc_reservas.SelectionEnd)
             {
                 MessageBox.Show("Debe seleccionar un rango de fechas para la reserva (entrada y salida).", "Error");
                 return;
@@ -231,7 +234,7 @@ namespace VISTA.Cabañas_y_alquiler
                 reserva.IdCabaña = cabaña.CabañaId;
                 reserva.Cabaña = cabaña;
                 reserva.IdCliente = cliente.ClienteId;
-                reserva.Cliente= cliente;
+                reserva.Cliente = cliente;
                 reserva.FechaEntrada = fechaEntrada;
                 reserva.FechaSalida = fechaSalida;
 
@@ -241,6 +244,7 @@ namespace VISTA.Cabañas_y_alquiler
                 try
                 {
                     string resultado = contro_reser.ModificarReserva(reserva);
+                    contro_reser.ActualizarEstadosReservas();
                     MessageBox.Show(resultado);
 
                 }
@@ -265,19 +269,19 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 FILTRAR();
             }
-            MODO_LISTA();
             LIMPIAR();
+            MODO_LISTA();
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            MODO_LISTA();
             LIMPIAR();
+            MODO_LISTA();
         }
 
         private void btn_filtrar_Click(object sender, EventArgs e)
         {
-            if (dtp_entradaFiltro.Value.Date > dtp_entradaFiltro.Value.Date)
+            if (dtp_entradaFiltro.Value.Date > dtp_salidaFiltro.Value.Date)
             {
                 MessageBox.Show("La fecha de entrada no puede ser posterior a la fecha de salida.", "Error");
                 return;
@@ -286,6 +290,7 @@ namespace VISTA.Cabañas_y_alquiler
             variF = "F";
 
             FILTRAR();
+
             btn_quitarFiltro.Enabled = true;
         }
 
@@ -306,26 +311,25 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void FILTRAR()
         {
-            dataGridView1.DataSource = null;
-
-            var reservas = contro_reser.ListarReservas();
 
             string nombreCabañaFiltro = txt_nombreCabañaFiltro.Text.Trim().ToLower();
             string nombreClienteFiltro = txt_nombreClienteFiltro.Text.Trim().ToLower();
-            string estadoFiltro = cb_estado.Text;
+            string estadoFiltro = cb_estado.Text.Trim();
 
             DateTime fechaEntradaFiltro = dtp_entradaFiltro.Value.Date;
             DateTime fechaSalidaFiltro = dtp_salidaFiltro.Value.Date;
 
-            bool filtrarPorFechas = fechaEntradaFiltro <= fechaSalidaFiltro;
+            bool filtrarPorFechas = fechaEntradaFiltro != fechaSalidaFiltro;
 
+            var reservas = contro_reser.ListarReservas();
 
             listaReservasFiltro = reservas
             .Where(r =>
                 (string.IsNullOrEmpty(nombreCabañaFiltro) || r.Cabaña.Nombre.ToLower().Contains(nombreCabañaFiltro)) &&
-                (string.IsNullOrEmpty(nombreClienteFiltro) || (r.Cliente.Nombre + " " + r.Cliente.Apellido).ToLower().Contains(nombreClienteFiltro)) &&
+                (string.IsNullOrEmpty(nombreClienteFiltro) || r.Cliente.Nombre.ToLower().Contains(nombreClienteFiltro) ||
+                r.Cliente.Apellido.ToLower().Contains(nombreClienteFiltro)) &&
                 (string.IsNullOrEmpty(estadoFiltro) || r.Estado.Equals(estadoFiltro, StringComparison.OrdinalIgnoreCase)) &&
-                (!filtrarPorFechas || (r.FechaEntrada <= fechaSalidaFiltro && r.FechaSalida >= fechaEntradaFiltro))
+                (!filtrarPorFechas || (r.FechaEntrada >= fechaEntradaFiltro && r.FechaSalida <= fechaSalidaFiltro))
             )
             .ToList();
 
@@ -337,10 +341,11 @@ namespace VISTA.Cabañas_y_alquiler
                 r.ReservaId,
                 Cabaña = r.Cabaña.Nombre,
                 Cliente = r.Cliente.Nombre + " " + r.Cliente.Apellido,
-                Fecha_de_entrada = r.FechaEntrada,
-                Fecha_de_salida = r.FechaSalida,
-                r.Precio,
+                Fecha_de_entrada = r.FechaEntrada.ToShortDateString(),
+                Fecha_de_salida = r.FechaSalida.ToShortDateString(),
+                Precio = r.Precio.ToString("C2"),
                 r.Estado
+
             }).ToList();
 
         }
@@ -366,37 +371,37 @@ namespace VISTA.Cabañas_y_alquiler
             return cantidadNoches * cabaña.PrecioPorNoche;
         }
 
-        private void ActualizarEstadosReservas()
+        private void MarcarFechasOcupadas(Cabaña cabaña)
         {
-            var reservas = contro_reser.ListarReservas();
+            mc_reservas.RemoveAllBoldedDates();
 
-            bool huboCambios = false;
+            if (cabaña == null)
+                return;
+
+            var reservas = contro_reser.ListarReservas()
+                .Where(r => r.IdCabaña == cabaña.CabañaId)
+                .ToList();
 
             foreach (var reserva in reservas)
             {
-                var hoy = DateTime.Today;
-                string nuevoEstado = reserva.Estado;
-
-                if (hoy >= reserva.FechaEntrada && hoy <= reserva.FechaSalida)
+                DateTime fecha = reserva.FechaEntrada.Date;
+                while (fecha <= reserva.FechaSalida.Date)
                 {
-                    nuevoEstado = "Activa";
-                }
-                else if (hoy > reserva.FechaSalida)
-                {
-                    nuevoEstado = "Finalizada";
-                }
-
-                if (nuevoEstado != reserva.Estado)
-                {
-                    reserva.Estado = nuevoEstado;
-                    contro_reser.ModificarReserva(reserva);
-                    huboCambios = true;
+                    mc_reservas.AddBoldedDate(fecha);
+                    fecha = fecha.AddDays(1);
                 }
             }
 
-            if (huboCambios)
+            mc_reservas.UpdateBoldedDates();
+        }
+
+        private void cb_cabaña_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cabaña cabañaSeleccionada = cb_cabaña.SelectedItem as Cabaña;
+
+            if (cabañaSeleccionada != null)
             {
-                ARMA_GRILLA();
+                MarcarFechasOcupadas(cabañaSeleccionada);
             }
         }
     }

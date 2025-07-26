@@ -26,6 +26,9 @@ namespace VISTA.Cabañas_y_alquiler
         private void Form_realizarAlquiler_Load(object sender, EventArgs e)
         {
             ARMAR();
+
+            dtp_entrada.Value = DateTime.Today;
+            dtp_salida.Value = DateTime.Today;
         }
 
         private void ARMAR()

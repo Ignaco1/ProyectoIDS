@@ -78,11 +78,12 @@ namespace VISTA.Cabañas_y_alquiler
 
             if (!contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida))
             {
-                reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal, "Pendiente");
+                reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal);
 
                 try
                 {
                     string respuesta = contro_reser.AgregarReserva(reserva);
+                    contro_reser.ActualizarEstadosReservas();
                     MessageBox.Show(respuesta);
 
                     this.Close();

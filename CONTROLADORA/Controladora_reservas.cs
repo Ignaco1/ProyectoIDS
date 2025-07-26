@@ -37,7 +37,7 @@ namespace CONTROLADORA
             }
         }
 
-        public Reserva CrearReserva(int Idcabaña, int Idcliente, DateTime fecha_entrada, DateTime fecha_salida, decimal precio, string estado)
+        public Reserva CrearReserva(int Idcabaña, int Idcliente, DateTime fecha_entrada, DateTime fecha_salida, decimal precio)
         {
             Reserva reserva = new Reserva();
 
@@ -46,7 +46,6 @@ namespace CONTROLADORA
             reserva.FechaEntrada = fecha_entrada;
             reserva.FechaSalida = fecha_salida;
             reserva.Precio = precio;
-            reserva.Estado = estado;
 
             return reserva;
         }
@@ -124,6 +123,30 @@ namespace CONTROLADORA
                 }
 
                 return false;
+            }
+        }
+
+        public void ActualizarEstadosReservas()
+        {
+            using (var context = new Context())
+            {
+                var reservas = context.Reservas.ToList();
+
+                DateTime hoy = DateTime.Today;
+
+                foreach (var reserva in reservas)
+                {
+                    if (reserva.Estado == "Cancelada") continue;
+
+                    if (hoy < reserva.FechaEntrada)
+                        reserva.Estado = "Pendiente";
+                    else if (hoy >= reserva.FechaEntrada && hoy <= reserva.FechaSalida)
+                        reserva.Estado = "Activa";
+                    else if (hoy > reserva.FechaSalida)
+                        reserva.Estado = "Finalizada";
+                }
+
+                context.SaveChanges();
             }
         }
 

@@ -30,12 +30,10 @@
         {
             panel1 = new Panel();
             gb_carga = new GroupBox();
-            dtp_salida = new DateTimePicker();
-            dtp_entrada = new DateTimePicker();
+            mc_reservas = new MonthCalendar();
             cb_cliente = new ComboBox();
             cb_cabaña = new ComboBox();
             label7 = new Label();
-            label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             btn_cancelar = new Button();
@@ -80,12 +78,10 @@
             // 
             // gb_carga
             // 
-            gb_carga.Controls.Add(dtp_salida);
-            gb_carga.Controls.Add(dtp_entrada);
+            gb_carga.Controls.Add(mc_reservas);
             gb_carga.Controls.Add(cb_cliente);
             gb_carga.Controls.Add(cb_cabaña);
             gb_carga.Controls.Add(label7);
-            gb_carga.Controls.Add(label6);
             gb_carga.Controls.Add(label5);
             gb_carga.Controls.Add(label4);
             gb_carga.Controls.Add(btn_cancelar);
@@ -98,22 +94,11 @@
             gb_carga.TabStop = false;
             gb_carga.Text = "Carga de datos";
             // 
-            // dtp_salida
+            // mc_reservas
             // 
-            dtp_salida.Format = DateTimePickerFormat.Short;
-            dtp_salida.Location = new Point(116, 252);
-            dtp_salida.Name = "dtp_salida";
-            dtp_salida.Size = new Size(145, 23);
-            dtp_salida.TabIndex = 58;
-            // 
-            // dtp_entrada
-            // 
-            dtp_entrada.Format = DateTimePickerFormat.Short;
-            dtp_entrada.Location = new Point(116, 204);
-            dtp_entrada.Name = "dtp_entrada";
-            dtp_entrada.Size = new Size(145, 23);
-            dtp_entrada.TabIndex = 57;
-            dtp_entrada.Value = new DateTime(2025, 7, 25, 18, 57, 0, 0);
+            mc_reservas.Location = new Point(16, 249);
+            mc_reservas.Name = "mc_reservas";
+            mc_reservas.TabIndex = 33;
             // 
             // cb_cliente
             // 
@@ -132,6 +117,7 @@
             cb_cabaña.Name = "cb_cabaña";
             cb_cabaña.Size = new Size(145, 23);
             cb_cabaña.TabIndex = 31;
+            cb_cabaña.SelectedIndexChanged += cb_cabaña_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -142,23 +128,14 @@
             label7.TabIndex = 30;
             label7.Text = "Cliente:";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(10, 210);
-            label6.Name = "label6";
-            label6.Size = new Size(100, 15);
-            label6.TabIndex = 29;
-            label6.Text = "Fecha de entrada:";
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(10, 258);
+            label5.Location = new Point(10, 225);
             label5.Name = "label5";
-            label5.Size = new Size(90, 15);
+            label5.Size = new Size(46, 15);
             label5.TabIndex = 28;
-            label5.Text = "Fecha de salida:";
+            label5.Text = "Fechas:";
             // 
             // label4
             // 
@@ -445,13 +422,11 @@
         private Button btn_cancelar;
         private Button btn_guardar;
         private TextBox txt_nombreCabañaFiltro;
-        private DateTimePicker dtp_entrada;
         private ComboBox cb_cliente;
         private ComboBox cb_cabaña;
         private Label label7;
-        private Label label6;
         private Label label5;
         private Label label4;
-        private DateTimePicker dtp_salida;
+        private MonthCalendar mc_reservas;
     }
 }
