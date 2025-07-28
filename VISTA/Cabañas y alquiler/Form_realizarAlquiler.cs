@@ -173,10 +173,10 @@ namespace VISTA.Cabañas_y_alquiler
 
             var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
 
-            if (cabaña != null && !cabaña.Activa)
+            if (cabaña != null && cabaña.FechaFinDesactivacion.HasValue)
             {
                 DateTime hoy = DateTime.Today;
-                DateTime fin = hoy.AddMonths(1);
+                DateTime fin = cabaña.FechaFinDesactivacion.Value;
 
                 for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
                 {

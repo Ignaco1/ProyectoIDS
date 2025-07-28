@@ -33,7 +33,7 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void ARMAR()
         {
-            var todasLasCabañas = contro_caba.ListarCabañas().Where(c => c.Activa).ToList();
+            var todasLasCabañas = contro_caba.ListarCabañas().ToList();
             CargarCabañas(todasLasCabañas);
         }
 
@@ -129,7 +129,6 @@ namespace VISTA.Cabañas_y_alquiler
 
             listaCabañasFiltro = contro_caba.ListarCabañas()
                 .Where(c =>
-                    c.Activa &&
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                     (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
                     (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) && 

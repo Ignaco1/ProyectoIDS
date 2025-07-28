@@ -1,6 +1,6 @@
 ﻿namespace VISTA.Cabañas_y_alquiler
 {
-    partial class Form_seleccionarMotivosCancelacion
+    partial class Form_duracionDesactivacion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,45 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            checkedListBox_motivos = new CheckedListBox();
+            numericUpDown_dias = new NumericUpDown();
+            label1 = new Label();
             btn_guardar = new Button();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_dias).BeginInit();
             SuspendLayout();
             // 
-            // checkedListBox_motivos
+            // numericUpDown_dias
             // 
-            checkedListBox_motivos.FormattingEnabled = true;
-            checkedListBox_motivos.Location = new Point(69, 12);
-            checkedListBox_motivos.Name = "checkedListBox_motivos";
-            checkedListBox_motivos.Size = new Size(204, 328);
-            checkedListBox_motivos.TabIndex = 0;
+            numericUpDown_dias.Location = new Point(81, 104);
+            numericUpDown_dias.Name = "numericUpDown_dias";
+            numericUpDown_dias.Size = new Size(137, 23);
+            numericUpDown_dias.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(12, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(276, 17);
+            label1.TabIndex = 1;
+            label1.Text = "Ingrese el numero de dias de la desactivación";
             // 
             // btn_guardar
             // 
-            btn_guardar.Location = new Point(116, 366);
+            btn_guardar.Location = new Point(101, 190);
             btn_guardar.Name = "btn_guardar";
-            btn_guardar.Size = new Size(100, 35);
+            btn_guardar.Size = new Size(101, 38);
             btn_guardar.TabIndex = 2;
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = true;
             btn_guardar.Click += btn_guardar_Click;
             // 
-            // Form_seleccionarMotivosCancelacion
+            // Form_duracionDesactivacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(338, 425);
+            ClientSize = new Size(300, 250);
             Controls.Add(btn_guardar);
-            Controls.Add(checkedListBox_motivos);
-            Name = "Form_seleccionarMotivosCancelacion";
+            Controls.Add(label1);
+            Controls.Add(numericUpDown_dias);
+            Name = "Form_duracionDesactivacion";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Seleccion de motivos de cancelacion";
-            Load += Form_seleccionarMotivosCancelacion_Load;
+            Text = "Duracion de desactivación";
+            Load += Form_duracionDesactivacion_Load;
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_dias).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private CheckedListBox checkedListBox_motivos;
+        private NumericUpDown numericUpDown_dias;
+        private Label label1;
         private Button btn_guardar;
     }
 }

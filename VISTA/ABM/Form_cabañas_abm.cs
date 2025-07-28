@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using VISTA.Cabañas_y_alquiler;
 
 
 namespace VISTA.ABM
@@ -242,18 +243,31 @@ namespace VISTA.ABM
                 {
                     try
                     {
-                        cabaña.Activa = false;
+                        var formDuracion = new Form_duracionDesactivacion();
 
-                        string respuesta = contro_caba.ModificarActividadCabaña(cabaña);
-
-                        var reservasAfectadas = contro_reser.ObtenerClientesConReservasActivasPorCabaña(cabaña.CabañaId);
-
-                        if (reservasAfectadas.Any())
+                        if (formDuracion.ShowDialog() == DialogResult.OK)
                         {
-                            GenerarPDFClientes(reservasAfectadas, cabaña.Nombre);
-                        }
+                            int cantidad = formDuracion.Cantidad;
 
-                        MessageBox.Show(respuesta, "AVISO");
+                            DateTime fechaLimite;
+
+                            fechaLimite = DateTime.Today.AddDays(cantidad);
+
+                            cabaña.Activa = false;
+
+                            cabaña.FechaFinDesactivacion = fechaLimite;
+
+                            string respuesta = contro_caba.ModificarActividadCabaña(cabaña);
+
+                            var reservasAfectadas = contro_reser.ObtenerClientesConReservasActivasPorCabaña(cabaña.CabañaId);
+
+                            if (reservasAfectadas.Any())
+                            {
+                                GenerarPDFClientes(reservasAfectadas, cabaña.Nombre);
+                            }
+
+                            MessageBox.Show(respuesta, "AVISO");
+                        }
                     }
                     catch (Exception ex)
                     {

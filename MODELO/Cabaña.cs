@@ -17,6 +17,7 @@ namespace MODELO
         public decimal PrecioPorNoche { get; set; }
         public string Descripcion { get; set; }
         public bool Activa { get; set; }
+        public DateTime? FechaFinDesactivacion { get; set; }
 
         public virtual ICollection<ImagenCabaña> Imagenes { get; set; } = new List<ImagenCabaña>();
 

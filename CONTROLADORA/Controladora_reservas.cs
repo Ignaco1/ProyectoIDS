@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MODELO.Composite;
+using System.Text.RegularExpressions;
 
 namespace CONTROLADORA
 {
@@ -160,13 +162,19 @@ namespace CONTROLADORA
             using (var context = new Context())
             {
                 DateTime hoy = DateTime.Today;
-                DateTime dentroDeUnMes = hoy.AddMonths(1);
+
+                var cabaña = context.Cabañas.FirstOrDefault(c => c.CabañaId == idCabaña);
+
+                if (cabaña == null || !cabaña.FechaFinDesactivacion.HasValue)
+                    return new List<(Cliente, DateTime, DateTime)>();
+
+                DateTime fechaLimite = cabaña.FechaFinDesactivacion.Value;
 
                 var reservas = context.Reservas
                     .Include(r => r.Cliente)
                     .Where(r => r.IdCabaña == idCabaña
                         && r.FechaSalida >= hoy
-                        && r.FechaEntrada <= dentroDeUnMes
+                        && r.FechaEntrada <= fechaLimite
                         && (r.Estado == "Pendiente" || r.Estado == "Activa"))
                     .ToList();
 
@@ -190,6 +198,44 @@ namespace CONTROLADORA
             }
 
         }
+
+        public string AgregarMotivoACancelacion(int reservaId, List<MotivoCancelacion> motivosSeleccionados)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    var reserva = context.Reservas
+                        .Include(r => r.MotivosCancelacion)
+                        .FirstOrDefault(r => r.ReservaId == reservaId);
+
+                    if (reserva == null)
+                        return "Reserva no encontrada.";
+
+                    reserva.MotivosCancelacion.Clear();
+
+                    var idsSeleccionados = motivosSeleccionados.Select(m => m.MotivoCancelacionId).ToList();
+
+                    var motivosDesdeDb = context.MotivosCancelacion
+                    .Where(m => idsSeleccionados.Contains(m.MotivoCancelacionId))
+                    .ToList();
+
+                    foreach (var motivo in motivosDesdeDb)
+                    {
+                        reserva.MotivosCancelacion.Add(motivo);
+                    }
+
+                    context.SaveChanges();
+                    return "motivos agregados correctamente.";
+                }
+                catch (Exception ex)
+                {
+                    return "Ocurrio un error en el sistema:  " + ex.Message;
+                }
+            }
+        }
+
+       
 
     }
 }

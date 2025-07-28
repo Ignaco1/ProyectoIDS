@@ -11,7 +11,6 @@ namespace CONTROLADORA
     public class Controladora_motivos
     {
         private static Controladora_motivos instancia;
-        //private Context contextClientes;
         public static Controladora_motivos Instancia
         {
             get

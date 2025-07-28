@@ -77,6 +77,7 @@ namespace VISTA.Cabañas_y_alquiler
                 }).ToList();
 
             dataGridView1.DataSource = reserva;
+
         }
 
         private void MODO_LISTA()
@@ -327,7 +328,6 @@ namespace VISTA.Cabañas_y_alquiler
                 r.Estado
 
             }).ToList();
-
         }
 
         private decimal ObtenerPrecioTotal(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
@@ -364,7 +364,7 @@ namespace VISTA.Cabañas_y_alquiler
             if (!cabaña.Activa)
             {
                 DateTime hoy = DateTime.Today;
-                DateTime fin = hoy.AddMonths(1);
+                DateTime fin = cabaña.FechaFinDesactivacion.Value;
 
                 for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
                 {
@@ -407,6 +407,16 @@ namespace VISTA.Cabañas_y_alquiler
                 try
                 {
                     reservaSeleccionada.Estado = "Cancelada";
+
+                    var formMotivos = new Form_seleccionarMotivosCancelacion(reservaSeleccionada);
+                    formMotivos.ShowDialog();
+
+
+                    if (!formMotivos.MotivosAsignadosCorrectamente)
+                    {
+                        MessageBox.Show("Cancelación abortada. No se guardaron motivos.", "Aviso");
+                        return;
+                    }
 
                     contro_reser.ModificarReserva(reservaSeleccionada);
 
@@ -467,5 +477,6 @@ namespace VISTA.Cabañas_y_alquiler
 
             return null;
         }
+
     }
 }
