@@ -246,11 +246,11 @@ namespace VISTA.ABM
 
                         string respuesta = contro_caba.ModificarActividadCabaña(cabaña);
 
-                        List<Cliente> clientesAfectados = contro_reser.CancelarReservasPorCabaña(cabaña.CabañaId);
+                        var reservasAfectadas = contro_reser.ObtenerClientesConReservasActivasPorCabaña(cabaña.CabañaId);
 
-                        if (clientesAfectados.Any())
+                        if (reservasAfectadas.Any())
                         {
-                            GenerarPDFClientes(clientesAfectados, cabaña.Nombre);
+                            GenerarPDFClientes(reservasAfectadas, cabaña.Nombre);
                         }
 
                         MessageBox.Show(respuesta, "AVISO");
@@ -579,8 +579,20 @@ namespace VISTA.ABM
             pictureBox_imagenes.Image = null;
         }
 
-        private void GenerarPDFClientes(List<Cliente> clientes, string nombreCabaña)
+        private void GenerarPDFClientes(List<(Cliente cliente, DateTime fechaEntrada, DateTime fechaSalida)> reservas, string nombreCabaña)
         {
+            if (reservas == null || reservas.Count == 0)
+            {
+                MessageBox.Show("No hay reservas afectadas para generar el PDF.", "Aviso");
+                return;
+            }
+
+            if (reservas == null || reservas.Count == 0)
+            {
+                MessageBox.Show($"Cantidad de reservas: {reservas.Count}");
+                return;
+            }
+
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "PDF Files|*.pdf";
             saveFile.FileName = $"ClientesAfectados_{nombreCabaña}_{DateTime.Now:yyyyMMdd}.pdf";
@@ -600,9 +612,21 @@ namespace VISTA.ABM
                     doc.Add(new Paragraph(" "));
                     doc.Add(new Paragraph(" "));
 
-                    foreach (var cliente in clientes)
+                    for (int i = 0; i < reservas.Count; i++)
                     {
-                        doc.Add(new Paragraph($"Dni:{cliente.Dni} - Nombre: {cliente.Nombre} {cliente.Apellido} - Email: {cliente.Email} - Telefono: {cliente.Telefono}\n\n"));
+                        var reserva = reservas[i];
+
+                        Paragraph clienteParrafo = new Paragraph(
+                            $"Entrada: {reserva.fechaEntrada:dd/MM/yyyy} - " +
+                            $"Salida: {reserva.fechaSalida:dd/MM/yyyy} - " +
+                            $"Nombre: {reserva.cliente.Nombre} {reserva.cliente.Apellido} - " +
+                            $"Email: {reserva.cliente.Email} - Teléfono: {reserva.cliente.Telefono}"
+                        );
+
+                        clienteParrafo.SpacingBefore = 10f;
+                        clienteParrafo.SpacingAfter = 5f;
+
+                        doc.Add(clienteParrafo);
                     }
 
                     doc.Close();
@@ -611,6 +635,5 @@ namespace VISTA.ABM
                 MessageBox.Show("PDF generado correctamente.", "Éxito");
             }
         }
-
     }
 }

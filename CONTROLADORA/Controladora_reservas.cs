@@ -109,9 +109,14 @@ namespace CONTROLADORA
 
         public bool ValidaReserva(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida, int? reservaIdExcluir = null)
         {
+            if (!cabaña.Activa)
+                return false;
+
             using (var context = new Context())
             {
-                var reservas = context.Reservas.Where(r => r.IdCabaña == cabaña.CabañaId).ToList();
+                var reservas = context.Reservas
+                    .Where(r => r.IdCabaña == cabaña.CabañaId && r.Estado != "Cancelada")
+                    .ToList();
 
                 foreach (var reserva in reservas)
                 {
@@ -119,10 +124,10 @@ namespace CONTROLADORA
                         continue;
 
                     if (!(fecha_salida < reserva.FechaEntrada || fecha_entrada > reserva.FechaSalida))
-                        return true;
+                        return false;
                 }
 
-                return false;
+                return true; 
             }
         }
 
@@ -150,7 +155,7 @@ namespace CONTROLADORA
             }
         }
 
-        public List<Cliente> CancelarReservasPorCabaña(int idCabaña)
+        public List<(Cliente cliente, DateTime fechaEntrada, DateTime fechaSalida)> ObtenerClientesConReservasActivasPorCabaña(int idCabaña)
         {
             using (var context = new Context())
             {
@@ -160,23 +165,30 @@ namespace CONTROLADORA
                 var reservas = context.Reservas
                     .Include(r => r.Cliente)
                     .Where(r => r.IdCabaña == idCabaña
-                        && r.FechaEntrada >= hoy
+                        && r.FechaSalida >= hoy
                         && r.FechaEntrada <= dentroDeUnMes
                         && (r.Estado == "Pendiente" || r.Estado == "Activa"))
                     .ToList();
 
-                List<Cliente> clientesAfectados = new List<Cliente>();
+                var datos = reservas.Select(r => (r.Cliente, r.FechaEntrada, r.FechaSalida)).ToList();
 
-                foreach (var reserva in reservas)
-                {
-                    reserva.Estado = "Cancelada";
-                    clientesAfectados.Add(reserva.Cliente);
-                }
-
-                context.SaveChanges();
-
-                return clientesAfectados;
+                return datos;
             }
+        }
+
+
+        public Reserva ObtenerReservaId(int id)
+        {
+            using (var context = new Context())
+            {
+                var reserva = context.Reservas.Include(r => r.Cliente).Include(r => r.Cabaña).FirstOrDefault(r => r.ReservaId == id);
+
+                if (reserva == null)
+                    return null;
+
+                return reserva;
+            }
+
         }
 
     }

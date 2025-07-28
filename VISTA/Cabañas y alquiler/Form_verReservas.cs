@@ -14,13 +14,12 @@ namespace VISTA.Cabañas_y_alquiler
 {
     public partial class Form_verReservas : Form
     {
+        
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         CONTROLADORA.Controladora_clientes contro_cli = new CONTROLADORA.Controladora_clientes();
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
         private List<Reserva> listaReservasFiltro = new List<Reserva>();
-        private List<Reserva> reservasActuales = new List<Reserva>();
         private string variF = "";
-        int indice;
         public Form_verReservas()
         {
             InitializeComponent();
@@ -39,15 +38,17 @@ namespace VISTA.Cabañas_y_alquiler
                 cb_cliente.Items.Add(cliente);
             }
 
-            var cabañas = contro_caba.ListarCabañas();
+            cb_cabaña.Items.Clear();
 
-            foreach (var cabaña in cabañas)
+            var cabañasActivas = contro_caba.ListarCabañas().Where(c => c.Activa).ToList();
+
+            foreach (var cabaña in cabañasActivas)
             {
                 cb_cabaña.Items.Add(cabaña);
             }
 
             cb_estado.Items.Clear();
-            cb_estado.Items.AddRange(new string[] { "Pendiente", "Activa", "Finalizada", "Cancelada" });
+            cb_estado.Items.AddRange(new string[] { "Pendiente", "Activa", "Finalizada" });
             cb_estado.SelectedIndex = -1;
 
 
@@ -55,15 +56,14 @@ namespace VISTA.Cabañas_y_alquiler
             dtp_salidaFiltro.Value = DateTime.Today;
 
             contro_reser.ActualizarEstadosReservas();
+
         }
 
         private void ARMA_GRILLA()
         {
             dataGridView1.DataSource = null;
 
-            reservasActuales = contro_reser.ListarReservas().ToList();
-
-            var reserva = contro_reser.ListarReservas()
+            var reserva = contro_reser.ListarReservas().Where(r => r.Estado != "Cancelada")
                 .Select(r => new
                 {
                     r.ReservaId,
@@ -118,14 +118,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             MODELO.Reserva reserva;
 
-            if (variF == "F")
-            {
-                reserva = listaReservasFiltro[indice];
-            }
-            else
-            {
-                reserva = contro_reser.ListarReservas()[indice];
-            }
+            reserva = ObtenerReservaSeleccionada();
 
             cb_cabaña.SelectedItem = reserva.Cabaña;
             cb_cliente.SelectedItem = reserva.Cliente;
@@ -145,14 +138,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             MODELO.Reserva reserva;
 
-            if (variF == "F")
-            {
-                reserva = listaReservasFiltro[indice];
-            }
-            else
-            {
-                reserva = contro_reser.ListarReservas()[indice];
-            }
+            reserva = ObtenerReservaSeleccionada();
 
             DialogResult result = MessageBox.Show($"Está seguro que desea eliminar la reserva:\n\nCabaña: {reserva.Cabaña.Nombre}\n\nCliente: {reserva.Cliente.Nombre + " " + reserva.Cliente.Apellido}\n\nFecha de entrada: {reserva.FechaEntrada}\n\nFecha de salida: {reserva.FechaSalida}", "AVISO", MessageBoxButtons.YesNo);
 
@@ -220,16 +206,9 @@ namespace VISTA.Cabañas_y_alquiler
 
             #endregion
 
-            if (variF == "F")
-            {
-                reserva = listaReservasFiltro[indice];
-            }
-            else
-            {
-                reserva = contro_reser.ListarReservas()[indice];
-            }
+            reserva = ObtenerReservaSeleccionada();
 
-            if (!contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId))
+            if (contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId))
             {
                 reserva.IdCabaña = cabaña.CabañaId;
                 reserva.Cabaña = cabaña;
@@ -325,6 +304,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             listaReservasFiltro = reservas
             .Where(r =>
+                r.Estado != "Cancelada" &&
                 (string.IsNullOrEmpty(nombreCabañaFiltro) || r.Cabaña.Nombre.ToLower().Contains(nombreCabañaFiltro)) &&
                 (string.IsNullOrEmpty(nombreClienteFiltro) || r.Cliente.Nombre.ToLower().Contains(nombreClienteFiltro) ||
                 r.Cliente.Apellido.ToLower().Contains(nombreClienteFiltro)) &&
@@ -350,17 +330,6 @@ namespace VISTA.Cabañas_y_alquiler
 
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.CurrentCell == null)
-            {
-                MessageBox.Show("Seleccione una reserva.", "Error");
-                return;
-            }
-
-            indice = dataGridView1.CurrentRow.Index;
-        }
-
         private decimal ObtenerPrecioTotal(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
         {
             int cantidadNoches = (fecha_salida - fecha_entrada).Days + 1;
@@ -379,8 +348,8 @@ namespace VISTA.Cabañas_y_alquiler
                 return;
 
             var reservas = contro_reser.ListarReservas()
-                .Where(r => r.IdCabaña == cabaña.CabañaId)
-                .ToList();
+            .Where(r => r.IdCabaña == cabaña.CabañaId && r.Estado != "Cancelada")
+            .ToList();
 
             foreach (var reserva in reservas)
             {
@@ -389,6 +358,17 @@ namespace VISTA.Cabañas_y_alquiler
                 {
                     mc_reservas.AddBoldedDate(fecha);
                     fecha = fecha.AddDays(1);
+                }
+            }
+
+            if (!cabaña.Activa)
+            {
+                DateTime hoy = DateTime.Today;
+                DateTime fin = hoy.AddMonths(1);
+
+                for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                {
+                    mc_reservas.AddBoldedDate(fecha);
                 }
             }
 
@@ -403,6 +383,97 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 MarcarFechasOcupadas(cabañaSeleccionada);
             }
+        }
+
+        private void btn_cancelarReserva_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una reserva.", "Error");
+                return;
+            }
+
+            MODELO.Reserva reserva;
+            MODELO.Cabaña cabaña;
+
+            reserva = ObtenerReservaSeleccionada();
+
+            Reserva reservaSeleccionada = contro_reser.ObtenerReservaId(reserva.ReservaId);
+
+            DialogResult result = MessageBox.Show($"Está seguro que desea cancelar la reserva:\n\nCabaña: {reservaSeleccionada.Cabaña.Nombre}\n\nCliente: {reservaSeleccionada.Cliente.Nombre + " " + reservaSeleccionada.Cliente.Apellido}\n\nFecha de entrada: {reservaSeleccionada.FechaEntrada}\n\nFecha de salida: {reservaSeleccionada.FechaSalida}", "AVISO", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    reservaSeleccionada.Estado = "Cancelada";
+
+                    contro_reser.ModificarReserva(reservaSeleccionada);
+
+                    cabaña = contro_caba.ObtenerCabañaId(reservaSeleccionada.IdCabaña);
+
+                    if (cabaña != null && cabaña.Activa)
+                    {
+                        //DateTime fecha = reservaSeleccionada.FechaEntrada.Date;
+                        //while (fecha <= reservaSeleccionada.FechaSalida.Date)
+                        //{
+                        //    mc_reservas.RemoveBoldedDate(fecha);
+                        //    fecha = fecha.AddDays(1);
+                        //}
+
+                        //mc_reservas.UpdateBoldedDates();
+                        MarcarFechasOcupadas(cabaña);
+                    }
+
+                    MessageBox.Show("Reserva cancelada correctamente.");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cancelar la reserva:  " + ex.Message, "Error");
+                    return;
+                }
+            }
+
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
+
+        }
+
+        private void mc_reservas_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            if (mc_reservas.BoldedDates.Contains(e.Start))
+            {
+                MessageBox.Show("No se puede seleccionar esta fecha. La cabaña ya está ocupada o está desactivada.", "Error");
+                return;
+            }
+        }
+
+        private Reserva ObtenerReservaSeleccionada()
+        {
+            if (dataGridView1.CurrentRow == null) return null;
+
+            int rowIndex = dataGridView1.CurrentRow.Index;
+
+            if (variF == "F")
+            {
+                if (rowIndex >= 0 && rowIndex < listaReservasFiltro.Count)
+                    return listaReservasFiltro[rowIndex];
+            }
+            else
+            {
+                var reservas = contro_reser.ListarReservas().Where(r => r.Estado != "Cancelada").ToList();
+                if (rowIndex >= 0 && rowIndex < reservas.Count)
+                    return reservas[rowIndex];
+            }
+
+            return null;
         }
     }
 }

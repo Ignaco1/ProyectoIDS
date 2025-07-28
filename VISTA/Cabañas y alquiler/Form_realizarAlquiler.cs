@@ -76,7 +76,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
 
-            if (!contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida))
+            if (contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida))
             {
                 reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal);
 
@@ -156,7 +156,7 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void CargarFechasOcupadas()
         {
-            var reservas = contro_reser.ListarReservas().Where(r => r.IdCabaña == idCabañaSeleccionada).ToList();
+            var reservas = contro_reser.ListarReservas().Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada").ToList();
 
             List<DateTime> fechasOcupadas = new List<DateTime>();
 
@@ -171,7 +171,20 @@ namespace VISTA.Cabañas_y_alquiler
                 }
             }
 
-            mc_fechas.BoldedDates = fechasOcupadas.ToArray();
+            var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
+
+            if (cabaña != null && !cabaña.Activa)
+            {
+                DateTime hoy = DateTime.Today;
+                DateTime fin = hoy.AddMonths(1);
+
+                for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                {
+                    fechasOcupadas.Add(fecha);
+                }
+            }
+
+            mc_fechas.BoldedDates = fechasOcupadas.Distinct().ToArray();
         }
 
 

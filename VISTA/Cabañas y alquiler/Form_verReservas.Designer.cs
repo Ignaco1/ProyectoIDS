@@ -42,6 +42,7 @@
             gb_grilla = new GroupBox();
             dataGridView1 = new DataGridView();
             panel4 = new Panel();
+            btn_cancelarReserva = new Button();
             btn_cerrar = new Button();
             btn_eliminar = new Button();
             btn_modificar = new Button();
@@ -99,6 +100,7 @@
             mc_reservas.Location = new Point(16, 249);
             mc_reservas.Name = "mc_reservas";
             mc_reservas.TabIndex = 33;
+            mc_reservas.DateSelected += mc_reservas_DateSelected;
             // 
             // cb_cliente
             // 
@@ -200,10 +202,10 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.Size = new Size(885, 476);
             dataGridView1.TabIndex = 2;
-            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // panel4
             // 
+            panel4.Controls.Add(btn_cancelarReserva);
             panel4.Controls.Add(btn_cerrar);
             panel4.Controls.Add(btn_eliminar);
             panel4.Controls.Add(btn_modificar);
@@ -212,6 +214,16 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(885, 65);
             panel4.TabIndex = 1;
+            // 
+            // btn_cancelarReserva
+            // 
+            btn_cancelarReserva.Location = new Point(253, 6);
+            btn_cancelarReserva.Name = "btn_cancelarReserva";
+            btn_cancelarReserva.Size = new Size(102, 23);
+            btn_cancelarReserva.TabIndex = 10;
+            btn_cancelarReserva.Text = "Cancelar reserva";
+            btn_cancelarReserva.UseVisualStyleBackColor = true;
+            btn_cancelarReserva.Click += btn_cancelarReserva_Click;
             // 
             // btn_cerrar
             // 
@@ -428,5 +440,6 @@
         private Label label5;
         private Label label4;
         private MonthCalendar mc_reservas;
+        private Button btn_cancelarReserva;
     }
 }
