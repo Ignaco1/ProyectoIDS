@@ -22,5 +22,7 @@ namespace MODELO
         public virtual Cabaña Cabaña { get; set; }
         [ForeignKey("IdCliente")]
         public virtual Cliente Cliente { get; set; }
+
+        public ICollection<MotivoCancelacion> MotivosCancelacion { get; set; }
     }
 }

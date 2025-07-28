@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250724033057_second")]
-    partial class second
+    [Migration("20250728215237_uno")]
+    partial class uno
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,35 +38,6 @@ namespace MODELO.Migrations
                     b.HasIndex("PermisosPermisoId");
 
                     b.ToTable("GrupoPermisos", (string)null);
-                });
-
-            modelBuilder.Entity("MODELO.Alquiler", b =>
-                {
-                    b.Property<int>("AlquilerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlquilerId"));
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("Fecha_Fin")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly>("Fecha_Inicio")
-                        .HasColumnType("date");
-
-                    b.Property<int>("Nombre_cabañaCabañaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AlquilerId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("Nombre_cabañaCabañaId");
-
-                    b.ToTable("Alquileres");
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>
@@ -188,6 +159,23 @@ namespace MODELO.Migrations
                     b.ToTable("ImagenesCabaña");
                 });
 
+            modelBuilder.Entity("MODELO.MotivoCancelacion", b =>
+                {
+                    b.Property<int>("MotivoCancelacionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MotivoCancelacionId"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MotivoCancelacionId");
+
+                    b.ToTable("MotivosCancelacion");
+                });
+
             modelBuilder.Entity("MODELO.Pago", b =>
                 {
                     b.Property<int>("PagoId")
@@ -212,6 +200,41 @@ namespace MODELO.Migrations
                     b.HasKey("PagoId");
 
                     b.ToTable("Pagos");
+                });
+
+            modelBuilder.Entity("MODELO.Reserva", b =>
+                {
+                    b.Property<int>("ReservaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservaId"));
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaEntrada")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaSalida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdCabaña")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ReservaId");
+
+                    b.HasIndex("IdCabaña");
+
+                    b.HasIndex("IdCliente");
+
+                    b.ToTable("Reservas");
                 });
 
             modelBuilder.Entity("MODELO.Usuario", b =>
@@ -254,6 +277,21 @@ namespace MODELO.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("MotivoCancelacionReserva", b =>
+                {
+                    b.Property<int>("MotivosCancelacionMotivoCancelacionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservasReservaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MotivosCancelacionMotivoCancelacionId", "ReservasReservaId");
+
+                    b.HasIndex("ReservasReservaId");
+
+                    b.ToTable("ReservaMotivoCancelacion", (string)null);
+                });
+
             modelBuilder.Entity("GrupoPermiso", b =>
                 {
                     b.HasOne("MODELO.Composite.Grupo", null)
@@ -269,25 +307,6 @@ namespace MODELO.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MODELO.Alquiler", b =>
-                {
-                    b.HasOne("MODELO.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MODELO.Cabaña", "Nombre_cabaña")
-                        .WithMany()
-                        .HasForeignKey("Nombre_cabañaCabañaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Nombre_cabaña");
-                });
-
             modelBuilder.Entity("MODELO.ImagenCabaña", b =>
                 {
                     b.HasOne("MODELO.Cabaña", "Cabaña")
@@ -299,6 +318,25 @@ namespace MODELO.Migrations
                     b.Navigation("Cabaña");
                 });
 
+            modelBuilder.Entity("MODELO.Reserva", b =>
+                {
+                    b.HasOne("MODELO.Cabaña", "Cabaña")
+                        .WithMany()
+                        .HasForeignKey("IdCabaña")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cabaña");
+
+                    b.Navigation("Cliente");
+                });
+
             modelBuilder.Entity("MODELO.Usuario", b =>
                 {
                     b.HasOne("MODELO.Composite.Grupo", "Grupo")
@@ -308,6 +346,21 @@ namespace MODELO.Migrations
                         .IsRequired();
 
                     b.Navigation("Grupo");
+                });
+
+            modelBuilder.Entity("MotivoCancelacionReserva", b =>
+                {
+                    b.HasOne("MODELO.MotivoCancelacion", null)
+                        .WithMany()
+                        .HasForeignKey("MotivosCancelacionMotivoCancelacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Reserva", null)
+                        .WithMany()
+                        .HasForeignKey("ReservasReservaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>

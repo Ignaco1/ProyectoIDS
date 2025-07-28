@@ -156,6 +156,23 @@ namespace MODELO.Migrations
                     b.ToTable("ImagenesCabaña");
                 });
 
+            modelBuilder.Entity("MODELO.MotivoCancelacion", b =>
+                {
+                    b.Property<int>("MotivoCancelacionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MotivoCancelacionId"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MotivoCancelacionId");
+
+                    b.ToTable("MotivosCancelacion");
+                });
+
             modelBuilder.Entity("MODELO.Pago", b =>
                 {
                     b.Property<int>("PagoId")
@@ -257,6 +274,21 @@ namespace MODELO.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("MotivoCancelacionReserva", b =>
+                {
+                    b.Property<int>("MotivosCancelacionMotivoCancelacionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservasReservaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MotivosCancelacionMotivoCancelacionId", "ReservasReservaId");
+
+                    b.HasIndex("ReservasReservaId");
+
+                    b.ToTable("ReservaMotivoCancelacion", (string)null);
+                });
+
             modelBuilder.Entity("GrupoPermiso", b =>
                 {
                     b.HasOne("MODELO.Composite.Grupo", null)
@@ -311,6 +343,21 @@ namespace MODELO.Migrations
                         .IsRequired();
 
                     b.Navigation("Grupo");
+                });
+
+            modelBuilder.Entity("MotivoCancelacionReserva", b =>
+                {
+                    b.HasOne("MODELO.MotivoCancelacion", null)
+                        .WithMany()
+                        .HasForeignKey("MotivosCancelacionMotivoCancelacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Reserva", null)
+                        .WithMany()
+                        .HasForeignKey("ReservasReservaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>

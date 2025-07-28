@@ -20,6 +20,7 @@ namespace MODELO
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<ImagenCabaña> ImagenesCabaña { get; set; }
+        public DbSet<MotivoCancelacion> MotivosCancelacion { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
 
@@ -41,6 +42,11 @@ namespace MODELO
             modelBuilder.Entity<Usuario>()
             .Property(u => u.Contraseña)
             .IsRequired(false);
+
+            modelBuilder.Entity<Reserva>()
+            .HasMany(r => r.MotivosCancelacion)
+            .WithMany(m => m.Reservas)
+            .UsingEntity(j => j.ToTable("ReservaMotivoCancelacion"));
 
         }
 

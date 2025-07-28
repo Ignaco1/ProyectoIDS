@@ -414,14 +414,6 @@ namespace VISTA.Cabañas_y_alquiler
 
                     if (cabaña != null && cabaña.Activa)
                     {
-                        //DateTime fecha = reservaSeleccionada.FechaEntrada.Date;
-                        //while (fecha <= reservaSeleccionada.FechaSalida.Date)
-                        //{
-                        //    mc_reservas.RemoveBoldedDate(fecha);
-                        //    fecha = fecha.AddDays(1);
-                        //}
-
-                        //mc_reservas.UpdateBoldedDates();
                         MarcarFechasOcupadas(cabaña);
                     }
 
