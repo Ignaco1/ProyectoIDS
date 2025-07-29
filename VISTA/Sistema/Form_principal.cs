@@ -12,6 +12,7 @@ using CAPA_COMUN;
 using CAPA_COMUN.Cache;
 using VISTA.ABM;
 using VISTA.Cabañas_y_alquiler;
+using VISTA.Informes;
 
 namespace VISTA
 {
@@ -58,6 +59,7 @@ namespace VISTA
             panel_ABM.Visible = false;
             panel_seguridad.Visible = false;
             panel_reservas.Visible = false;
+            panel_informes.Visible = false;
         }
 
 
@@ -144,7 +146,7 @@ namespace VISTA
         private void IniciarTimerActualizador()
         {
             timerActualizarEstados = new System.Windows.Forms.Timer();
-            timerActualizarEstados.Interval = 10 * 60 * 1000; 
+            timerActualizarEstados.Interval = 10 * 60 * 1000;
             timerActualizarEstados.Tick += TimerActualizarEstados_Tick;
             timerActualizarEstados.Start();
         }
@@ -186,7 +188,7 @@ namespace VISTA
         private void btn_informes_Click(object sender, EventArgs e)
         {
             HabilitarBotones(this);
-            OcultarSubmenu();
+            MostrarSubmenu(panel_informes);
         }
 
 
@@ -272,6 +274,16 @@ namespace VISTA
         private void btn_ver_reservas_Click(object sender, EventArgs e)
         {
             AbrirForms(new Form_verReservas());
+        }
+
+        private void btn_motivosCancelacion_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_motivosCancelacionInformes());
+        }
+
+        private void btn_usoGanaciaCabaña_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

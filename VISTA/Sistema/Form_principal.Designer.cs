@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_principal));
             panel_menuLateral = new Panel();
+            panel_informes = new Panel();
+            btn_usoGanaciaCabaña = new Button();
+            btn_motivosCancelacion = new Button();
             btn_ajustes = new PictureBox();
             btn_informes = new Button();
             panel_reservas = new Panel();
@@ -61,6 +64,7 @@
             panel_forms = new Panel();
             pictureBox2 = new PictureBox();
             panel_menuLateral.SuspendLayout();
+            panel_informes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btn_ajustes).BeginInit();
             panel_reservas.SuspendLayout();
             panel_ABM.SuspendLayout();
@@ -81,6 +85,7 @@
             // 
             panel_menuLateral.AutoScroll = true;
             panel_menuLateral.BackColor = Color.FromArgb(11, 7, 17);
+            panel_menuLateral.Controls.Add(panel_informes);
             panel_menuLateral.Controls.Add(btn_ajustes);
             panel_menuLateral.Controls.Add(btn_informes);
             panel_menuLateral.Controls.Add(panel_reservas);
@@ -97,6 +102,53 @@
             panel_menuLateral.Size = new Size(283, 702);
             panel_menuLateral.TabIndex = 0;
             panel_menuLateral.MouseDown += panel_menuLateral_MouseDown;
+            // 
+            // panel_informes
+            // 
+            panel_informes.BackColor = Color.FromArgb(40, 40, 40);
+            panel_informes.Controls.Add(btn_usoGanaciaCabaña);
+            panel_informes.Controls.Add(btn_motivosCancelacion);
+            panel_informes.Dock = DockStyle.Top;
+            panel_informes.Location = new Point(0, 480);
+            panel_informes.Name = "panel_informes";
+            panel_informes.Size = new Size(283, 60);
+            panel_informes.TabIndex = 22;
+            // 
+            // btn_usoGanaciaCabaña
+            // 
+            btn_usoGanaciaCabaña.BackColor = Color.FromArgb(40, 40, 40);
+            btn_usoGanaciaCabaña.Dock = DockStyle.Top;
+            btn_usoGanaciaCabaña.FlatAppearance.BorderSize = 0;
+            btn_usoGanaciaCabaña.FlatStyle = FlatStyle.Flat;
+            btn_usoGanaciaCabaña.ForeColor = Color.Gainsboro;
+            btn_usoGanaciaCabaña.Location = new Point(0, 30);
+            btn_usoGanaciaCabaña.Name = "btn_usoGanaciaCabaña";
+            btn_usoGanaciaCabaña.Padding = new Padding(35, 0, 0, 0);
+            btn_usoGanaciaCabaña.Size = new Size(283, 30);
+            btn_usoGanaciaCabaña.TabIndex = 4;
+            btn_usoGanaciaCabaña.Tag = "Uso y ganancia de cada cabaña";
+            btn_usoGanaciaCabaña.Text = "Uso y ganancia de cada cabaña";
+            btn_usoGanaciaCabaña.TextAlign = ContentAlignment.MiddleLeft;
+            btn_usoGanaciaCabaña.UseVisualStyleBackColor = false;
+            btn_usoGanaciaCabaña.Click += btn_usoGanaciaCabaña_Click;
+            // 
+            // btn_motivosCancelacion
+            // 
+            btn_motivosCancelacion.BackColor = Color.FromArgb(40, 40, 40);
+            btn_motivosCancelacion.Dock = DockStyle.Top;
+            btn_motivosCancelacion.FlatAppearance.BorderSize = 0;
+            btn_motivosCancelacion.FlatStyle = FlatStyle.Flat;
+            btn_motivosCancelacion.ForeColor = Color.Gainsboro;
+            btn_motivosCancelacion.Location = new Point(0, 0);
+            btn_motivosCancelacion.Name = "btn_motivosCancelacion";
+            btn_motivosCancelacion.Padding = new Padding(35, 0, 0, 0);
+            btn_motivosCancelacion.Size = new Size(283, 30);
+            btn_motivosCancelacion.TabIndex = 3;
+            btn_motivosCancelacion.Tag = "Motivos principales de cancelación";
+            btn_motivosCancelacion.Text = "Motivos principales de cancelación";
+            btn_motivosCancelacion.TextAlign = ContentAlignment.MiddleLeft;
+            btn_motivosCancelacion.UseVisualStyleBackColor = false;
+            btn_motivosCancelacion.Click += btn_motivosCancelacion_Click;
             // 
             // btn_ajustes
             // 
@@ -531,6 +583,7 @@
             Text = "Form_principal";
             Load += Form_principal_Load;
             panel_menuLateral.ResumeLayout(false);
+            panel_informes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btn_ajustes).EndInit();
             panel_reservas.ResumeLayout(false);
             panel_ABM.ResumeLayout(false);
@@ -582,5 +635,8 @@
         private Label lbl_usuario;
         private PictureBox btn_ajustes;
         public Panel panel_forms;
+        private Panel panel_informes;
+        private Button btn_usoGanaciaCabaña;
+        private Button btn_motivosCancelacion;
     }
 }
