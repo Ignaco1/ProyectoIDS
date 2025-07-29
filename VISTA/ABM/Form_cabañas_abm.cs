@@ -601,12 +601,6 @@ namespace VISTA.ABM
                 return;
             }
 
-            if (reservas == null || reservas.Count == 0)
-            {
-                MessageBox.Show($"Cantidad de reservas: {reservas.Count}");
-                return;
-            }
-
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "PDF Files|*.pdf";
             saveFile.FileName = $"ClientesAfectados_{nombreCabaña}_{DateTime.Now:yyyyMMdd}.pdf";
@@ -634,7 +628,7 @@ namespace VISTA.ABM
                             $"Entrada: {reserva.fechaEntrada:dd/MM/yyyy} - " +
                             $"Salida: {reserva.fechaSalida:dd/MM/yyyy} - " +
                             $"Nombre: {reserva.cliente.Nombre} {reserva.cliente.Apellido} - " +
-                            $"Email: {reserva.cliente.Email} - Teléfono: {reserva.cliente.Telefono}"
+                            $"Email: {reserva.cliente.Email} - Teléfono: {reserva.cliente.Telefono}\n\n\n"
                         );
 
                         clienteParrafo.SpacingBefore = 10f;

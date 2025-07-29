@@ -95,6 +95,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(849, 271);
@@ -105,6 +106,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(781, 271);
@@ -115,6 +117,7 @@
             // 
             // lb_descripcion
             // 
+            lb_descripcion.Anchor = AnchorStyles.Top;
             lb_descripcion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lb_descripcion.Location = new Point(427, 90);
             lb_descripcion.MaximumSize = new Size(500, 0);
@@ -125,6 +128,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(740, 390);
@@ -145,6 +149,7 @@
             // 
             // btn_cancelar
             // 
+            btn_cancelar.Anchor = AnchorStyles.Bottom;
             btn_cancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_cancelar.Location = new Point(656, 516);
             btn_cancelar.Name = "btn_cancelar";
@@ -156,6 +161,7 @@
             // 
             // btn_realizarReserva
             // 
+            btn_realizarReserva.Anchor = AnchorStyles.Bottom;
             btn_realizarReserva.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_realizarReserva.Location = new Point(385, 516);
             btn_realizarReserva.Name = "btn_realizarReserva";
@@ -167,6 +173,7 @@
             // 
             // cb_clientes
             // 
+            cb_clientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cb_clientes.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_clientes.FormattingEnabled = true;
             cb_clientes.Location = new Point(810, 391);
@@ -176,6 +183,7 @@
             // 
             // mc_fechas
             // 
+            mc_fechas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             mc_fechas.Location = new Point(790, 76);
             mc_fechas.MaxSelectionCount = 30;
             mc_fechas.Name = "mc_fechas";
@@ -184,6 +192,7 @@
             // 
             // btn_anterior
             // 
+            btn_anterior.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btn_anterior.BackColor = Color.Transparent;
             btn_anterior.FlatAppearance.BorderSize = 0;
             btn_anterior.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -201,6 +210,7 @@
             // 
             // btn_siguiente
             // 
+            btn_siguiente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btn_siguiente.BackColor = Color.Transparent;
             btn_siguiente.FlatAppearance.BorderSize = 0;
             btn_siguiente.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -218,6 +228,7 @@
             // 
             // lb_precio
             // 
+            lb_precio.Anchor = AnchorStyles.Left;
             lb_precio.AutoSize = true;
             lb_precio.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lb_precio.Location = new Point(134, 425);
@@ -228,6 +239,7 @@
             // 
             // lb_capacidad
             // 
+            lb_capacidad.Anchor = AnchorStyles.Left;
             lb_capacidad.AutoSize = true;
             lb_capacidad.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lb_capacidad.Location = new Point(134, 375);
@@ -238,6 +250,7 @@
             // 
             // pb_imagenes
             // 
+            pb_imagenes.Anchor = AnchorStyles.Left;
             pb_imagenes.Location = new Point(87, 61);
             pb_imagenes.Name = "pb_imagenes";
             pb_imagenes.Size = new Size(334, 292);

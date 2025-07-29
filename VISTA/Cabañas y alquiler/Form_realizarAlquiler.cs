@@ -73,11 +73,20 @@ namespace VISTA.Cabañas_y_alquiler
 
             #endregion
 
+
             Cliente cliente = cb_clientes.SelectedItem as Cliente;
 
             decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
 
             reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal);
+
+            bool esValida = contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId);
+
+            if (!esValida)
+            {
+                MessageBox.Show("Ya existe una reserva para esta cabaña en el rango de fechas seleccionado. O la cabaña se encuentra en reparación", "Error");
+                return;
+            }
 
             try
             {

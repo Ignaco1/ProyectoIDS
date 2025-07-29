@@ -77,7 +77,7 @@
             // 
             // btn_dejarVerConfirmar
             // 
-            btn_dejarVerConfirmar.Anchor = AnchorStyles.Right;
+            btn_dejarVerConfirmar.Anchor = AnchorStyles.Top;
             btn_dejarVerConfirmar.Image = (Image)resources.GetObject("btn_dejarVerConfirmar.Image");
             btn_dejarVerConfirmar.Location = new Point(866, 264);
             btn_dejarVerConfirmar.Name = "btn_dejarVerConfirmar";
@@ -89,7 +89,7 @@
             // 
             // btn_dejarVerNueva
             // 
-            btn_dejarVerNueva.Anchor = AnchorStyles.Right;
+            btn_dejarVerNueva.Anchor = AnchorStyles.Top;
             btn_dejarVerNueva.Image = (Image)resources.GetObject("btn_dejarVerNueva.Image");
             btn_dejarVerNueva.Location = new Point(866, 198);
             btn_dejarVerNueva.Name = "btn_dejarVerNueva";
@@ -101,7 +101,7 @@
             // 
             // btn_dejarVerActual
             // 
-            btn_dejarVerActual.Anchor = AnchorStyles.Right;
+            btn_dejarVerActual.Anchor = AnchorStyles.Top;
             btn_dejarVerActual.Image = (Image)resources.GetObject("btn_dejarVerActual.Image");
             btn_dejarVerActual.Location = new Point(866, 128);
             btn_dejarVerActual.Name = "btn_dejarVerActual";

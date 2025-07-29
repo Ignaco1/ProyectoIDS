@@ -94,7 +94,7 @@
             // 
             // listbox_permisos
             // 
-            listbox_permisos.Anchor = AnchorStyles.Right;
+            listbox_permisos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             listbox_permisos.FormattingEnabled = true;
             listbox_permisos.ItemHeight = 15;
             listbox_permisos.Location = new Point(678, 159);
@@ -123,7 +123,7 @@
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(617, 159);
@@ -153,7 +153,7 @@
             // 
             // txt_usuario
             // 
-            txt_usuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txt_usuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             txt_usuario.Location = new Point(678, 80);
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(170, 23);
@@ -161,7 +161,7 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(621, 83);
