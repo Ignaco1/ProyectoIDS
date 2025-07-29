@@ -40,7 +40,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             cb_cabaña.Items.Clear();
 
-            var cabañasActivas = contro_caba.ListarCabañas().Where(c => c.Activa).ToList();
+            var cabañasActivas = contro_caba.ListarCabañas().ToList();
 
             foreach (var cabaña in cabañasActivas)
             {
@@ -193,6 +193,21 @@ namespace VISTA.Cabañas_y_alquiler
             DateTime fechaEntrada = mc_reservas.SelectionStart.Date;
             DateTime fechaSalida = mc_reservas.SelectionEnd.Date;
 
+            if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
+            {
+                DateTime hoy = DateTime.Today;
+                DateTime fechaFinDesactivacion = cabaña.FechaFinDesactivacion.Value;
+
+                for (DateTime fecha = fechaEntrada; fecha <= fechaSalida; fecha = fecha.AddDays(1))
+                {
+                    if (fecha >= hoy && fecha <= fechaFinDesactivacion)
+                    {
+                        MessageBox.Show("La reserva no puede realizarse en fechas donde la cabaña está desactivada.", "Error");
+                        return;
+                    }
+                }
+            }
+
             if (mc_reservas.SelectionStart == mc_reservas.SelectionEnd)
             {
                 MessageBox.Show("Debe seleccionar un rango de fechas para la reserva (entrada y salida).", "Error");
@@ -205,39 +220,40 @@ namespace VISTA.Cabañas_y_alquiler
                 return;
             }
 
+
+
             #endregion
 
             reserva = ObtenerReservaSeleccionada();
 
-            if (contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId))
+            bool esValida = contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId);
+
+            if (!esValida)
             {
-                reserva.IdCabaña = cabaña.CabañaId;
-                reserva.Cabaña = cabaña;
-                reserva.IdCliente = cliente.ClienteId;
-                reserva.Cliente = cliente;
-                reserva.FechaEntrada = fechaEntrada;
-                reserva.FechaSalida = fechaSalida;
+                MessageBox.Show("Ya existe una reserva para esta cabaña en el rango de fechas seleccionado. O la cabaña se encuentra en reparación", "Error");
+                return;
+            }
 
-                decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
-                reserva.Precio = precioTotal;
+            reserva.IdCabaña = cabaña.CabañaId;
+            reserva.Cabaña = cabaña;
+            reserva.IdCliente = cliente.ClienteId;
+            reserva.Cliente = cliente;
+            reserva.FechaEntrada = fechaEntrada;
+            reserva.FechaSalida = fechaSalida;
 
-                try
-                {
-                    string resultado = contro_reser.ModificarReserva(reserva);
-                    contro_reser.ActualizarEstadosReservas();
-                    MessageBox.Show(resultado);
+            decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
+            reserva.Precio = precioTotal;
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al modificar la reserva:  " + ex.Message, "Error");
-                    return;
-                }
+            try
+            {
+                string resultado = contro_reser.ModificarReserva(reserva);
+                contro_reser.ActualizarEstadosReservas();
+                MessageBox.Show(resultado);
 
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("La cabaña ya tiene reservas para esa fecha\n\nIntente con otras fechas", "AVISO");
+                MessageBox.Show("Error al modificar la reserva:  " + ex.Message, "Error");
                 return;
             }
 
@@ -361,7 +377,7 @@ namespace VISTA.Cabañas_y_alquiler
                 }
             }
 
-            if (!cabaña.Activa)
+            if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
             {
                 DateTime hoy = DateTime.Today;
                 DateTime fin = cabaña.FechaFinDesactivacion.Value;

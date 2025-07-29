@@ -31,6 +31,8 @@
             panel1 = new Panel();
             btn_cerrar = new Button();
             panel2 = new Panel();
+            label3 = new Label();
+            label2 = new Label();
             lb_descripcion = new Label();
             label1 = new Label();
             lb_nombre = new Label();
@@ -43,8 +45,6 @@
             lb_precio = new Label();
             lb_capacidad = new Label();
             pb_imagenes = new PictureBox();
-            label2 = new Label();
-            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_imagenes).BeginInit();
@@ -92,6 +92,26 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1164, 619);
             panel2.TabIndex = 1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(849, 271);
+            label3.Name = "label3";
+            label3.Size = new Size(204, 21);
+            label3.TabIndex = 31;
+            label3.Text = "Dias ocupados de la cabaña.";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(781, 271);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 21);
+            label2.TabIndex = 30;
+            label2.Text = "Negrita:";
             // 
             // lb_descripcion
             // 
@@ -160,6 +180,7 @@
             mc_fechas.MaxSelectionCount = 30;
             mc_fechas.Name = "mc_fechas";
             mc_fechas.TabIndex = 22;
+            mc_fechas.DateSelected += mc_fechas_DateSelected;
             // 
             // btn_anterior
             // 
@@ -223,26 +244,6 @@
             pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pb_imagenes.TabIndex = 15;
             pb_imagenes.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(781, 271);
-            label2.Name = "label2";
-            label2.Size = new Size(72, 21);
-            label2.TabIndex = 30;
-            label2.Text = "Negrita:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(849, 271);
-            label3.Name = "label3";
-            label3.Size = new Size(204, 21);
-            label3.TabIndex = 31;
-            label3.Text = "Dias ocupados de la cabaña.";
             // 
             // Form_realizarAlquiler
             // 

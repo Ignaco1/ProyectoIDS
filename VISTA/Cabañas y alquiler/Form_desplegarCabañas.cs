@@ -131,8 +131,9 @@ namespace VISTA.Cabañas_y_alquiler
                 .Where(c =>
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                     (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
-                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) && 
-                    (!filtrarPorFechas || !reservas.Any(r =>r.IdCabaña == c.CabañaId && fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada))
+                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) &&
+                    (!filtrarPorFechas || (!reservas.Any(r => r.IdCabaña == c.CabañaId && fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada) && 
+                    (c.Activa || !c.FechaFinDesactivacion.HasValue || fechaEntradaFiltro > c.FechaFinDesactivacion.Value)))
                 ).ToList();
 
             CargarCabañas(listaCabañasFiltro);

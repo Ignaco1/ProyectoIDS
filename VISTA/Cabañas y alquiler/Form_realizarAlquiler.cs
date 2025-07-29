@@ -32,6 +32,8 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 cb_clientes.Items.Add(cliente);
             }
+            CargarFechasOcupadas();
+
         }
 
         private void btn_realizarReserva_Click(object sender, EventArgs e)
@@ -71,33 +73,23 @@ namespace VISTA.Cabañas_y_alquiler
 
             #endregion
 
-
             Cliente cliente = cb_clientes.SelectedItem as Cliente;
 
             decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
 
-            if (contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida))
+            reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal);
+
+            try
             {
-                reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal);
+                string respuesta = contro_reser.AgregarReserva(reserva);
+                contro_reser.ActualizarEstadosReservas();
+                MessageBox.Show(respuesta);
 
-                try
-                {
-                    string respuesta = contro_reser.AgregarReserva(reserva);
-                    contro_reser.ActualizarEstadosReservas();
-                    MessageBox.Show(respuesta);
-
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al agregar la reserva:  " + ex.Message, "Error");
-                }
-
+                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("La cabaña ya tiene reservas para esa fecha\n\nIntente con otras fechas", "AVISO");
-                return;
+                MessageBox.Show("Error al agregar la reserva:  " + ex.Message, "Error");
             }
 
         }
@@ -128,7 +120,7 @@ namespace VISTA.Cabañas_y_alquiler
             lb_capacidad.Text = $"Capacidad: {capacidad}";
             lb_precio.Text = $"Precio por noche: ${precio}";
 
-            string descripcionFormateada = FormatearDescripcion(descripcion, 7); 
+            string descripcionFormateada = FormatearDescripcion(descripcion, 7);
             lb_descripcion.Text = $"Descripción:\n\n{descripcionFormateada}";
 
             imagenes = imagenesBytes;
@@ -156,12 +148,29 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void CargarFechasOcupadas()
         {
-            var reservas = contro_reser.ListarReservas().Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada").ToList();
-
             List<DateTime> fechasOcupadas = new List<DateTime>();
+
+            var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
+
+            if (cabaña == null)
+                return;
+
+            var reservas = contro_reser.ListarReservas()
+                .Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada")
+                .ToList();
+
+            DateTime hoy = DateTime.Today;
+
 
             foreach (var reserva in reservas)
             {
+
+                if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue &&
+                    reserva.FechaEntrada <= cabaña.FechaFinDesactivacion.Value)
+                {
+                    continue; 
+                }
+
                 DateTime fecha = reserva.FechaEntrada.Date;
 
                 while (fecha <= reserva.FechaSalida.Date)
@@ -171,20 +180,20 @@ namespace VISTA.Cabañas_y_alquiler
                 }
             }
 
-            var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
-
-            if (cabaña != null && cabaña.FechaFinDesactivacion.HasValue)
+            if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
             {
-                DateTime hoy = DateTime.Today;
                 DateTime fin = cabaña.FechaFinDesactivacion.Value;
 
-                for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                if (hoy <= fin)
                 {
-                    fechasOcupadas.Add(fecha);
+                    for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                    {
+                        fechasOcupadas.Add(fecha);
+                    }
                 }
             }
 
-            mc_fechas.BoldedDates = fechasOcupadas.Distinct().ToArray();
+            mc_fechas.BoldedDates = fechasOcupadas.Distinct().OrderBy(d => d).ToArray();
         }
 
 
@@ -236,5 +245,13 @@ namespace VISTA.Cabañas_y_alquiler
             return cantidadNoches * cabaña.PrecioPorNoche;
         }
 
+        private void mc_fechas_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            if (mc_fechas.BoldedDates.Contains(e.Start))
+            {
+                MessageBox.Show("No se puede seleccionar esta fecha. La cabaña ya está ocupada o está desactivada.", "Error");
+                return;
+            }
+        }
     }
 }
