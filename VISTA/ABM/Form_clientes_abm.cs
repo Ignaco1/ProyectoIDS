@@ -20,12 +20,19 @@ namespace VISTA
         int indice;
         string variF = "";
         private List<Cliente> listaClientesFiltro = new List<Cliente>();
+        
         public Form_clientes_abm()
         {
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
+            
+        }
+
+        private void Form_clientes_abm_Load(object sender, EventArgs e)
+        {
             btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
         private void ARMA_GRILLA()
@@ -74,7 +81,7 @@ namespace VISTA
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(dataGridView1.CurrentRow == null)
+            if (dataGridView1.CurrentRow == null)
             {
                 MessageBox.Show("Seleccione un cliente.", "Error");
                 return;
@@ -108,7 +115,7 @@ namespace VISTA
             }
             else
             {
-                 cliente = listaClientesFiltro[indice];
+                cliente = listaClientesFiltro[indice];
             }
 
             txt_nombre.Text = cliente.Nombre;
@@ -214,7 +221,7 @@ namespace VISTA
                 return;
             }
 
-            if(!ValidaTelefono(txt_telefono.Text))
+            if (!ValidaTelefono(txt_telefono.Text))
             {
                 MessageBox.Show("El número de teléfono debe contener solo números y tener entre 6 y 15 dígitos.", "Error");
                 return;
@@ -225,7 +232,7 @@ namespace VISTA
 
             if (vari == "A")
             {
-                if(!contro_cli.ValidaCliente(txt_dni.Text, txt_email.Text, 0))
+                if (!contro_cli.ValidaCliente(txt_dni.Text, txt_email.Text, 0))
                 {
                     cliente = contro_cli.CrearCliente(txt_nombre.Text, txt_apellido.Text, txt_dni.Text, txt_email.Text, txt_telefono.Text);
 
@@ -255,13 +262,13 @@ namespace VISTA
                 }
                 else
                 {
-                    cliente=listaClientesFiltro[indice];
+                    cliente = listaClientesFiltro[indice];
                 }
 
-                if(!contro_cli.ValidaCliente(txt_dni.Text, txt_email.Text, cliente.ClienteId))
+                if (!contro_cli.ValidaCliente(txt_dni.Text, txt_email.Text, cliente.ClienteId))
                 {
                     cliente.Nombre = txt_nombre.Text;
-                    cliente.Apellido= txt_apellido.Text;
+                    cliente.Apellido = txt_apellido.Text;
                     cliente.Dni = txt_dni.Text;
                     cliente.Email = txt_email.Text;
                     cliente.Telefono = txt_telefono.Text;
@@ -291,26 +298,16 @@ namespace VISTA
             else
             {
                 FILTRAR();
-            }   
+            }
             LIMPIAR();
             MODO_LISTA();
-            
+
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             MODO_LISTA();
             LIMPIAR();
-        }
-
-        private void btn_filtrar_Click(object sender, EventArgs e)
-        {
-            variF = "F";
-
-            btn_quitarFiltro.Enabled = true;
-
-            FILTRAR();
-
         }
 
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
@@ -324,6 +321,7 @@ namespace VISTA
             variF = "";
 
             btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
         private bool ValidaEmial(string email)
@@ -391,6 +389,30 @@ namespace VISTA
 
             dataGridView1.DataSource = datosAmostrar;
 
+        }
+
+        private void txt_dniFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void txt_apellidoFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
         }
 
     }

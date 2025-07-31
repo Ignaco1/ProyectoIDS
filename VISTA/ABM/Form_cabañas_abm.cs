@@ -36,7 +36,6 @@ namespace VISTA.ABM
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
-            btn_quitarFiltro.Enabled = false;
         }
 
         private void Form_cabañas_abm_Load(object sender, EventArgs e)
@@ -45,6 +44,13 @@ namespace VISTA.ABM
             txt_descripcion.ScrollBars = ScrollBars.Vertical;
             txt_descripcion.WordWrap = true;
             txt_descripcion.Height = 100;
+
+            cb_estado.Items.Add("Activa");
+            cb_estado.Items.Add("Inactiva");
+
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+            cb_estado.SelectedIndex = -1;
         }
 
         private void ARMA_GRILLA()
@@ -499,26 +505,19 @@ namespace VISTA.ABM
             return pb;
         }
 
-        private void btn_filtrar_Click(object sender, EventArgs e)
-        {
-            variF = "F";
-
-            btn_quitarFiltro.Enabled = true;
-
-            FILTRAR();
-        }
-
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
         {
             txt_nombreFiltro.Clear();
             txt_capacidadFiltro.Clear();
             txt_precioNocheFiltro.Clear();
+            cb_estado.SelectedIndex = -1;
 
             ARMA_GRILLA();
 
-            variF = "";
-
             btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+
+            variF = "";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -539,12 +538,20 @@ namespace VISTA.ABM
             string nombreFiltro = txt_nombreFiltro.Text.Trim().ToLower();
             bool filtrarCapacidad = int.TryParse(txt_capacidadFiltro.Text, out int capacidadFiltro);
             bool filtrarPrecio = decimal.TryParse(txt_precioNocheFiltro.Text, out decimal precioFiltro);
+            string estadoFiltro = cb_estado.Text;
+
+            bool filtrarEstado = !string.IsNullOrEmpty(estadoFiltro);
+
+            bool estado = estadoFiltro == "Activa";
+
 
             listaCabañasFiltro = contro_caba.ListarCabañas()
                 .Where(c =>
+                    (!filtrarEstado || c.Activa == estado) &&
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                     (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
-                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro)
+                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) 
+                    
                 )
                 .ToList();
 
@@ -642,6 +649,38 @@ namespace VISTA.ABM
 
                 MessageBox.Show("PDF generado correctamente.", "Éxito");
             }
+        }
+
+        private void cb_estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void txt_capacidadFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void txt_precioNocheFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
         }
     }
 }

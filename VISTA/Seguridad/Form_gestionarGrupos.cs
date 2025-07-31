@@ -18,6 +18,10 @@ namespace VISTA
         string vari;
         List<MODELO.Composite.Grupo> gruposFiltrados;
         int indice = 0;
+        string variF = "";
+        List<Grupo> listaGruposFiltro = new List<Grupo>();
+
+
         public Form_gestionarGrupos()
         {
             InitializeComponent();
@@ -46,8 +50,7 @@ namespace VISTA
                 .Select(g => new
                 {
                     ID = g.GrupoId,
-                    Nombre = g.Nombre,
-                    Permisos = string.Join(", ", g.Permisos.Select(p => p.Nombre))
+                    Nombre = g.Nombre
                 })
                 .ToList();
 
@@ -73,7 +76,8 @@ namespace VISTA
 
         private void Form_gestionarGrupos_Load(object sender, EventArgs e)
         {
-
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
         private void btn_crearGrupo_Click(object sender, EventArgs e)
@@ -93,7 +97,14 @@ namespace VISTA
             MODELO.Composite.Grupo grupo;
             vari = "M";
 
-            grupo = gruposFiltrados[indice];
+            if (variF == "")
+            {
+                grupo = gruposFiltrados[indice];
+            }
+            else
+            {
+                grupo = listaGruposFiltro[indice];
+            }
 
             txt_nombre.Text = grupo.Nombre;
 
@@ -108,7 +119,16 @@ namespace VISTA
                 return;
             }
 
-            MODELO.Composite.Grupo grupo = gruposFiltrados[indice];
+            MODELO.Composite.Grupo grupo;
+
+            if (variF == "")
+            {
+                grupo = gruposFiltrados[indice];
+            }
+            else
+            {
+                grupo = listaGruposFiltro[indice];
+            }
 
             DialogResult resultado = MessageBox.Show($"Esta seguro que desea eliminar al grupo:\n\nNombre: {grupo.Nombre}", "AVISO", MessageBoxButtons.YesNo);
 
@@ -116,7 +136,7 @@ namespace VISTA
             {
                 try
                 {
-                    string respuesta=contro_grup.EliminarGrupo(grupo);
+                    string respuesta = contro_grup.EliminarGrupo(grupo);
                     MessageBox.Show(respuesta);
                 }
                 catch (Exception ex)
@@ -125,7 +145,14 @@ namespace VISTA
                 }
             }
 
-            ARMA_GRILLA();
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
         }
 
         private void btn_guardar_Click(object sender, EventArgs e)
@@ -145,7 +172,7 @@ namespace VISTA
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al crear el grupo: " + ex.Message, "Error"); 
+                        MessageBox.Show("Error al crear el grupo: " + ex.Message, "Error");
                     }
                 }
                 else
@@ -157,7 +184,14 @@ namespace VISTA
 
             if (vari == "M")
             {
-                grupo = gruposFiltrados[indice];
+                if (variF == "")
+                {
+                    grupo = gruposFiltrados[indice];
+                }
+                else
+                {
+                    grupo = listaGruposFiltro[indice];
+                }
 
                 grupo.Nombre = txt_nombre.Text;
 
@@ -180,9 +214,16 @@ namespace VISTA
                     return;
                 }
             }
-            
 
-            ARMA_GRILLA();
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
+
             MODO_GRILLA();
             LIMPIAR();
         }
@@ -198,11 +239,55 @@ namespace VISTA
             this.Close();
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void FILTRAR()
         {
-            if (dataGridView1.CurrentRow == null)
+            dataGridView1.DataSource = null;
+
+            string nombreFiltro = txt_nombreFiltro.Text.Trim().ToLower();
+
+            listaGruposFiltro = gruposFiltrados
+                .Where(g =>
+                (string.IsNullOrEmpty(nombreFiltro) || g.Nombre.ToLower().Contains(nombreFiltro))
+                ).ToList();
+
+            var datosAmostrar = listaGruposFiltro
+            .Select(g => new
             {
-                MessageBox.Show("Seleccione un grupo", "Error");
+                ID = g.GrupoId,
+                Nombre = g.Nombre
+
+            }).ToList();
+
+            dataGridView1.DataSource = datosAmostrar;
+
+        }
+
+
+        private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void btn_quitarFiltro_Click(object sender, EventArgs e)
+        {
+            txt_nombreFiltro.Clear();
+
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+
+            ARMA_GRILLA();
+
+            variF = "";
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentCell == null)
+            {
+                MessageBox.Show("Seleccione un grupo.", "ERROR");
                 return;
             }
 

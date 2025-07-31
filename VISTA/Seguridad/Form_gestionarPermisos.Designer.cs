@@ -37,6 +37,10 @@
             panel_lista_permisos = new Panel();
             groupBox_permisos = new GroupBox();
             dataGridView1 = new DataGridView();
+            panel1 = new Panel();
+            btn_quitarFiltro = new Button();
+            txt_nombreFiltro = new TextBox();
+            label2 = new Label();
             panel_botones = new Panel();
             btn_cerrar = new Button();
             btn_eliminarPermiso = new Button();
@@ -47,6 +51,7 @@
             panel_lista_permisos.SuspendLayout();
             groupBox_permisos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             panel_botones.SuspendLayout();
             SuspendLayout();
             // 
@@ -123,6 +128,7 @@
             // groupBox_permisos
             // 
             groupBox_permisos.Controls.Add(dataGridView1);
+            groupBox_permisos.Controls.Add(panel1);
             groupBox_permisos.Controls.Add(panel_botones);
             groupBox_permisos.Dock = DockStyle.Fill;
             groupBox_permisos.Location = new Point(0, 0);
@@ -137,12 +143,50 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 19);
+            dataGridView1.Location = new Point(3, 74);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(846, 381);
-            dataGridView1.TabIndex = 1;
+            dataGridView1.Size = new Size(846, 326);
+            dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(btn_quitarFiltro);
+            panel1.Controls.Add(txt_nombreFiltro);
+            panel1.Controls.Add(label2);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(3, 19);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(846, 55);
+            panel1.TabIndex = 1;
+            // 
+            // btn_quitarFiltro
+            // 
+            btn_quitarFiltro.Location = new Point(736, 17);
+            btn_quitarFiltro.Name = "btn_quitarFiltro";
+            btn_quitarFiltro.Size = new Size(95, 23);
+            btn_quitarFiltro.TabIndex = 2;
+            btn_quitarFiltro.Text = "Limpiar filtro";
+            btn_quitarFiltro.UseVisualStyleBackColor = true;
+            btn_quitarFiltro.Click += btn_quitarFiltro_Click;
+            // 
+            // txt_nombreFiltro
+            // 
+            txt_nombreFiltro.Location = new Point(257, 17);
+            txt_nombreFiltro.Name = "txt_nombreFiltro";
+            txt_nombreFiltro.Size = new Size(215, 23);
+            txt_nombreFiltro.TabIndex = 1;
+            txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(135, 20);
+            label2.Name = "label2";
+            label2.Size = new Size(116, 15);
+            label2.TabIndex = 0;
+            label2.Text = "Nombre de permiso:";
             // 
             // panel_botones
             // 
@@ -214,6 +258,8 @@
             panel_lista_permisos.ResumeLayout(false);
             groupBox_permisos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel_botones.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -224,15 +270,19 @@
         private GroupBox groupBox_carga;
         private Panel panel_lista_permisos;
         private GroupBox groupBox_permisos;
+        private Label label1;
+        private TextBox txt_nombre;
+        private Button btn_cancelar;
+        private Button btn_guardar;
         private Panel panel_botones;
         private Button btn_cerrar;
         private Button btn_eliminarPermiso;
         private Button btn_modificarPermiso;
         private Button btn_crearPermiso;
         private DataGridView dataGridView1;
-        private Label label1;
-        private TextBox txt_nombre;
-        private Button btn_cancelar;
-        private Button btn_guardar;
+        private Panel panel1;
+        private Button btn_quitarFiltro;
+        private TextBox txt_nombreFiltro;
+        private Label label2;
     }
 }

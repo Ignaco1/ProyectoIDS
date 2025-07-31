@@ -31,12 +31,14 @@ namespace VISTA
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
-            btn_quitarFiltro.Enabled = false;
+            
         }
 
         private void Form_usuarios_abm_Load(object sender, EventArgs e)
         {
             CargarCombos();
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
 
@@ -392,16 +394,6 @@ namespace VISTA
             cb_tipoUsuario.Enabled = true;
         }
 
-        private void btn_filtrar_Click(object sender, EventArgs e)
-        {
-            variF = "F";
-
-            btn_quitarFiltro.Enabled = true;
-
-            FILTRAR();
-
-        }
-
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
         {
             cb_tipoFiltro.SelectedIndex = -1;
@@ -410,6 +402,8 @@ namespace VISTA
             ARMA_GRILLA();
 
             btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+
             variF = "";
         }
 
@@ -463,6 +457,30 @@ namespace VISTA
                     cb_tipoFiltro.Items.Add(grupo.Nombre);
                 }
             }
+        }
+
+        private void cb_tipoFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            variF = "F";
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+        }
+
+        private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            variF = "F";
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+        }
+
+        private void txt_apellidoFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            variF = "F";
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
         }
     }
 }

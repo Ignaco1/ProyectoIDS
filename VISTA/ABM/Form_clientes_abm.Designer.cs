@@ -58,7 +58,6 @@
             txt_dniFiltro = new TextBox();
             label1 = new Label();
             btn_quitarFiltro = new Button();
-            btn_filtrar = new Button();
             panel_carga.SuspendLayout();
             groupBox_carga.SuspendLayout();
             panel_grilla.SuspendLayout();
@@ -296,7 +295,6 @@
             panel_filtro.Controls.Add(txt_dniFiltro);
             panel_filtro.Controls.Add(label1);
             panel_filtro.Controls.Add(btn_quitarFiltro);
-            panel_filtro.Controls.Add(btn_filtrar);
             panel_filtro.Dock = DockStyle.Top;
             panel_filtro.Location = new Point(3, 19);
             panel_filtro.Name = "panel_filtro";
@@ -305,15 +303,16 @@
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(342, 30);
+            txt_nombreFiltro.Location = new Point(347, 30);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(136, 23);
             txt_nombreFiltro.TabIndex = 0;
+            txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(282, 33);
+            label3.Location = new Point(287, 33);
             label3.Name = "label3";
             label3.Size = new Size(54, 15);
             label3.TabIndex = 6;
@@ -325,6 +324,7 @@
             txt_apellidoFiltro.Name = "txt_apellidoFiltro";
             txt_apellidoFiltro.Size = new Size(136, 23);
             txt_apellidoFiltro.TabIndex = 5;
+            txt_apellidoFiltro.TextChanged += txt_apellidoFiltro_TextChanged;
             // 
             // label2
             // 
@@ -341,6 +341,7 @@
             txt_dniFiltro.Name = "txt_dniFiltro";
             txt_dniFiltro.Size = new Size(136, 23);
             txt_dniFiltro.TabIndex = 3;
+            txt_dniFiltro.TextChanged += txt_dniFiltro_TextChanged;
             // 
             // label1
             // 
@@ -353,23 +354,13 @@
             // 
             // btn_quitarFiltro
             // 
-            btn_quitarFiltro.Location = new Point(795, 43);
+            btn_quitarFiltro.Location = new Point(795, 30);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(95, 23);
             btn_quitarFiltro.TabIndex = 1;
-            btn_quitarFiltro.Text = "Quitar filtro";
+            btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = true;
             btn_quitarFiltro.Click += btn_quitarFiltro_Click;
-            // 
-            // btn_filtrar
-            // 
-            btn_filtrar.Location = new Point(795, 14);
-            btn_filtrar.Name = "btn_filtrar";
-            btn_filtrar.Size = new Size(95, 23);
-            btn_filtrar.TabIndex = 0;
-            btn_filtrar.Text = "Filtrar";
-            btn_filtrar.UseVisualStyleBackColor = true;
-            btn_filtrar.Click += btn_filtrar_Click;
             // 
             // Form_clientes_abm
             // 
@@ -381,6 +372,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form_clientes_abm";
             Text = "Form_clientes_abm";
+            Load += Form_clientes_abm_Load;
             panel_carga.ResumeLayout(false);
             groupBox_carga.ResumeLayout(false);
             groupBox_carga.PerformLayout();
@@ -405,7 +397,6 @@
         private TextBox txt_dniFiltro;
         private Label label1;
         private Button btn_quitarFiltro;
-        private Button btn_filtrar;
         private TextBox txt_nombreFiltro;
         private Label label3;
         private TextBox txt_apellidoFiltro;

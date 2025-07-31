@@ -39,15 +39,22 @@
             panel_lista_permisos = new Panel();
             groupBox_grupos = new GroupBox();
             dataGridView1 = new DataGridView();
+            panel1 = new Panel();
+            txt_nombreGrupoFiltro = new TextBox();
+            label4 = new Label();
+            btn_quitarFiltro = new Button();
+            txt_nombrePermisoFiltro = new TextBox();
+            label3 = new Label();
             panel_botones = new Panel();
+            btn_modificarPermisos = new Button();
             btn_cerrar = new Button();
             btn_asignarPermisos = new Button();
-            btn_modificarPermisos = new Button();
             panel_carga.SuspendLayout();
             groupBox_carga.SuspendLayout();
             panel_lista_permisos.SuspendLayout();
             groupBox_grupos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             panel_botones.SuspendLayout();
             SuspendLayout();
             // 
@@ -143,6 +150,7 @@
             // groupBox_grupos
             // 
             groupBox_grupos.Controls.Add(dataGridView1);
+            groupBox_grupos.Controls.Add(panel1);
             groupBox_grupos.Controls.Add(panel_botones);
             groupBox_grupos.Dock = DockStyle.Fill;
             groupBox_grupos.Location = new Point(0, 0);
@@ -157,12 +165,69 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 19);
+            dataGridView1.Location = new Point(3, 75);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(910, 570);
-            dataGridView1.TabIndex = 1;
+            dataGridView1.Size = new Size(910, 514);
+            dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(txt_nombreGrupoFiltro);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(btn_quitarFiltro);
+            panel1.Controls.Add(txt_nombrePermisoFiltro);
+            panel1.Controls.Add(label3);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(3, 19);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(910, 56);
+            panel1.TabIndex = 1;
+            // 
+            // txt_nombreGrupoFiltro
+            // 
+            txt_nombreGrupoFiltro.Location = new Point(160, 15);
+            txt_nombreGrupoFiltro.Name = "txt_nombreGrupoFiltro";
+            txt_nombreGrupoFiltro.Size = new Size(215, 23);
+            txt_nombreGrupoFiltro.TabIndex = 7;
+            txt_nombreGrupoFiltro.TextChanged += txt_nombreGrupoFiltro_TextChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(52, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(105, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Nombre de grupo:";
+            // 
+            // btn_quitarFiltro
+            // 
+            btn_quitarFiltro.Location = new Point(803, 16);
+            btn_quitarFiltro.Name = "btn_quitarFiltro";
+            btn_quitarFiltro.Size = new Size(95, 23);
+            btn_quitarFiltro.TabIndex = 5;
+            btn_quitarFiltro.Text = "Limpiar filtro";
+            btn_quitarFiltro.UseVisualStyleBackColor = true;
+            btn_quitarFiltro.Click += btn_quitarFiltro_Click;
+            // 
+            // txt_nombrePermisoFiltro
+            // 
+            txt_nombrePermisoFiltro.Location = new Point(529, 16);
+            txt_nombrePermisoFiltro.Name = "txt_nombrePermisoFiltro";
+            txt_nombrePermisoFiltro.Size = new Size(215, 23);
+            txt_nombrePermisoFiltro.TabIndex = 4;
+            txt_nombrePermisoFiltro.TextChanged += txt_nombrePermisoFiltro_TextChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(407, 19);
+            label3.Name = "label3";
+            label3.Size = new Size(116, 15);
+            label3.TabIndex = 3;
+            label3.Text = "Nombre de permiso:";
             // 
             // panel_botones
             // 
@@ -174,6 +239,16 @@
             panel_botones.Name = "panel_botones";
             panel_botones.Size = new Size(910, 51);
             panel_botones.TabIndex = 0;
+            // 
+            // btn_modificarPermisos
+            // 
+            btn_modificarPermisos.Location = new Point(140, 6);
+            btn_modificarPermisos.Name = "btn_modificarPermisos";
+            btn_modificarPermisos.Size = new Size(125, 23);
+            btn_modificarPermisos.TabIndex = 6;
+            btn_modificarPermisos.Text = "Modificar permisos";
+            btn_modificarPermisos.UseVisualStyleBackColor = true;
+            btn_modificarPermisos.Click += btn_modificarPermisos_Click;
             // 
             // btn_cerrar
             // 
@@ -196,16 +271,6 @@
             btn_asignarPermisos.UseVisualStyleBackColor = true;
             btn_asignarPermisos.Click += btn_asignarPermisos_Click;
             // 
-            // btn_modificarPermisos
-            // 
-            btn_modificarPermisos.Location = new Point(140, 6);
-            btn_modificarPermisos.Name = "btn_modificarPermisos";
-            btn_modificarPermisos.Size = new Size(125, 23);
-            btn_modificarPermisos.TabIndex = 6;
-            btn_modificarPermisos.Text = "Modificar permisos";
-            btn_modificarPermisos.UseVisualStyleBackColor = true;
-            btn_modificarPermisos.Click += btn_modificarPermisos_Click;
-            // 
             // Form_asignarPermisos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -223,6 +288,8 @@
             panel_lista_permisos.ResumeLayout(false);
             groupBox_grupos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel_botones.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -235,7 +302,6 @@
         private Label label1;
         private Panel panel_lista_permisos;
         private GroupBox groupBox_grupos;
-        private DataGridView dataGridView1;
         private Panel panel_botones;
         private Button btn_eliminarGrupo;
         private Button btn_modificarGrupo;
@@ -246,5 +312,12 @@
         private CheckedListBox check_listaPermisos;
         private Label label2;
         private Button btn_modificarPermisos;
+        private DataGridView dataGridView1;
+        private Panel panel1;
+        private Button btn_quitarFiltro;
+        private TextBox txt_nombrePermisoFiltro;
+        private Label label3;
+        private TextBox txt_nombreGrupoFiltro;
+        private Label label4;
     }
 }

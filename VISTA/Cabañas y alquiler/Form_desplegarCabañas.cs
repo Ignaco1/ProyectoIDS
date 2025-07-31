@@ -20,7 +20,7 @@ namespace VISTA.Cabañas_y_alquiler
         public Form_desplegarCabañas()
         {
             InitializeComponent();
-            btn_quitarFiltro.Enabled = false;
+
         }
 
         private void Form_realizarAlquiler_Load(object sender, EventArgs e)
@@ -29,6 +29,9 @@ namespace VISTA.Cabañas_y_alquiler
 
             dtp_entrada.Value = DateTime.Today;
             dtp_salida.Value = DateTime.Today;
+
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
         private void ARMAR()
@@ -46,7 +49,7 @@ namespace VISTA.Cabañas_y_alquiler
             dtp_entrada.Value = DateTime.Today;
             dtp_salida.Value = DateTime.Today;
         }
-        
+
         private void CargarCabañas(List<Cabaña> lista)
         {
             flp_cabañas.Controls.Clear();
@@ -77,7 +80,7 @@ namespace VISTA.Cabañas_y_alquiler
                             }
                         };
 
-                        form.Owner = fPrincipal; 
+                        form.Owner = fPrincipal;
                         fPrincipal.AbrirForms(form);
                     }
                     else
@@ -89,22 +92,10 @@ namespace VISTA.Cabañas_y_alquiler
                 flp_cabañas.Controls.Add(tarjeta);
             }
         }
-        
+
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btn_filtrar_Click(object sender, EventArgs e)
-        {
-            if (dtp_entrada.Value.Date > dtp_salida.Value.Date)
-            {
-                MessageBox.Show("La fecha de entrada no puede ser posterior a la fecha de salida.", "Error");
-                return;
-            }
-            
-            CabañasFiltro();
-            btn_quitarFiltro.Enabled = true;
         }
 
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
@@ -112,6 +103,7 @@ namespace VISTA.Cabañas_y_alquiler
             ARMAR();
             LIMPIAR();
             btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
         private void CabañasFiltro()
@@ -132,12 +124,60 @@ namespace VISTA.Cabañas_y_alquiler
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                     (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
                     (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) &&
-                    (!filtrarPorFechas || (!reservas.Any(r => r.IdCabaña == c.CabañaId && fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada) && 
+                    (!filtrarPorFechas || (!reservas.Any(r => r.IdCabaña == c.CabañaId && fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada) &&
                     (c.Activa || !c.FechaFinDesactivacion.HasValue || fechaEntradaFiltro > c.FechaFinDesactivacion.Value)))
                 ).ToList();
 
             CargarCabañas(listaCabañasFiltro);
 
+        }
+
+        private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
+        {
+            CabañasFiltro();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+        }
+
+        private void txt_capacidadFiltro_TextChanged(object sender, EventArgs e)
+        {
+            CabañasFiltro();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+        }
+
+        private void txt_precioNocheFiltro_TextChanged(object sender, EventArgs e)
+        {
+            CabañasFiltro();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+        }
+
+        private void dtp_entrada_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtp_entrada.Value.Date > dtp_salida.Value.Date)
+            {
+                MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
+                return;
+            }
+
+            CabañasFiltro();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+        }
+
+        private void dtp_salida_ValueChanged(object sender, EventArgs e)
+        {
+
+            if (dtp_entrada.Value.Date > dtp_salida.Value.Date)
+            {
+                MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
+                return;
+            }
+
+            CabañasFiltro();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
         }
     }
 }

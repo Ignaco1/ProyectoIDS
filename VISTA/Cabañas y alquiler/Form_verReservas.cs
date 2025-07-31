@@ -14,7 +14,7 @@ namespace VISTA.Cabañas_y_alquiler
 {
     public partial class Form_verReservas : Form
     {
-        
+
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         CONTROLADORA.Controladora_clientes contro_cli = new CONTROLADORA.Controladora_clientes();
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
@@ -25,8 +25,6 @@ namespace VISTA.Cabañas_y_alquiler
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
-            btn_quitarFiltro.Enabled = false;
-            cb_cliente.Enabled = false;
         }
 
         private void Form_verReservas_Load(object sender, EventArgs e)
@@ -57,6 +55,9 @@ namespace VISTA.Cabañas_y_alquiler
 
             contro_reser.ActualizarEstadosReservas();
 
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+            cb_cliente.Enabled = false;
         }
 
         private void ARMA_GRILLA()
@@ -275,21 +276,6 @@ namespace VISTA.Cabañas_y_alquiler
             MODO_LISTA();
         }
 
-        private void btn_filtrar_Click(object sender, EventArgs e)
-        {
-            if (dtp_entradaFiltro.Value.Date > dtp_salidaFiltro.Value.Date)
-            {
-                MessageBox.Show("La fecha de entrada no puede ser posterior a la fecha de salida.", "Error");
-                return;
-            }
-
-            variF = "F";
-
-            FILTRAR();
-
-            btn_quitarFiltro.Enabled = true;
-        }
-
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
         {
             cb_estado.SelectedIndex = -1;
@@ -301,6 +287,7 @@ namespace VISTA.Cabañas_y_alquiler
             ARMA_GRILLA();
 
             btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
 
             variF = "";
         }
@@ -464,15 +451,6 @@ namespace VISTA.Cabañas_y_alquiler
 
         }
 
-        private void mc_reservas_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            if (mc_reservas.BoldedDates.Contains(e.Start))
-            {
-                MessageBox.Show("No se puede seleccionar esta fecha. La cabaña ya está ocupada o está desactivada.", "Error");
-                return;
-            }
-        }
-
         private Reserva ObtenerReservaSeleccionada()
         {
             if (dataGridView1.CurrentRow == null) return null;
@@ -494,5 +472,62 @@ namespace VISTA.Cabañas_y_alquiler
             return null;
         }
 
+        private void cb_estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+
+            variF = "F";
+        }
+
+        private void txt_nombreClienteFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+
+            variF = "F";
+        }
+
+        private void txt_nombreCabañaFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+
+            variF = "F";
+
+        }
+
+        private void dtp_entradaFiltro_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtp_entradaFiltro.Value.Date > dtp_salidaFiltro.Value.Date)
+            {
+                MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
+                return;
+            }
+
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+
+            variF = "F";
+        }
+
+        private void dtp_salidaFiltro_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtp_entradaFiltro.Value.Date > dtp_salidaFiltro.Value.Date)
+            {
+                MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
+                return;
+            }
+
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+
+            variF = "F";
+        }
     }
 }

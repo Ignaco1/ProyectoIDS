@@ -1,4 +1,5 @@
 ﻿using MODELO;
+using MODELO.Composite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,9 @@ namespace VISTA
         CONTROLADORA.Controladora_permisos contro_per = new CONTROLADORA.Controladora_permisos();
         string vari;
         int indice = 0;
+        string variF = "";
+        List<Permiso> listaPermisosFiltro = new List<Permiso>();
+
         public Form_gestionarPermisos()
         {
             InitializeComponent();
@@ -25,7 +29,8 @@ namespace VISTA
 
         private void Form_gestionarPermisos_Load(object sender, EventArgs e)
         {
-
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
         }
 
         private void ARMA_GRILLA()
@@ -36,8 +41,7 @@ namespace VISTA
                 .Select(p => new
                 {
                     ID = p.PermisoId,
-                    Nombre = p.Nombre,
-                    Grupos = string.Join(", ", p.Grupos.Select(g => g.Nombre))
+                    Nombre = p.Nombre
                 })
                 .ToList();
 
@@ -83,8 +87,15 @@ namespace VISTA
             MODELO.Composite.Permiso permiso;
             vari = "M";
 
-            permiso = contro_per.ListarPermisos()[indice];
-
+            if (variF == "")
+            {
+                permiso = contro_per.ListarPermisos()[indice];
+            }
+            else
+            {
+                permiso = listaPermisosFiltro[indice];
+            }
+            
             txt_nombre.Text = permiso.Nombre;
 
             MODO_CARGA();
@@ -100,10 +111,18 @@ namespace VISTA
 
             MODELO.Composite.Permiso permiso;
 
-            permiso = contro_per.ListarPermisos()[indice];
+            if (variF == "")
+            {
+                permiso = contro_per.ListarPermisos()[indice];
+            }
+            else
+            {
+                permiso = listaPermisosFiltro[indice];
+            }
+
             DialogResult resultado = MessageBox.Show($"Está seguro que desea eliminar el permiso:\n\nNombre: {permiso.Nombre}", "AVISO", MessageBoxButtons.YesNo);
 
-            if(resultado== DialogResult.Yes)
+            if (resultado == DialogResult.Yes)
             {
                 try
                 {
@@ -117,7 +136,14 @@ namespace VISTA
 
             }
 
-            ARMA_GRILLA();
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
         }
         private void btn_guardar_Click(object sender, EventArgs e)
         {
@@ -148,7 +174,14 @@ namespace VISTA
 
             if (vari == "M")
             {
-                permiso = contro_per.ListarPermisos()[indice];
+                if (variF == "")
+                {
+                    permiso = contro_per.ListarPermisos()[indice];
+                }
+                else
+                {
+                    permiso = listaPermisosFiltro[indice];
+                }
 
                 permiso.Nombre = txt_nombre.Text;
 
@@ -169,10 +202,18 @@ namespace VISTA
                     MessageBox.Show("Este permiso ya existe en el sistema.\n\nIntente con otro nombre de permiso.", "AVISO");
                     return;
                 }
-            } 
-            
+            }
 
-            ARMA_GRILLA();
+
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
+
             LIMPIAR();
             MODO_GRILLA();
         }
@@ -192,6 +233,49 @@ namespace VISTA
             }
 
             indice = dataGridView1.CurrentRow.Index;
+        }
+
+        private void FILTRAR()
+        {
+            dataGridView1.DataSource = null;
+
+            string nombreFiltro = txt_nombreFiltro.Text.Trim().ToLower();
+
+            listaPermisosFiltro = contro_per.ListarPermisos()
+                .Where(g =>
+                (string.IsNullOrEmpty(nombreFiltro) || g.Nombre.ToLower().Contains(nombreFiltro))
+                ).ToList();
+
+            var datosAmostrar = listaPermisosFiltro
+            .Select(p => new
+            {
+                ID = p.PermisoId,
+                Nombre = p.Nombre
+
+            }).ToList();
+
+            dataGridView1.DataSource = datosAmostrar;
+
+        }
+
+        private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void btn_quitarFiltro_Click(object sender, EventArgs e)
+        {
+            txt_nombreFiltro.Clear();
+
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+
+            ARMA_GRILLA();
+
+            variF = "";
         }
     }
 }

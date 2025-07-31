@@ -85,7 +85,7 @@ namespace VISTA
                     return;
                 }
             }
-            
+
 
         }
 
@@ -110,5 +110,9 @@ namespace VISTA
             abrirFormulario = llamadaAlForm;
         }
 
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolTip1.SetToolTip(panel1, "Presione para realizar la reserva");
+        }
     }
 }

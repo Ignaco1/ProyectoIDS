@@ -19,12 +19,14 @@ namespace VISTA
         string vari;
         List<MODELO.Composite.Grupo> gruposFiltrados;
         int indice = 0;
+        string variF = "";
+        List<Grupo> listaGruposFiltro = new List<Grupo>();
+
         public Form_asignarPermisos()
         {
             InitializeComponent();
             ARMA_GRILLA();
             MODO_GRILLA();
-            txt_nombre.Enabled = false;
         }
 
         private void Form_asignarPermisos_Load(object sender, EventArgs e)
@@ -37,6 +39,10 @@ namespace VISTA
             {
                 check_listaPermisos.Items.Add(permiso, false);
             }
+
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+            txt_nombre.Enabled = false;
         }
 
         private void ARMA_GRILLA()
@@ -107,10 +113,18 @@ namespace VISTA
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
+            MODELO.Composite.Grupo grupo = null;
 
             if (vari == "A")
             {
-                MODELO.Composite.Grupo grupo = gruposFiltrados[indice];
+                if (variF == "")
+                {
+                    grupo = gruposFiltrados[indice];
+                }
+                else
+                {
+                    grupo = listaGruposFiltro[indice];
+                }
 
                 var permisosSeleccionados = check_listaPermisos.CheckedItems
                 .OfType<Permiso>()
@@ -136,7 +150,14 @@ namespace VISTA
 
             if (vari == "M")
             {
-                MODELO.Composite.Grupo grupo = gruposFiltrados[indice];
+                if (variF == "")
+                {
+                    grupo = gruposFiltrados[indice];
+                }
+                else
+                {
+                    grupo = listaGruposFiltro[indice];
+                }
 
                 var permisosSeleccionados = check_listaPermisos.CheckedItems
                 .OfType<Permiso>()
@@ -160,7 +181,14 @@ namespace VISTA
                 }
             }
 
-            ARMA_GRILLA();
+            if (variF == "")
+            {
+                ARMA_GRILLA();
+            }
+            else
+            {
+                FILTRAR();
+            }
             MODO_GRILLA();
             LIMPIAR();
         }
@@ -197,7 +225,16 @@ namespace VISTA
 
             vari = "M";
 
-            MODELO.Composite.Grupo grupo = gruposFiltrados[indice];
+            MODELO.Composite.Grupo grupo;
+
+            if (variF == "")
+            {
+                grupo = gruposFiltrados[indice];
+            }
+            else
+            {
+                grupo = listaGruposFiltro[indice];
+            }
 
             txt_nombre.Text = grupo.Nombre;
 
@@ -213,6 +250,60 @@ namespace VISTA
 
             MODO_CARGA();
 
+        }
+
+        private void FILTRAR()
+        {
+            dataGridView1.DataSource = null;
+
+            string nombreGrupoFiltro = txt_nombreGrupoFiltro.Text.Trim().ToLower();
+            string nombrePermisoFiltro = txt_nombrePermisoFiltro.Text.Trim().ToLower();
+
+            listaGruposFiltro = gruposFiltrados
+                .Where(g =>
+                (string.IsNullOrEmpty(nombreGrupoFiltro) || g.Nombre.ToLower().Contains(nombreGrupoFiltro)) &&
+                (string.IsNullOrEmpty(nombrePermisoFiltro) || g.Permisos.Any(p => p.Nombre.ToLower().Contains(nombrePermisoFiltro)))).ToList();
+
+            var datosAmostrar = listaGruposFiltro
+            .Select(g => new
+            {
+                ID = g.GrupoId,
+                Nombre = g.Nombre,
+                Permisos = string.Join(", ", g.Permisos.Select(p => p.Nombre))
+
+            }).ToList();
+
+            dataGridView1.DataSource = datosAmostrar;
+
+        }
+
+        private void txt_nombrePermisoFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void txt_nombreGrupoFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FILTRAR();
+            btn_quitarFiltro.Enabled = true;
+            btn_quitarFiltro.Visible = true;
+            variF = "F";
+        }
+
+        private void btn_quitarFiltro_Click(object sender, EventArgs e)
+        {
+            txt_nombreGrupoFiltro.Clear();
+            txt_nombrePermisoFiltro.Clear();
+
+            btn_quitarFiltro.Enabled = false;
+            btn_quitarFiltro.Visible = false;
+
+            ARMA_GRILLA();
+
+            variF = "";
         }
     }
 }

@@ -50,15 +50,14 @@
             txt_nombreCabañaFiltro = new TextBox();
             cb_estado = new ComboBox();
             dtp_salidaFiltro = new DateTimePicker();
-            dtp_entradaFiltro = new DateTimePicker();
             label3 = new Label();
             label2 = new Label();
             btn_quitarFiltro = new Button();
-            btn_filtrar = new Button();
             label9 = new Label();
             txt_nombreClienteFiltro = new TextBox();
             label8 = new Label();
             label1 = new Label();
+            dtp_entradaFiltro = new DateTimePicker();
             panel1.SuspendLayout();
             gb_carga.SuspendLayout();
             panel2.SuspendLayout();
@@ -100,7 +99,6 @@
             mc_reservas.Location = new Point(16, 249);
             mc_reservas.Name = "mc_reservas";
             mc_reservas.TabIndex = 33;
-            mc_reservas.DateSelected += mc_reservas_DateSelected;
             // 
             // cb_cliente
             // 
@@ -258,14 +256,13 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(dtp_entradaFiltro);
             panel3.Controls.Add(txt_nombreCabañaFiltro);
             panel3.Controls.Add(cb_estado);
             panel3.Controls.Add(dtp_salidaFiltro);
-            panel3.Controls.Add(dtp_entradaFiltro);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(btn_quitarFiltro);
-            panel3.Controls.Add(btn_filtrar);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(txt_nombreClienteFiltro);
             panel3.Controls.Add(label8);
@@ -282,6 +279,7 @@
             txt_nombreCabañaFiltro.Name = "txt_nombreCabañaFiltro";
             txt_nombreCabañaFiltro.Size = new Size(130, 23);
             txt_nombreCabañaFiltro.TabIndex = 59;
+            txt_nombreCabañaFiltro.TextChanged += txt_nombreCabañaFiltro_TextChanged;
             // 
             // cb_estado
             // 
@@ -291,6 +289,7 @@
             cb_estado.Name = "cb_estado";
             cb_estado.Size = new Size(121, 23);
             cb_estado.TabIndex = 58;
+            cb_estado.SelectedIndexChanged += cb_estado_SelectedIndexChanged;
             // 
             // dtp_salidaFiltro
             // 
@@ -299,15 +298,7 @@
             dtp_salidaFiltro.Name = "dtp_salidaFiltro";
             dtp_salidaFiltro.Size = new Size(200, 23);
             dtp_salidaFiltro.TabIndex = 57;
-            // 
-            // dtp_entradaFiltro
-            // 
-            dtp_entradaFiltro.Format = DateTimePickerFormat.Short;
-            dtp_entradaFiltro.Location = new Point(185, 56);
-            dtp_entradaFiltro.Name = "dtp_entradaFiltro";
-            dtp_entradaFiltro.Size = new Size(200, 23);
-            dtp_entradaFiltro.TabIndex = 56;
-            dtp_entradaFiltro.Value = new DateTime(2025, 7, 25, 18, 57, 0, 0);
+            dtp_salidaFiltro.ValueChanged += dtp_salidaFiltro_ValueChanged;
             // 
             // label3
             // 
@@ -330,24 +321,13 @@
             // btn_quitarFiltro
             // 
             btn_quitarFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_quitarFiltro.Location = new Point(780, 54);
+            btn_quitarFiltro.Location = new Point(780, 43);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(102, 23);
             btn_quitarFiltro.TabIndex = 53;
-            btn_quitarFiltro.Text = "Quitar filtro";
+            btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = true;
             btn_quitarFiltro.Click += btn_quitarFiltro_Click;
-            // 
-            // btn_filtrar
-            // 
-            btn_filtrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_filtrar.Location = new Point(780, 27);
-            btn_filtrar.Name = "btn_filtrar";
-            btn_filtrar.Size = new Size(102, 23);
-            btn_filtrar.TabIndex = 52;
-            btn_filtrar.Text = "Filtrar";
-            btn_filtrar.UseVisualStyleBackColor = true;
-            btn_filtrar.Click += btn_filtrar_Click;
             // 
             // label9
             // 
@@ -364,6 +344,7 @@
             txt_nombreClienteFiltro.Name = "txt_nombreClienteFiltro";
             txt_nombreClienteFiltro.Size = new Size(132, 23);
             txt_nombreClienteFiltro.TabIndex = 48;
+            txt_nombreClienteFiltro.TextChanged += txt_nombreClienteFiltro_TextChanged;
             // 
             // label8
             // 
@@ -382,6 +363,15 @@
             label1.Size = new Size(111, 15);
             label1.TabIndex = 46;
             label1.Text = "Nombre de cabaña:";
+            // 
+            // dtp_entradaFiltro
+            // 
+            dtp_entradaFiltro.Format = DateTimePickerFormat.Short;
+            dtp_entradaFiltro.Location = new Point(185, 56);
+            dtp_entradaFiltro.Name = "dtp_entradaFiltro";
+            dtp_entradaFiltro.Size = new Size(200, 23);
+            dtp_entradaFiltro.TabIndex = 60;
+            dtp_entradaFiltro.ValueChanged += dtp_salidaFiltro_ValueChanged;
             // 
             // Form_verReservas
             // 
@@ -422,10 +412,8 @@
         private Label label8;
         private Label label1;
         private Button btn_quitarFiltro;
-        private Button btn_filtrar;
         private ComboBox cb_estado;
         private DateTimePicker dtp_salidaFiltro;
-        private DateTimePicker dtp_entradaFiltro;
         private Label label3;
         private Label label2;
         private Button btn_eliminar;
@@ -441,5 +429,6 @@
         private Label label4;
         private MonthCalendar mc_reservas;
         private Button btn_cancelarReserva;
+        private DateTimePicker dtp_entradaFiltro;
     }
 }

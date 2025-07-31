@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             btn_anterior = new Button();
             btn_siguiente = new Button();
@@ -36,6 +37,7 @@
             lb_capacidad = new Label();
             lb_nombre = new Label();
             pb_imagenes = new PictureBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_imagenes).BeginInit();
             SuspendLayout();
@@ -55,6 +57,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(478, 209);
             panel1.TabIndex = 0;
+            panel1.MouseMove += panel1_MouseMove;
             // 
             // btn_anterior
             // 
@@ -161,5 +164,6 @@
         private PictureBox pb_imagenes;
         private Button btn_siguiente;
         private Button btn_anterior;
+        private ToolTip toolTip1;
     }
 }

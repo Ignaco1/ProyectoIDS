@@ -53,7 +53,6 @@
             label8 = new Label();
             label1 = new Label();
             cb_tipoFiltro = new ComboBox();
-            btn_filtrar = new Button();
             panel_botones = new Panel();
             btn_cerrar = new Button();
             btn_eliminar = new Button();
@@ -246,7 +245,6 @@
             panel_filtro.Controls.Add(label8);
             panel_filtro.Controls.Add(label1);
             panel_filtro.Controls.Add(cb_tipoFiltro);
-            panel_filtro.Controls.Add(btn_filtrar);
             panel_filtro.Dock = DockStyle.Top;
             panel_filtro.Location = new Point(3, 19);
             panel_filtro.Name = "panel_filtro";
@@ -256,11 +254,11 @@
             // btn_quitarFiltro
             // 
             btn_quitarFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_quitarFiltro.Location = new Point(755, 33);
+            btn_quitarFiltro.Location = new Point(755, 19);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(102, 23);
             btn_quitarFiltro.TabIndex = 18;
-            btn_quitarFiltro.Text = "Quitar filtro";
+            btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = true;
             btn_quitarFiltro.Click += btn_quitarFiltro_Click;
             // 
@@ -270,6 +268,7 @@
             txt_apellidoFiltro.Name = "txt_apellidoFiltro";
             txt_apellidoFiltro.Size = new Size(151, 23);
             txt_apellidoFiltro.TabIndex = 17;
+            txt_apellidoFiltro.TextChanged += txt_apellidoFiltro_TextChanged;
             // 
             // label9
             // 
@@ -286,6 +285,7 @@
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(151, 23);
             txt_nombreFiltro.TabIndex = 15;
+            txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
             // label8
             // 
@@ -307,22 +307,13 @@
             // 
             // cb_tipoFiltro
             // 
+            cb_tipoFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_tipoFiltro.FormattingEnabled = true;
             cb_tipoFiltro.Location = new Point(118, 19);
             cb_tipoFiltro.Name = "cb_tipoFiltro";
             cb_tipoFiltro.Size = new Size(121, 23);
             cb_tipoFiltro.TabIndex = 5;
-            // 
-            // btn_filtrar
-            // 
-            btn_filtrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_filtrar.Location = new Point(755, 6);
-            btn_filtrar.Name = "btn_filtrar";
-            btn_filtrar.Size = new Size(102, 23);
-            btn_filtrar.TabIndex = 4;
-            btn_filtrar.Text = "Filtrar";
-            btn_filtrar.UseVisualStyleBackColor = true;
-            btn_filtrar.Click += btn_filtrar_Click;
+            cb_tipoFiltro.SelectedIndexChanged += cb_tipoFiltro_SelectedIndexChanged;
             // 
             // panel_botones
             // 
@@ -410,7 +401,6 @@
         private Panel panel_filtro;
         private Button btn_agregar;
         private DataGridView dataGridView;
-        private Button btn_filtrar;
         private Button btn_cerrar;
         private Button btn_eliminar;
         private Button btn_modificar;

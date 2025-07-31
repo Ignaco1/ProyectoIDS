@@ -56,6 +56,8 @@
             btn_modificar = new Button();
             btn_agregar = new Button();
             panel3 = new Panel();
+            cb_estado = new ComboBox();
+            label7 = new Label();
             txt_nombreFiltro = new TextBox();
             btn_quitarFiltro = new Button();
             txt_precioNocheFiltro = new TextBox();
@@ -63,7 +65,6 @@
             txt_capacidadFiltro = new TextBox();
             label8 = new Label();
             label1 = new Label();
-            btn_filtrar = new Button();
             openFileDialog1 = new OpenFileDialog();
             panel1.SuspendLayout();
             gb_carga.SuspendLayout();
@@ -269,10 +270,10 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 89);
+            dataGridView1.Location = new Point(3, 107);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(874, 511);
+            dataGridView1.Size = new Size(874, 493);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -342,6 +343,8 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(cb_estado);
+            panel3.Controls.Add(label7);
             panel3.Controls.Add(txt_nombreFiltro);
             panel3.Controls.Add(btn_quitarFiltro);
             panel3.Controls.Add(txt_precioNocheFiltro);
@@ -349,42 +352,62 @@
             panel3.Controls.Add(txt_capacidadFiltro);
             panel3.Controls.Add(label8);
             panel3.Controls.Add(label1);
-            panel3.Controls.Add(btn_filtrar);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(3, 19);
             panel3.Name = "panel3";
-            panel3.Size = new Size(874, 70);
+            panel3.Size = new Size(874, 88);
             panel3.TabIndex = 0;
+            // 
+            // cb_estado
+            // 
+            cb_estado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_estado.FormattingEnabled = true;
+            cb_estado.Location = new Point(268, 49);
+            cb_estado.Name = "cb_estado";
+            cb_estado.Size = new Size(137, 23);
+            cb_estado.TabIndex = 29;
+            cb_estado.SelectedIndexChanged += cb_estado_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(217, 52);
+            label7.Name = "label7";
+            label7.Size = new Size(45, 15);
+            label7.TabIndex = 28;
+            label7.Text = "Estado:";
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(110, 24);
+            txt_nombreFiltro.Location = new Point(126, 13);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(149, 23);
             txt_nombreFiltro.TabIndex = 27;
+            txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
             // btn_quitarFiltro
             // 
             btn_quitarFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_quitarFiltro.Location = new Point(769, 37);
+            btn_quitarFiltro.Location = new Point(762, 31);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(102, 23);
             btn_quitarFiltro.TabIndex = 26;
-            btn_quitarFiltro.Text = "Quitar filtro";
+            btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = true;
             btn_quitarFiltro.Click += btn_quitarFiltro_Click;
             // 
             // txt_precioNocheFiltro
             // 
-            txt_precioNocheFiltro.Location = new Point(585, 24);
+            txt_precioNocheFiltro.Location = new Point(601, 13);
             txt_precioNocheFiltro.Name = "txt_precioNocheFiltro";
             txt_precioNocheFiltro.Size = new Size(118, 23);
             txt_precioNocheFiltro.TabIndex = 25;
+            txt_precioNocheFiltro.TextChanged += txt_precioNocheFiltro_TextChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(479, 27);
+            label9.Location = new Point(495, 16);
             label9.Name = "label9";
             label9.Size = new Size(100, 15);
             label9.TabIndex = 24;
@@ -392,15 +415,16 @@
             // 
             // txt_capacidadFiltro
             // 
-            txt_capacidadFiltro.Location = new Point(358, 24);
+            txt_capacidadFiltro.Location = new Point(374, 13);
             txt_capacidadFiltro.Name = "txt_capacidadFiltro";
-            txt_capacidadFiltro.Size = new Size(89, 23);
+            txt_capacidadFiltro.Size = new Size(94, 23);
             txt_capacidadFiltro.TabIndex = 23;
+            txt_capacidadFiltro.TextChanged += txt_capacidadFiltro_TextChanged;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(286, 27);
+            label8.Location = new Point(302, 16);
             label8.Name = "label8";
             label8.Size = new Size(66, 15);
             label8.TabIndex = 22;
@@ -409,22 +433,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(50, 27);
+            label1.Location = new Point(66, 16);
             label1.Name = "label1";
             label1.Size = new Size(54, 15);
             label1.TabIndex = 21;
             label1.Text = "Nombre:";
-            // 
-            // btn_filtrar
-            // 
-            btn_filtrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_filtrar.Location = new Point(769, 10);
-            btn_filtrar.Name = "btn_filtrar";
-            btn_filtrar.Size = new Size(102, 23);
-            btn_filtrar.TabIndex = 19;
-            btn_filtrar.Text = "Filtrar";
-            btn_filtrar.UseVisualStyleBackColor = true;
-            btn_filtrar.Click += btn_filtrar_Click;
             // 
             // openFileDialog1
             // 
@@ -469,9 +482,7 @@
         private TextBox txt_precioNocheFiltro;
         private Label label9;
         private TextBox txt_capacidadFiltro;
-        private Label label8;
         private Label label1;
-        private Button btn_filtrar;
         private Button btn_cerrar;
         private Button btn_eliminar;
         private Button btn_modificar;
@@ -497,5 +508,8 @@
         private TextBox txt_precioNoche;
         private OpenFileDialog openFileDialog1;
         private PictureBox btn_borrar;
+        private ComboBox cb_estado;
+        private Label label7;
+        private Label label8;
     }
 }
