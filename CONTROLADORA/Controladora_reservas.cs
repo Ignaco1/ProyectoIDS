@@ -35,7 +35,7 @@ namespace CONTROLADORA
         {
             using (var context = new Context())
             {
-                return context.Reservas.Include(r => r.Cabaña).Include(r => r.Cliente).ToList().AsReadOnly();
+                return context.Reservas.Include(r => r.MotivosCancelacion).Include(r => r.Cabaña).Include(r => r.Cliente).ToList().AsReadOnly();
             }
         }
 
@@ -197,7 +197,10 @@ namespace CONTROLADORA
         {
             using (var context = new Context())
             {
-                var reserva = context.Reservas.Include(r => r.Cliente).Include(r => r.Cabaña).FirstOrDefault(r => r.ReservaId == id);
+                var reserva = context.Reservas.Include(r => r.Cliente)
+                .Include(r => r.Cabaña)
+                .Include(r => r.MotivosCancelacion) 
+                .FirstOrDefault(r => r.ReservaId == id);
 
                 if (reserva == null)
                     return null;
@@ -213,12 +216,15 @@ namespace CONTROLADORA
             {
                 try
                 {
-                    var reserva = context.Reservas
-                        .Include(r => r.MotivosCancelacion)
-                        .FirstOrDefault(r => r.ReservaId == reservaId);
+                    var reserva = context.Reservas.Include(r => r.MotivosCancelacion).FirstOrDefault(r => r.ReservaId == reservaId);
 
                     if (reserva == null)
                         return "Reserva no encontrada.";
+
+                    if (reserva.MotivosCancelacion == null)
+                    {
+                        return "Error: la colección de motivos no se cargó.";
+                    }
 
                     reserva.MotivosCancelacion.Clear();
 
