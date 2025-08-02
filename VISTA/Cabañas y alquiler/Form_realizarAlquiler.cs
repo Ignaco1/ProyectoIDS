@@ -19,6 +19,8 @@ namespace VISTA.Cabañas_y_alquiler
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         private int idCabañaSeleccionada;
+        private Cliente clienteActual;
+
         public Form_realizarAlquiler()
         {
             InitializeComponent();
@@ -26,14 +28,9 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void Form_realizarAlquiler_Load(object sender, EventArgs e)
         {
-            var clientes = contro_cli.ListarClientes();
-
-            foreach (var cliente in clientes)
-            {
-                cb_clientes.Items.Add(cliente);
-            }
             CargarFechasOcupadas();
-
+            clienteActual = null;
+            label_cliente.Text = "Cliente no seleccionado";
         }
 
         private void btn_realizarReserva_Click(object sender, EventArgs e)
@@ -42,9 +39,9 @@ namespace VISTA.Cabañas_y_alquiler
 
             #region VALIDACIONES
 
-            if (string.IsNullOrWhiteSpace(cb_clientes.Text))
+            if (clienteActual == null)
             {
-                MessageBox.Show("Seleccione a un cliente para realizar la reserva.", "Error");
+                MessageBox.Show("Debe seleccionar un cliente antes de realizar la reserva.", "Error");
                 return;
             }
 
@@ -74,11 +71,9 @@ namespace VISTA.Cabañas_y_alquiler
             #endregion
 
 
-            Cliente cliente = cb_clientes.SelectedItem as Cliente;
-
             decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
 
-            reserva = contro_reser.CrearReserva(idCabañaSeleccionada, cliente.ClienteId, fechaEntrada, fechaSalida, precioTotal);
+            reserva = contro_reser.CrearReserva(idCabañaSeleccionada, clienteActual.ClienteId, fechaEntrada, fechaSalida, precioTotal);
 
             bool esValida = contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId);
 
@@ -177,7 +172,7 @@ namespace VISTA.Cabañas_y_alquiler
                 if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue &&
                     reserva.FechaEntrada <= cabaña.FechaFinDesactivacion.Value)
                 {
-                    continue; 
+                    continue;
                 }
 
                 DateTime fecha = reserva.FechaEntrada.Date;
@@ -260,6 +255,26 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 MessageBox.Show("No se puede seleccionar esta fecha. La cabaña ya está ocupada o está desactivada.", "Error");
                 return;
+            }
+        }
+
+        private void btn_seleccionarCliente_Click(object sender, EventArgs e)
+        {
+            Form_clientes_abm formClientes = new Form_clientes_abm();
+            formClientes.StartPosition = FormStartPosition.CenterScreen;
+
+            formClientes.ModoSeleccion = true;
+
+            if (formClientes.ShowDialog() == DialogResult.OK)
+            {
+                Cliente clienteSeleccionado = formClientes.ClienteSeleccionado;
+
+                if (clienteSeleccionado != null)
+                {
+                    this.clienteActual = clienteSeleccionado;
+
+                    label_cliente.Text = $"Cliente: {clienteSeleccionado.Nombre} {clienteSeleccionado.Apellido} - DNI: {clienteSeleccionado.Dni}";
+                }
             }
         }
     }

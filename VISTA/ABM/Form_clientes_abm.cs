@@ -20,13 +20,15 @@ namespace VISTA
         int indice;
         string variF = "";
         private List<Cliente> listaClientesFiltro = new List<Cliente>();
-        
+        public Cliente ClienteSeleccionado { get; private set; }
+        public bool ModoSeleccion { get; set; } = false;
+
         public Form_clientes_abm()
         {
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
-            
+
         }
 
         private void Form_clientes_abm_Load(object sender, EventArgs e)
@@ -415,5 +417,27 @@ namespace VISTA
             variF = "F";
         }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!ModoSeleccion)
+                return;
+
+
+            if (dataGridView1.CurrentRow != null)
+            {
+                Cliente cliente;
+
+                if (variF == "")
+                    cliente = contro_cli.ListarClientes()[dataGridView1.CurrentRow.Index];
+                else
+                    cliente = listaClientesFiltro[dataGridView1.CurrentRow.Index];
+
+                ClienteSeleccionado = cliente;
+
+                this.DialogResult = DialogResult.OK;
+
+                this.Close();
+            }
+        }
     }
 }

@@ -34,17 +34,17 @@
             label3 = new Label();
             label2 = new Label();
             lb_descripcion = new Label();
-            label1 = new Label();
+            label_cliente = new Label();
             lb_nombre = new Label();
             btn_cancelar = new Button();
             btn_realizarReserva = new Button();
-            cb_clientes = new ComboBox();
             mc_fechas = new MonthCalendar();
             btn_anterior = new Button();
             btn_siguiente = new Button();
             lb_precio = new Label();
             lb_capacidad = new Label();
             pb_imagenes = new PictureBox();
+            btn_seleccionarCliente = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_imagenes).BeginInit();
@@ -73,14 +73,14 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btn_seleccionarCliente);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(lb_descripcion);
-            panel2.Controls.Add(label1);
+            panel2.Controls.Add(label_cliente);
             panel2.Controls.Add(lb_nombre);
             panel2.Controls.Add(btn_cancelar);
             panel2.Controls.Add(btn_realizarReserva);
-            panel2.Controls.Add(cb_clientes);
             panel2.Controls.Add(mc_fechas);
             panel2.Controls.Add(btn_anterior);
             panel2.Controls.Add(btn_siguiente);
@@ -126,16 +126,16 @@
             lb_descripcion.TabIndex = 29;
             lb_descripcion.Text = "Descripcion:";
             // 
-            // label1
+            // label_cliente
             // 
-            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(740, 390);
-            label1.Name = "label1";
-            label1.Size = new Size(64, 20);
-            label1.TabIndex = 28;
-            label1.Text = "Clientes:";
+            label_cliente.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label_cliente.AutoSize = true;
+            label_cliente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label_cliente.Location = new Point(740, 421);
+            label_cliente.Name = "label_cliente";
+            label_cliente.Size = new Size(64, 20);
+            label_cliente.TabIndex = 28;
+            label_cliente.Text = "Clientes:";
             // 
             // lb_nombre
             // 
@@ -170,16 +170,6 @@
             btn_realizarReserva.Text = "Realizar reserva";
             btn_realizarReserva.UseVisualStyleBackColor = true;
             btn_realizarReserva.Click += btn_realizarReserva_Click;
-            // 
-            // cb_clientes
-            // 
-            cb_clientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            cb_clientes.DropDownStyle = ComboBoxStyle.DropDownList;
-            cb_clientes.FormattingEnabled = true;
-            cb_clientes.Location = new Point(810, 391);
-            cb_clientes.Name = "cb_clientes";
-            cb_clientes.Size = new Size(243, 23);
-            cb_clientes.TabIndex = 24;
             // 
             // mc_fechas
             // 
@@ -258,6 +248,16 @@
             pb_imagenes.TabIndex = 15;
             pb_imagenes.TabStop = false;
             // 
+            // btn_seleccionarCliente
+            // 
+            btn_seleccionarCliente.Location = new Point(833, 372);
+            btn_seleccionarCliente.Name = "btn_seleccionarCliente";
+            btn_seleccionarCliente.Size = new Size(119, 23);
+            btn_seleccionarCliente.TabIndex = 32;
+            btn_seleccionarCliente.Text = "Seleccionar cliene";
+            btn_seleccionarCliente.UseVisualStyleBackColor = true;
+            btn_seleccionarCliente.Click += btn_seleccionarCliente_Click;
+            // 
             // Form_realizarAlquiler
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -290,10 +290,11 @@
         private Label lb_precio;
         private Label lb_capacidad;
         private PictureBox pb_imagenes;
-        private Label label1;
+        private Label label_cliente;
         private Label lb_nombre;
         private Label lb_descripcion;
         private Label label3;
         private Label label2;
+        private Button btn_seleccionarCliente;
     }
 }

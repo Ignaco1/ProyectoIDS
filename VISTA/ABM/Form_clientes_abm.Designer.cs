@@ -233,6 +233,7 @@
             dataGridView1.Size = new Size(904, 498);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
             // panel_botones
             // 

@@ -69,9 +69,15 @@ namespace VISTA.Informes
             panel_grafico.Controls.Clear();
 
 
-            Color[] colores = new Color[]
+            Dictionary<string, Color> coloresMotivos = new Dictionary<string, Color>
             {
-                Color.Red, Color.Orange, Color.YellowGreen, Color.LightBlue, Color.Gray, Color.Teal, Color.Gold
+                { "Precio elevado", Color.Orange },
+                { "Otro", Color.Gold },
+                { "Rotura o arreglo de cabaña", Color.Red },
+                { "Error de carga en el sistema", Color.Gray },
+                { "Cancelación por motivos de salud", Color.Teal },
+                { "Cancelación por parte del cliente", Color.YellowGreen },
+                { "Condiciones climáticas", Color.LightBlue }
             };
 
             chartMotivos = new Chart();
@@ -103,7 +109,7 @@ namespace VISTA.Informes
             {
                 var motivo = motivosAgrupados[i];
                 int idx = serie.Points.AddXY(motivo.Motivo, motivo.Cantidad);
-                Color color = colores[i % colores.Length];
+                Color color = coloresMotivos.ContainsKey(motivo.Motivo)? coloresMotivos[motivo.Motivo]: Color.LightGray;
 
                 serie.Points[idx].Color = color;
                 double porcentaje = (double)motivo.Cantidad * 100 / total;
@@ -169,6 +175,12 @@ namespace VISTA.Informes
                 .Select(g => new { Motivo = g.Key, Cantidad = g.Count() })
                 .ToList();
 
+                if (reservasCanceladas.Count == 0)
+                {
+                    MessageBox.Show("No hay reservas registradas con cancelaciones para exportar un informe.", "AVISO");
+                    return;
+                }
+
                 SaveFileDialog saveFile = new SaveFileDialog();
                 saveFile.Filter = "PDF (*.pdf)|*.pdf";
                 numPDF = numPDF + 1;
@@ -224,15 +236,21 @@ namespace VISTA.Informes
                         tablaMotivos.SpacingBefore = 15f;
                         tablaMotivos.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
 
-                        Color[] colores = new Color[]
+                        Dictionary<string, Color> coloresMotivos = new Dictionary<string, Color>
                         {
-                            Color.Red, Color.Orange, Color.YellowGreen, Color.LightBlue, Color.Gray, Color.Teal, Color.Gold
+                            { "Precio elevado", Color.Orange },
+                            { "Otro", Color.Gold },
+                            { "Rotura o arreglo de cabaña", Color.Red },
+                            { "Error de carga en el sistema", Color.Gray },
+                            { "Cancelación por motivos de salud", Color.Teal },
+                            { "Cancelación por parte del cliente", Color.YellowGreen },
+                            { "Condiciones climáticas", Color.LightBlue }
                         };
 
                         for (int i = 0; i < motivosAgrupados.Count; i++)
                         {
                             var motivo = motivosAgrupados[i];
-                            BaseColor color = new BaseColor(colores[i % colores.Length].R, colores[i % colores.Length].G, colores[i % colores.Length].B);
+                            BaseColor color = new BaseColor(coloresMotivos.ContainsKey(motivo.Motivo) ? coloresMotivos[motivo.Motivo] : Color.LightGray);
 
                             PdfPCell celdaColor = new PdfPCell();
                             celdaColor.BackgroundColor = color;
@@ -281,11 +299,17 @@ namespace VISTA.Informes
                 .Select(g => new { Motivo = g.Key, Cantidad = g.Count() })
                 .ToList();
 
+                if (reservasCanceladas.Count == 0)
+                {
+                    MessageBox.Show("No hay reservas registradas con cancelaciones para exportar un informe.", "AVISO");
+                    return;
+                }
+
                 SaveFileDialog saveFile = new SaveFileDialog();
                 saveFile.Filter = "Excel Workbook|*.xlsx";
                 numExcel = numExcel + 1;
                 var fecha = fechaExcel.Date.ToString("dd-MM-yyyy");
-                var hora = fechaExcel.ToString("HHHH-mm--ss");
+                var hora = fechaExcel.ToString("HHHH-mm-ss");
                 saveFile.FileName = $"Motivos_Cancelacion_{fecha}_{hora}_{numExcel}.xlsx";
 
                 if (saveFile.ShowDialog() == DialogResult.OK)
@@ -300,7 +324,7 @@ namespace VISTA.Informes
                         var worksheet = workbook.Worksheets.Add("Motivos Cancelación");
 
                         worksheet.Cell(2, 1).Value = $"Motivos de cancelación entre {fechaEntrada.Date.ToString("dd/MM/yyyy")} y {fechaSalida.Date.ToString("dd/MM/yyyy")}";
-                        worksheet.Range("A2:D2").Merge();
+                        worksheet.Range("A2:E2").Merge();
                         worksheet.Cell(2, 1).Style.Font.Bold = true;
                         worksheet.Cell(2, 1).Style.Font.FontSize = 13;
                         worksheet.Cell(2, 1).Style.Font.FontName = "Calibri";
@@ -308,7 +332,7 @@ namespace VISTA.Informes
 
                         int totalCanceladas = reservasCanceladas.Count;
                         worksheet.Cell(4, 1).Value = $"Total de reservas canceladas: {totalCanceladas}";
-                        worksheet.Range("A4:D4").Merge();
+                        worksheet.Range("A4:E4").Merge();
                         worksheet.Cell(4, 1).Style.Font.FontSize = 12;
                         worksheet.Cell(4, 1).Style.Font.FontName = "Calibri";
                         worksheet.Cell(4, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
@@ -325,13 +349,13 @@ namespace VISTA.Informes
 
                         Dictionary<string, XLColor> coloresMotivos = new Dictionary<string, XLColor>
                         {
-                            { "Precio elevado", XLColor.Red },
-                            { "Otro", XLColor.Orange },
-                            { "Rotura o arreglo de cabaña", XLColor.YellowGreen },
-                            { "Error de carga en el sistema", XLColor.LightBlue },
-                            { "Cancelación por motivos de salud", XLColor.Gray },
-                            { "Cancelación por parte del cliente", XLColor.Teal },
-                            { "Condiciones climáticas", XLColor.Gold }
+                            { "Precio elevado", XLColor.Orange },
+                            { "Otro", XLColor.Gold },
+                            { "Rotura o arreglo de cabaña", XLColor.Red },
+                            { "Error de carga en el sistema", XLColor.Gray },
+                            { "Cancelación por motivos de salud", XLColor.Teal },
+                            { "Cancelación por parte del cliente", XLColor.YellowGreen },
+                            { "Condiciones climáticas", XLColor.LightBlue }
                         };
 
                         int fila = 8;
@@ -362,7 +386,7 @@ namespace VISTA.Informes
                         worksheet.Columns("A:C").AdjustToContents();
 
                         worksheet.AddPicture(imgPath)
-                            .MoveTo(worksheet.Cell(2, 6))
+                            .MoveTo(worksheet.Cell(2, 7))
                             .WithSize(400, 400);
 
                         workbook.SaveAs(path);
