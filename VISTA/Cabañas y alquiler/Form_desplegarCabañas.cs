@@ -17,6 +17,8 @@ namespace VISTA.Cabañas_y_alquiler
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         private List<Cabaña> listaCabañasFiltro = new List<Cabaña>();
+        private bool aplicarFiltroFechas = false;
+        private bool formCargado = false;
         public Form_desplegarCabañas()
         {
             InitializeComponent();
@@ -25,6 +27,8 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void Form_realizarAlquiler_Load(object sender, EventArgs e)
         {
+            formCargado = false;
+
             ARMAR();
 
             dtp_entrada.Value = DateTime.Today;
@@ -32,6 +36,8 @@ namespace VISTA.Cabañas_y_alquiler
 
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
+
+            formCargado = true;
         }
 
         private void ARMAR()
@@ -46,8 +52,10 @@ namespace VISTA.Cabañas_y_alquiler
             txt_capacidadFiltro.Clear();
             txt_precioNocheFiltro.Clear();
 
-            dtp_entrada.Value = DateTime.Today;
             dtp_salida.Value = DateTime.Today;
+            dtp_entrada.Value = DateTime.Today;
+
+            aplicarFiltroFechas = false;
         }
 
         private void CargarCabañas(List<Cabaña> lista)
@@ -100,8 +108,8 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
         {
-            ARMAR();
             LIMPIAR();
+            ARMAR();
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
         }
@@ -124,8 +132,10 @@ namespace VISTA.Cabañas_y_alquiler
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                     (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
                     (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) &&
-                    (!filtrarPorFechas || (!reservas.Any(r => r.IdCabaña == c.CabañaId && fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada) &&
+                    (!aplicarFiltroFechas || (!reservas.Any(r => r.IdCabaña == c.CabañaId &&
+                    fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada) &&
                     (c.Activa || !c.FechaFinDesactivacion.HasValue || fechaEntradaFiltro > c.FechaFinDesactivacion.Value)))
+
                 ).ToList();
 
             CargarCabañas(listaCabañasFiltro);
@@ -155,19 +165,24 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void dtp_entrada_ValueChanged(object sender, EventArgs e)
         {
+            if (!formCargado) return;
+
             if (dtp_entrada.Value.Date > dtp_salida.Value.Date)
             {
                 MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
                 return;
             }
 
+            aplicarFiltroFechas = true;
             CabañasFiltro();
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
+
         }
 
         private void dtp_salida_ValueChanged(object sender, EventArgs e)
         {
+            if (!formCargado) return;
 
             if (dtp_entrada.Value.Date > dtp_salida.Value.Date)
             {
@@ -175,6 +190,7 @@ namespace VISTA.Cabañas_y_alquiler
                 return;
             }
 
+            aplicarFiltroFechas = true;
             CabañasFiltro();
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;

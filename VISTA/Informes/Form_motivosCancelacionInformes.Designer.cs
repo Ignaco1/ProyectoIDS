@@ -35,6 +35,7 @@
             btn_exportarExcel = new PictureBox();
             panel1 = new Panel();
             panel2 = new Panel();
+            btn_generar = new Button();
             dtp_hasta = new DateTimePicker();
             dtp_desde = new DateTimePicker();
             label3 = new Label();
@@ -107,6 +108,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btn_generar);
             panel2.Controls.Add(dtp_hasta);
             panel2.Controls.Add(dtp_desde);
             panel2.Controls.Add(label3);
@@ -118,6 +120,16 @@
             panel2.Size = new Size(1107, 101);
             panel2.TabIndex = 3;
             // 
+            // btn_generar
+            // 
+            btn_generar.Location = new Point(945, 42);
+            btn_generar.Name = "btn_generar";
+            btn_generar.Size = new Size(112, 23);
+            btn_generar.TabIndex = 5;
+            btn_generar.Text = "Generar informe";
+            btn_generar.UseVisualStyleBackColor = true;
+            btn_generar.Click += btn_generar_Click;
+            // 
             // dtp_hasta
             // 
             dtp_hasta.Format = DateTimePickerFormat.Short;
@@ -125,7 +137,6 @@
             dtp_hasta.Name = "dtp_hasta";
             dtp_hasta.Size = new Size(200, 23);
             dtp_hasta.TabIndex = 4;
-            dtp_hasta.ValueChanged += dtp_hasta_ValueChanged;
             // 
             // dtp_desde
             // 
@@ -134,7 +145,6 @@
             dtp_desde.Name = "dtp_desde";
             dtp_desde.Size = new Size(200, 23);
             dtp_desde.TabIndex = 3;
-            dtp_desde.ValueChanged += dtp_desde_ValueChanged;
             // 
             // label3
             // 
@@ -251,5 +261,6 @@
         private DateTimePicker dtp_desde;
         private Label label3;
         private Label label2;
+        private Button btn_generar;
     }
 }

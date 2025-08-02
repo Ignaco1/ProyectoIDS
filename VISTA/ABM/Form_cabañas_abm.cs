@@ -30,6 +30,8 @@ namespace VISTA.ABM
         private List<int> imagenesAEliminar = new List<int>();
         private string variF = "";
         private PictureBox imagenSeleccionada = null;
+        DateTime fechaPDF = DateTime.Now;
+        int numPDF = 0;
 
         public Form_cabañas_abm()
         {
@@ -610,7 +612,10 @@ namespace VISTA.ABM
 
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "PDF Files|*.pdf";
-            saveFile.FileName = $"ClientesAfectados_{nombreCabaña}_{DateTime.Now:yyyyMMdd}.pdf";
+            numPDF = numPDF + 1;
+            var fecha = fechaPDF.Date.ToString("dd-MM-yyyy");
+            var hora = fechaPDF.ToString("HHHH-mm-ss");
+            saveFile.FileName = $"ClientesAfectados_{nombreCabaña}_{fecha}_{hora}_{numPDF}.pdf";
 
             if (saveFile.ShowDialog() == DialogResult.OK)
             {

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using ClosedXML.Excel;
 
 namespace VISTA.Informes
 {
@@ -18,6 +19,10 @@ namespace VISTA.Informes
     {
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         private Chart chartMotivos;
+        int numPDF = 0;
+        int numExcel = 0;
+        DateTime fechaPDF = DateTime.Now;
+        DateTime fechaExcel = DateTime.Now;
 
 
         public Form_motivosCancelacionInformes()
@@ -166,7 +171,10 @@ namespace VISTA.Informes
 
                 SaveFileDialog saveFile = new SaveFileDialog();
                 saveFile.Filter = "PDF (*.pdf)|*.pdf";
-                saveFile.FileName = "Informe_MotivosCancelacion.pdf";
+                numPDF = numPDF + 1;
+                var fecha = fechaPDF.Date.ToString("dd-MM-yyyy");
+                var hora = fechaPDF.ToString("HHHH-mm-ss");
+                saveFile.FileName = $"Informe_MotivosCancelacion_{fecha}_{hora}_{numPDF}.pdf";
 
                 if (saveFile.ShowDialog() == DialogResult.OK)
                 {
@@ -257,17 +265,126 @@ namespace VISTA.Informes
 
         private void btn_exportarExcel_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var fechaEntrada = dtp_desde.Value.Date;
+                var fechaSalida = dtp_hasta.Value.Date;
 
+                var reservasCanceladas = contro_reser.ListarReservas()
+                .Where(r => r.Estado == "Cancelada" && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
+                .ToList();
+
+                var motivosAgrupados = reservasCanceladas
+                .SelectMany(r => r.MotivosCancelacion)
+                .Where(m => !string.IsNullOrEmpty(m.Descripcion))
+                .GroupBy(m => m.Descripcion)
+                .Select(g => new { Motivo = g.Key, Cantidad = g.Count() })
+                .ToList();
+
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.Filter = "Excel Workbook|*.xlsx";
+                numExcel = numExcel + 1;
+                var fecha = fechaExcel.Date.ToString("dd-MM-yyyy");
+                var hora = fechaExcel.ToString("HHHH-mm--ss");
+                saveFile.FileName = $"Motivos_Cancelacion_{fecha}_{hora}_{numExcel}.xlsx";
+
+                if (saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    string path = saveFile.FileName;
+
+                    string imgPath = Path.Combine(Path.GetTempPath(), "grafico_excel.png");
+                    chartMotivos.SaveImage(imgPath, ChartImageFormat.Png);
+
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Motivos Cancelación");
+
+                        worksheet.Cell(2, 1).Value = $"Motivos de cancelación entre {fechaEntrada.Date.ToString("dd/MM/yyyy")} y {fechaSalida.Date.ToString("dd/MM/yyyy")}";
+                        worksheet.Range("A2:D2").Merge();
+                        worksheet.Cell(2, 1).Style.Font.Bold = true;
+                        worksheet.Cell(2, 1).Style.Font.FontSize = 13;
+                        worksheet.Cell(2, 1).Style.Font.FontName = "Calibri";
+                        worksheet.Cell(2, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        int totalCanceladas = reservasCanceladas.Count;
+                        worksheet.Cell(4, 1).Value = $"Total de reservas canceladas: {totalCanceladas}";
+                        worksheet.Range("A4:D4").Merge();
+                        worksheet.Cell(4, 1).Style.Font.FontSize = 12;
+                        worksheet.Cell(4, 1).Style.Font.FontName = "Calibri";
+                        worksheet.Cell(4, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        worksheet.Cell(7, 1).Value = "Color";
+                        worksheet.Cell(7, 2).Value = "Motivo";
+                        worksheet.Cell(7, 3).Value = "Cantidad";
+
+                        var headers = worksheet.Range("A7:C7");
+                        headers.Style.Font.Bold = true;
+                        headers.Style.Font.FontName = "Calibri";
+                        headers.Style.Font.FontSize = 13;
+                        headers.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        Dictionary<string, XLColor> coloresMotivos = new Dictionary<string, XLColor>
+                        {
+                            { "Precio elevado", XLColor.Red },
+                            { "Otro", XLColor.Orange },
+                            { "Rotura o arreglo de cabaña", XLColor.YellowGreen },
+                            { "Error de carga en el sistema", XLColor.LightBlue },
+                            { "Cancelación por motivos de salud", XLColor.Gray },
+                            { "Cancelación por parte del cliente", XLColor.Teal },
+                            { "Condiciones climáticas", XLColor.Gold }
+                        };
+
+                        int fila = 8;
+                        foreach (var motivo in motivosAgrupados)
+                        {
+                            var celdaColor = worksheet.Cell(fila, 1);
+                            celdaColor.Value = "";
+                            celdaColor.Style.Fill.BackgroundColor = coloresMotivos.ContainsKey(motivo.Motivo)
+                                ? coloresMotivos[motivo.Motivo]
+                                : XLColor.LightGray;
+                            celdaColor.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+
+                            worksheet.Cell(fila, 2).Value = motivo.Motivo;
+
+                            worksheet.Cell(fila, 3).Value = motivo.Cantidad;
+
+                            for (int col = 1; col <= 3; col++)
+                            {
+                                var celda = worksheet.Cell(fila, col);
+                                celda.Style.Font.FontName = "Calibri";
+                                celda.Style.Font.FontSize = 12;
+                                celda.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+                            }
+
+                            fila++;
+                        }
+
+                        worksheet.Columns("A:C").AdjustToContents();
+
+                        worksheet.AddPicture(imgPath)
+                            .MoveTo(worksheet.Cell(2, 6))
+                            .WithSize(400, 400);
+
+                        workbook.SaveAs(path);
+                    }
+
+                    MessageBox.Show("Excel exportado correctamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar Excel: " + ex.Message);
+            }
         }
 
-        private void dtp_hasta_ValueChanged(object sender, EventArgs e)
+        private void btn_generar_Click(object sender, EventArgs e)
         {
-            label_nroCabañas.Visible = true;
-            CargarGraficoCancelacionReservas();
-        }
+            if (dtp_desde.Value > dtp_hasta.Value)
+            {
+                MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error");
+                return;
+            }
 
-        private void dtp_desde_ValueChanged(object sender, EventArgs e)
-        {
             label_nroCabañas.Visible = true;
             CargarGraficoCancelacionReservas();
         }
