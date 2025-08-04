@@ -32,6 +32,8 @@ namespace VISTA.ABM
         private PictureBox imagenSeleccionada = null;
         DateTime fechaPDF = DateTime.Now;
         int numPDF = 0;
+        public Cabaña CabañaSeleccionada { get; private set; }
+        public bool ModoSeleccion { get; set; } = false;
 
         public Form_cabañas_abm()
         {
@@ -274,7 +276,7 @@ namespace VISTA.ABM
                                 GenerarPDFClientes(reservasAfectadas, cabaña.Nombre);
                             }
 
-                            MessageBox.Show(respuesta, "AVISO");
+                            MessageBox.Show(respuesta);
                         }
                     }
                     catch (Exception ex)
@@ -552,8 +554,8 @@ namespace VISTA.ABM
                     (!filtrarEstado || c.Activa == estado) &&
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                     (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
-                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) 
-                    
+                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro)
+
                 )
                 .ToList();
 
@@ -686,6 +688,28 @@ namespace VISTA.ABM
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
             variF = "F";
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!ModoSeleccion)
+                return;
+
+            if (dataGridView1.CurrentRow != null)
+            {
+                Cabaña cabaña;
+
+                if (variF == "")
+                    cabaña = contro_caba.ListarCabañas()[dataGridView1.CurrentRow.Index];
+                else
+                    cabaña = listaCabañasFiltro[dataGridView1.CurrentRow.Index];
+
+                CabañaSeleccionada = cabaña;
+
+                this.DialogResult = DialogResult.OK;
+
+                this.Close();
+            }
         }
     }
 }

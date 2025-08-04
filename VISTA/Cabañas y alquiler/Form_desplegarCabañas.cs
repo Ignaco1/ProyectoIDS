@@ -130,8 +130,8 @@ namespace VISTA.Cabañas_y_alquiler
             listaCabañasFiltro = contro_caba.ListarCabañas()
                 .Where(c =>
                     (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
-                    (!filtrarCapacidad || c.Capacidad == capacidadFiltro) &&
-                    (!filtrarPrecio || c.PrecioPorNoche == precioFiltro) &&
+                    (!filtrarCapacidad || c.Capacidad >= capacidadFiltro) &&
+                    (!filtrarPrecio || c.PrecioPorNoche <= precioFiltro) &&
                     (!aplicarFiltroFechas || (!reservas.Any(r => r.IdCabaña == c.CabañaId &&
                     fechaEntradaFiltro <= r.FechaSalida && fechaSalidaFiltro >= r.FechaEntrada) &&
                     (c.Activa || !c.FechaFinDesactivacion.HasValue || fechaEntradaFiltro > c.FechaFinDesactivacion.Value)))

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VISTA.ABM;
 
 namespace VISTA.Cabañas_y_alquiler
 {
@@ -20,11 +21,15 @@ namespace VISTA.Cabañas_y_alquiler
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
         private List<Reserva> listaReservasFiltro = new List<Reserva>();
         private string variF = "";
+        private List<MODELO.Reserva> reservasCompletas = new List<MODELO.Reserva>();
+        private Cabaña cabañaActual;
+
         public Form_verReservas()
         {
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
+
         }
 
         private void Form_verReservas_Load(object sender, EventArgs e)
@@ -58,13 +63,21 @@ namespace VISTA.Cabañas_y_alquiler
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
             cb_cliente.Enabled = false;
+            cb_cabaña.Enabled = false;
+            cabañaActual = null;
+
+            ResaltarReservasEnCabañasDesactivadas();
         }
 
         private void ARMA_GRILLA()
         {
             dataGridView1.DataSource = null;
 
-            var reserva = contro_reser.ListarReservas().Where(r => r.Estado != "Cancelada")
+            reservasCompletas = contro_reser.ListarReservas()
+            .Where(r => r.Estado != "Cancelada")
+            .ToList();
+
+            var reserva = reservasCompletas
                 .Select(r => new
                 {
                     r.ReservaId,
@@ -79,6 +92,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             dataGridView1.DataSource = reserva;
 
+            ResaltarReservasEnCabañasDesactivadas();
         }
 
         private void MODO_LISTA()
@@ -177,9 +191,9 @@ namespace VISTA.Cabañas_y_alquiler
 
             Cabaña cabaña = cb_cabaña.SelectedItem as Cabaña;
 
-            if (string.IsNullOrWhiteSpace(cb_cabaña.Text))
+            if (cabañaActual == null)
             {
-                MessageBox.Show("Seleccione a una cabaña para realizar la reserva.", "Error");
+                MessageBox.Show("Debe Seleccionar una cabaña para realizar la reserva.", "Error");
                 return;
             }
 
@@ -331,6 +345,8 @@ namespace VISTA.Cabañas_y_alquiler
                 r.Estado
 
             }).ToList();
+
+            ResaltarReservasEnCabañasDesactivadas();
         }
 
         private decimal ObtenerPrecioTotal(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
@@ -528,6 +544,54 @@ namespace VISTA.Cabañas_y_alquiler
             btn_quitarFiltro.Visible = true;
 
             variF = "F";
+        }
+
+        private void ResaltarReservasEnCabañasDesactivadas()
+        {
+            List<MODELO.Reserva> reservasUsar = (variF == "F") ? listaReservasFiltro : reservasCompletas;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                var fila = dataGridView1.Rows[i];
+                var reserva = reservasUsar[i];
+
+                var cabaña = contro_caba.ObtenerCabañaId(reserva.IdCabaña);
+
+                if (cabaña != null && !cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
+                {
+                    DateTime hoy = DateTime.Today;
+                    DateTime fin = cabaña.FechaFinDesactivacion.Value;
+
+                    bool entradaDentro = reserva.FechaEntrada >= hoy && reserva.FechaEntrada <= fin;
+                    bool salidaDentro = reserva.FechaSalida >= hoy && reserva.FechaSalida <= fin;
+
+                    if (entradaDentro && salidaDentro)
+                    {
+                        fila.DefaultCellStyle.BackColor = Color.Red;
+                        fila.DefaultCellStyle.ForeColor = Color.White;
+                    }
+                }
+            }
+        }
+
+        private void btn_seleccionarCabaña_Click(object sender, EventArgs e)
+        {
+            Form_cabañas_abm formCabañas = new Form_cabañas_abm();
+            formCabañas.StartPosition = FormStartPosition.CenterScreen;
+
+            formCabañas.ModoSeleccion = true;
+
+            if (formCabañas.ShowDialog() == DialogResult.OK)
+            {
+                Cabaña cabañaSeleccionada = formCabañas.CabañaSeleccionada;
+
+                if (cabañaSeleccionada != null)
+                {
+                    this.cabañaActual = cabañaSeleccionada;
+
+                    cb_cabaña.SelectedItem = cabañaSeleccionada;
+                }
+            }
         }
     }
 }

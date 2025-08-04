@@ -47,6 +47,7 @@
             btn_eliminar = new Button();
             btn_modificar = new Button();
             panel3 = new Panel();
+            dtp_entradaFiltro = new DateTimePicker();
             txt_nombreCabañaFiltro = new TextBox();
             cb_estado = new ComboBox();
             dtp_salidaFiltro = new DateTimePicker();
@@ -57,7 +58,7 @@
             txt_nombreClienteFiltro = new TextBox();
             label8 = new Label();
             label1 = new Label();
-            dtp_entradaFiltro = new DateTimePicker();
+            btn_seleccionarCabaña = new Button();
             panel1.SuspendLayout();
             gb_carga.SuspendLayout();
             panel2.SuspendLayout();
@@ -78,6 +79,7 @@
             // 
             // gb_carga
             // 
+            gb_carga.Controls.Add(btn_seleccionarCabaña);
             gb_carga.Controls.Add(mc_reservas);
             gb_carga.Controls.Add(cb_cliente);
             gb_carga.Controls.Add(cb_cabaña);
@@ -104,18 +106,18 @@
             // 
             cb_cliente.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_cliente.FormattingEnabled = true;
-            cb_cliente.Location = new Point(116, 159);
+            cb_cliente.Location = new Point(76, 159);
             cb_cliente.Name = "cb_cliente";
-            cb_cliente.Size = new Size(145, 23);
+            cb_cliente.Size = new Size(185, 23);
             cb_cliente.TabIndex = 32;
             // 
             // cb_cabaña
             // 
             cb_cabaña.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_cabaña.FormattingEnabled = true;
-            cb_cabaña.Location = new Point(116, 109);
+            cb_cabaña.Location = new Point(76, 110);
             cb_cabaña.Name = "cb_cabaña";
-            cb_cabaña.Size = new Size(145, 23);
+            cb_cabaña.Size = new Size(185, 23);
             cb_cabaña.TabIndex = 31;
             cb_cabaña.SelectedIndexChanged += cb_cabaña_SelectedIndexChanged;
             // 
@@ -273,6 +275,15 @@
             panel3.Size = new Size(885, 102);
             panel3.TabIndex = 0;
             // 
+            // dtp_entradaFiltro
+            // 
+            dtp_entradaFiltro.Format = DateTimePickerFormat.Short;
+            dtp_entradaFiltro.Location = new Point(185, 56);
+            dtp_entradaFiltro.Name = "dtp_entradaFiltro";
+            dtp_entradaFiltro.Size = new Size(200, 23);
+            dtp_entradaFiltro.TabIndex = 60;
+            dtp_entradaFiltro.ValueChanged += dtp_salidaFiltro_ValueChanged;
+            // 
             // txt_nombreCabañaFiltro
             // 
             txt_nombreCabañaFiltro.Location = new Point(130, 14);
@@ -364,14 +375,15 @@
             label1.TabIndex = 46;
             label1.Text = "Nombre de cabaña:";
             // 
-            // dtp_entradaFiltro
+            // btn_seleccionarCabaña
             // 
-            dtp_entradaFiltro.Format = DateTimePickerFormat.Short;
-            dtp_entradaFiltro.Location = new Point(185, 56);
-            dtp_entradaFiltro.Name = "dtp_entradaFiltro";
-            dtp_entradaFiltro.Size = new Size(200, 23);
-            dtp_entradaFiltro.TabIndex = 60;
-            dtp_entradaFiltro.ValueChanged += dtp_salidaFiltro_ValueChanged;
+            btn_seleccionarCabaña.Location = new Point(76, 50);
+            btn_seleccionarCabaña.Name = "btn_seleccionarCabaña";
+            btn_seleccionarCabaña.Size = new Size(123, 23);
+            btn_seleccionarCabaña.TabIndex = 34;
+            btn_seleccionarCabaña.Text = "Seleccionar cabaña";
+            btn_seleccionarCabaña.UseVisualStyleBackColor = true;
+            btn_seleccionarCabaña.Click += btn_seleccionarCabaña_Click;
             // 
             // Form_verReservas
             // 
@@ -430,5 +442,6 @@
         private MonthCalendar mc_reservas;
         private Button btn_cancelarReserva;
         private DateTimePicker dtp_entradaFiltro;
+        private Button btn_seleccionarCabaña;
     }
 }

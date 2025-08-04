@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Graphics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace MODELO
 
         public override string ToString()
         {
-            return Nombre;
+            return Nombre + " - " + " (Capacidad: " + Capacidad + ")";
         }
 
         public override bool Equals(object obj)
