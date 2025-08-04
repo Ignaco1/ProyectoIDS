@@ -186,6 +186,8 @@ namespace VISTA
             label_error.Visible = false;
             pictureBox_error.Visible = false;
             txt_contra.UseSystemPasswordChar = false;
+            bnt_dejarVer.Visible = false;
+            btn_ver.Visible = true;
             this.Show();
 
         }
