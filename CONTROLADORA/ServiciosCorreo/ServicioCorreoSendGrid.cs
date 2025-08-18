@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetEnv;
 
 namespace CONTROLADORA.ServiciosCorreo
 {
@@ -16,9 +17,16 @@ namespace CONTROLADORA.ServiciosCorreo
 
         public ServicioCorreoSendGrid()
         {
-            apiKey = "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";
-            remitenteNombre = "VitaStays Soporte";
-            remitenteEmail = "soporte.vitastays@gmail.com";
+            Env.Load();
+
+            apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            remitenteNombre = Environment.GetEnvironmentVariable("SENDGRID_NAME");
+            remitenteEmail = Environment.GetEnvironmentVariable("SENDGRID_EMAIL");
+
+            if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(remitenteEmail))
+            {
+                throw new Exception("Faltan las variables de entorno SENDGRID en el archivo .env");
+            }
         }
 
         public async Task EnviarCorreoAsync(string asunto, string mensaje, List<string> destinatarios)
