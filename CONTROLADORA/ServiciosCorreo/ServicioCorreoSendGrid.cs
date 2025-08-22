@@ -17,7 +17,14 @@ namespace CONTROLADORA.ServiciosCorreo
 
         public ServicioCorreoSendGrid()
         {
-            Env.Load();
+            if (File.Exists(".env"))
+            {
+                DotNetEnv.Env.Load(".env");
+            }
+            else if (File.Exists(".env.ejemplo"))
+            {
+                DotNetEnv.Env.Load(".env.ejemplo");
+            }
 
             apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
             remitenteNombre = Environment.GetEnvironmentVariable("SENDGRID_NAME");
