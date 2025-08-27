@@ -22,6 +22,7 @@ namespace VISTA
         private List<Cliente> listaClientesFiltro = new List<Cliente>();
         public Cliente ClienteSeleccionado { get; private set; }
         public bool ModoSeleccion { get; set; } = false;
+        int h = 123;
 
         public Form_clientes_abm()
         {
