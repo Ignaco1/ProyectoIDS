@@ -95,7 +95,7 @@ namespace VISTA
             {
                 permiso = listaPermisosFiltro[indice];
             }
-            
+
             txt_nombre.Text = permiso.Nombre;
 
             MODO_CARGA();
@@ -277,5 +277,6 @@ namespace VISTA
 
             variF = "";
         }
+
     }
 }

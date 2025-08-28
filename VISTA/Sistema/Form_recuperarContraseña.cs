@@ -76,7 +76,7 @@ namespace VISTA
                 return;
             }
 
-            if(contro_usu.ValidarUsuarioRecuperacion(txt_email.Text.Trim(), txt_usuario.Text.Trim()))
+            if (contro_usu.ValidarUsuarioRecuperacion(txt_email.Text.Trim(), txt_usuario.Text.Trim()))
             {
                 string email = txt_email.Text.Trim();
                 string usuario = txt_usuario.Text.Trim();
@@ -90,7 +90,7 @@ namespace VISTA
                 MostrarError("El usuario o el email ingresado no son válidos.");
                 return;
             }
-            
+
 
         }
 
@@ -99,6 +99,42 @@ namespace VISTA
             label_error.Text = msj;
             label_error.Visible = true;
             pictureBox_error.Visible = true;
+        }
+
+        private void txt_usuario_Enter(object sender, EventArgs e)
+        {
+            if (txt_usuario.Text == "USUARIO")
+            {
+                txt_usuario.Text = "";
+                txt_usuario.ForeColor = SystemColors.AppWorkspace;
+            }
+        }
+
+        private void txt_usuario_Leave(object sender, EventArgs e)
+        {
+            if (txt_usuario.Text == "")
+            {
+                txt_usuario.Text = "USUARIO";
+                txt_usuario.ForeColor = SystemColors.AppWorkspace;
+            }
+        }
+
+        private void txt_email_Enter(object sender, EventArgs e)
+        {
+            if (txt_email.Text == "EMAIL")
+            {
+                txt_email.Text = "";
+                txt_email.ForeColor = SystemColors.AppWorkspace;
+            }
+        }
+
+        private void txt_email_Leave(object sender, EventArgs e)
+        {
+            if (txt_email.Text == "")
+            {
+                txt_email.Text = "EMAIL";
+                txt_email.ForeColor = SystemColors.AppWorkspace;
+            }
         }
     }
 }

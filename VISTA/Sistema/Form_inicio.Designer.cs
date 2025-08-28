@@ -251,7 +251,6 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form_inicio";
-            Opacity = 0.95D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form_inicio";
             Load += Form_inicio_Load;
