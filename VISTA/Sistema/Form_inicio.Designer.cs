@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(11, 7, 17);
+            panel1.BackColor = Color.FromArgb(0, 114, 227);
             panel1.Controls.Add(pictureBox3);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -67,13 +67,15 @@
             // pictureBox3
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox3.BackColor = Color.Transparent;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(35, 56);
+            pictureBox3.Location = new Point(12, 40);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(177, 201);
+            pictureBox3.Size = new Size(225, 234);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
+            pictureBox3.MouseDown += pictureBox3_MouseDown;
             // 
             // panel2
             // 
@@ -86,10 +88,10 @@
             // 
             // txt_usuario
             // 
-            txt_usuario.BackColor = Color.FromArgb(32, 30, 45);
+            txt_usuario.BackColor = Color.FromArgb(0, 40, 81);
             txt_usuario.BorderStyle = BorderStyle.None;
             txt_usuario.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_usuario.ForeColor = SystemColors.AppWorkspace;
+            txt_usuario.ForeColor = Color.White;
             txt_usuario.Location = new Point(288, 65);
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(450, 20);
@@ -100,10 +102,10 @@
             // 
             // txt_contra
             // 
-            txt_contra.BackColor = Color.FromArgb(32, 30, 45);
+            txt_contra.BackColor = Color.FromArgb(0, 40, 81);
             txt_contra.BorderStyle = BorderStyle.None;
             txt_contra.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_contra.ForeColor = SystemColors.AppWorkspace;
+            txt_contra.ForeColor = Color.White;
             txt_contra.Location = new Point(288, 130);
             txt_contra.Name = "txt_contra";
             txt_contra.Size = new Size(450, 20);
@@ -125,7 +127,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.AppWorkspace;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(462, 0);
             label1.Name = "label1";
             label1.Size = new Size(100, 33);
@@ -135,12 +137,12 @@
             // 
             // btn_acceder
             // 
-            btn_acceder.BackColor = Color.FromArgb(40, 40, 40);
-            btn_acceder.FlatAppearance.BorderSize = 0;
-            btn_acceder.FlatAppearance.MouseDownBackColor = Color.FromArgb(28, 28, 28);
-            btn_acceder.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            btn_acceder.BackColor = Color.FromArgb(0, 40, 81);
+            btn_acceder.FlatAppearance.MouseDownBackColor = Color.FromArgb(65, 65, 65);
+            btn_acceder.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 102, 204);
             btn_acceder.FlatStyle = FlatStyle.Flat;
-            btn_acceder.ForeColor = Color.LightGray;
+            btn_acceder.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_acceder.ForeColor = Color.White;
             btn_acceder.Location = new Point(288, 234);
             btn_acceder.Name = "btn_acceder";
             btn_acceder.Size = new Size(450, 40);
@@ -151,11 +153,11 @@
             // 
             // lbl_contra
             // 
-            lbl_contra.ActiveLinkColor = Color.FromArgb(11, 7, 17);
+            lbl_contra.ActiveLinkColor = Color.FromArgb(45, 150, 255);
             lbl_contra.AutoSize = true;
             lbl_contra.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_contra.ForeColor = SystemColors.ControlText;
-            lbl_contra.LinkColor = SystemColors.AppWorkspace;
+            lbl_contra.LinkColor = Color.White;
             lbl_contra.Location = new Point(409, 294);
             lbl_contra.Name = "lbl_contra";
             lbl_contra.Size = new Size(204, 17);
@@ -189,9 +191,9 @@
             // btn_ver
             // 
             btn_ver.Image = (Image)resources.GetObject("btn_ver.Image");
-            btn_ver.Location = new Point(711, 127);
+            btn_ver.Location = new Point(707, 126);
             btn_ver.Name = "btn_ver";
-            btn_ver.Size = new Size(27, 27);
+            btn_ver.Size = new Size(31, 24);
             btn_ver.SizeMode = PictureBoxSizeMode.Zoom;
             btn_ver.TabIndex = 9;
             btn_ver.TabStop = false;
@@ -200,7 +202,7 @@
             // bnt_dejarVer
             // 
             bnt_dejarVer.Image = (Image)resources.GetObject("bnt_dejarVer.Image");
-            bnt_dejarVer.Location = new Point(711, 124);
+            bnt_dejarVer.Location = new Point(707, 123);
             bnt_dejarVer.Name = "bnt_dejarVer";
             bnt_dejarVer.Size = new Size(31, 31);
             bnt_dejarVer.SizeMode = PictureBoxSizeMode.Zoom;
@@ -212,7 +214,7 @@
             // 
             label_error.AutoSize = true;
             label_error.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_error.ForeColor = Color.DeepPink;
+            label_error.ForeColor = Color.FromArgb(45, 150, 255);
             label_error.Location = new Point(326, 171);
             label_error.Name = "label_error";
             label_error.Size = new Size(93, 17);
@@ -233,7 +235,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(32, 30, 45);
+            BackColor = Color.FromArgb(0, 40, 81);
             ClientSize = new Size(780, 330);
             Controls.Add(pictureBox_error);
             Controls.Add(label_error);
@@ -251,6 +253,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form_inicio";
+            Opacity = 0.95D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form_inicio";
             Load += Form_inicio_Load;

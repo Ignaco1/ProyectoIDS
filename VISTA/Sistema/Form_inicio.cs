@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using MODELO;
 using CAPA_COMUN;
 using CAPA_COMUN.Cache;
+using iTextSharp.text.html;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace VISTA
 {
@@ -23,68 +25,12 @@ namespace VISTA
             InitializeComponent();
         }
 
+        #region Mover form
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-
-
-        private void Form_inicio_Load(object sender, EventArgs e)
-        {
-            bnt_dejarVer.Visible = false;
-            label_error.Visible = false;
-            pictureBox_error.Visible = false;
-        }
-
-        private void txt_usuario_Enter(object sender, EventArgs e)
-        {
-            if (txt_usuario.Text == "USUARIO")
-            {
-                txt_usuario.Text = "";
-                txt_usuario.ForeColor = SystemColors.AppWorkspace;
-            }
-
-        }
-
-        private void txt_usuario_Leave(object sender, EventArgs e)
-        {
-            if (txt_usuario.Text == "")
-            {
-                txt_usuario.Text = "USUARIO";
-                txt_usuario.ForeColor = SystemColors.AppWorkspace;
-            }
-
-        }
-
-        private void txt_contra_Enter(object sender, EventArgs e)
-        {
-            if (txt_contra.Text == "CONTRASEÑA")
-            {
-                txt_contra.Text = "";
-                txt_contra.ForeColor = SystemColors.AppWorkspace;
-                txt_contra.UseSystemPasswordChar = true;
-            }
-        }
-
-        private void txt_contra_Leave(object sender, EventArgs e)
-        {
-            if (txt_contra.Text == "")
-            {
-                txt_contra.Text = "CONTRASEÑA";
-                txt_contra.ForeColor = SystemColors.AppWorkspace;
-                txt_contra.UseSystemPasswordChar = false;
-            }
-        }
-
-        private void btn_cerrar_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btn_minimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
 
         private void Form_inicio_MouseDown(object sender, MouseEventArgs e)
         {
@@ -102,6 +48,67 @@ namespace VISTA
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        #endregion
+
+        private void Form_inicio_Load(object sender, EventArgs e)
+        {
+            bnt_dejarVer.Visible = false;
+            label_error.Visible = false;
+            pictureBox_error.Visible = false;
+        }
+
+        private void txt_usuario_Enter(object sender, EventArgs e)
+        {
+            if (txt_usuario.Text == "USUARIO")
+            {
+                txt_usuario.Text = "";
+            }
+
+        }
+
+        private void txt_usuario_Leave(object sender, EventArgs e)
+        {
+            if (txt_usuario.Text == "")
+            {
+                txt_usuario.Text = "USUARIO";
+            }
+
+        }
+
+        private void txt_contra_Enter(object sender, EventArgs e)
+        {
+            if (txt_contra.Text == "CONTRASEÑA")
+            {
+                txt_contra.Text = "";
+                txt_contra.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txt_contra_Leave(object sender, EventArgs e)
+        {
+            if (txt_contra.Text == "")
+            {
+                txt_contra.Text = "CONTRASEÑA";
+                txt_contra.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void btn_cerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn_minimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void btn_ver_Click(object sender, EventArgs e)
@@ -151,7 +158,7 @@ namespace VISTA
 
                     Form_principal form_principal = new Form_principal();
                     form_principal.Show();
-                    if(usuario.PrimerIngreso == true)
+                    if (usuario.PrimerIngreso == true)
                     {
                         MessageBox.Show("Por seguridad del sistema, por favor cambie su contraseña desde la parte de ajustes.\n\nGracias.", "Aviso");
                     }

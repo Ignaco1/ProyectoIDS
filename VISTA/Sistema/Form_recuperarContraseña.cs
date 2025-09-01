@@ -19,26 +19,12 @@ namespace VISTA
             InitializeComponent();
         }
 
+        #region Mover form
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-
-        private void Form_recuperarContraseña_Load_1(object sender, EventArgs e)
-        {
-            label_error.Visible = false;
-            pictureBox_error.Visible = false;
-        }
-
-        private void btn_cerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_minimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
 
         private void Form_recuperarContraseña_MouseDown(object sender, MouseEventArgs e)
         {
@@ -57,6 +43,31 @@ namespace VISTA
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        #endregion
+
+        private void Form_recuperarContraseña_Load_1(object sender, EventArgs e)
+        {
+            label_error.Visible = false;
+            pictureBox_error.Visible = false;
+        }
+
+        private void btn_cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_minimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
 
         private async void btn_aceptar_Click(object sender, EventArgs e)
         {
@@ -106,7 +117,6 @@ namespace VISTA
             if (txt_usuario.Text == "USUARIO")
             {
                 txt_usuario.Text = "";
-                txt_usuario.ForeColor = SystemColors.AppWorkspace;
             }
         }
 
@@ -115,7 +125,6 @@ namespace VISTA
             if (txt_usuario.Text == "")
             {
                 txt_usuario.Text = "USUARIO";
-                txt_usuario.ForeColor = SystemColors.AppWorkspace;
             }
         }
 
@@ -124,7 +133,6 @@ namespace VISTA
             if (txt_email.Text == "EMAIL")
             {
                 txt_email.Text = "";
-                txt_email.ForeColor = SystemColors.AppWorkspace;
             }
         }
 
@@ -133,8 +141,8 @@ namespace VISTA
             if (txt_email.Text == "")
             {
                 txt_email.Text = "EMAIL";
-                txt_email.ForeColor = SystemColors.AppWorkspace;
             }
         }
+
     }
 }

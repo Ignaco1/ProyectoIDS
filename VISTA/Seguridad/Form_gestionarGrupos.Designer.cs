@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             panel_carga = new Panel();
             groupBox_carga = new GroupBox();
             btn_cancelar = new Button();
@@ -66,45 +69,54 @@
             // 
             // groupBox_carga
             // 
+            groupBox_carga.BackColor = Color.Gray;
             groupBox_carga.Controls.Add(btn_cancelar);
             groupBox_carga.Controls.Add(btn_guardar);
             groupBox_carga.Controls.Add(txt_nombre);
             groupBox_carga.Controls.Add(label1);
             groupBox_carga.Dock = DockStyle.Fill;
+            groupBox_carga.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
             groupBox_carga.Name = "groupBox_carga";
             groupBox_carga.Size = new Size(259, 454);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
-            groupBox_carga.Text = "|";
+            groupBox_carga.Text = "Carga de datos";
             // 
             // btn_cancelar
             // 
             btn_cancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btn_cancelar.Location = new Point(155, 419);
+            btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cancelar.FlatAppearance.BorderSize = 0;
+            btn_cancelar.FlatStyle = FlatStyle.Flat;
+            btn_cancelar.Location = new Point(161, 419);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(92, 23);
             btn_cancelar.TabIndex = 9;
             btn_cancelar.Text = "Cancelar";
-            btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.UseVisualStyleBackColor = false;
             btn_cancelar.Click += btn_cancelar_Click;
             // 
             // btn_guardar
             // 
             btn_guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btn_guardar.Location = new Point(3, 419);
+            btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_guardar.FlatAppearance.BorderSize = 0;
+            btn_guardar.FlatStyle = FlatStyle.Flat;
+            btn_guardar.Location = new Point(6, 419);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(92, 23);
             btn_guardar.TabIndex = 8;
             btn_guardar.Text = "Guardar";
-            btn_guardar.UseVisualStyleBackColor = true;
+            btn_guardar.UseVisualStyleBackColor = false;
             btn_guardar.Click += btn_guardar_Click;
             // 
             // txt_nombre
             // 
-            txt_nombre.Location = new Point(66, 118);
+            txt_nombre.Location = new Point(71, 118);
             txt_nombre.Name = "txt_nombre";
-            txt_nombre.Size = new Size(181, 23);
+            txt_nombre.Size = new Size(181, 22);
             txt_nombre.TabIndex = 7;
             // 
             // label1
@@ -112,7 +124,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(6, 121);
             label1.Name = "label1";
-            label1.Size = new Size(54, 15);
+            label1.Size = new Size(59, 17);
             label1.TabIndex = 0;
             label1.Text = "Nombre:";
             // 
@@ -127,10 +139,13 @@
             // 
             // groupBox_grupos
             // 
+            groupBox_grupos.BackColor = Color.Gray;
             groupBox_grupos.Controls.Add(dataGridView1);
             groupBox_grupos.Controls.Add(panel1);
             groupBox_grupos.Controls.Add(panel_botones);
             groupBox_grupos.Dock = DockStyle.Fill;
+            groupBox_grupos.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox_grupos.ForeColor = Color.White;
             groupBox_grupos.Location = new Point(0, 0);
             groupBox_grupos.Name = "groupBox_grupos";
             groupBox_grupos.Size = new Size(852, 454);
@@ -141,12 +156,42 @@
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle10.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridView1.ColumnHeadersHeight = 27;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 75);
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.GridColor = SystemColors.ControlDark;
+            dataGridView1.Location = new Point(3, 74);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(846, 325);
+            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.White;
+            dataGridViewCellStyle11.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle11.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.BackColor = Color.White;
+            dataGridViewCellStyle12.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle12.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(846, 326);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
@@ -156,26 +201,29 @@
             panel1.Controls.Add(txt_nombreFiltro);
             panel1.Controls.Add(label2);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 19);
+            panel1.Location = new Point(3, 18);
             panel1.Name = "panel1";
             panel1.Size = new Size(846, 56);
             panel1.TabIndex = 1;
             // 
             // btn_quitarFiltro
             // 
+            btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
+            btn_quitarFiltro.FlatAppearance.BorderSize = 0;
+            btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
             btn_quitarFiltro.Location = new Point(739, 17);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
-            btn_quitarFiltro.Size = new Size(95, 23);
+            btn_quitarFiltro.Size = new Size(103, 23);
             btn_quitarFiltro.TabIndex = 5;
             btn_quitarFiltro.Text = "Limpiar filtro";
-            btn_quitarFiltro.UseVisualStyleBackColor = true;
+            btn_quitarFiltro.UseVisualStyleBackColor = false;
             btn_quitarFiltro.Click += btn_quitarFiltro_Click;
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(260, 17);
+            txt_nombreFiltro.Location = new Point(274, 17);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
-            txt_nombreFiltro.Size = new Size(215, 23);
+            txt_nombreFiltro.Size = new Size(215, 22);
             txt_nombreFiltro.TabIndex = 4;
             txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
@@ -184,7 +232,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(152, 21);
             label2.Name = "label2";
-            label2.Size = new Size(105, 15);
+            label2.Size = new Size(116, 17);
             label2.TabIndex = 3;
             label2.Text = "Nombre de grupo:";
             // 
@@ -203,42 +251,56 @@
             // btn_cerrar
             // 
             btn_cerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btn_cerrar.Location = new Point(751, 19);
+            btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cerrar.FlatAppearance.BorderSize = 0;
+            btn_cerrar.FlatStyle = FlatStyle.Flat;
+            btn_cerrar.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_cerrar.ForeColor = Color.White;
+            btn_cerrar.Location = new Point(739, 19);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(92, 23);
+            btn_cerrar.Size = new Size(103, 23);
             btn_cerrar.TabIndex = 5;
             btn_cerrar.Text = "Cerrar";
-            btn_cerrar.UseVisualStyleBackColor = true;
+            btn_cerrar.UseVisualStyleBackColor = false;
             btn_cerrar.Click += btn_cerrar_Click;
             // 
             // btn_eliminarGrupo
             // 
-            btn_eliminarGrupo.Location = new Point(245, 3);
+            btn_eliminarGrupo.BackColor = Color.FromArgb(0, 84, 168);
+            btn_eliminarGrupo.FlatAppearance.BorderSize = 0;
+            btn_eliminarGrupo.FlatStyle = FlatStyle.Flat;
+            btn_eliminarGrupo.Location = new Point(299, 3);
             btn_eliminarGrupo.Name = "btn_eliminarGrupo";
-            btn_eliminarGrupo.Size = new Size(114, 23);
+            btn_eliminarGrupo.Size = new Size(128, 23);
             btn_eliminarGrupo.TabIndex = 2;
             btn_eliminarGrupo.Text = "Eliminar grupo";
-            btn_eliminarGrupo.UseVisualStyleBackColor = true;
+            btn_eliminarGrupo.UseVisualStyleBackColor = false;
             btn_eliminarGrupo.Click += btn_eliminarGrupo_Click;
             // 
             // btn_modificarGrupo
             // 
-            btn_modificarGrupo.Location = new Point(112, 3);
+            btn_modificarGrupo.BackColor = Color.FromArgb(0, 84, 168);
+            btn_modificarGrupo.FlatAppearance.BorderSize = 0;
+            btn_modificarGrupo.FlatStyle = FlatStyle.Flat;
+            btn_modificarGrupo.Location = new Point(152, 3);
             btn_modificarGrupo.Name = "btn_modificarGrupo";
-            btn_modificarGrupo.Size = new Size(113, 23);
+            btn_modificarGrupo.Size = new Size(128, 23);
             btn_modificarGrupo.TabIndex = 1;
             btn_modificarGrupo.Text = "Modificar grupo";
-            btn_modificarGrupo.UseVisualStyleBackColor = true;
+            btn_modificarGrupo.UseVisualStyleBackColor = false;
             btn_modificarGrupo.Click += btn_modificarGrupo_Click;
             // 
             // btn_crearGrupo
             // 
+            btn_crearGrupo.BackColor = Color.FromArgb(0, 84, 168);
+            btn_crearGrupo.FlatAppearance.BorderSize = 0;
+            btn_crearGrupo.FlatStyle = FlatStyle.Flat;
             btn_crearGrupo.Location = new Point(3, 3);
             btn_crearGrupo.Name = "btn_crearGrupo";
-            btn_crearGrupo.Size = new Size(92, 23);
+            btn_crearGrupo.Size = new Size(128, 23);
             btn_crearGrupo.TabIndex = 0;
             btn_crearGrupo.Text = "Crear grupo";
-            btn_crearGrupo.UseVisualStyleBackColor = true;
+            btn_crearGrupo.UseVisualStyleBackColor = false;
             btn_crearGrupo.Click += btn_crearGrupo_Click;
             // 
             // Form_gestionarGrupos

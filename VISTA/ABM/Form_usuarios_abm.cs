@@ -39,6 +39,8 @@ namespace VISTA
             CargarCombos();
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
+            btn_quitarFiltro.Location = new Point(754, 21);
+
         }
 
 
@@ -62,10 +64,10 @@ namespace VISTA
             var datosGrilla = usuariosFiltrados
                 .Select(u => new
                 {
-                    u.UsuarioId,
+                    ID = u.UsuarioId,
                     Nombre = u.Nombre + " " + u.Apellido,
-                    Nombre_de_usuario = u.Nombre_usuario,
-                    u.Email,
+                    Usuario = u.Nombre_usuario,
+                    Email = u.Email,
                     Grupo = u.Grupo?.Nombre ?? "Sin grupo"
                 })
                 .ToList();

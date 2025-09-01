@@ -99,7 +99,7 @@
             listbox_permisos.ItemHeight = 15;
             listbox_permisos.Location = new Point(678, 159);
             listbox_permisos.Name = "listbox_permisos";
-            listbox_permisos.Size = new Size(148, 184);
+            listbox_permisos.Size = new Size(170, 184);
             listbox_permisos.TabIndex = 24;
             // 
             // txt_email

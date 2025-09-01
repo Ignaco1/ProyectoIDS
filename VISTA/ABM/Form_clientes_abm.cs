@@ -45,9 +45,9 @@ namespace VISTA
             var cliente = contro_cli.ListarClientes()
                 .Select(c => new
                 {
-                    c.ClienteId,
+                    ID = c.ClienteId,
                     Nombre = c.Nombre + " " + c.Apellido,
-                    c.Dni,
+                    DNI = c.Dni,
                     c.Email,
                     c.Telefono
                 }).ToList();

@@ -50,7 +50,7 @@
             // 
             // panel_imagen
             // 
-            panel_imagen.BackColor = Color.FromArgb(11, 7, 17);
+            panel_imagen.BackColor = Color.FromArgb(0, 114, 227);
             panel_imagen.Controls.Add(pictureBox3);
             panel_imagen.Dock = DockStyle.Left;
             panel_imagen.Location = new Point(0, 0);
@@ -63,12 +63,13 @@
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(35, 56);
+            pictureBox3.Location = new Point(12, 40);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(177, 201);
+            pictureBox3.Size = new Size(225, 234);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
+            pictureBox3.MouseDown += pictureBox3_MouseDown;
             // 
             // btn_cerrar
             // 
@@ -96,7 +97,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.AppWorkspace;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(357, -3);
             label1.Name = "label1";
             label1.Size = new Size(313, 33);
@@ -106,12 +107,12 @@
             // 
             // btn_aceptar
             // 
-            btn_aceptar.BackColor = Color.FromArgb(40, 40, 40);
-            btn_aceptar.FlatAppearance.BorderSize = 0;
-            btn_aceptar.FlatAppearance.MouseDownBackColor = Color.FromArgb(28, 28, 28);
-            btn_aceptar.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            btn_aceptar.BackColor = Color.FromArgb(0, 40, 81);
+            btn_aceptar.FlatAppearance.MouseDownBackColor = Color.FromArgb(65, 65, 65);
+            btn_aceptar.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 102, 204);
             btn_aceptar.FlatStyle = FlatStyle.Flat;
-            btn_aceptar.ForeColor = Color.LightGray;
+            btn_aceptar.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_aceptar.ForeColor = Color.White;
             btn_aceptar.Location = new Point(288, 245);
             btn_aceptar.Name = "btn_aceptar";
             btn_aceptar.Size = new Size(450, 40);
@@ -134,7 +135,7 @@
             // 
             label_error.AutoSize = true;
             label_error.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_error.ForeColor = Color.DeepPink;
+            label_error.ForeColor = Color.FromArgb(45, 150, 255);
             label_error.Location = new Point(326, 190);
             label_error.Name = "label_error";
             label_error.Size = new Size(93, 17);
@@ -152,10 +153,10 @@
             // 
             // txt_email
             // 
-            txt_email.BackColor = Color.FromArgb(32, 30, 45);
+            txt_email.BackColor = Color.FromArgb(0, 40, 81);
             txt_email.BorderStyle = BorderStyle.None;
             txt_email.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_email.ForeColor = SystemColors.AppWorkspace;
+            txt_email.ForeColor = Color.White;
             txt_email.Location = new Point(288, 149);
             txt_email.Name = "txt_email";
             txt_email.Size = new Size(450, 20);
@@ -166,10 +167,10 @@
             // 
             // txt_usuario
             // 
-            txt_usuario.BackColor = Color.FromArgb(32, 30, 45);
+            txt_usuario.BackColor = Color.FromArgb(0, 40, 81);
             txt_usuario.BorderStyle = BorderStyle.None;
             txt_usuario.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_usuario.ForeColor = SystemColors.AppWorkspace;
+            txt_usuario.ForeColor = Color.White;
             txt_usuario.Location = new Point(288, 84);
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(450, 20);
@@ -191,7 +192,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(32, 30, 45);
+            BackColor = Color.FromArgb(0, 40, 81);
             ClientSize = new Size(780, 330);
             Controls.Add(panel3);
             Controls.Add(txt_email);
@@ -207,6 +208,7 @@
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form_recuperarContraseña";
+            Opacity = 0.95D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form_recuperarContraseña";
             Load += Form_recuperarContraseña_Load_1;
