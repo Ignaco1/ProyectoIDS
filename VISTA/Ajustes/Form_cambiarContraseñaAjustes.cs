@@ -153,5 +153,10 @@ namespace VISTA
             btn_verConfirmar.Visible = true;
             btn_dejarVerConfirmar.Visible = false;
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

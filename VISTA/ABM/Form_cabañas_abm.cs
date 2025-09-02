@@ -64,10 +64,10 @@ namespace VISTA.ABM
             var cabaña = contro_caba.ListarCabañas()
                 .Select(c => new
                 {
-                    c.CabañaId,
+                    ID = c.CabañaId,
                     c.Nombre,
                     c.Capacidad,
-                    c.PrecioPorNoche,
+                    Precio = c.PrecioPorNoche,
                     c.Descripcion,
                     c.Activa
 

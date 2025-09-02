@@ -46,7 +46,8 @@ namespace VISTA
         {
             txt_grupo.Enabled = false;
             txt_usuario.Enabled = false;
-            listbox_permisos.Enabled = false;
+            //listbox_permisos.Enabled = false;
+            txt_email.Enabled = false;
         }
 
         private void btn_guardar_Click(object sender, EventArgs e)
@@ -65,7 +66,6 @@ namespace VISTA
                 usuario.Nombre = txt_nombre.Text;
                 usuario.Apellido = txt_apellido.Text;
                 usuario.Email = txt_email.Text;
-
 
                 try
                 {

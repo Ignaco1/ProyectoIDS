@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_cambiarContraseñaAjustes));
             panel1 = new Panel();
+            panel4 = new Panel();
+            panel3 = new Panel();
+            panel2 = new Panel();
             btn_dejarVerConfirmar = new PictureBox();
             btn_dejarVerNueva = new PictureBox();
             btn_dejarVerActual = new PictureBox();
@@ -55,6 +58,10 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.Gray;
+            panel1.Controls.Add(panel4);
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(btn_dejarVerConfirmar);
             panel1.Controls.Add(btn_dejarVerNueva);
             panel1.Controls.Add(btn_dejarVerActual);
@@ -70,16 +77,46 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Fill;
+            panel1.Font = new Font("Century Gothic", 9.75F);
+            panel1.ForeColor = Color.White;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1164, 513);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.White;
+            panel4.Enabled = false;
+            panel4.Location = new Point(560, 292);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(293, 1);
+            panel4.TabIndex = 24;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.Enabled = false;
+            panel3.Location = new Point(560, 226);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(293, 1);
+            panel3.TabIndex = 23;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.Enabled = false;
+            panel2.Location = new Point(560, 156);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(293, 1);
+            panel2.TabIndex = 22;
             // 
             // btn_dejarVerConfirmar
             // 
             btn_dejarVerConfirmar.Anchor = AnchorStyles.Top;
             btn_dejarVerConfirmar.Image = (Image)resources.GetObject("btn_dejarVerConfirmar.Image");
-            btn_dejarVerConfirmar.Location = new Point(866, 264);
+            btn_dejarVerConfirmar.Location = new Point(879, 266);
             btn_dejarVerConfirmar.Name = "btn_dejarVerConfirmar";
             btn_dejarVerConfirmar.Size = new Size(33, 27);
             btn_dejarVerConfirmar.SizeMode = PictureBoxSizeMode.Zoom;
@@ -91,7 +128,7 @@
             // 
             btn_dejarVerNueva.Anchor = AnchorStyles.Top;
             btn_dejarVerNueva.Image = (Image)resources.GetObject("btn_dejarVerNueva.Image");
-            btn_dejarVerNueva.Location = new Point(866, 198);
+            btn_dejarVerNueva.Location = new Point(879, 200);
             btn_dejarVerNueva.Name = "btn_dejarVerNueva";
             btn_dejarVerNueva.Size = new Size(33, 27);
             btn_dejarVerNueva.SizeMode = PictureBoxSizeMode.Zoom;
@@ -103,7 +140,7 @@
             // 
             btn_dejarVerActual.Anchor = AnchorStyles.Top;
             btn_dejarVerActual.Image = (Image)resources.GetObject("btn_dejarVerActual.Image");
-            btn_dejarVerActual.Location = new Point(866, 128);
+            btn_dejarVerActual.Location = new Point(879, 130);
             btn_dejarVerActual.Name = "btn_dejarVerActual";
             btn_dejarVerActual.Size = new Size(33, 27);
             btn_dejarVerActual.SizeMode = PictureBoxSizeMode.Zoom;
@@ -115,7 +152,7 @@
             // 
             btn_verConfirmar.Anchor = AnchorStyles.Right;
             btn_verConfirmar.Image = (Image)resources.GetObject("btn_verConfirmar.Image");
-            btn_verConfirmar.Location = new Point(866, 264);
+            btn_verConfirmar.Location = new Point(898, 266);
             btn_verConfirmar.Name = "btn_verConfirmar";
             btn_verConfirmar.Size = new Size(33, 27);
             btn_verConfirmar.SizeMode = PictureBoxSizeMode.Zoom;
@@ -127,7 +164,7 @@
             // 
             btn_verNueva.Anchor = AnchorStyles.Right;
             btn_verNueva.Image = (Image)resources.GetObject("btn_verNueva.Image");
-            btn_verNueva.Location = new Point(866, 198);
+            btn_verNueva.Location = new Point(898, 200);
             btn_verNueva.Name = "btn_verNueva";
             btn_verNueva.Size = new Size(33, 27);
             btn_verNueva.SizeMode = PictureBoxSizeMode.Zoom;
@@ -139,7 +176,7 @@
             // 
             btn_verActual.Anchor = AnchorStyles.Right;
             btn_verActual.Image = (Image)resources.GetObject("btn_verActual.Image");
-            btn_verActual.Location = new Point(866, 128);
+            btn_verActual.Location = new Point(898, 130);
             btn_verActual.Name = "btn_verActual";
             btn_verActual.Size = new Size(33, 27);
             btn_verActual.SizeMode = PictureBoxSizeMode.Zoom;
@@ -150,73 +187,92 @@
             // btn_cancelar
             // 
             btn_cancelar.Anchor = AnchorStyles.Bottom;
-            btn_cancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_cancelar.Location = new Point(665, 350);
+            btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cancelar.FlatAppearance.BorderSize = 0;
+            btn_cancelar.FlatStyle = FlatStyle.Flat;
+            btn_cancelar.Font = new Font("Century Gothic", 9.75F);
+            btn_cancelar.ForeColor = Color.White;
+            btn_cancelar.Location = new Point(663, 408);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(132, 43);
             btn_cancelar.TabIndex = 15;
             btn_cancelar.Text = "Cancelar";
-            btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.UseVisualStyleBackColor = false;
             btn_cancelar.Click += btn_cancelar_Click;
             // 
             // btn_aceptar
             // 
             btn_aceptar.Anchor = AnchorStyles.Bottom;
-            btn_aceptar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_aceptar.Location = new Point(374, 350);
+            btn_aceptar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_aceptar.FlatAppearance.BorderSize = 0;
+            btn_aceptar.FlatStyle = FlatStyle.Flat;
+            btn_aceptar.Font = new Font("Century Gothic", 9.75F);
+            btn_aceptar.ForeColor = Color.White;
+            btn_aceptar.Location = new Point(372, 408);
             btn_aceptar.Name = "btn_aceptar";
             btn_aceptar.Size = new Size(132, 43);
             btn_aceptar.TabIndex = 14;
             btn_aceptar.Text = "Aceptar";
-            btn_aceptar.UseVisualStyleBackColor = true;
+            btn_aceptar.UseVisualStyleBackColor = false;
             btn_aceptar.Click += btn_aceptar_Click;
             // 
             // txt_confirmar
             // 
             txt_confirmar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txt_confirmar.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_confirmar.Location = new Point(566, 264);
+            txt_confirmar.BackColor = Color.White;
+            txt_confirmar.BorderStyle = BorderStyle.FixedSingle;
+            txt_confirmar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_confirmar.ForeColor = SystemColors.ControlText;
+            txt_confirmar.Location = new Point(560, 266);
             txt_confirmar.Name = "txt_confirmar";
-            txt_confirmar.Size = new Size(294, 26);
+            txt_confirmar.Size = new Size(332, 27);
             txt_confirmar.TabIndex = 13;
             // 
             // txt_contraNueva
             // 
             txt_contraNueva.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txt_contraNueva.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_contraNueva.Location = new Point(566, 198);
+            txt_contraNueva.BackColor = Color.White;
+            txt_contraNueva.BorderStyle = BorderStyle.FixedSingle;
+            txt_contraNueva.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_contraNueva.ForeColor = SystemColors.ControlText;
+            txt_contraNueva.Location = new Point(560, 200);
             txt_contraNueva.Name = "txt_contraNueva";
-            txt_contraNueva.Size = new Size(294, 26);
+            txt_contraNueva.Size = new Size(332, 27);
             txt_contraNueva.TabIndex = 12;
             // 
             // txt_contraActual
             // 
             txt_contraActual.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txt_contraActual.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_contraActual.Location = new Point(566, 128);
+            txt_contraActual.BackColor = Color.White;
+            txt_contraActual.BorderStyle = BorderStyle.FixedSingle;
+            txt_contraActual.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_contraActual.ForeColor = SystemColors.ControlText;
+            txt_contraActual.Location = new Point(560, 130);
             txt_contraActual.Name = "txt_contraActual";
-            txt_contraActual.Size = new Size(294, 26);
+            txt_contraActual.Size = new Size(332, 27);
             txt_contraActual.TabIndex = 11;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(303, 257);
+            label3.Font = new Font("Century Gothic", 18.75F);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(269, 262);
             label3.Name = "label3";
-            label3.Size = new Size(132, 30);
+            label3.Size = new Size(285, 31);
             label3.TabIndex = 10;
-            label3.Text = "Confirmar";
+            label3.Text = "Confirmar Contraseña";
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(303, 191);
+            label2.Font = new Font("Century Gothic", 18.75F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(269, 196);
             label2.Name = "label2";
-            label2.Size = new Size(239, 30);
+            label2.Size = new Size(244, 31);
             label2.TabIndex = 9;
             label2.Text = "Contraseña Nueva";
             // 
@@ -224,10 +280,11 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(303, 121);
+            label1.Font = new Font("Century Gothic", 18.75F);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(269, 126);
             label1.Name = "label1";
-            label1.Size = new Size(237, 30);
+            label1.Size = new Size(244, 31);
             label1.TabIndex = 8;
             label1.Text = "Contraseña Actual";
             // 
@@ -269,5 +326,8 @@
         private PictureBox btn_dejarVerActual;
         private PictureBox btn_dejarVerConfirmar;
         private PictureBox btn_dejarVerNueva;
+        private Panel panel4;
+        private Panel panel3;
+        private Panel panel2;
     }
 }

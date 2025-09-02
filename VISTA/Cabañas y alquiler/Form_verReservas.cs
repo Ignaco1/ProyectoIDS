@@ -80,11 +80,11 @@ namespace VISTA.Cabañas_y_alquiler
             var reserva = reservasCompletas
                 .Select(r => new
                 {
-                    r.ReservaId,
+                    ID = r.ReservaId,
                     Cabaña = r.Cabaña?.Nombre ?? "Sin cabaña",
                     Cliente = r.Cliente?.Nombre + " " + r.Cliente?.Apellido ?? "Sin cliente",
-                    Fecha_de_entrada = r.FechaEntrada,
-                    Fecha_de_salida = r.FechaSalida,
+                    Entrada = r.FechaEntrada,
+                    Salida = r.FechaSalida,
                     Precio = r.Precio.ToString("C2"),
                     r.Estado
 
@@ -336,11 +336,11 @@ namespace VISTA.Cabañas_y_alquiler
             dataGridView1.DataSource = listaReservasFiltro
             .Select(r => new
             {
-                r.ReservaId,
+                ID = r.ReservaId,
                 Cabaña = r.Cabaña.Nombre,
                 Cliente = r.Cliente.Nombre + " " + r.Cliente.Apellido,
-                Fecha_de_entrada = r.FechaEntrada.ToShortDateString(),
-                Fecha_de_salida = r.FechaSalida.ToShortDateString(),
+                Entrada = r.FechaEntrada.ToShortDateString(),
+                Salida = r.FechaSalida.ToShortDateString(),
                 Precio = r.Precio.ToString("C2"),
                 r.Estado
 

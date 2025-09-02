@@ -42,7 +42,7 @@
             // 
             // panel_botones
             // 
-            panel_botones.BackColor = SystemColors.Control;
+            panel_botones.BackColor = Color.Gray;
             panel_botones.BorderStyle = BorderStyle.FixedSingle;
             panel_botones.Controls.Add(panel3);
             panel_botones.Controls.Add(panel2);
@@ -73,22 +73,32 @@
             // btn_cambiarContra
             // 
             btn_cambiarContra.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_cambiarContra.Location = new Point(818, 32);
+            btn_cambiarContra.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cambiarContra.FlatAppearance.BorderSize = 0;
+            btn_cambiarContra.FlatStyle = FlatStyle.Flat;
+            btn_cambiarContra.Font = new Font("Century Gothic", 9F);
+            btn_cambiarContra.ForeColor = Color.White;
+            btn_cambiarContra.Location = new Point(805, 32);
             btn_cambiarContra.Name = "btn_cambiarContra";
-            btn_cambiarContra.Size = new Size(126, 37);
+            btn_cambiarContra.Size = new Size(142, 37);
             btn_cambiarContra.TabIndex = 5;
             btn_cambiarContra.Text = "Cambiar contraseña";
-            btn_cambiarContra.UseVisualStyleBackColor = true;
+            btn_cambiarContra.UseVisualStyleBackColor = false;
             btn_cambiarContra.Click += btn_cambiarContra_Click;
             // 
             // btn_datos
             // 
+            btn_datos.BackColor = Color.FromArgb(0, 84, 168);
+            btn_datos.FlatAppearance.BorderSize = 0;
+            btn_datos.FlatStyle = FlatStyle.Flat;
+            btn_datos.Font = new Font("Century Gothic", 9F);
+            btn_datos.ForeColor = Color.White;
             btn_datos.Location = new Point(217, 32);
             btn_datos.Name = "btn_datos";
-            btn_datos.Size = new Size(126, 37);
+            btn_datos.Size = new Size(142, 37);
             btn_datos.TabIndex = 4;
             btn_datos.Text = "Mis datos";
-            btn_datos.UseVisualStyleBackColor = true;
+            btn_datos.UseVisualStyleBackColor = false;
             btn_datos.Click += btn_datos_Click;
             // 
             // panel1
@@ -104,12 +114,17 @@
             // btn_cerrar
             // 
             btn_cerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btn_cerrar.Location = new Point(1057, 15);
+            btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cerrar.FlatAppearance.BorderSize = 0;
+            btn_cerrar.FlatStyle = FlatStyle.Flat;
+            btn_cerrar.Font = new Font("Century Gothic", 9F);
+            btn_cerrar.ForeColor = Color.White;
+            btn_cerrar.Location = new Point(1057, 23);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(94, 23);
+            btn_cerrar.Size = new Size(102, 23);
             btn_cerrar.TabIndex = 1;
             btn_cerrar.Text = "Cerrar";
-            btn_cerrar.UseVisualStyleBackColor = true;
+            btn_cerrar.UseVisualStyleBackColor = false;
             btn_cerrar.Click += btn_cerrar_Click_1;
             // 
             // panel_forms
@@ -124,6 +139,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(1164, 665);
             Controls.Add(panel_forms);
             Controls.Add(panel1);
