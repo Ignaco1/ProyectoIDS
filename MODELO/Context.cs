@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MODELO.Auditoria;
 using MODELO.Composite;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace MODELO
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<ImagenCabaña> ImagenesCabaña { get; set; }
         public DbSet<MotivoCancelacion> MotivosCancelacion { get; set; }
+        public DbSet<UsuarioAuditoria> UsuariosAuditoria { get; set; }
+        public DbSet<ClienteAuditoria> ClientesAuditoria { get; set; }
+        public DbSet<Movimiento> Movimientos { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
 

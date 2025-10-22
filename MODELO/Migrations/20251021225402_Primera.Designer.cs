@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250728225941_first")]
-    partial class first
+    [Migration("20251021225402_Primera")]
+    partial class Primera
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,115 @@ namespace MODELO.Migrations
                     b.HasIndex("PermisosPermisoId");
 
                     b.ToTable("GrupoPermisos", (string)null);
+                });
+
+            modelBuilder.Entity("MODELO.Auditoria.ClienteAuditoria", b =>
+                {
+                    b.Property<int>("ClienteAuditoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteAuditoriaId"));
+
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Dni")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaMovimiento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MovimientoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClienteAuditoriaId");
+
+                    b.HasIndex("IdCliente");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.HasIndex("MovimientoId");
+
+                    b.ToTable("ClientesAuditoria");
+                });
+
+            modelBuilder.Entity("MODELO.Auditoria.Movimiento", b =>
+                {
+                    b.Property<int>("MovimientoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovimientoId"));
+
+                    b.Property<string>("NombreMovimiento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MovimientoId");
+
+                    b.ToTable("Movimientos");
+                });
+
+            modelBuilder.Entity("MODELO.Auditoria.UsuarioAuditoria", b =>
+                {
+                    b.Property<int>("UsuarioAuditoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioAuditoriaId"));
+
+                    b.Property<DateTime>("FechaLogin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaLogout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdMovimiento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoMovimiento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UsuarioAuditoriaId");
+
+                    b.HasIndex("IdMovimiento");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("UsuariosAuditoria");
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>
@@ -308,6 +417,50 @@ namespace MODELO.Migrations
                         .HasForeignKey("PermisosPermisoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MODELO.Auditoria.ClienteAuditoria", b =>
+                {
+                    b.HasOne("MODELO.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Auditoria.Movimiento", "Movimiento")
+                        .WithMany()
+                        .HasForeignKey("MovimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Movimiento");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("MODELO.Auditoria.UsuarioAuditoria", b =>
+                {
+                    b.HasOne("MODELO.Auditoria.Movimiento", "Movimiento")
+                        .WithMany()
+                        .HasForeignKey("IdMovimiento");
+
+                    b.HasOne("MODELO.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movimiento");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("MODELO.ImagenCabaña", b =>

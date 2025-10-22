@@ -13,6 +13,7 @@ using CAPA_COMUN;
 using CAPA_COMUN.Cache;
 using iTextSharp.text.html;
 using DocumentFormat.OpenXml.Spreadsheet;
+using MODELO.Auditoria;
 
 namespace VISTA
 {
@@ -154,6 +155,34 @@ namespace VISTA
                     UsuarioCache.UsuarioEmail = usuario.Email;
                     UsuarioCache.UsuarioGrupoNombre = usuario.Grupo.Nombre;
                     UsuarioCache.Permisos = usuario.Grupo.Permisos.Select(p => p.Nombre).ToList();
+
+                    using (var context = new Context())
+                    {
+                        var abiertas = context.UsuariosAuditoria
+                        .Where(a => a.IdUsuario == usuario.UsuarioId && a.FechaLogout == null)
+                        .ToList();
+
+                        foreach (var s in abiertas)
+                        {
+                            s.FechaLogout = DateTime.Now;
+                            s.IdMovimiento = 6;                      
+                            s.TipoMovimiento = "CIERRE INESPERADO";
+                        }
+
+                        context.Attach(usuario);                  
+                        var usuarioAuditoria = new UsuarioAuditoria
+                        {
+                            IdUsuario = usuario.UsuarioId,
+                            Usuario = usuario,                     
+                            NombreUsuario = usuario.Nombre + " " + usuario.Apellido,
+                            FechaLogin = DateTime.Now,
+                            IdMovimiento = 1,
+                            TipoMovimiento = "LOGIN"
+                        };
+                        context.UsuariosAuditoria.Add(usuarioAuditoria);
+                        context.SaveChanges();
+                    }
+
 
 
                     Form_principal form_principal = new Form_principal();

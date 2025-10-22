@@ -1,4 +1,7 @@
-﻿using MODELO;
+﻿using CAPA_COMUN.Cache;
+using Microsoft.EntityFrameworkCore;
+using MODELO;
+using MODELO.Auditoria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -155,6 +158,27 @@ namespace VISTA
             {
                 try
                 {
+                    using (var context = new Context())
+                    {
+                        var aud = new ClienteAuditoria
+                        {
+                            IdCliente = cliente.ClienteId,
+                            Nombre = cliente.Nombre,
+                            Apellido = cliente.Apellido,
+                            Dni = cliente.Dni,
+                            Email = cliente.Email,
+                            Telefono = cliente.Telefono,
+                            IdUsuario = UsuarioCache.UsuarioId,
+                            NombreUsuario = $"{UsuarioCache.UsuarioNombre} {UsuarioCache.UsuarioApellido}",
+                            FechaMovimiento = DateTime.Now,        
+                            IdMovimiento = 5,                   
+                            TipoMovimiento = "BAJA"
+                        };
+
+                        context.ClientesAuditoria.Add(aud);
+                        context.SaveChanges();
+                    }
+
                     string respuesta = contro_cli.EliminarCliente(cliente);
                     MessageBox.Show(respuesta);
                 }
@@ -243,10 +267,39 @@ namespace VISTA
                     {
                         string resultado = contro_cli.AgregarCliente(cliente);
                         MessageBox.Show(resultado);
+
+                        using (var context = new Context())
+                        {
+                            var aud = new ClienteAuditoria
+                            {
+                                IdCliente = cliente.ClienteId,
+
+                                Nombre = cliente.Nombre,
+                                Apellido = cliente.Apellido,
+                                Dni = cliente.Dni,
+                                Email = cliente.Email,
+                                Telefono = cliente.Telefono,
+
+                                IdUsuario = UsuarioCache.UsuarioId,
+                                NombreUsuario = UsuarioCache.UsuarioNombre + " " + UsuarioCache.UsuarioApellido,
+
+                                FechaMovimiento = DateTime.Now,
+                                IdMovimiento = 3,
+                                TipoMovimiento = "ALTA"
+                            };
+
+                            context.ClientesAuditoria.Add(aud);
+                            context.SaveChanges();
+                        }
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        var root = ex.GetBaseException()?.Message ?? ex.Message;
+                        MessageBox.Show("Error al guardar auditoría: " + root, "ERROR");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al agregar el cliente:  " + ex.Message, "ERROR");
+                        MessageBox.Show("Error al agregar el cliente: " + (ex.InnerException?.Message ?? ex.Message), "ERROR");
                     }
                 }
                 else
@@ -280,6 +333,30 @@ namespace VISTA
                     {
                         string resultado = contro_cli.ModificarCliente(cliente);
                         MessageBox.Show(resultado);
+
+                        using (var context = new Context())
+                        {
+                            var aud = new ClienteAuditoria
+                            {
+                                IdCliente = cliente.ClienteId,
+
+                                Nombre = cliente.Nombre,
+                                Apellido = cliente.Apellido,
+                                Dni = cliente.Dni,
+                                Email = cliente.Email,
+                                Telefono = cliente.Telefono,
+
+                                IdUsuario = UsuarioCache.UsuarioId,
+                                NombreUsuario = UsuarioCache.UsuarioNombre + " " + UsuarioCache.UsuarioApellido,
+
+                                FechaMovimiento = DateTime.Now,
+                                IdMovimiento = 4,
+                                TipoMovimiento = "MODIFICACIÓN"
+                            };
+
+                            context.ClientesAuditoria.Add(aud);
+                            context.SaveChanges();
+                        }
 
                     }
                     catch (Exception ex)

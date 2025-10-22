@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAPA_COMUN;
 using CAPA_COMUN.Cache;
+using MODELO;
 using VISTA.ABM;
 using VISTA.Cabañas_y_alquiler;
 using VISTA.Informes;
@@ -230,6 +231,22 @@ namespace VISTA
                 return;
             }
 
+            using (var context = new Context())
+            {
+                var auditoria = context.UsuariosAuditoria
+                    .Where(a => a.IdUsuario == UsuarioCache.UsuarioId && a.FechaLogout == null)
+                    .OrderByDescending(a => a.FechaLogin)
+                    .FirstOrDefault();
+
+                if (auditoria != null)
+                {
+                    auditoria.FechaLogout = DateTime.Now;
+                    auditoria.IdMovimiento = 2;
+                    auditoria.TipoMovimiento = "LOGIN/LOGOUT";
+                    context.SaveChanges();
+                }
+            }
+
             Application.Exit();
         }
 
@@ -248,6 +265,22 @@ namespace VISTA
 
             if (resultado == DialogResult.Yes)
             {
+                using (var context = new Context())
+                {
+                    var auditoria = context.UsuariosAuditoria
+                        .Where(a => a.IdUsuario == UsuarioCache.UsuarioId && a.FechaLogout == null)
+                        .OrderByDescending(a => a.FechaLogin)
+                        .FirstOrDefault();
+
+                    if (auditoria != null)
+                    {
+                        auditoria.FechaLogout = DateTime.Now;
+                        auditoria.IdMovimiento = 2;                 
+                        auditoria.TipoMovimiento = "LOGIN/LOGOUT";  
+                        context.SaveChanges();
+                    }
+                }
+
                 this.Close();
             }
 
