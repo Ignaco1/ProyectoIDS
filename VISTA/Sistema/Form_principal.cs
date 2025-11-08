@@ -84,6 +84,9 @@ namespace VISTA
             panel_seguridad.Visible = false;
             panel_reservas.Visible = false;
             panel_informes.Visible = false;
+            panel_mantenimientos.Visible = false;
+            panel_servicios.Visible = false;
+
         }
 
 
@@ -275,8 +278,8 @@ namespace VISTA
                     if (auditoria != null)
                     {
                         auditoria.FechaLogout = DateTime.Now;
-                        auditoria.IdMovimiento = 2;                 
-                        auditoria.TipoMovimiento = "LOGIN/LOGOUT";  
+                        auditoria.IdMovimiento = 2;
+                        auditoria.TipoMovimiento = "LOGIN/LOGOUT";
                         context.SaveChanges();
                     }
                 }
@@ -337,11 +340,22 @@ namespace VISTA
             AbrirForms(new Form_motivosCancelacionInformes());
         }
 
-        private void btn_usoGanaciaCabaña_Click(object sender, EventArgs e)
+        private void btn_servicios_Click(object sender, EventArgs e)
         {
-
+            HabilitarBotones(this);
+            MostrarSubmenu(panel_servicios);
         }
 
+        private void btn_mantenimientos_Click(object sender, EventArgs e)
+        {
+            HabilitarBotones(this);
+            MostrarSubmenu(panel_mantenimientos);
+        }
+
+        private void btn_empleados_abm_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_empleados_abm());
+        }
     }
 }
 

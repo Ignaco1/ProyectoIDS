@@ -25,6 +25,10 @@ namespace MODELO
         public DbSet<UsuarioAuditoria> UsuariosAuditoria { get; set; }
         public DbSet<ClienteAuditoria> ClientesAuditoria { get; set; }
         public DbSet<Movimiento> Movimientos { get; set; }
+        public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Servicio> Servicios { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Mantenimiento> Mantenimientos { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
@@ -52,6 +56,12 @@ namespace MODELO
             .HasMany(r => r.MotivosCancelacion)
             .WithMany(m => m.Reservas)
             .UsingEntity(j => j.ToTable("ReservaMotivoCancelacion"));
+
+            modelBuilder.Entity<Servicio>()
+            .HasOne(s => s.Categoria)
+            .WithMany(c => c.Servicios)
+            .HasForeignKey(s => s.CategoriaId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         }
 

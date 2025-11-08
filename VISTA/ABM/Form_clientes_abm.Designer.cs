@@ -74,9 +74,9 @@
             // 
             panel_carga.Controls.Add(groupBox_carga);
             panel_carga.Dock = DockStyle.Right;
-            panel_carga.Location = new Point(910, 0);
+            panel_carga.Location = new Point(1056, 0);
             panel_carga.Name = "panel_carga";
-            panel_carga.Size = new Size(262, 754);
+            panel_carga.Size = new Size(262, 948);
             panel_carga.TabIndex = 0;
             // 
             // groupBox_carga
@@ -97,7 +97,7 @@
             groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
             groupBox_carga.Name = "groupBox_carga";
-            groupBox_carga.Size = new Size(262, 754);
+            groupBox_carga.Size = new Size(262, 948);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
@@ -188,7 +188,7 @@
             btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
-            btn_cancelar.Location = new Point(164, 725);
+            btn_cancelar.Location = new Point(164, 919);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(92, 23);
             btn_cancelar.TabIndex = 2;
@@ -202,7 +202,7 @@
             btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(6, 725);
+            btn_guardar.Location = new Point(6, 919);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(92, 23);
             btn_guardar.TabIndex = 1;
@@ -216,7 +216,7 @@
             panel_grilla.Dock = DockStyle.Fill;
             panel_grilla.Location = new Point(0, 0);
             panel_grilla.Name = "panel_grilla";
-            panel_grilla.Size = new Size(910, 754);
+            panel_grilla.Size = new Size(1056, 948);
             panel_grilla.TabIndex = 1;
             // 
             // groupBox_grilla
@@ -228,7 +228,7 @@
             groupBox_grilla.ForeColor = Color.White;
             groupBox_grilla.Location = new Point(0, 0);
             groupBox_grilla.Name = "groupBox_grilla";
-            groupBox_grilla.Size = new Size(910, 754);
+            groupBox_grilla.Size = new Size(1056, 948);
             groupBox_grilla.TabIndex = 0;
             groupBox_grilla.TabStop = false;
             groupBox_grilla.Text = "Listar clientes";
@@ -238,7 +238,7 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
             dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -271,7 +271,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(904, 598);
+            dataGridView1.Size = new Size(1050, 792);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -283,17 +283,18 @@
             panel_botones.Controls.Add(btn_mod);
             panel_botones.Controls.Add(btn_agregar);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(3, 674);
+            panel_botones.Location = new Point(3, 868);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(904, 77);
+            panel_botones.Size = new Size(1050, 77);
             panel_botones.TabIndex = 1;
             // 
             // btn_cerrar
             // 
+            btn_cerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(752, 51);
+            btn_cerrar.Location = new Point(935, 51);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(103, 23);
             btn_cerrar.TabIndex = 4;
@@ -352,7 +353,7 @@
             panel_filtro.Dock = DockStyle.Top;
             panel_filtro.Location = new Point(3, 18);
             panel_filtro.Name = "panel_filtro";
-            panel_filtro.Size = new Size(904, 58);
+            panel_filtro.Size = new Size(1050, 58);
             panel_filtro.TabIndex = 0;
             // 
             // txt_nombreFiltro
@@ -424,7 +425,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1172, 754);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel_grilla);
             Controls.Add(panel_carga);
             Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
