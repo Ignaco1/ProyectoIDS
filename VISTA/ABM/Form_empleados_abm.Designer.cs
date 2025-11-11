@@ -129,6 +129,7 @@
             btn_cancelar.TabIndex = 28;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = false;
+            btn_cancelar.Click += btn_cancelar_Click;
             // 
             // btn_guardar
             // 
@@ -142,9 +143,11 @@
             btn_guardar.TabIndex = 27;
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = false;
+            btn_guardar.Click += btn_guardar_Click;
             // 
             // cb_rol
             // 
+            cb_rol.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_rol.FormattingEnabled = true;
             cb_rol.Location = new Point(87, 355);
             cb_rol.Name = "cb_rol";
@@ -153,6 +156,7 @@
             // 
             // cb_turno
             // 
+            cb_turno.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_turno.FormattingEnabled = true;
             cb_turno.Location = new Point(87, 311);
             cb_turno.Name = "cb_turno";
@@ -268,10 +272,13 @@
             // 
             // groupBox_grilla
             // 
+            groupBox_grilla.BackColor = Color.Gray;
             groupBox_grilla.Controls.Add(dataGridView1);
             groupBox_grilla.Controls.Add(panel_botones);
             groupBox_grilla.Controls.Add(panel_filtro);
             groupBox_grilla.Dock = DockStyle.Fill;
+            groupBox_grilla.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox_grilla.ForeColor = Color.White;
             groupBox_grilla.Location = new Point(0, 0);
             groupBox_grilla.Name = "groupBox_grilla";
             groupBox_grilla.Size = new Size(1048, 948);
@@ -305,7 +312,7 @@
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.ControlDark;
-            dataGridView1.Location = new Point(3, 104);
+            dataGridView1.Location = new Point(3, 103);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -324,8 +331,9 @@
             dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(0, 84, 168);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1042, 764);
+            dataGridView1.Size = new Size(1042, 765);
             dataGridView1.TabIndex = 2;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // panel_botones
             // 
@@ -354,6 +362,7 @@
             btn_darDebaja.TabIndex = 31;
             btn_darDebaja.Text = "Dar de baja";
             btn_darDebaja.UseVisualStyleBackColor = false;
+            btn_darDebaja.Click += btn_darDebaja_Click;
             // 
             // btn_modificar
             // 
@@ -367,6 +376,7 @@
             btn_modificar.TabIndex = 30;
             btn_modificar.Text = "Modificar empleado";
             btn_modificar.UseVisualStyleBackColor = false;
+            btn_modificar.Click += btn_modificar_Click;
             // 
             // btn_agregar
             // 
@@ -380,6 +390,7 @@
             btn_agregar.TabIndex = 29;
             btn_agregar.Text = "Agregar empleado";
             btn_agregar.UseVisualStyleBackColor = false;
+            btn_agregar.Click += btn_agregar_Click;
             // 
             // btn_cerrar
             // 
@@ -393,6 +404,7 @@
             btn_cerrar.TabIndex = 28;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
+            btn_cerrar.Click += btn_cerrar_Click;
             // 
             // panel_filtro
             // 
@@ -411,7 +423,7 @@
             panel_filtro.Dock = DockStyle.Top;
             panel_filtro.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel_filtro.ForeColor = Color.White;
-            panel_filtro.Location = new Point(3, 19);
+            panel_filtro.Location = new Point(3, 18);
             panel_filtro.Name = "panel_filtro";
             panel_filtro.Size = new Size(1042, 85);
             panel_filtro.TabIndex = 0;
@@ -423,6 +435,7 @@
             cb_rolFiltro.Name = "cb_rolFiltro";
             cb_rolFiltro.Size = new Size(146, 25);
             cb_rolFiltro.TabIndex = 41;
+            cb_rolFiltro.SelectedIndexChanged += cb_rolFiltro_SelectedIndexChanged;
             // 
             // cb_turnoFiltro
             // 
@@ -431,6 +444,7 @@
             cb_turnoFiltro.Name = "cb_turnoFiltro";
             cb_turnoFiltro.Size = new Size(146, 25);
             cb_turnoFiltro.TabIndex = 40;
+            cb_turnoFiltro.SelectedIndexChanged += cb_turnoFiltro_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -456,6 +470,7 @@
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(136, 22);
             txt_nombreFiltro.TabIndex = 30;
+            txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
             // label3
             // 
@@ -472,6 +487,7 @@
             txt_apellidoFiltro.Name = "txt_apellidoFiltro";
             txt_apellidoFiltro.Size = new Size(136, 22);
             txt_apellidoFiltro.TabIndex = 34;
+            txt_apellidoFiltro.TextChanged += txt_apellidoFiltro_TextChanged;
             // 
             // label9
             // 
@@ -488,6 +504,7 @@
             txt_dniFiltro.Name = "txt_dniFiltro";
             txt_dniFiltro.Size = new Size(136, 22);
             txt_dniFiltro.TabIndex = 32;
+            txt_dniFiltro.TextChanged += txt_dniFiltro_TextChanged;
             // 
             // label10
             // 
@@ -510,6 +527,7 @@
             btn_quitarFiltro.TabIndex = 29;
             btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = false;
+            btn_quitarFiltro.Click += btn_quitarFiltro_Click;
             // 
             // Form_empleados_abm
             // 

@@ -55,7 +55,7 @@ namespace CONTROLADORA
             return empleado;
         }
 
-        public string AgregarEmpleado(Cliente nuevoEmpleado)
+        public string AgregarEmpleado(Empleado nuevoEmpleado)
         {
 
             using (var context = new Context())
