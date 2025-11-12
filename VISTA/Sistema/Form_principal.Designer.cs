@@ -58,8 +58,8 @@
             btn_cerrarSesion = new PictureBox();
             btn_ajustes = new PictureBox();
             panel_ABM = new Panel();
-            button1 = new Button();
-            button2 = new Button();
+            btn_mantenimientos_abm = new Button();
+            btn_servicios_abm = new Button();
             btn_empleados_abm = new Button();
             btn_ABM_cabañas = new Button();
             btn_ABM_clientes = new Button();
@@ -531,8 +531,8 @@
             // panel_ABM
             // 
             panel_ABM.BackColor = Color.FromArgb(40, 40, 40);
-            panel_ABM.Controls.Add(button1);
-            panel_ABM.Controls.Add(button2);
+            panel_ABM.Controls.Add(btn_mantenimientos_abm);
+            panel_ABM.Controls.Add(btn_servicios_abm);
             panel_ABM.Controls.Add(btn_empleados_abm);
             panel_ABM.Controls.Add(btn_ABM_cabañas);
             panel_ABM.Controls.Add(btn_ABM_clientes);
@@ -543,41 +543,42 @@
             panel_ABM.Size = new Size(321, 180);
             panel_ABM.TabIndex = 17;
             // 
-            // button1
+            // btn_mantenimientos_abm
             // 
-            button1.BackColor = Color.FromArgb(65, 65, 65);
-            button1.Dock = DockStyle.Top;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 9.75F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 150);
-            button1.Name = "button1";
-            button1.Padding = new Padding(35, 0, 0, 0);
-            button1.Size = new Size(321, 30);
-            button1.TabIndex = 5;
-            button1.Tag = "ABM de Mantenimientos";
-            button1.Text = "ABM de Mantenimientos";
-            button1.TextAlign = ContentAlignment.MiddleLeft;
-            button1.UseVisualStyleBackColor = false;
+            btn_mantenimientos_abm.BackColor = Color.FromArgb(65, 65, 65);
+            btn_mantenimientos_abm.Dock = DockStyle.Top;
+            btn_mantenimientos_abm.FlatAppearance.BorderSize = 0;
+            btn_mantenimientos_abm.FlatStyle = FlatStyle.Flat;
+            btn_mantenimientos_abm.Font = new Font("Century Gothic", 9.75F);
+            btn_mantenimientos_abm.ForeColor = Color.White;
+            btn_mantenimientos_abm.Location = new Point(0, 150);
+            btn_mantenimientos_abm.Name = "btn_mantenimientos_abm";
+            btn_mantenimientos_abm.Padding = new Padding(35, 0, 0, 0);
+            btn_mantenimientos_abm.Size = new Size(321, 30);
+            btn_mantenimientos_abm.TabIndex = 5;
+            btn_mantenimientos_abm.Tag = "ABM de Mantenimientos";
+            btn_mantenimientos_abm.Text = "ABM de Mantenimientos";
+            btn_mantenimientos_abm.TextAlign = ContentAlignment.MiddleLeft;
+            btn_mantenimientos_abm.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btn_servicios_abm
             // 
-            button2.BackColor = Color.FromArgb(65, 65, 65);
-            button2.Dock = DockStyle.Top;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Century Gothic", 9.75F);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 120);
-            button2.Name = "button2";
-            button2.Padding = new Padding(35, 0, 0, 0);
-            button2.Size = new Size(321, 30);
-            button2.TabIndex = 4;
-            button2.Tag = "ABM de Servicios";
-            button2.Text = "ABM de Servicios";
-            button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.UseVisualStyleBackColor = false;
+            btn_servicios_abm.BackColor = Color.FromArgb(65, 65, 65);
+            btn_servicios_abm.Dock = DockStyle.Top;
+            btn_servicios_abm.FlatAppearance.BorderSize = 0;
+            btn_servicios_abm.FlatStyle = FlatStyle.Flat;
+            btn_servicios_abm.Font = new Font("Century Gothic", 9.75F);
+            btn_servicios_abm.ForeColor = Color.White;
+            btn_servicios_abm.Location = new Point(0, 120);
+            btn_servicios_abm.Name = "btn_servicios_abm";
+            btn_servicios_abm.Padding = new Padding(35, 0, 0, 0);
+            btn_servicios_abm.Size = new Size(321, 30);
+            btn_servicios_abm.TabIndex = 4;
+            btn_servicios_abm.Tag = "ABM de Servicios";
+            btn_servicios_abm.Text = "ABM de Servicios";
+            btn_servicios_abm.TextAlign = ContentAlignment.MiddleLeft;
+            btn_servicios_abm.UseVisualStyleBackColor = false;
+            btn_servicios_abm.Click += btn_servicios_abm_Click;
             // 
             // btn_empleados_abm
             // 
@@ -920,8 +921,8 @@
         private Panel panel_informes;
         private Button btn_motivosCancelacion;
         private Button btn_informes;
-        private Button button1;
-        private Button button2;
+        private Button btn_mantenimientos_abm;
+        private Button btn_servicios_abm;
         private Button btn_empleados_abm;
         private Button button6;
         private Panel panel_servicios;

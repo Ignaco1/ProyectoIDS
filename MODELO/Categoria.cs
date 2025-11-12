@@ -13,10 +13,15 @@ namespace MODELO
         public int CategoriaId { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public string Tipo { get; set; }
+        public string Tipo { get; set; } = "No Incluido";
         public bool Activa { get; set; }
 
-        public ICollection<Servicio> Servicios { get; set; }
+        public virtual ICollection<Servicio> Servicios { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
     }
 }

@@ -58,10 +58,9 @@ namespace MODELO
             .UsingEntity(j => j.ToTable("ReservaMotivoCancelacion"));
 
             modelBuilder.Entity<Servicio>()
-            .HasOne(s => s.Categoria)
+            .HasMany(s => s.Categorias)
             .WithMany(c => c.Servicios)
-            .HasForeignKey(s => s.CategoriaId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .UsingEntity(j => j.ToTable("ServiciosCategorias"));
 
         }
 

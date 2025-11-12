@@ -121,7 +121,7 @@ namespace VISTA.ABM
         {
             if (dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("Seleccione un cliente.", "Error");
+                MessageBox.Show("Seleccione un empleado.", "Error");
                 return;
             }
 

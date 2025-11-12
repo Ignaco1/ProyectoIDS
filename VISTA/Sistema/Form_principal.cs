@@ -356,6 +356,11 @@ namespace VISTA
         {
             AbrirForms(new Form_empleados_abm());
         }
+
+        private void btn_servicios_abm_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_servicios_abm());
+        }
     }
 }
 
