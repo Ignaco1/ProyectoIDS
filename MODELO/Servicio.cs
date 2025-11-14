@@ -15,6 +15,7 @@ namespace MODELO
         public string Descripcion { get; set; }
         public decimal Importe { get; set; }
         public bool Activo { get; set; }
+        public virtual ICollection<ImagenServicio> Imagenes { get; set; } = new List<ImagenServicio>();
 
         public virtual ICollection<Categoria> Categorias { get; set; }
     }

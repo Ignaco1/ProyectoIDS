@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251108040849_onli")]
-    partial class onli
+    [Migration("20251113152941_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace MODELO.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CategoriaServicio", b =>
+                {
+                    b.Property<int>("CategoriasCategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiciosServicioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriasCategoriaId", "ServiciosServicioId");
+
+                    b.HasIndex("ServiciosServicioId");
+
+                    b.ToTable("ServiciosCategorias", (string)null);
+                });
 
             modelBuilder.Entity("GrupoPermiso", b =>
                 {
@@ -343,6 +358,28 @@ namespace MODELO.Migrations
                     b.ToTable("ImagenesCabaña");
                 });
 
+            modelBuilder.Entity("MODELO.ImagenServicio", b =>
+                {
+                    b.Property<int>("ImagenServicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenServicioId"));
+
+                    b.Property<byte[]>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ServicioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagenServicioId");
+
+                    b.HasIndex("ServicioId");
+
+                    b.ToTable("ImagenesServicio");
+                });
+
             modelBuilder.Entity("MODELO.Mantenimiento", b =>
                 {
                     b.Property<int>("MantenimientoId")
@@ -456,8 +493,9 @@ namespace MODELO.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("int");
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Importe")
                         .HasColumnType("decimal(18,2)");
@@ -467,8 +505,6 @@ namespace MODELO.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ServicioId");
-
-                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Servicios");
                 });
@@ -528,6 +564,21 @@ namespace MODELO.Migrations
                     b.ToTable("ReservaMotivoCancelacion", (string)null);
                 });
 
+            modelBuilder.Entity("CategoriaServicio", b =>
+                {
+                    b.HasOne("MODELO.Categoria", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriasCategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Servicio", null)
+                        .WithMany()
+                        .HasForeignKey("ServiciosServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GrupoPermiso", b =>
                 {
                     b.HasOne("MODELO.Composite.Grupo", null)
@@ -582,6 +633,17 @@ namespace MODELO.Migrations
                     b.Navigation("Cabaña");
                 });
 
+            modelBuilder.Entity("MODELO.ImagenServicio", b =>
+                {
+                    b.HasOne("MODELO.Servicio", "Servicio")
+                        .WithMany("Imagenes")
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Servicio");
+                });
+
             modelBuilder.Entity("MODELO.Reserva", b =>
                 {
                     b.HasOne("MODELO.Cabaña", "Cabaña")
@@ -599,17 +661,6 @@ namespace MODELO.Migrations
                     b.Navigation("Cabaña");
 
                     b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("MODELO.Servicio", b =>
-                {
-                    b.HasOne("MODELO.Categoria", "Categoria")
-                        .WithMany("Servicios")
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("MODELO.Usuario", b =>
@@ -643,9 +694,9 @@ namespace MODELO.Migrations
                     b.Navigation("Imagenes");
                 });
 
-            modelBuilder.Entity("MODELO.Categoria", b =>
+            modelBuilder.Entity("MODELO.Servicio", b =>
                 {
-                    b.Navigation("Servicios");
+                    b.Navigation("Imagenes");
                 });
 #pragma warning restore 612, 618
         }

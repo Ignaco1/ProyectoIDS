@@ -62,9 +62,9 @@
             // 
             panel_carga.Controls.Add(groupBox_carga);
             panel_carga.Dock = DockStyle.Right;
-            panel_carga.Location = new Point(852, 0);
+            panel_carga.Location = new Point(1059, 0);
             panel_carga.Name = "panel_carga";
-            panel_carga.Size = new Size(259, 454);
+            panel_carga.Size = new Size(259, 948);
             panel_carga.TabIndex = 0;
             // 
             // groupBox_carga
@@ -79,7 +79,7 @@
             groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
             groupBox_carga.Name = "groupBox_carga";
-            groupBox_carga.Size = new Size(259, 454);
+            groupBox_carga.Size = new Size(259, 948);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
@@ -99,7 +99,7 @@
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
             btn_cancelar.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_cancelar.Location = new Point(161, 419);
+            btn_cancelar.Location = new Point(161, 913);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(92, 23);
             btn_cancelar.TabIndex = 6;
@@ -114,7 +114,7 @@
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
             btn_guardar.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_guardar.Location = new Point(6, 419);
+            btn_guardar.Location = new Point(6, 913);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(92, 23);
             btn_guardar.TabIndex = 5;
@@ -140,7 +140,7 @@
             panel_lista_permisos.Dock = DockStyle.Fill;
             panel_lista_permisos.Location = new Point(0, 0);
             panel_lista_permisos.Name = "panel_lista_permisos";
-            panel_lista_permisos.Size = new Size(852, 454);
+            panel_lista_permisos.Size = new Size(1059, 948);
             panel_lista_permisos.TabIndex = 1;
             // 
             // groupBox_permisos
@@ -154,7 +154,7 @@
             groupBox_permisos.ForeColor = Color.White;
             groupBox_permisos.Location = new Point(0, 0);
             groupBox_permisos.Name = "groupBox_permisos";
-            groupBox_permisos.Size = new Size(852, 454);
+            groupBox_permisos.Size = new Size(1059, 948);
             groupBox_permisos.TabIndex = 0;
             groupBox_permisos.TabStop = false;
             groupBox_permisos.Text = "Lista de permisos";
@@ -197,7 +197,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(846, 327);
+            dataGridView1.Size = new Size(1053, 821);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -210,7 +210,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(3, 18);
             panel1.Name = "panel1";
-            panel1.Size = new Size(846, 55);
+            panel1.Size = new Size(1053, 55);
             panel1.TabIndex = 1;
             // 
             // btn_quitarFiltro
@@ -220,7 +220,7 @@
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
             btn_quitarFiltro.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_quitarFiltro.ForeColor = Color.White;
-            btn_quitarFiltro.Location = new Point(740, 16);
+            btn_quitarFiltro.Location = new Point(938, 17);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(103, 23);
             btn_quitarFiltro.TabIndex = 2;
@@ -231,7 +231,7 @@
             // txt_nombreFiltro
             // 
             txt_nombreFiltro.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_nombreFiltro.Location = new Point(269, 17);
+            txt_nombreFiltro.Location = new Point(459, 17);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(215, 22);
             txt_nombreFiltro.TabIndex = 1;
@@ -242,7 +242,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(135, 20);
+            label2.Location = new Point(325, 20);
             label2.Name = "label2";
             label2.Size = new Size(128, 17);
             label2.TabIndex = 0;
@@ -256,9 +256,9 @@
             panel_botones.Controls.Add(btn_modificarPermiso);
             panel_botones.Controls.Add(btn_crearPermiso);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(3, 400);
+            panel_botones.Location = new Point(3, 894);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(846, 51);
+            panel_botones.Size = new Size(1053, 51);
             panel_botones.TabIndex = 0;
             // 
             // btn_cerrar
@@ -269,7 +269,7 @@
             btn_cerrar.FlatStyle = FlatStyle.Flat;
             btn_cerrar.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_cerrar.ForeColor = Color.White;
-            btn_cerrar.Location = new Point(740, 19);
+            btn_cerrar.Location = new Point(947, 19);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(103, 23);
             btn_cerrar.TabIndex = 4;
@@ -327,7 +327,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 30, 45);
-            ClientSize = new Size(1111, 454);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel_lista_permisos);
             Controls.Add(panel_carga);
             FormBorderStyle = FormBorderStyle.None;

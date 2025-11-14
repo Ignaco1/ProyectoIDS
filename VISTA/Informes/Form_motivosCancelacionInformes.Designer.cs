@@ -60,9 +60,9 @@
             panel_botones.Controls.Add(btn_cerrar);
             panel_botones.Controls.Add(btn_exportarExcel);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(0, 669);
+            panel_botones.Location = new Point(0, 863);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(1164, 85);
+            panel_botones.Size = new Size(1318, 85);
             panel_botones.TabIndex = 0;
             // 
             // btn_exportarPDF
@@ -82,7 +82,7 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(1057, 57);
+            btn_cerrar.Location = new Point(1211, 57);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(102, 23);
             btn_cerrar.TabIndex = 8;
@@ -104,9 +104,9 @@
             // panel1
             // 
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(1107, 0);
+            panel1.Location = new Point(1261, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(57, 669);
+            panel1.Size = new Size(57, 863);
             panel1.TabIndex = 1;
             // 
             // panel2
@@ -120,7 +120,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1107, 114);
+            panel2.Size = new Size(1261, 114);
             panel2.TabIndex = 3;
             // 
             // btn_generar
@@ -183,9 +183,9 @@
             // panel_grafico
             // 
             panel_grafico.Dock = DockStyle.Right;
-            panel_grafico.Location = new Point(683, 114);
+            panel_grafico.Location = new Point(837, 114);
             panel_grafico.Name = "panel_grafico";
-            panel_grafico.Size = new Size(424, 555);
+            panel_grafico.Size = new Size(424, 749);
             panel_grafico.TabIndex = 5;
             // 
             // panel4
@@ -193,7 +193,7 @@
             panel4.Dock = DockStyle.Left;
             panel4.Location = new Point(0, 114);
             panel4.Name = "panel4";
-            panel4.Size = new Size(104, 555);
+            panel4.Size = new Size(104, 749);
             panel4.TabIndex = 7;
             // 
             // panel3
@@ -202,7 +202,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(104, 114);
             panel3.Name = "panel3";
-            panel3.Size = new Size(579, 136);
+            panel3.Size = new Size(733, 136);
             panel3.TabIndex = 8;
             // 
             // label_nroCabañas
@@ -220,7 +220,7 @@
             flowLayoutPanel_datos.Dock = DockStyle.Fill;
             flowLayoutPanel_datos.Location = new Point(104, 250);
             flowLayoutPanel_datos.Name = "flowLayoutPanel_datos";
-            flowLayoutPanel_datos.Size = new Size(579, 419);
+            flowLayoutPanel_datos.Size = new Size(733, 613);
             flowLayoutPanel_datos.TabIndex = 9;
             // 
             // Form_motivosCancelacionInformes
@@ -228,7 +228,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1164, 754);
+            ClientSize = new Size(1318, 948);
             Controls.Add(flowLayoutPanel_datos);
             Controls.Add(panel3);
             Controls.Add(panel4);

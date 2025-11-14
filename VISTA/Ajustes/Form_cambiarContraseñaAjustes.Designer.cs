@@ -81,7 +81,7 @@
             panel1.ForeColor = Color.White;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1164, 513);
+            panel1.Size = new Size(1318, 948);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -116,7 +116,7 @@
             // 
             btn_dejarVerConfirmar.Anchor = AnchorStyles.Top;
             btn_dejarVerConfirmar.Image = (Image)resources.GetObject("btn_dejarVerConfirmar.Image");
-            btn_dejarVerConfirmar.Location = new Point(879, 266);
+            btn_dejarVerConfirmar.Location = new Point(1052, 266);
             btn_dejarVerConfirmar.Name = "btn_dejarVerConfirmar";
             btn_dejarVerConfirmar.Size = new Size(33, 27);
             btn_dejarVerConfirmar.SizeMode = PictureBoxSizeMode.Zoom;
@@ -128,7 +128,7 @@
             // 
             btn_dejarVerNueva.Anchor = AnchorStyles.Top;
             btn_dejarVerNueva.Image = (Image)resources.GetObject("btn_dejarVerNueva.Image");
-            btn_dejarVerNueva.Location = new Point(879, 200);
+            btn_dejarVerNueva.Location = new Point(1052, 200);
             btn_dejarVerNueva.Name = "btn_dejarVerNueva";
             btn_dejarVerNueva.Size = new Size(33, 27);
             btn_dejarVerNueva.SizeMode = PictureBoxSizeMode.Zoom;
@@ -140,7 +140,7 @@
             // 
             btn_dejarVerActual.Anchor = AnchorStyles.Top;
             btn_dejarVerActual.Image = (Image)resources.GetObject("btn_dejarVerActual.Image");
-            btn_dejarVerActual.Location = new Point(879, 130);
+            btn_dejarVerActual.Location = new Point(1052, 130);
             btn_dejarVerActual.Name = "btn_dejarVerActual";
             btn_dejarVerActual.Size = new Size(33, 27);
             btn_dejarVerActual.SizeMode = PictureBoxSizeMode.Zoom;
@@ -152,7 +152,7 @@
             // 
             btn_verConfirmar.Anchor = AnchorStyles.Right;
             btn_verConfirmar.Image = (Image)resources.GetObject("btn_verConfirmar.Image");
-            btn_verConfirmar.Location = new Point(898, 266);
+            btn_verConfirmar.Location = new Point(1052, 340);
             btn_verConfirmar.Name = "btn_verConfirmar";
             btn_verConfirmar.Size = new Size(33, 27);
             btn_verConfirmar.SizeMode = PictureBoxSizeMode.Zoom;
@@ -164,7 +164,7 @@
             // 
             btn_verNueva.Anchor = AnchorStyles.Right;
             btn_verNueva.Image = (Image)resources.GetObject("btn_verNueva.Image");
-            btn_verNueva.Location = new Point(898, 200);
+            btn_verNueva.Location = new Point(1052, 275);
             btn_verNueva.Name = "btn_verNueva";
             btn_verNueva.Size = new Size(33, 27);
             btn_verNueva.SizeMode = PictureBoxSizeMode.Zoom;
@@ -176,7 +176,7 @@
             // 
             btn_verActual.Anchor = AnchorStyles.Right;
             btn_verActual.Image = (Image)resources.GetObject("btn_verActual.Image");
-            btn_verActual.Location = new Point(898, 130);
+            btn_verActual.Location = new Point(1052, 210);
             btn_verActual.Name = "btn_verActual";
             btn_verActual.Size = new Size(33, 27);
             btn_verActual.SizeMode = PictureBoxSizeMode.Zoom;
@@ -192,7 +192,7 @@
             btn_cancelar.FlatStyle = FlatStyle.Flat;
             btn_cancelar.Font = new Font("Century Gothic", 9.75F);
             btn_cancelar.ForeColor = Color.White;
-            btn_cancelar.Location = new Point(663, 408);
+            btn_cancelar.Location = new Point(793, 683);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(132, 43);
             btn_cancelar.TabIndex = 15;
@@ -208,7 +208,7 @@
             btn_aceptar.FlatStyle = FlatStyle.Flat;
             btn_aceptar.Font = new Font("Century Gothic", 9.75F);
             btn_aceptar.ForeColor = Color.White;
-            btn_aceptar.Location = new Point(372, 408);
+            btn_aceptar.Location = new Point(502, 683);
             btn_aceptar.Name = "btn_aceptar";
             btn_aceptar.Size = new Size(132, 43);
             btn_aceptar.TabIndex = 14;
@@ -225,7 +225,7 @@
             txt_confirmar.ForeColor = SystemColors.ControlText;
             txt_confirmar.Location = new Point(560, 266);
             txt_confirmar.Name = "txt_confirmar";
-            txt_confirmar.Size = new Size(332, 27);
+            txt_confirmar.Size = new Size(486, 27);
             txt_confirmar.TabIndex = 13;
             // 
             // txt_contraNueva
@@ -237,7 +237,7 @@
             txt_contraNueva.ForeColor = SystemColors.ControlText;
             txt_contraNueva.Location = new Point(560, 200);
             txt_contraNueva.Name = "txt_contraNueva";
-            txt_contraNueva.Size = new Size(332, 27);
+            txt_contraNueva.Size = new Size(486, 27);
             txt_contraNueva.TabIndex = 12;
             // 
             // txt_contraActual
@@ -249,7 +249,7 @@
             txt_contraActual.ForeColor = SystemColors.ControlText;
             txt_contraActual.Location = new Point(560, 130);
             txt_contraActual.Name = "txt_contraActual";
-            txt_contraActual.Size = new Size(332, 27);
+            txt_contraActual.Size = new Size(486, 27);
             txt_contraActual.TabIndex = 11;
             // 
             // label3
@@ -292,7 +292,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1164, 513);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form_cambiarContraseñaAjustes";

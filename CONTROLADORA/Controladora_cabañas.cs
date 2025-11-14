@@ -189,28 +189,5 @@ namespace CONTROLADORA
             }
 
         }
-
-        public List<DateTime> ObtenerFechasBloqueadasParaCabañaInactiva(int idCabaña)
-        {
-            using (var context = new Context())
-            {
-                var cabaña = context.Cabañas.FirstOrDefault(c => c.CabañaId == idCabaña && !c.Activa);
-
-                if (cabaña == null)
-                    return new List<DateTime>();
-
-                DateTime hoy = DateTime.Today;
-                DateTime fin = hoy.AddMonths(1);
-
-                List<DateTime> fechasBloqueadas = new List<DateTime>();
-
-                for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
-                {
-                    fechasBloqueadas.Add(fecha);
-                }
-
-                return fechasBloqueadas;
-            }
-        }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251021233253_first")]
-    partial class first
+    [Migration("20251113160650_opne")]
+    partial class opne
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace MODELO.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CategoriaServicio", b =>
+                {
+                    b.Property<int>("CategoriasCategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiciosServicioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriasCategoriaId", "ServiciosServicioId");
+
+                    b.HasIndex("ServiciosServicioId");
+
+                    b.ToTable("ServiciosCategorias", (string)null);
+                });
 
             modelBuilder.Entity("GrupoPermiso", b =>
                 {
@@ -90,11 +105,7 @@ namespace MODELO.Migrations
 
                     b.HasKey("ClienteAuditoriaId");
 
-                    b.HasIndex("IdCliente");
-
                     b.HasIndex("IdMovimiento");
-
-                    b.HasIndex("IdUsuario");
 
                     b.ToTable("ClientesAuditoria");
                 });
@@ -186,6 +197,34 @@ namespace MODELO.Migrations
                     b.ToTable("Cabañas");
                 });
 
+            modelBuilder.Entity("MODELO.Categoria", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoriaId"));
+
+                    b.Property<bool>("Activa")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoriaId");
+
+                    b.ToTable("Categorias");
+                });
+
             modelBuilder.Entity("MODELO.Cliente", b =>
                 {
                     b.Property<int>("ClienteId")
@@ -253,6 +292,50 @@ namespace MODELO.Migrations
                     b.ToTable("Permisos");
                 });
 
+            modelBuilder.Entity("MODELO.Empleado", b =>
+                {
+                    b.Property<int>("EmpleadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpleadoId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Dni")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Turno")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmpleadoId");
+
+                    b.ToTable("Empleados");
+                });
+
             modelBuilder.Entity("MODELO.ImagenCabaña", b =>
                 {
                     b.Property<int>("ImagenCabañaId")
@@ -273,6 +356,52 @@ namespace MODELO.Migrations
                     b.HasIndex("CabañaId");
 
                     b.ToTable("ImagenesCabaña");
+                });
+
+            modelBuilder.Entity("MODELO.ImagenServicio", b =>
+                {
+                    b.Property<int>("ImagenServicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenServicioId"));
+
+                    b.Property<byte[]>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ServicioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagenServicioId");
+
+                    b.HasIndex("ServicioId");
+
+                    b.ToTable("ImagenesServicio");
+                });
+
+            modelBuilder.Entity("MODELO.Mantenimiento", b =>
+                {
+                    b.Property<int>("MantenimientoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MantenimientoId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MantenimientoId");
+
+                    b.ToTable("Mantenimientos");
                 });
 
             modelBuilder.Entity("MODELO.MotivoCancelacion", b =>
@@ -353,6 +482,33 @@ namespace MODELO.Migrations
                     b.ToTable("Reservas");
                 });
 
+            modelBuilder.Entity("MODELO.Servicio", b =>
+                {
+                    b.Property<int>("ServicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServicioId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Importe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServicioId");
+
+                    b.ToTable("Servicios");
+                });
+
             modelBuilder.Entity("MODELO.Usuario", b =>
                 {
                     b.Property<int>("UsuarioId")
@@ -408,6 +564,21 @@ namespace MODELO.Migrations
                     b.ToTable("ReservaMotivoCancelacion", (string)null);
                 });
 
+            modelBuilder.Entity("CategoriaServicio", b =>
+                {
+                    b.HasOne("MODELO.Categoria", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriasCategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MODELO.Servicio", null)
+                        .WithMany()
+                        .HasForeignKey("ServiciosServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GrupoPermiso", b =>
                 {
                     b.HasOne("MODELO.Composite.Grupo", null)
@@ -425,29 +596,13 @@ namespace MODELO.Migrations
 
             modelBuilder.Entity("MODELO.Auditoria.ClienteAuditoria", b =>
                 {
-                    b.HasOne("MODELO.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MODELO.Auditoria.Movimiento", "Movimiento")
                         .WithMany()
                         .HasForeignKey("IdMovimiento")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MODELO.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
                     b.Navigation("Movimiento");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("MODELO.Auditoria.UsuarioAuditoria", b =>
@@ -476,6 +631,17 @@ namespace MODELO.Migrations
                         .IsRequired();
 
                     b.Navigation("Cabaña");
+                });
+
+            modelBuilder.Entity("MODELO.ImagenServicio", b =>
+                {
+                    b.HasOne("MODELO.Servicio", "Servicio")
+                        .WithMany("Imagenes")
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Servicio");
                 });
 
             modelBuilder.Entity("MODELO.Reserva", b =>
@@ -524,6 +690,11 @@ namespace MODELO.Migrations
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>
+                {
+                    b.Navigation("Imagenes");
+                });
+
+            modelBuilder.Entity("MODELO.Servicio", b =>
                 {
                     b.Navigation("Imagenes");
                 });

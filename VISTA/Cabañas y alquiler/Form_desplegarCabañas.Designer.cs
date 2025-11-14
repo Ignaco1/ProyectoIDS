@@ -66,7 +66,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1164, 93);
+            panel1.Size = new Size(1318, 93);
             panel1.TabIndex = 0;
             // 
             // dtp_salida
@@ -163,7 +163,7 @@
             btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
             btn_quitarFiltro.FlatAppearance.BorderSize = 0;
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
-            btn_quitarFiltro.Location = new Point(1049, 30);
+            btn_quitarFiltro.Location = new Point(1203, 30);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(102, 26);
             btn_quitarFiltro.TabIndex = 34;
@@ -176,9 +176,9 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(btn_cerrar);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 703);
+            panel2.Location = new Point(0, 897);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1164, 51);
+            panel2.Size = new Size(1318, 51);
             panel2.TabIndex = 1;
             // 
             // btn_cerrar
@@ -187,7 +187,7 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(1057, 20);
+            btn_cerrar.Location = new Point(1211, 20);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(102, 26);
             btn_cerrar.TabIndex = 8;
@@ -201,7 +201,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 93);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1164, 610);
+            panel3.Size = new Size(1318, 804);
             panel3.TabIndex = 2;
             // 
             // flp_cabañas
@@ -210,7 +210,7 @@
             flp_cabañas.Dock = DockStyle.Fill;
             flp_cabañas.Location = new Point(0, 0);
             flp_cabañas.Name = "flp_cabañas";
-            flp_cabañas.Size = new Size(1164, 610);
+            flp_cabañas.Size = new Size(1318, 804);
             flp_cabañas.TabIndex = 0;
             // 
             // Form_desplegarCabañas
@@ -218,7 +218,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1164, 754);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);

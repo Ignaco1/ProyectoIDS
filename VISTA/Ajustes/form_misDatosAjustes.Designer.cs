@@ -53,7 +53,7 @@
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
             btn_cancelar.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_cancelar.Location = new Point(649, 420);
+            btn_cancelar.Location = new Point(726, 855);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(132, 43);
             btn_cancelar.TabIndex = 1;
@@ -68,7 +68,7 @@
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
             btn_guardar.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_guardar.Location = new Point(388, 420);
+            btn_guardar.Location = new Point(465, 855);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(132, 43);
             btn_guardar.TabIndex = 0;
@@ -98,7 +98,7 @@
             panel2.ForeColor = Color.White;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1164, 513);
+            panel2.Size = new Size(1318, 948);
             panel2.TabIndex = 13;
             // 
             // listbox_permisos
@@ -107,9 +107,9 @@
             listbox_permisos.Font = new Font("Century Gothic", 9F);
             listbox_permisos.FormattingEnabled = true;
             listbox_permisos.ItemHeight = 17;
-            listbox_permisos.Location = new Point(717, 83);
+            listbox_permisos.Location = new Point(871, 83);
             listbox_permisos.Name = "listbox_permisos";
-            listbox_permisos.Size = new Size(240, 225);
+            listbox_permisos.Size = new Size(240, 650);
             listbox_permisos.TabIndex = 24;
             // 
             // txt_email
@@ -118,7 +118,7 @@
             txt_email.Font = new Font("Century Gothic", 9F);
             txt_email.Location = new Point(389, 286);
             txt_email.Name = "txt_email";
-            txt_email.Size = new Size(237, 22);
+            txt_email.Size = new Size(391, 22);
             txt_email.TabIndex = 23;
             // 
             // label6
@@ -137,7 +137,7 @@
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 9F);
-            label5.Location = new Point(649, 83);
+            label5.Location = new Point(803, 83);
             label5.Name = "label5";
             label5.Size = new Size(62, 17);
             label5.TabIndex = 20;
@@ -149,7 +149,7 @@
             txt_grupo.Font = new Font("Century Gothic", 9F);
             txt_grupo.Location = new Point(389, 236);
             txt_grupo.Name = "txt_grupo";
-            txt_grupo.Size = new Size(183, 22);
+            txt_grupo.Size = new Size(337, 22);
             txt_grupo.TabIndex = 19;
             // 
             // label4
@@ -167,7 +167,7 @@
             // 
             txt_usuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             txt_usuario.Font = new Font("Century Gothic", 9F);
-            txt_usuario.Location = new Point(427, 184);
+            txt_usuario.Location = new Point(389, 185);
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(187, 22);
             txt_usuario.TabIndex = 17;
@@ -177,7 +177,7 @@
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 9F);
-            label3.Location = new Point(360, 187);
+            label3.Location = new Point(322, 188);
             label3.Name = "label3";
             label3.Size = new Size(54, 17);
             label3.TabIndex = 16;
@@ -189,7 +189,7 @@
             txt_apellido.Font = new Font("Century Gothic", 9F);
             txt_apellido.Location = new Point(389, 133);
             txt_apellido.Name = "txt_apellido";
-            txt_apellido.Size = new Size(210, 22);
+            txt_apellido.Size = new Size(364, 22);
             txt_apellido.TabIndex = 15;
             // 
             // label2
@@ -209,7 +209,7 @@
             txt_nombre.Font = new Font("Century Gothic", 9F);
             txt_nombre.Location = new Point(389, 83);
             txt_nombre.Name = "txt_nombre";
-            txt_nombre.Size = new Size(210, 22);
+            txt_nombre.Size = new Size(364, 22);
             txt_nombre.TabIndex = 13;
             // 
             // label1
@@ -227,7 +227,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1164, 513);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "form_misDatosAjustes";

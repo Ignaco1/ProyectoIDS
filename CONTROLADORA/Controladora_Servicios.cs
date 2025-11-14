@@ -36,7 +36,8 @@ namespace CONTROLADORA
             using (var context = new Context())
             {
                 return context.Servicios
-                    .Include(s => s.Categorias)      
+                    .Include(s => s.Categorias)
+                    .Include(s => s.Imagenes)
                     .AsNoTracking()
                     .ToList()
                     .AsReadOnly();
@@ -44,7 +45,7 @@ namespace CONTROLADORA
 
         }
 
-        public Servicio CrearServicio(string nombre, string descripcion, decimal importe)
+        public Servicio CrearServicio(string nombre, string descripcion, decimal importe, List<byte[]> imagenes)
         {
             Servicio servicio = new Servicio();
 
@@ -53,6 +54,15 @@ namespace CONTROLADORA
             servicio.Importe = importe;
             servicio.Activo = true;
             servicio.Categorias = new List<Categoria>();
+
+            if (imagenes != null)
+            {
+                foreach (var img in imagenes)
+                {
+                    servicio.Imagenes.Add(new ImagenServicio { Imagen = img });
+                }
+            }
+
             return servicio;
         }
 
@@ -76,21 +86,37 @@ namespace CONTROLADORA
 
         }
 
-        public string ModificarServicio(Servicio servicio)
+        public string ModificarServicio(Servicio servicio, List<int> imagenesAEliminar)
         {
 
             using (var context = new Context())
             {
-                try
+                var servicioDB = context.Servicios
+                    .Include(s => s.Imagenes)
+                    .Include(s => s.Categorias)
+                    .FirstOrDefault(s => s.ServicioId == servicio.ServicioId);
+
+                if (servicioDB == null)
+                    return "No se encontró el servicio.";
+
+                servicioDB.Nombre = servicio.Nombre;
+                servicioDB.Descripcion = servicio.Descripcion;
+                servicioDB.Importe = servicio.Importe;
+
+                foreach (var id in imagenesAEliminar)
                 {
-                    context.Update(servicio);
-                    context.SaveChanges();
-                    return $"Servicio modificado con exito";
+                    var img = servicioDB.Imagenes.FirstOrDefault(i => i.ImagenServicioId == id);
+                    if (img != null) context.ImagenesServicio.Remove(img);
                 }
-                catch (Exception ex)
+
+                servicioDB.Imagenes.Clear();
+                foreach (var img in servicio.Imagenes)
                 {
-                    return "Ocurrio un error en el sistema:  " + ex.Message;
+                    servicioDB.Imagenes.Add(new ImagenServicio { Imagen = img.Imagen });
                 }
+
+                context.SaveChanges();
+                return "Servicio modificado correctamente.";
             }
 
 

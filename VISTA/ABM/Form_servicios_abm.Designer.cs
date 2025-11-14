@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_servicios_abm));
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
             groupBox_carga = new GroupBox();
+            pictureBox_imagenes = new PictureBox();
+            btn_borrar = new PictureBox();
+            flowLayoutPanel_imagenes = new FlowLayoutPanel();
+            btn_imagenes = new Button();
+            label1 = new Label();
             btn_cancelar = new Button();
             btn_guardar = new Button();
             check_listaCategorias = new CheckedListBox();
@@ -60,6 +66,8 @@
             btn_cerrar = new Button();
             panel1.SuspendLayout();
             groupBox_carga.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_imagenes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btn_borrar).BeginInit();
             panel2.SuspendLayout();
             groupBox_grilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -79,6 +87,11 @@
             // groupBox_carga
             // 
             groupBox_carga.BackColor = Color.Gray;
+            groupBox_carga.Controls.Add(pictureBox_imagenes);
+            groupBox_carga.Controls.Add(btn_borrar);
+            groupBox_carga.Controls.Add(flowLayoutPanel_imagenes);
+            groupBox_carga.Controls.Add(btn_imagenes);
+            groupBox_carga.Controls.Add(label1);
             groupBox_carga.Controls.Add(btn_cancelar);
             groupBox_carga.Controls.Add(btn_guardar);
             groupBox_carga.Controls.Add(check_listaCategorias);
@@ -98,6 +111,56 @@
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
+            // 
+            // pictureBox_imagenes
+            // 
+            pictureBox_imagenes.Location = new Point(70, 732);
+            pictureBox_imagenes.MaximumSize = new Size(197, 179);
+            pictureBox_imagenes.Name = "pictureBox_imagenes";
+            pictureBox_imagenes.Size = new Size(159, 149);
+            pictureBox_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox_imagenes.TabIndex = 36;
+            pictureBox_imagenes.TabStop = false;
+            // 
+            // btn_borrar
+            // 
+            btn_borrar.Image = (Image)resources.GetObject("btn_borrar.Image");
+            btn_borrar.Location = new Point(246, 571);
+            btn_borrar.Name = "btn_borrar";
+            btn_borrar.Size = new Size(44, 57);
+            btn_borrar.SizeMode = PictureBoxSizeMode.Zoom;
+            btn_borrar.TabIndex = 38;
+            btn_borrar.TabStop = false;
+            btn_borrar.Click += btn_borrar_Click;
+            // 
+            // flowLayoutPanel_imagenes
+            // 
+            flowLayoutPanel_imagenes.Location = new Point(15, 634);
+            flowLayoutPanel_imagenes.Name = "flowLayoutPanel_imagenes";
+            flowLayoutPanel_imagenes.Size = new Size(272, 92);
+            flowLayoutPanel_imagenes.TabIndex = 37;
+            // 
+            // btn_imagenes
+            // 
+            btn_imagenes.BackColor = Color.FromArgb(0, 84, 168);
+            btn_imagenes.FlatAppearance.BorderSize = 0;
+            btn_imagenes.FlatStyle = FlatStyle.Flat;
+            btn_imagenes.Location = new Point(182, 582);
+            btn_imagenes.Name = "btn_imagenes";
+            btn_imagenes.Size = new Size(47, 32);
+            btn_imagenes.TabIndex = 34;
+            btn_imagenes.Text = "...";
+            btn_imagenes.UseVisualStyleBackColor = false;
+            btn_imagenes.Click += btn_imagenes_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 590);
+            label1.Name = "label1";
+            label1.Size = new Size(69, 17);
+            label1.TabIndex = 35;
+            label1.Text = "Imagenés:";
             // 
             // btn_cancelar
             // 
@@ -132,7 +195,7 @@
             check_listaCategorias.FormattingEnabled = true;
             check_listaCategorias.Location = new Point(89, 316);
             check_listaCategorias.Name = "check_listaCategorias";
-            check_listaCategorias.Size = new Size(198, 310);
+            check_listaCategorias.Size = new Size(198, 242);
             check_listaCategorias.TabIndex = 29;
             // 
             // txt_importe
@@ -411,6 +474,8 @@
             panel1.ResumeLayout(false);
             groupBox_carga.ResumeLayout(false);
             groupBox_carga.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_imagenes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btn_borrar).EndInit();
             panel2.ResumeLayout(false);
             groupBox_grilla.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -448,5 +513,10 @@
         private Label label10;
         private Button btn_quitarFiltro;
         private ComboBox cb_categoriasFiltro;
+        private PictureBox pictureBox_imagenes;
+        private PictureBox btn_borrar;
+        private FlowLayoutPanel flowLayoutPanel_imagenes;
+        private Button btn_imagenes;
+        private Label label1;
     }
 }

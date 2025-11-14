@@ -358,7 +358,7 @@
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(305, 19);
+            txt_nombreFiltro.Location = new Point(461, 18);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(136, 22);
             txt_nombreFiltro.TabIndex = 0;
@@ -367,7 +367,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(245, 22);
+            label3.Location = new Point(401, 21);
             label3.Name = "label3";
             label3.Size = new Size(59, 17);
             label3.TabIndex = 6;
@@ -375,7 +375,7 @@
             // 
             // txt_apellidoFiltro
             // 
-            txt_apellidoFiltro.Location = new Point(539, 19);
+            txt_apellidoFiltro.Location = new Point(695, 18);
             txt_apellidoFiltro.Name = "txt_apellidoFiltro";
             txt_apellidoFiltro.Size = new Size(136, 22);
             txt_apellidoFiltro.TabIndex = 5;
@@ -384,7 +384,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(479, 22);
+            label2.Location = new Point(635, 21);
             label2.Name = "label2";
             label2.Size = new Size(61, 17);
             label2.TabIndex = 4;
@@ -392,7 +392,7 @@
             // 
             // txt_dniFiltro
             // 
-            txt_dniFiltro.Location = new Point(70, 19);
+            txt_dniFiltro.Location = new Point(226, 18);
             txt_dniFiltro.Name = "txt_dniFiltro";
             txt_dniFiltro.Size = new Size(136, 22);
             txt_dniFiltro.TabIndex = 3;
@@ -401,7 +401,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(34, 22);
+            label1.Location = new Point(190, 21);
             label1.Name = "label1";
             label1.Size = new Size(32, 17);
             label1.TabIndex = 2;
@@ -412,7 +412,7 @@
             btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
             btn_quitarFiltro.FlatAppearance.BorderSize = 0;
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
-            btn_quitarFiltro.Location = new Point(742, 16);
+            btn_quitarFiltro.Location = new Point(935, 18);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(103, 23);
             btn_quitarFiltro.TabIndex = 1;

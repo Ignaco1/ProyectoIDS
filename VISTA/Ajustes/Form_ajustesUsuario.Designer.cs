@@ -51,13 +51,13 @@
             panel_botones.Dock = DockStyle.Top;
             panel_botones.Location = new Point(0, 0);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(1164, 101);
+            panel_botones.Size = new Size(1318, 101);
             panel_botones.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(951, 0);
+            panel3.Location = new Point(1105, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(211, 99);
             panel3.TabIndex = 7;
@@ -78,7 +78,7 @@
             btn_cambiarContra.FlatStyle = FlatStyle.Flat;
             btn_cambiarContra.Font = new Font("Century Gothic", 9F);
             btn_cambiarContra.ForeColor = Color.White;
-            btn_cambiarContra.Location = new Point(805, 32);
+            btn_cambiarContra.Location = new Point(959, 32);
             btn_cambiarContra.Name = "btn_cambiarContra";
             btn_cambiarContra.Size = new Size(142, 37);
             btn_cambiarContra.TabIndex = 5;
@@ -106,9 +106,9 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btn_cerrar);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 614);
+            panel1.Location = new Point(0, 897);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1164, 51);
+            panel1.Size = new Size(1318, 51);
             panel1.TabIndex = 1;
             // 
             // btn_cerrar
@@ -119,7 +119,7 @@
             btn_cerrar.FlatStyle = FlatStyle.Flat;
             btn_cerrar.Font = new Font("Century Gothic", 9F);
             btn_cerrar.ForeColor = Color.White;
-            btn_cerrar.Location = new Point(1057, 23);
+            btn_cerrar.Location = new Point(1211, 23);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(102, 23);
             btn_cerrar.TabIndex = 1;
@@ -132,7 +132,7 @@
             panel_forms.Dock = DockStyle.Fill;
             panel_forms.Location = new Point(0, 101);
             panel_forms.Name = "panel_forms";
-            panel_forms.Size = new Size(1164, 513);
+            panel_forms.Size = new Size(1318, 796);
             panel_forms.TabIndex = 2;
             // 
             // Form_ajustesUsuario
@@ -140,7 +140,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1164, 665);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel_forms);
             Controls.Add(panel1);
             Controls.Add(panel_botones);

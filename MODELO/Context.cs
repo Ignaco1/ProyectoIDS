@@ -29,6 +29,7 @@ namespace MODELO
         public DbSet<Servicio> Servicios { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Mantenimiento> Mantenimientos { get; set; }
+        public DbSet<ImagenServicio> ImagenesServicio { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
@@ -61,6 +62,12 @@ namespace MODELO
             .HasMany(s => s.Categorias)
             .WithMany(c => c.Servicios)
             .UsingEntity(j => j.ToTable("ServiciosCategorias"));
+
+            modelBuilder.Entity<Servicio>()
+            .HasMany(s => s.Imagenes)
+            .WithOne(i => i.Servicio)
+            .HasForeignKey(i => i.ServicioId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         }
 

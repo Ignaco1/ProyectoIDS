@@ -74,9 +74,9 @@
             // 
             panel_carga.Controls.Add(groupBox_carga);
             panel_carga.Dock = DockStyle.Right;
-            panel_carga.Location = new Point(866, 0);
+            panel_carga.Location = new Point(1009, 0);
             panel_carga.Name = "panel_carga";
-            panel_carga.Size = new Size(309, 729);
+            panel_carga.Size = new Size(309, 948);
             panel_carga.TabIndex = 0;
             // 
             // groupBox_carga
@@ -97,7 +97,7 @@
             groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
             groupBox_carga.Name = "groupBox_carga";
-            groupBox_carga.Size = new Size(309, 729);
+            groupBox_carga.Size = new Size(309, 948);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
@@ -154,7 +154,7 @@
             btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
-            btn_cancelar.Location = new Point(214, 700);
+            btn_cancelar.Location = new Point(214, 919);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(92, 23);
             btn_cancelar.TabIndex = 6;
@@ -168,7 +168,7 @@
             btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(6, 700);
+            btn_guardar.Location = new Point(6, 919);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(92, 23);
             btn_guardar.TabIndex = 5;
@@ -218,7 +218,7 @@
             panel_grilla.Dock = DockStyle.Fill;
             panel_grilla.Location = new Point(0, 0);
             panel_grilla.Name = "panel_grilla";
-            panel_grilla.Size = new Size(866, 729);
+            panel_grilla.Size = new Size(1009, 948);
             panel_grilla.TabIndex = 1;
             // 
             // groupBox_lista
@@ -230,7 +230,7 @@
             groupBox_lista.ForeColor = Color.White;
             groupBox_lista.Location = new Point(0, 0);
             groupBox_lista.Name = "groupBox_lista";
-            groupBox_lista.Size = new Size(866, 729);
+            groupBox_lista.Size = new Size(1009, 948);
             groupBox_lista.TabIndex = 0;
             groupBox_lista.TabStop = false;
             groupBox_lista.Text = "Lista de usuarios";
@@ -273,7 +273,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
             dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(860, 572);
+            dataGridView.Size = new Size(1003, 791);
             dataGridView.TabIndex = 2;
             dataGridView.CellClick += dataGridView_CellClick;
             // 
@@ -289,7 +289,7 @@
             panel_filtro.Dock = DockStyle.Top;
             panel_filtro.Location = new Point(3, 18);
             panel_filtro.Name = "panel_filtro";
-            panel_filtro.Size = new Size(860, 63);
+            panel_filtro.Size = new Size(1003, 63);
             panel_filtro.TabIndex = 1;
             // 
             // btn_quitarFiltro
@@ -298,7 +298,7 @@
             btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
             btn_quitarFiltro.FlatAppearance.BorderSize = 0;
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
-            btn_quitarFiltro.Location = new Point(754, 21);
+            btn_quitarFiltro.Location = new Point(900, 21);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
             btn_quitarFiltro.Size = new Size(103, 23);
             btn_quitarFiltro.TabIndex = 18;
@@ -308,7 +308,7 @@
             // 
             // txt_apellidoFiltro
             // 
-            txt_apellidoFiltro.Location = new Point(544, 21);
+            txt_apellidoFiltro.Location = new Point(570, 22);
             txt_apellidoFiltro.Name = "txt_apellidoFiltro";
             txt_apellidoFiltro.Size = new Size(151, 22);
             txt_apellidoFiltro.TabIndex = 17;
@@ -317,7 +317,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(477, 24);
+            label9.Location = new Point(503, 25);
             label9.Name = "label9";
             label9.Size = new Size(61, 17);
             label9.TabIndex = 16;
@@ -325,7 +325,7 @@
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(322, 20);
+            txt_nombreFiltro.Location = new Point(348, 21);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(151, 22);
             txt_nombreFiltro.TabIndex = 15;
@@ -334,7 +334,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(257, 23);
+            label8.Location = new Point(283, 24);
             label8.Name = "label8";
             label8.Size = new Size(59, 17);
             label8.TabIndex = 7;
@@ -343,7 +343,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1, 24);
+            label1.Location = new Point(27, 25);
             label1.Name = "label1";
             label1.Size = new Size(99, 17);
             label1.TabIndex = 6;
@@ -353,7 +353,7 @@
             // 
             cb_tipoFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_tipoFiltro.FormattingEnabled = true;
-            cb_tipoFiltro.Location = new Point(106, 20);
+            cb_tipoFiltro.Location = new Point(132, 21);
             cb_tipoFiltro.Name = "cb_tipoFiltro";
             cb_tipoFiltro.Size = new Size(145, 25);
             cb_tipoFiltro.TabIndex = 5;
@@ -366,9 +366,9 @@
             panel_botones.Controls.Add(btn_modificar);
             panel_botones.Controls.Add(btn_agregar);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(3, 653);
+            panel_botones.Location = new Point(3, 872);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(860, 73);
+            panel_botones.Size = new Size(1003, 73);
             panel_botones.TabIndex = 0;
             // 
             // btn_cerrar
@@ -377,7 +377,7 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(754, 47);
+            btn_cerrar.Location = new Point(897, 47);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(103, 23);
             btn_cerrar.TabIndex = 3;
@@ -429,7 +429,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1175, 729);
+            ClientSize = new Size(1318, 948);
             Controls.Add(panel_grilla);
             Controls.Add(panel_carga);
             Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);

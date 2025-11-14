@@ -19,7 +19,10 @@ namespace VISTA.ABM
         string vari;
         int indice;
         string variF = "";
+        private PictureBox imagenSeleccionada = null;
         private List<Servicio> listaServiciosFiltro = new List<Servicio>();
+        private List<byte[]> imagenesBytes = new List<byte[]>();
+        private List<int> imagenesAEliminar = new List<int>();
 
         public Form_servicios_abm()
         {
@@ -93,6 +96,10 @@ namespace VISTA.ABM
             {
                 check_listaCategorias.SetItemChecked(i, false);
             }
+
+            imagenesBytes.Clear();
+            flowLayoutPanel_imagenes.Controls.Clear();
+            pictureBox_imagenes.Image = null;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -151,6 +158,26 @@ namespace VISTA.ABM
             {
                 bool estaAsignado = servicio.Categorias.Any(p => p.CategoriaId == categoria.CategoriaId);
                 check_listaCategorias.Items.Add(categoria, estaAsignado);
+            }
+
+            imagenesBytes.Clear();
+            imagenesAEliminar.Clear();
+            flowLayoutPanel_imagenes.Controls.Clear();
+            pictureBox_imagenes.Image = null;
+
+            foreach (var img in servicio.Imagenes)
+            {
+                imagenesBytes.Add(img.Imagen);
+                var pb = CrearMiniatura(img.Imagen);
+                flowLayoutPanel_imagenes.Controls.Add(pb);
+            }
+
+            if (imagenesBytes.Count > 0)
+            {
+                using (MemoryStream ms = new MemoryStream(imagenesBytes[0]))
+                {
+                    pictureBox_imagenes.Image = System.Drawing.Image.FromStream(ms);
+                }
             }
 
             MODO_CARGA();
@@ -246,19 +273,24 @@ namespace VISTA.ABM
                 return;
             }
 
+            if (imagenesBytes.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos una imagen para el servicio.", "Error");
+                return;
+            }
+
 
             #endregion
 
             if (vari == "A")
             {
-                servicio = contro_serv.CrearServicio(txt_nombre.Text, txt_descripcion.Text, importe);
+                servicio = contro_serv.CrearServicio(txt_nombre.Text, txt_descripcion.Text, importe, imagenesBytes);
 
                 try
                 {
                     string resultado = contro_serv.AgregarServicio(servicio);
                     string result = contro_serv.AsignarCategoriaAServicio(servicio.ServicioId, categorias);
                     MessageBox.Show(resultado);
-                    MessageBox.Show(result);
                 }
                 catch (Exception ex)
                 {
@@ -282,12 +314,20 @@ namespace VISTA.ABM
                 servicio.Descripcion = txt_descripcion.Text;
                 servicio.Importe = importe;
 
+                servicio.Imagenes.Clear();
+                foreach (var img in imagenesBytes)
+                {
+                    servicio.Imagenes.Add(new ImagenServicio
+                    {
+                        Imagen = img
+                    });
+                }
+
                 try
                 {
-                    string resultado = contro_serv.ModificarServicio(servicio);
+                    string resultado = contro_serv.ModificarServicio(servicio, imagenesAEliminar);
                     string result = contro_serv.AsignarCategoriaAServicio(servicio.ServicioId, categorias);
                     MessageBox.Show(resultado);
-                    MessageBox.Show(result);
 
                 }
                 catch (Exception ex)
@@ -342,12 +382,12 @@ namespace VISTA.ABM
             listaServiciosFiltro = contro_serv.ListarServicios()
                 .Where(c =>
                 (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
-                ((!categoriaIdFiltro.HasValue && string.IsNullOrWhiteSpace(categoriaFiltro)) 
+                ((!categoriaIdFiltro.HasValue && string.IsNullOrWhiteSpace(categoriaFiltro))
                 || (categoriaIdFiltro.HasValue && (c.Categorias ?? Enumerable.Empty<Categoria>())
-                .Any(cat => cat.CategoriaId == categoriaIdFiltro.Value))             
+                .Any(cat => cat.CategoriaId == categoriaIdFiltro.Value))
                 || (!string.IsNullOrWhiteSpace(categoriaFiltro) && (c.Categorias ?? Enumerable.Empty<Categoria>())
                 .Any(cat => (cat.Nombre ?? "")
-                .IndexOf(categoriaFiltro, StringComparison.OrdinalIgnoreCase) >= 0)) 
+                .IndexOf(categoriaFiltro, StringComparison.OrdinalIgnoreCase) >= 0))
                 )).ToList();
 
             var datosAmostrar = listaServiciosFiltro
@@ -381,6 +421,82 @@ namespace VISTA.ABM
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
             variF = "F";
+        }
+
+        private void btn_imagenes_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Multiselect = true;
+                ofd.Filter = "Imágenes|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (string archivo in ofd.FileNames)
+                    {
+                        byte[] nuevaImagen = File.ReadAllBytes(archivo);
+                        if (imagenesBytes.Any(img => img.SequenceEqual(nuevaImagen)))
+                            continue;
+
+                        imagenesBytes.Add(nuevaImagen);
+
+                        PictureBox pbMini = CrearMiniatura(nuevaImagen);
+                        flowLayoutPanel_imagenes.Controls.Add(pbMini);
+
+                        if (imagenesBytes.Count == 1)
+                            pictureBox_imagenes.Image = pbMini.Image;
+                    }
+                }
+            }
+        }
+
+        private PictureBox CrearMiniatura(byte[] imagen)
+        {
+            PictureBox pb = new PictureBox();
+            using (MemoryStream ms = new MemoryStream(imagen))
+            {
+                pb.Image = System.Drawing.Image.FromStream(ms);
+            }
+            pb.Width = 40;
+            pb.Height = 40;
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+            pb.Padding = new Padding(4);
+            pb.Cursor = Cursors.Hand;
+            pb.Click += (s, ev) =>
+            {
+                imagenSeleccionada = (PictureBox)s;
+                pictureBox_imagenes.Image = imagenSeleccionada.Image;
+            };
+            return pb;
+        }
+
+        private void btn_borrar_Click(object sender, EventArgs e)
+        {
+            if (pictureBox_imagenes.Image == null)
+            {
+                MessageBox.Show("No hay imagenes seleccionadas para eliminar.", "AVISO");
+                return;
+            }
+
+            int index = flowLayoutPanel_imagenes.Controls.IndexOf(imagenSeleccionada);
+
+            if (vari == "M")
+            {
+                if (index >= 0 && index < imagenesBytes.Count)
+                {
+                    var servicio = (variF == "F") ? listaServiciosFiltro[indice] : contro_serv.ListarServicios()[indice];
+                    var imgOriginal = servicio.Imagenes.ElementAtOrDefault(index);
+                    if (imgOriginal != null)
+                    {
+                        imagenesAEliminar.Add(imgOriginal.ImagenServicioId);
+                    }
+                }
+            }
+
+            imagenesBytes.RemoveAt(index);
+            flowLayoutPanel_imagenes.Controls.RemoveAt(index);
+            imagenSeleccionada = null;
+            pictureBox_imagenes.Image = null;
         }
     }
 }

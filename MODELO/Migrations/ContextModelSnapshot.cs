@@ -355,6 +355,28 @@ namespace MODELO.Migrations
                     b.ToTable("ImagenesCabaña");
                 });
 
+            modelBuilder.Entity("MODELO.ImagenServicio", b =>
+                {
+                    b.Property<int>("ImagenServicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenServicioId"));
+
+                    b.Property<byte[]>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ServicioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagenServicioId");
+
+                    b.HasIndex("ServicioId");
+
+                    b.ToTable("ImagenesServicio");
+                });
+
             modelBuilder.Entity("MODELO.Mantenimiento", b =>
                 {
                     b.Property<int>("MantenimientoId")
@@ -608,6 +630,17 @@ namespace MODELO.Migrations
                     b.Navigation("Cabaña");
                 });
 
+            modelBuilder.Entity("MODELO.ImagenServicio", b =>
+                {
+                    b.HasOne("MODELO.Servicio", "Servicio")
+                        .WithMany("Imagenes")
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Servicio");
+                });
+
             modelBuilder.Entity("MODELO.Reserva", b =>
                 {
                     b.HasOne("MODELO.Cabaña", "Cabaña")
@@ -654,6 +687,11 @@ namespace MODELO.Migrations
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>
+                {
+                    b.Navigation("Imagenes");
+                });
+
+            modelBuilder.Entity("MODELO.Servicio", b =>
                 {
                     b.Navigation("Imagenes");
                 });
