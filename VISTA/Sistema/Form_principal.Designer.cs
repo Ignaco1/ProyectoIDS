@@ -560,6 +560,7 @@
             btn_mantenimientos_abm.Text = "ABM de Mantenimientos";
             btn_mantenimientos_abm.TextAlign = ContentAlignment.MiddleLeft;
             btn_mantenimientos_abm.UseVisualStyleBackColor = false;
+            btn_mantenimientos_abm.Click += btn_mantenimientos_abm_Click;
             // 
             // btn_servicios_abm
             // 

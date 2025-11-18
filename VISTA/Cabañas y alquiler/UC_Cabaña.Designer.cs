@@ -55,7 +55,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(478, 237);
+            panel1.Size = new Size(513, 262);
             panel1.TabIndex = 0;
             panel1.MouseMove += panel1_MouseMove;
             // 
@@ -148,7 +148,7 @@
             Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
             Name = "UC_Cabaña";
-            Size = new Size(478, 237);
+            Size = new Size(513, 262);
             Load += UC_Cabaña_Load;
             Click += UC_Cabaña_Click;
             panel1.ResumeLayout(false);

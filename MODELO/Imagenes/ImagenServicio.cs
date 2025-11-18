@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MODELO
+namespace MODELO.Imagenes
 {
     [Table("ImagenesServicio")]
     public class ImagenServicio

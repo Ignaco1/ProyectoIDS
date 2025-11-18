@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MODELO.Auditoria;
 using MODELO.Composite;
+using MODELO.Imagenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace MODELO
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Mantenimiento> Mantenimientos { get; set; }
         public DbSet<ImagenServicio> ImagenesServicio { get; set; }
+        public DbSet<ImagenMantenimiento> ImagenesMantenimiento { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);

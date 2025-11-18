@@ -1,5 +1,6 @@
 ﻿using MODELO;
 using MODELO.Composite;
+using MODELO.Imagenes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -332,7 +333,7 @@ namespace VISTA.ABM
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al modificar el empleado:  " + ex.Message, "ERROR");
+                    MessageBox.Show("Error al modificar el servicio:  " + ex.Message, "ERROR");
                 }
             }
 

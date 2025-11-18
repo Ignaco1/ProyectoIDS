@@ -15,6 +15,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using VISTA.Cabañas_y_alquiler;
+using MODELO.Imagenes;
 
 
 namespace VISTA.ABM

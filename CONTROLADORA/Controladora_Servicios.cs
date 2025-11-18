@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MODELO;
 using MODELO.Composite;
+using MODELO.Imagenes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

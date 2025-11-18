@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MODELO.Imagenes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace MODELO
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public bool Activo { get; set; }
+
+        public virtual ICollection<ImagenMantenimiento> Imagenes { get; set; } = new List<ImagenMantenimiento>();
     }
 }
