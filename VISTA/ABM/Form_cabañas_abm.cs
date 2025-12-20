@@ -48,7 +48,7 @@ namespace VISTA.ABM
             txt_descripcion.Multiline = true;
             txt_descripcion.ScrollBars = ScrollBars.Vertical;
             txt_descripcion.WordWrap = true;
-            txt_descripcion.Height = 100;
+            txt_descripcion.Height = 250;
 
             cb_estado.Items.Add("Activa");
             cb_estado.Items.Add("Inactiva");

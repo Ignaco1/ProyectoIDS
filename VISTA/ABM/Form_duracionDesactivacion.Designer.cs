@@ -46,18 +46,18 @@
             // 
             // numericUpDown_dias
             // 
-            numericUpDown_dias.Location = new Point(79, 106);
+            numericUpDown_dias.Location = new Point(100, 112);
             numericUpDown_dias.Name = "numericUpDown_dias";
-            numericUpDown_dias.Size = new Size(137, 22);
+            numericUpDown_dias.Size = new Size(137, 30);
             numericUpDown_dias.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 9.75F);
-            label1.Location = new Point(62, 39);
+            label1.Location = new Point(44, 39);
             label1.Name = "label1";
-            label1.Size = new Size(173, 17);
+            label1.Size = new Size(265, 23);
             label1.TabIndex = 1;
             label1.Text = "Ingrese el numero de días";
             // 
@@ -67,7 +67,7 @@
             btn_guardar.FlatAppearance.MouseDownBackColor = Color.LightGray;
             btn_guardar.FlatAppearance.MouseOverBackColor = Color.FromArgb(85, 85, 85);
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(98, 160);
+            btn_guardar.Location = new Point(115, 168);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(101, 43);
             btn_guardar.TabIndex = 2;
@@ -83,7 +83,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(300, 30);
+            panel1.Size = new Size(350, 30);
             panel1.TabIndex = 3;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -92,9 +92,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(0, 9);
+            label3.Location = new Point(0, -5);
             label3.Name = "label3";
-            label3.Size = new Size(212, 21);
+            label3.Size = new Size(322, 32);
             label3.TabIndex = 13;
             label3.Text = "Duración Desactivación";
             label3.MouseDown += label3_MouseDown;
@@ -102,7 +102,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(270, 0);
+            pictureBox1.Location = new Point(320, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(30, 30);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -114,9 +114,9 @@
             // 
             panel2.BackColor = Color.FromArgb(0, 86, 172);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(290, 30);
+            panel2.Location = new Point(340, 30);
             panel2.Name = "panel2";
-            panel2.Size = new Size(10, 193);
+            panel2.Size = new Size(10, 206);
             panel2.TabIndex = 4;
             panel2.MouseDown += panel2_MouseDown;
             // 
@@ -126,7 +126,7 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 30);
             panel3.Name = "panel3";
-            panel3.Size = new Size(10, 193);
+            panel3.Size = new Size(10, 206);
             panel3.TabIndex = 5;
             panel3.MouseDown += panel3_MouseDown;
             // 
@@ -134,9 +134,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F);
-            label2.Location = new Point(79, 56);
+            label2.Location = new Point(79, 62);
             label2.Name = "label2";
-            label2.Size = new Size(137, 17);
+            label2.Size = new Size(208, 23);
             label2.TabIndex = 6;
             label2.Text = "de la desactivación";
             // 
@@ -144,17 +144,17 @@
             // 
             panel4.BackColor = Color.FromArgb(0, 86, 172);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(10, 213);
+            panel4.Location = new Point(10, 226);
             panel4.Name = "panel4";
-            panel4.Size = new Size(280, 10);
+            panel4.Size = new Size(330, 10);
             panel4.TabIndex = 7;
             // 
             // Form_duracionDesactivacion
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(300, 223);
+            ClientSize = new Size(350, 236);
             Controls.Add(panel4);
             Controls.Add(label2);
             Controls.Add(panel3);

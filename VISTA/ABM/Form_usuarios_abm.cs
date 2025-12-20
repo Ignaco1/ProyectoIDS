@@ -31,7 +31,7 @@ namespace VISTA
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
-            
+
         }
 
         private void Form_usuarios_abm_Load(object sender, EventArgs e)

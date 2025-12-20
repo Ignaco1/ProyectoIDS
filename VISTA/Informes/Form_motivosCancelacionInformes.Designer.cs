@@ -60,17 +60,17 @@
             panel_botones.Controls.Add(btn_cerrar);
             panel_botones.Controls.Add(btn_exportarExcel);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(0, 863);
+            panel_botones.Location = new Point(0, 1485);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(1318, 85);
+            panel_botones.Size = new Size(1883, 85);
             panel_botones.TabIndex = 0;
             // 
             // btn_exportarPDF
             // 
             btn_exportarPDF.Image = (Image)resources.GetObject("btn_exportarPDF.Image");
-            btn_exportarPDF.Location = new Point(12, 14);
+            btn_exportarPDF.Location = new Point(11, 5);
             btn_exportarPDF.Name = "btn_exportarPDF";
-            btn_exportarPDF.Size = new Size(61, 58);
+            btn_exportarPDF.Size = new Size(83, 75);
             btn_exportarPDF.SizeMode = PictureBoxSizeMode.Zoom;
             btn_exportarPDF.TabIndex = 9;
             btn_exportarPDF.TabStop = false;
@@ -82,9 +82,9 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(1211, 57);
+            btn_cerrar.Location = new Point(1766, 51);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(102, 23);
+            btn_cerrar.Size = new Size(112, 29);
             btn_cerrar.TabIndex = 8;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -93,9 +93,9 @@
             // btn_exportarExcel
             // 
             btn_exportarExcel.Image = (Image)resources.GetObject("btn_exportarExcel.Image");
-            btn_exportarExcel.Location = new Point(92, 14);
+            btn_exportarExcel.Location = new Point(109, 5);
             btn_exportarExcel.Name = "btn_exportarExcel";
-            btn_exportarExcel.Size = new Size(62, 58);
+            btn_exportarExcel.Size = new Size(83, 75);
             btn_exportarExcel.SizeMode = PictureBoxSizeMode.Zoom;
             btn_exportarExcel.TabIndex = 0;
             btn_exportarExcel.TabStop = false;
@@ -104,9 +104,9 @@
             // panel1
             // 
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(1261, 0);
+            panel1.Location = new Point(1826, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(57, 863);
+            panel1.Size = new Size(57, 1485);
             panel1.TabIndex = 1;
             // 
             // panel2
@@ -120,7 +120,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1261, 114);
+            panel2.Size = new Size(1826, 114);
             panel2.TabIndex = 3;
             // 
             // btn_generar
@@ -128,9 +128,9 @@
             btn_generar.BackColor = Color.FromArgb(0, 84, 168);
             btn_generar.FlatAppearance.BorderSize = 0;
             btn_generar.FlatStyle = FlatStyle.Flat;
-            btn_generar.Location = new Point(945, 48);
+            btn_generar.Location = new Point(1619, 50);
             btn_generar.Name = "btn_generar";
-            btn_generar.Size = new Size(128, 23);
+            btn_generar.Size = new Size(128, 31);
             btn_generar.TabIndex = 5;
             btn_generar.Text = "Generar informe";
             btn_generar.UseVisualStyleBackColor = false;
@@ -139,34 +139,34 @@
             // dtp_hasta
             // 
             dtp_hasta.Format = DateTimePickerFormat.Short;
-            dtp_hasta.Location = new Point(628, 60);
+            dtp_hasta.Location = new Point(1112, 63);
             dtp_hasta.Name = "dtp_hasta";
-            dtp_hasta.Size = new Size(200, 22);
+            dtp_hasta.Size = new Size(200, 30);
             dtp_hasta.TabIndex = 4;
             // 
             // dtp_desde
             // 
             dtp_desde.Format = DateTimePickerFormat.Short;
-            dtp_desde.Location = new Point(342, 60);
+            dtp_desde.Location = new Point(738, 63);
             dtp_desde.Name = "dtp_desde";
-            dtp_desde.Size = new Size(200, 22);
+            dtp_desde.Size = new Size(200, 30);
             dtp_desde.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(577, 65);
+            label3.Location = new Point(1041, 68);
             label3.Name = "label3";
-            label3.Size = new Size(45, 17);
+            label3.Size = new Size(65, 21);
             label3.TabIndex = 2;
             label3.Text = "Hasta:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(287, 65);
+            label2.Location = new Point(661, 68);
             label2.Name = "label2";
-            label2.Size = new Size(49, 17);
+            label2.Size = new Size(71, 21);
             label2.TabIndex = 1;
             label2.Text = "Desde:";
             // 
@@ -174,18 +174,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(420, 19);
+            label1.Location = new Point(758, 14);
             label1.Name = "label1";
-            label1.Size = new Size(309, 19);
+            label1.Size = new Size(463, 28);
             label1.TabIndex = 0;
             label1.Text = "Porcentaje de motivos de cancelación";
             // 
             // panel_grafico
             // 
             panel_grafico.Dock = DockStyle.Right;
-            panel_grafico.Location = new Point(837, 114);
+            panel_grafico.Location = new Point(1201, 114);
             panel_grafico.Name = "panel_grafico";
-            panel_grafico.Size = new Size(424, 749);
+            panel_grafico.Size = new Size(625, 1371);
             panel_grafico.TabIndex = 5;
             // 
             // panel4
@@ -193,7 +193,7 @@
             panel4.Dock = DockStyle.Left;
             panel4.Location = new Point(0, 114);
             panel4.Name = "panel4";
-            panel4.Size = new Size(104, 749);
+            panel4.Size = new Size(104, 1371);
             panel4.TabIndex = 7;
             // 
             // panel3
@@ -202,7 +202,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(104, 114);
             panel3.Name = "panel3";
-            panel3.Size = new Size(733, 136);
+            panel3.Size = new Size(1097, 136);
             panel3.TabIndex = 8;
             // 
             // label_nroCabañas
@@ -211,7 +211,7 @@
             label_nroCabañas.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_nroCabañas.Location = new Point(6, 68);
             label_nroCabañas.Name = "label_nroCabañas";
-            label_nroCabañas.Size = new Size(11, 16);
+            label_nroCabañas.Size = new Size(15, 23);
             label_nroCabañas.TabIndex = 0;
             label_nroCabañas.Text = "l";
             // 
@@ -220,15 +220,15 @@
             flowLayoutPanel_datos.Dock = DockStyle.Fill;
             flowLayoutPanel_datos.Location = new Point(104, 250);
             flowLayoutPanel_datos.Name = "flowLayoutPanel_datos";
-            flowLayoutPanel_datos.Size = new Size(733, 613);
+            flowLayoutPanel_datos.Size = new Size(1097, 1235);
             flowLayoutPanel_datos.TabIndex = 9;
             // 
             // Form_motivosCancelacionInformes
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1318, 948);
+            ClientSize = new Size(1883, 1570);
             Controls.Add(flowLayoutPanel_datos);
             Controls.Add(panel3);
             Controls.Add(panel4);

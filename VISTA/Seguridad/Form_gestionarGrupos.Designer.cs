@@ -62,9 +62,10 @@
             // 
             panel_carga.Controls.Add(groupBox_carga);
             panel_carga.Dock = DockStyle.Right;
-            panel_carga.Location = new Point(1059, 0);
+            panel_carga.Location = new Point(1499, 0);
+            panel_carga.Margin = new Padding(4, 5, 4, 5);
             panel_carga.Name = "panel_carga";
-            panel_carga.Size = new Size(259, 948);
+            panel_carga.Size = new Size(384, 1580);
             panel_carga.TabIndex = 1;
             // 
             // groupBox_carga
@@ -78,8 +79,10 @@
             groupBox_carga.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
+            groupBox_carga.Margin = new Padding(4, 5, 4, 5);
             groupBox_carga.Name = "groupBox_carga";
-            groupBox_carga.Size = new Size(259, 948);
+            groupBox_carga.Padding = new Padding(4, 5, 4, 5);
+            groupBox_carga.Size = new Size(384, 1580);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
@@ -90,9 +93,10 @@
             btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
-            btn_cancelar.Location = new Point(161, 913);
+            btn_cancelar.Location = new Point(247, 1539);
+            btn_cancelar.Margin = new Padding(4, 5, 4, 5);
             btn_cancelar.Name = "btn_cancelar";
-            btn_cancelar.Size = new Size(92, 23);
+            btn_cancelar.Size = new Size(129, 31);
             btn_cancelar.TabIndex = 9;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = false;
@@ -104,9 +108,10 @@
             btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(6, 913);
+            btn_guardar.Location = new Point(22, 1539);
+            btn_guardar.Margin = new Padding(4, 5, 4, 5);
             btn_guardar.Name = "btn_guardar";
-            btn_guardar.Size = new Size(92, 23);
+            btn_guardar.Size = new Size(129, 31);
             btn_guardar.TabIndex = 8;
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = false;
@@ -114,17 +119,19 @@
             // 
             // txt_nombre
             // 
-            txt_nombre.Location = new Point(71, 118);
+            txt_nombre.Location = new Point(101, 197);
+            txt_nombre.Margin = new Padding(4, 5, 4, 5);
             txt_nombre.Name = "txt_nombre";
-            txt_nombre.Size = new Size(181, 22);
+            txt_nombre.Size = new Size(270, 30);
             txt_nombre.TabIndex = 7;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 121);
+            label1.Location = new Point(9, 202);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(59, 17);
+            label1.Size = new Size(86, 21);
             label1.TabIndex = 0;
             label1.Text = "Nombre:";
             // 
@@ -133,8 +140,9 @@
             panel_lista_permisos.Controls.Add(groupBox_grupos);
             panel_lista_permisos.Dock = DockStyle.Fill;
             panel_lista_permisos.Location = new Point(0, 0);
+            panel_lista_permisos.Margin = new Padding(4, 5, 4, 5);
             panel_lista_permisos.Name = "panel_lista_permisos";
-            panel_lista_permisos.Size = new Size(1059, 948);
+            panel_lista_permisos.Size = new Size(1499, 1580);
             panel_lista_permisos.TabIndex = 2;
             // 
             // groupBox_grupos
@@ -147,8 +155,10 @@
             groupBox_grupos.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox_grupos.ForeColor = Color.White;
             groupBox_grupos.Location = new Point(0, 0);
+            groupBox_grupos.Margin = new Padding(4, 5, 4, 5);
             groupBox_grupos.Name = "groupBox_grupos";
-            groupBox_grupos.Size = new Size(1059, 948);
+            groupBox_grupos.Padding = new Padding(4, 5, 4, 5);
+            groupBox_grupos.Size = new Size(1499, 1580);
             groupBox_grupos.TabIndex = 0;
             groupBox_grupos.TabStop = false;
             groupBox_grupos.Text = "Lista de grupos";
@@ -172,7 +182,8 @@
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.ControlDark;
-            dataGridView1.Location = new Point(3, 74);
+            dataGridView1.Location = new Point(4, 121);
+            dataGridView1.Margin = new Padding(4, 5, 4, 5);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -184,6 +195,7 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(0, 84, 168);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.RowHeadersWidth = 62;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
@@ -191,7 +203,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1053, 820);
+            dataGridView1.Size = new Size(1491, 1369);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
@@ -201,9 +213,10 @@
             panel1.Controls.Add(txt_nombreFiltro);
             panel1.Controls.Add(label2);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 18);
+            panel1.Location = new Point(4, 28);
+            panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1053, 56);
+            panel1.Size = new Size(1491, 93);
             panel1.TabIndex = 1;
             // 
             // btn_quitarFiltro
@@ -211,9 +224,10 @@
             btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
             btn_quitarFiltro.FlatAppearance.BorderSize = 0;
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
-            btn_quitarFiltro.Location = new Point(929, 18);
+            btn_quitarFiltro.Location = new Point(1327, 30);
+            btn_quitarFiltro.Margin = new Padding(4, 5, 4, 5);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
-            btn_quitarFiltro.Size = new Size(103, 23);
+            btn_quitarFiltro.Size = new Size(140, 31);
             btn_quitarFiltro.TabIndex = 5;
             btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = false;
@@ -221,18 +235,20 @@
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(446, 18);
+            txt_nombreFiltro.Location = new Point(637, 30);
+            txt_nombreFiltro.Margin = new Padding(4, 5, 4, 5);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
-            txt_nombreFiltro.Size = new Size(215, 22);
+            txt_nombreFiltro.Size = new Size(305, 30);
             txt_nombreFiltro.TabIndex = 4;
             txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(324, 22);
+            label2.Location = new Point(463, 37);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(116, 17);
+            label2.Size = new Size(172, 21);
             label2.TabIndex = 3;
             label2.Text = "Nombre de grupo:";
             // 
@@ -243,9 +259,10 @@
             panel_botones.Controls.Add(btn_modificarGrupo);
             panel_botones.Controls.Add(btn_crearGrupo);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(3, 894);
+            panel_botones.Location = new Point(4, 1490);
+            panel_botones.Margin = new Padding(4, 5, 4, 5);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(1053, 51);
+            panel_botones.Size = new Size(1491, 85);
             panel_botones.TabIndex = 0;
             // 
             // btn_cerrar
@@ -256,9 +273,10 @@
             btn_cerrar.FlatStyle = FlatStyle.Flat;
             btn_cerrar.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_cerrar.ForeColor = Color.White;
-            btn_cerrar.Location = new Point(946, 19);
+            btn_cerrar.Location = new Point(1358, 49);
+            btn_cerrar.Margin = new Padding(4, 5, 4, 5);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(103, 23);
+            btn_cerrar.Size = new Size(129, 31);
             btn_cerrar.TabIndex = 5;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -269,9 +287,10 @@
             btn_eliminarGrupo.BackColor = Color.FromArgb(0, 84, 168);
             btn_eliminarGrupo.FlatAppearance.BorderSize = 0;
             btn_eliminarGrupo.FlatStyle = FlatStyle.Flat;
-            btn_eliminarGrupo.Location = new Point(299, 3);
+            btn_eliminarGrupo.Location = new Point(427, 5);
+            btn_eliminarGrupo.Margin = new Padding(4, 5, 4, 5);
             btn_eliminarGrupo.Name = "btn_eliminarGrupo";
-            btn_eliminarGrupo.Size = new Size(128, 23);
+            btn_eliminarGrupo.Size = new Size(183, 31);
             btn_eliminarGrupo.TabIndex = 2;
             btn_eliminarGrupo.Text = "Eliminar grupo";
             btn_eliminarGrupo.UseVisualStyleBackColor = false;
@@ -282,9 +301,10 @@
             btn_modificarGrupo.BackColor = Color.FromArgb(0, 84, 168);
             btn_modificarGrupo.FlatAppearance.BorderSize = 0;
             btn_modificarGrupo.FlatStyle = FlatStyle.Flat;
-            btn_modificarGrupo.Location = new Point(152, 3);
+            btn_modificarGrupo.Location = new Point(217, 5);
+            btn_modificarGrupo.Margin = new Padding(4, 5, 4, 5);
             btn_modificarGrupo.Name = "btn_modificarGrupo";
-            btn_modificarGrupo.Size = new Size(128, 23);
+            btn_modificarGrupo.Size = new Size(183, 31);
             btn_modificarGrupo.TabIndex = 1;
             btn_modificarGrupo.Text = "Modificar grupo";
             btn_modificarGrupo.UseVisualStyleBackColor = false;
@@ -295,9 +315,10 @@
             btn_crearGrupo.BackColor = Color.FromArgb(0, 84, 168);
             btn_crearGrupo.FlatAppearance.BorderSize = 0;
             btn_crearGrupo.FlatStyle = FlatStyle.Flat;
-            btn_crearGrupo.Location = new Point(3, 3);
+            btn_crearGrupo.Location = new Point(4, 5);
+            btn_crearGrupo.Margin = new Padding(4, 5, 4, 5);
             btn_crearGrupo.Name = "btn_crearGrupo";
-            btn_crearGrupo.Size = new Size(128, 23);
+            btn_crearGrupo.Size = new Size(183, 31);
             btn_crearGrupo.TabIndex = 0;
             btn_crearGrupo.Text = "Crear grupo";
             btn_crearGrupo.UseVisualStyleBackColor = false;
@@ -305,12 +326,13 @@
             // 
             // Form_gestionarGrupos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1318, 948);
+            ClientSize = new Size(1883, 1580);
             Controls.Add(panel_lista_permisos);
             Controls.Add(panel_carga);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Form_gestionarGrupos";
             Text = "Form_gestionarGrupos";
             Load += Form_gestionarGrupos_Load;

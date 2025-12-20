@@ -31,11 +31,11 @@
             panel1 = new Panel();
             btn_cerrar = new Button();
             panel2 = new Panel();
+            lb_descripcion = new Label();
             panel3 = new Panel();
             btn_seleccionarCliente = new Button();
             label3 = new Label();
             label2 = new Label();
-            lb_descripcion = new Label();
             label_cliente = new Label();
             lb_nombre = new Label();
             btn_cancelar = new Button();
@@ -56,9 +56,10 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btn_cerrar);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 902);
+            panel1.Location = new Point(0, 1505);
+            panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1318, 46);
+            panel1.Size = new Size(1883, 75);
             panel1.TabIndex = 0;
             // 
             // btn_cerrar
@@ -69,9 +70,10 @@
             btn_cerrar.FlatStyle = FlatStyle.Flat;
             btn_cerrar.Font = new Font("Century Gothic", 9F);
             btn_cerrar.ForeColor = Color.White;
-            btn_cerrar.Location = new Point(1202, 9);
+            btn_cerrar.Location = new Point(1718, 15);
+            btn_cerrar.Margin = new Padding(4, 5, 4, 5);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(102, 23);
+            btn_cerrar.Size = new Size(146, 38);
             btn_cerrar.TabIndex = 9;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -79,11 +81,11 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(lb_descripcion);
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(btn_seleccionarCliente);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(lb_descripcion);
             panel2.Controls.Add(label_cliente);
             panel2.Controls.Add(lb_nombre);
             panel2.Controls.Add(btn_cancelar);
@@ -96,17 +98,32 @@
             panel2.Controls.Add(pb_imagenes);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(4, 5, 4, 5);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1318, 902);
+            panel2.Size = new Size(1883, 1505);
             panel2.TabIndex = 1;
+            // 
+            // lb_descripcion
+            // 
+            lb_descripcion.Anchor = AnchorStyles.Left;
+            lb_descripcion.AutoSize = true;
+            lb_descripcion.Font = new Font("Century Gothic", 9.75F);
+            lb_descripcion.ForeColor = Color.White;
+            lb_descripcion.Location = new Point(644, 214);
+            lb_descripcion.Margin = new Padding(4, 0, 4, 0);
+            lb_descripcion.Name = "lb_descripcion";
+            lb_descripcion.Size = new Size(128, 23);
+            lb_descripcion.TabIndex = 34;
+            lb_descripcion.Text = "Descripcion:";
             // 
             // panel3
             // 
             panel3.BackColor = Color.White;
             panel3.Enabled = false;
-            panel3.Location = new Point(934, 285);
+            panel3.Location = new Point(1404, 505);
+            panel3.Margin = new Padding(4, 5, 4, 5);
             panel3.Name = "panel3";
-            panel3.Size = new Size(310, 1);
+            panel3.Size = new Size(443, 2);
             panel3.TabIndex = 33;
             // 
             // btn_seleccionarCliente
@@ -116,9 +133,10 @@
             btn_seleccionarCliente.FlatStyle = FlatStyle.Flat;
             btn_seleccionarCliente.Font = new Font("Century Gothic", 9F);
             btn_seleccionarCliente.ForeColor = Color.White;
-            btn_seleccionarCliente.Location = new Point(906, 496);
+            btn_seleccionarCliente.Location = new Point(1294, 827);
+            btn_seleccionarCliente.Margin = new Padding(4, 5, 4, 5);
             btn_seleccionarCliente.Name = "btn_seleccionarCliente";
-            btn_seleccionarCliente.Size = new Size(119, 23);
+            btn_seleccionarCliente.Size = new Size(170, 38);
             btn_seleccionarCliente.TabIndex = 32;
             btn_seleccionarCliente.Text = "Seleccionar cliene";
             btn_seleccionarCliente.UseVisualStyleBackColor = false;
@@ -130,9 +148,10 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(1004, 263);
+            label3.Location = new Point(1438, 472);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(240, 19);
+            label3.Size = new Size(361, 28);
             label3.TabIndex = 31;
             label3.Text = "Dias ocupados de la cabaña.";
             // 
@@ -142,23 +161,12 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(935, 263);
+            label2.Location = new Point(1340, 472);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(70, 19);
+            label2.Size = new Size(105, 28);
             label2.TabIndex = 30;
             label2.Text = "Negrita:";
-            // 
-            // lb_descripcion
-            // 
-            lb_descripcion.Anchor = AnchorStyles.Top;
-            lb_descripcion.Font = new Font("Century Gothic", 9.75F);
-            lb_descripcion.ForeColor = Color.White;
-            lb_descripcion.Location = new Point(514, 94);
-            lb_descripcion.MaximumSize = new Size(500, 0);
-            lb_descripcion.Name = "lb_descripcion";
-            lb_descripcion.Size = new Size(320, 275);
-            lb_descripcion.TabIndex = 29;
-            lb_descripcion.Text = "Descripcion:";
             // 
             // label_cliente
             // 
@@ -166,9 +174,10 @@
             label_cliente.AutoSize = true;
             label_cliente.Font = new Font("Century Gothic", 9.75F);
             label_cliente.ForeColor = Color.White;
-            label_cliente.Location = new Point(942, 567);
+            label_cliente.Location = new Point(1336, 931);
+            label_cliente.Margin = new Padding(4, 0, 4, 0);
             label_cliente.Name = "label_cliente";
-            label_cliente.Size = new Size(63, 17);
+            label_cliente.Size = new Size(92, 23);
             label_cliente.TabIndex = 28;
             label_cliente.Text = "Clientes:";
             // 
@@ -177,9 +186,10 @@
             lb_nombre.AutoSize = true;
             lb_nombre.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_nombre.ForeColor = Color.White;
-            lb_nombre.Location = new Point(217, 29);
+            lb_nombre.Location = new Point(317, 111);
+            lb_nombre.Margin = new Padding(4, 0, 4, 0);
             lb_nombre.Name = "lb_nombre";
-            lb_nombre.Size = new Size(73, 19);
+            lb_nombre.Size = new Size(107, 28);
             lb_nombre.TabIndex = 27;
             lb_nombre.Text = "Nombre";
             // 
@@ -191,9 +201,10 @@
             btn_cancelar.FlatStyle = FlatStyle.Flat;
             btn_cancelar.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_cancelar.ForeColor = Color.White;
-            btn_cancelar.Location = new Point(746, 819);
+            btn_cancelar.Location = new Point(1066, 1367);
+            btn_cancelar.Margin = new Padding(4, 5, 4, 5);
             btn_cancelar.Name = "btn_cancelar";
-            btn_cancelar.Size = new Size(132, 43);
+            btn_cancelar.Size = new Size(189, 72);
             btn_cancelar.TabIndex = 26;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = false;
@@ -207,9 +218,10 @@
             btn_realizarReserva.FlatStyle = FlatStyle.Flat;
             btn_realizarReserva.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_realizarReserva.ForeColor = Color.White;
-            btn_realizarReserva.Location = new Point(475, 819);
+            btn_realizarReserva.Location = new Point(679, 1367);
+            btn_realizarReserva.Margin = new Padding(4, 5, 4, 5);
             btn_realizarReserva.Name = "btn_realizarReserva";
-            btn_realizarReserva.Size = new Size(132, 43);
+            btn_realizarReserva.Size = new Size(189, 72);
             btn_realizarReserva.TabIndex = 25;
             btn_realizarReserva.Text = "Realizar reserva";
             btn_realizarReserva.UseVisualStyleBackColor = false;
@@ -218,7 +230,8 @@
             // mc_fechas
             // 
             mc_fechas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mc_fechas.Location = new Point(963, 72);
+            mc_fechas.Location = new Point(1395, 128);
+            mc_fechas.Margin = new Padding(13, 15, 13, 15);
             mc_fechas.MaxSelectionCount = 30;
             mc_fechas.Name = "mc_fechas";
             mc_fechas.TabIndex = 22;
@@ -234,9 +247,10 @@
             btn_anterior.FlatStyle = FlatStyle.Flat;
             btn_anterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_anterior.ForeColor = Color.White;
-            btn_anterior.Location = new Point(87, 61);
+            btn_anterior.Location = new Point(130, 186);
+            btn_anterior.Margin = new Padding(4, 5, 4, 5);
             btn_anterior.Name = "btn_anterior";
-            btn_anterior.Size = new Size(16, 575);
+            btn_anterior.Size = new Size(23, 487);
             btn_anterior.TabIndex = 21;
             btn_anterior.TabStop = false;
             btn_anterior.Text = "<";
@@ -253,9 +267,10 @@
             btn_siguiente.FlatStyle = FlatStyle.Flat;
             btn_siguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_siguiente.ForeColor = Color.White;
-            btn_siguiente.Location = new Point(405, 61);
+            btn_siguiente.Location = new Point(584, 186);
+            btn_siguiente.Margin = new Padding(4, 5, 4, 5);
             btn_siguiente.Name = "btn_siguiente";
-            btn_siguiente.Size = new Size(16, 575);
+            btn_siguiente.Size = new Size(23, 487);
             btn_siguiente.TabIndex = 20;
             btn_siguiente.TabStop = false;
             btn_siguiente.Text = ">";
@@ -268,9 +283,10 @@
             lb_precio.AutoSize = true;
             lb_precio.Font = new Font("Century Gothic", 9.75F);
             lb_precio.ForeColor = Color.White;
-            lb_precio.Location = new Point(134, 567);
+            lb_precio.Location = new Point(197, 791);
+            lb_precio.Margin = new Padding(4, 0, 4, 0);
             lb_precio.Name = "lb_precio";
-            lb_precio.Size = new Size(123, 17);
+            lb_precio.Size = new Size(183, 23);
             lb_precio.TabIndex = 18;
             lb_precio.Text = "Precio por noche:";
             // 
@@ -280,31 +296,34 @@
             lb_capacidad.AutoSize = true;
             lb_capacidad.Font = new Font("Century Gothic", 9.75F);
             lb_capacidad.ForeColor = Color.White;
-            lb_capacidad.Location = new Point(134, 517);
+            lb_capacidad.Location = new Point(197, 708);
+            lb_capacidad.Margin = new Padding(4, 0, 4, 0);
             lb_capacidad.Name = "lb_capacidad";
-            lb_capacidad.Size = new Size(88, 17);
+            lb_capacidad.Size = new Size(131, 23);
             lb_capacidad.TabIndex = 17;
             lb_capacidad.Text = "Capacidad:";
             // 
             // pb_imagenes
             // 
             pb_imagenes.Anchor = AnchorStyles.Left;
-            pb_imagenes.Location = new Point(87, 203);
+            pb_imagenes.Location = new Point(130, 184);
+            pb_imagenes.Margin = new Padding(4, 5, 4, 5);
             pb_imagenes.Name = "pb_imagenes";
-            pb_imagenes.Size = new Size(334, 292);
+            pb_imagenes.Size = new Size(477, 487);
             pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pb_imagenes.TabIndex = 15;
             pb_imagenes.TabStop = false;
             // 
             // Form_realizarAlquiler
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1318, 948);
+            ClientSize = new Size(1883, 1580);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Form_realizarAlquiler";
             Text = "Form_realizarAlquiler";
             Load += Form_realizarAlquiler_Load;
@@ -334,7 +353,7 @@
         private Label label3;
         private Label label2;
         private Button btn_seleccionarCliente;
-        private Label lb_descripcion;
         private Panel panel3;
+        private Label lb_descripcion;
     }
 }

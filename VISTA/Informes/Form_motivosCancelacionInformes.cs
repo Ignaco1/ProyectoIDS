@@ -139,9 +139,9 @@ namespace VISTA.Informes
                     AutoSize = false,
                     Location = new Point(28, 5),
                     Width = contenedor.Width - 35,
-                    Height = 18,
+                    Height = 25,
                     TextAlign = ContentAlignment.MiddleLeft,
-                    Font = new System.Drawing.Font("Segoe UI", 9)
+                    Font = new System.Drawing.Font("Century Gothic", 9)
                 };
 
                 contenedor.Controls.Add(cuadrado);
@@ -387,7 +387,7 @@ namespace VISTA.Informes
 
                         worksheet.AddPicture(imgPath)
                             .MoveTo(worksheet.Cell(2, 7))
-                            .WithSize(400, 400);
+                            .WithSize(400, 800);
 
                         workbook.SaveAs(path);
                     }

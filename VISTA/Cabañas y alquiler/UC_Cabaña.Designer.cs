@@ -96,27 +96,27 @@
             // lb_descripcion
             // 
             lb_descripcion.AutoSize = true;
-            lb_descripcion.Location = new Point(196, 171);
+            lb_descripcion.Location = new Point(207, 171);
             lb_descripcion.Name = "lb_descripcion";
-            lb_descripcion.Size = new Size(82, 17);
+            lb_descripcion.Size = new Size(117, 21);
             lb_descripcion.TabIndex = 12;
             lb_descripcion.Text = "Descripción:";
             // 
             // lb_precio
             // 
             lb_precio.AutoSize = true;
-            lb_precio.Location = new Point(196, 121);
+            lb_precio.Location = new Point(207, 121);
             lb_precio.Name = "lb_precio";
-            lb_precio.Size = new Size(113, 17);
+            lb_precio.Size = new Size(167, 21);
             lb_precio.TabIndex = 11;
             lb_precio.Text = "Precio por noche:";
             // 
             // lb_capacidad
             // 
             lb_capacidad.AutoSize = true;
-            lb_capacidad.Location = new Point(196, 74);
+            lb_capacidad.Location = new Point(207, 74);
             lb_capacidad.Name = "lb_capacidad";
-            lb_capacidad.Size = new Size(79, 17);
+            lb_capacidad.Size = new Size(117, 21);
             lb_capacidad.TabIndex = 10;
             lb_capacidad.Text = "Capacidad:";
             // 
@@ -126,7 +126,7 @@
             lb_nombre.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_nombre.Location = new Point(75, 11);
             lb_nombre.Name = "lb_nombre";
-            lb_nombre.Size = new Size(48, 16);
+            lb_nombre.Size = new Size(70, 23);
             lb_nombre.TabIndex = 9;
             lb_nombre.Text = "label1";
             // 
@@ -141,7 +141,7 @@
             // 
             // UC_Cabaña
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panel1);
