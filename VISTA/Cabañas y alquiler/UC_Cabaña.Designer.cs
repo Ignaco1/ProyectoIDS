@@ -55,7 +55,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(513, 262);
+            panel1.Size = new Size(689, 364);
             panel1.TabIndex = 0;
             panel1.MouseMove += panel1_MouseMove;
             // 
@@ -67,9 +67,9 @@
             btn_anterior.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btn_anterior.FlatStyle = FlatStyle.Flat;
             btn_anterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_anterior.Location = new Point(12, 41);
+            btn_anterior.Location = new Point(16, 48);
             btn_anterior.Name = "btn_anterior";
-            btn_anterior.Size = new Size(14, 176);
+            btn_anterior.Size = new Size(25, 270);
             btn_anterior.TabIndex = 14;
             btn_anterior.TabStop = false;
             btn_anterior.Text = "<";
@@ -84,9 +84,9 @@
             btn_siguiente.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btn_siguiente.FlatStyle = FlatStyle.Flat;
             btn_siguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_siguiente.Location = new Point(176, 41);
+            btn_siguiente.Location = new Point(325, 48);
             btn_siguiente.Name = "btn_siguiente";
-            btn_siguiente.Size = new Size(14, 176);
+            btn_siguiente.Size = new Size(25, 270);
             btn_siguiente.TabIndex = 13;
             btn_siguiente.TabStop = false;
             btn_siguiente.Text = ">";
@@ -96,7 +96,7 @@
             // lb_descripcion
             // 
             lb_descripcion.AutoSize = true;
-            lb_descripcion.Location = new Point(207, 171);
+            lb_descripcion.Location = new Point(371, 241);
             lb_descripcion.Name = "lb_descripcion";
             lb_descripcion.Size = new Size(117, 21);
             lb_descripcion.TabIndex = 12;
@@ -105,7 +105,7 @@
             // lb_precio
             // 
             lb_precio.AutoSize = true;
-            lb_precio.Location = new Point(207, 121);
+            lb_precio.Location = new Point(371, 167);
             lb_precio.Name = "lb_precio";
             lb_precio.Size = new Size(167, 21);
             lb_precio.TabIndex = 11;
@@ -114,7 +114,7 @@
             // lb_capacidad
             // 
             lb_capacidad.AutoSize = true;
-            lb_capacidad.Location = new Point(207, 74);
+            lb_capacidad.Location = new Point(371, 85);
             lb_capacidad.Name = "lb_capacidad";
             lb_capacidad.Size = new Size(117, 21);
             lb_capacidad.TabIndex = 10;
@@ -124,7 +124,7 @@
             // 
             lb_nombre.AutoSize = true;
             lb_nombre.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_nombre.Location = new Point(75, 11);
+            lb_nombre.Location = new Point(148, 13);
             lb_nombre.Name = "lb_nombre";
             lb_nombre.Size = new Size(70, 23);
             lb_nombre.TabIndex = 9;
@@ -132,9 +132,9 @@
             // 
             // pb_imagenes
             // 
-            pb_imagenes.Location = new Point(12, 41);
+            pb_imagenes.Location = new Point(31, 48);
             pb_imagenes.Name = "pb_imagenes";
-            pb_imagenes.Size = new Size(178, 177);
+            pb_imagenes.Size = new Size(296, 270);
             pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pb_imagenes.TabIndex = 8;
             pb_imagenes.TabStop = false;
@@ -148,7 +148,7 @@
             Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
             Name = "UC_Cabaña";
-            Size = new Size(513, 262);
+            Size = new Size(689, 364);
             Load += UC_Cabaña_Load;
             Click += UC_Cabaña_Click;
             panel1.ResumeLayout(false);

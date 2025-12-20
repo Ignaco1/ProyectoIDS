@@ -366,6 +366,11 @@ namespace VISTA
         {
             AbrirForms(new Form_mantenimientos_abm());
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_reservaCabaña());
+        }
     }
 }
 

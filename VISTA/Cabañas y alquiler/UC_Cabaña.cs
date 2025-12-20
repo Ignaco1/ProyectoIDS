@@ -43,7 +43,9 @@ namespace VISTA
             lb_nombre.Text = nombre;
             lb_capacidad.Text = $"Capacidad: {capacidad}";
             lb_precio.Text = $"Precio por noche: ${precio}";
-            lb_descripcion.Text = $"Descripción: {descripcion}";
+
+            string descripcionFormateada = FormatearDescripcion(descripcion, 3);
+            lb_descripcion.Text = $"Descripción: {descripcionFormateada}";
 
             imagenes = imagenesBytes;
 
@@ -52,6 +54,28 @@ namespace VISTA
                 indiceImagenActual = 0;
                 MostrarImagenActual();
             }
+        }
+
+        private string FormatearDescripcion(string descripcion, int palabrasPorLinea)
+        {
+            if (string.IsNullOrWhiteSpace(descripcion))
+                return "";
+
+            var palabras = descripcion.Split(' ');
+            var resultado = new StringBuilder();
+
+            for (int i = 0; i < palabras.Length; i++)
+            {
+                resultado.Append(palabras[i]);
+                resultado.Append(" ");
+
+                if ((i + 1) % palabrasPorLinea == 0)
+                {
+                    resultado.AppendLine();
+                }
+            }
+
+            return resultado.ToString().Trim();
         }
 
         private void MostrarImagenActual()
@@ -66,7 +90,7 @@ namespace VISTA
 
         private void UC_Cabaña_Click(object sender, EventArgs e)
         {
-            var formAlquiler = new Form_realizarAlquiler();
+            var formAlquiler = new Form_reservaCabaña();
             var c = DatosCabaña;
 
             DialogResult resultado = MessageBox.Show($"Abrir formulario para alquilar la cabaña: {CabañaNombre}", "AVISO", MessageBoxButtons.YesNo);

@@ -176,9 +176,9 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(btn_cerrar);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 1519);
+            panel2.Location = new Point(0, 1512);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1883, 51);
+            panel2.Size = new Size(1883, 58);
             panel2.TabIndex = 1;
             // 
             // btn_cerrar
@@ -187,9 +187,9 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(1776, 20);
+            btn_cerrar.Location = new Point(1741, 12);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(102, 26);
+            btn_cerrar.Size = new Size(137, 33);
             btn_cerrar.TabIndex = 8;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -201,7 +201,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 93);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1883, 1426);
+            panel3.Size = new Size(1883, 1419);
             panel3.TabIndex = 2;
             // 
             // flp_cabañas
@@ -210,7 +210,7 @@
             flp_cabañas.Dock = DockStyle.Fill;
             flp_cabañas.Location = new Point(0, 0);
             flp_cabañas.Name = "flp_cabañas";
-            flp_cabañas.Size = new Size(1883, 1426);
+            flp_cabañas.Size = new Size(1883, 1419);
             flp_cabañas.TabIndex = 0;
             // 
             // Form_desplegarCabañas

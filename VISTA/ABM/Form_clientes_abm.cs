@@ -460,11 +460,12 @@ namespace VISTA
             var datosAmostrar = listaClientesFiltro
             .Select(c => new
             {
-                c.ClienteId,
+                ID = c.ClienteId,
                 Nombre = c.Nombre + " " + c.Apellido,
-                c.Dni,
+                DNI = c.Dni,
                 c.Email,
                 c.Telefono
+
             }).ToList();
 
             dataGridView1.DataSource = datosAmostrar;

@@ -105,7 +105,7 @@
             btn_seleccionarCabaña.BackColor = Color.FromArgb(0, 84, 168);
             btn_seleccionarCabaña.FlatAppearance.BorderSize = 0;
             btn_seleccionarCabaña.FlatStyle = FlatStyle.Flat;
-            btn_seleccionarCabaña.Location = new Point(97, 60);
+            btn_seleccionarCabaña.Location = new Point(87, 70);
             btn_seleccionarCabaña.Name = "btn_seleccionarCabaña";
             btn_seleccionarCabaña.Size = new Size(193, 31);
             btn_seleccionarCabaña.TabIndex = 34;

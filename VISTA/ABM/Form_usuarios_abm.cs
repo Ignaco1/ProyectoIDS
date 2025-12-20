@@ -1,6 +1,7 @@
 ﻿using CAPA_COMUN.Cache;
 using CONTROLADORA.Utilidades;
 using MODELO;
+using MODELO.Composite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -427,10 +428,10 @@ namespace VISTA
             var datosamostrar = listaUsuariosFiltro
             .Select(u => new
             {
-                u.UsuarioId,
+                ID = u.UsuarioId,
                 Nombre = u.Nombre + " " + u.Apellido,
-                Nombre_de_usuario = u.Nombre_usuario,
-                u.Email,
+                Usuario = u.Nombre_usuario,
+                Email = u.Email,
                 Grupo = u.Grupo?.Nombre ?? "Sin grupo"
 
             }).ToList();

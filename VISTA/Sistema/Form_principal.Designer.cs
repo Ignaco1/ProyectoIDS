@@ -339,6 +339,7 @@
             button12.Text = "Asignar mantenimientos";
             button12.TextAlign = ContentAlignment.MiddleLeft;
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // btn_mantenimientos
             // 

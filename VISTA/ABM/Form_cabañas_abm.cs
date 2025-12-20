@@ -563,10 +563,10 @@ namespace VISTA.ABM
             var datosAmostrar = listaCabañasFiltro
             .Select(c => new
             {
-                c.CabañaId,
+                ID = c.CabañaId,
                 c.Nombre,
                 c.Capacidad,
-                c.PrecioPorNoche,
+                Precio = c.PrecioPorNoche,
                 c.Descripcion,
                 c.Activa
 

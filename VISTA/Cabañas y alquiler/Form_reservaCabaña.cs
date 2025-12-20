@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace VISTA.Cabañas_y_alquiler
 {
-    public partial class Form_realizarAlquiler : Form
+    public partial class Form_reservaCabaña : Form
     {
         private List<byte[]> imagenes = new List<byte[]>();
         private int indiceImagenActual = 0;
@@ -21,16 +21,66 @@ namespace VISTA.Cabañas_y_alquiler
         private int idCabañaSeleccionada;
         private Cliente clienteActual;
 
-        public Form_realizarAlquiler()
+        public Form_reservaCabaña()
         {
             InitializeComponent();
         }
 
-        private void Form_realizarAlquiler_Load(object sender, EventArgs e)
+        private void Form_reservaCabaña_Load(object sender, EventArgs e)
         {
             CargarFechasOcupadas();
             clienteActual = null;
             label_cliente.Text = "Cliente no seleccionado";
+        }
+
+        private void CargarFechasOcupadas()
+        {
+            List<DateTime> fechasOcupadas = new List<DateTime>();
+
+            var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
+
+            if (cabaña == null)
+                return;
+
+            var reservas = contro_reser.ListarReservas()
+                .Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada")
+                .ToList();
+
+            DateTime hoy = DateTime.Today;
+
+
+            foreach (var reserva in reservas)
+            {
+
+                if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue &&
+                    reserva.FechaEntrada <= cabaña.FechaFinDesactivacion.Value)
+                {
+                    continue;
+                }
+
+                DateTime fecha = reserva.FechaEntrada.Date;
+
+                while (fecha <= reserva.FechaSalida.Date)
+                {
+                    fechasOcupadas.Add(fecha);
+                    fecha = fecha.AddDays(1);
+                }
+            }
+
+            if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
+            {
+                DateTime fin = cabaña.FechaFinDesactivacion.Value;
+
+                if (hoy <= fin)
+                {
+                    for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
+                    {
+                        fechasOcupadas.Add(fecha);
+                    }
+                }
+            }
+
+            mc_fechas.BoldedDates = fechasOcupadas.Distinct().OrderBy(d => d).ToArray();
         }
 
         private void btn_realizarReserva_Click(object sender, EventArgs e)
@@ -95,7 +145,6 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 MessageBox.Show("Error al agregar la reserva:  " + ex.Message, "Error");
             }
-
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -108,24 +157,14 @@ namespace VISTA.Cabañas_y_alquiler
             this.Close();
         }
 
-        private void btn_cerrar_Click(object sender, EventArgs e)
-        {
-            if (this.Owner is Form_principal fPrincipal)
-            {
-                fPrincipal.AbrirForms(new Form_desplegarCabañas());
-            }
-
-            this.Close();
-        }
-
         public void Configurar(string nombre, int capacidad, decimal precio, string descripcion, List<byte[]> imagenesBytes, int idCabaña)
         {
-            lb_nombre.Text = nombre;
-            lb_capacidad.Text = $"Capacidad: {capacidad}";
-            lb_precio.Text = $"Precio por noche: ${precio}";
+            lb_nombre.Text = $"{nombre}";
+            lb_capacidad.Text = $"{capacidad}";
+            lb_precio.Text = $"${precio}";
 
             string descripcionFormateada = FormatearDescripcion(descripcion, 7);
-            lb_descripcion.Text = $"Descripción:\n\n{descripcionFormateada}";
+            lb_descripcion.Text = $"{descripcionFormateada}";
 
             imagenes = imagenesBytes;
 
@@ -138,83 +177,6 @@ namespace VISTA.Cabañas_y_alquiler
             }
 
             CargarFechasOcupadas();
-        }
-
-        private void MostrarImagenActual()
-        {
-            if (imagenes.Count == 0) return;
-
-            using (var ms = new MemoryStream(imagenes[indiceImagenActual]))
-            {
-                pb_imagenes.Image = Image.FromStream(ms);
-            }
-        }
-
-        private void CargarFechasOcupadas()
-        {
-            List<DateTime> fechasOcupadas = new List<DateTime>();
-
-            var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
-
-            if (cabaña == null)
-                return;
-
-            var reservas = contro_reser.ListarReservas()
-                .Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada")
-                .ToList();
-
-            DateTime hoy = DateTime.Today;
-
-
-            foreach (var reserva in reservas)
-            {
-
-                if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue &&
-                    reserva.FechaEntrada <= cabaña.FechaFinDesactivacion.Value)
-                {
-                    continue;
-                }
-
-                DateTime fecha = reserva.FechaEntrada.Date;
-
-                while (fecha <= reserva.FechaSalida.Date)
-                {
-                    fechasOcupadas.Add(fecha);
-                    fecha = fecha.AddDays(1);
-                }
-            }
-
-            if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
-            {
-                DateTime fin = cabaña.FechaFinDesactivacion.Value;
-
-                if (hoy <= fin)
-                {
-                    for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
-                    {
-                        fechasOcupadas.Add(fecha);
-                    }
-                }
-            }
-
-            mc_fechas.BoldedDates = fechasOcupadas.Distinct().OrderBy(d => d).ToArray();
-        }
-
-
-        private void btn_siguiente_Click(object sender, EventArgs e)
-        {
-            if (imagenes.Count == 0) return;
-
-            indiceImagenActual = (indiceImagenActual + 1) % imagenes.Count;
-            MostrarImagenActual();
-        }
-
-        private void btn_anterior_Click(object sender, EventArgs e)
-        {
-            if (imagenes.Count == 0) return;
-
-            indiceImagenActual = (indiceImagenActual - 1 + imagenes.Count) % imagenes.Count;
-            MostrarImagenActual();
         }
 
         private string FormatearDescripcion(string descripcion, int palabrasPorLinea)
@@ -247,6 +209,32 @@ namespace VISTA.Cabañas_y_alquiler
                 return 0;
 
             return cantidadNoches * cabaña.PrecioPorNoche;
+        }
+
+        private void MostrarImagenActual()
+        {
+            if (imagenes.Count == 0) return;
+
+            using (var ms = new MemoryStream(imagenes[indiceImagenActual]))
+            {
+                pb_imagenes.Image = Image.FromStream(ms);
+            }
+        }
+
+        private void btn_siguiente_Click(object sender, EventArgs e)
+        {
+            if (imagenes.Count == 0) return;
+
+            indiceImagenActual = (indiceImagenActual + 1) % imagenes.Count;
+            MostrarImagenActual();
+        }
+
+        private void btn_anterior_Click(object sender, EventArgs e)
+        {
+            if (imagenes.Count == 0) return;
+
+            indiceImagenActual = (indiceImagenActual - 1 + imagenes.Count) % imagenes.Count;
+            MostrarImagenActual();
         }
 
         private void mc_fechas_DateSelected(object sender, DateRangeEventArgs e)

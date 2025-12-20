@@ -78,7 +78,7 @@ namespace VISTA.Cabañas_y_alquiler
                     {
                         form.FormClosed += (s, ev) =>
                         {
-                            if (form is Form_realizarAlquiler fra)
+                            if (form is Form_reservaCabaña fra)
                             {
 
                             }
