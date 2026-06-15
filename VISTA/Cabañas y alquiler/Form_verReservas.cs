@@ -19,10 +19,13 @@ namespace VISTA.Cabañas_y_alquiler
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
         CONTROLADORA.Controladora_clientes contro_cli = new CONTROLADORA.Controladora_clientes();
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
+        private const int LIMITE_RESERVAS_MOSTRADAS = 30;
+        private const int FINALIZADAS_MINIMAS_A_MOSTRAR = 5;
         private List<Reserva> listaReservasFiltro = new List<Reserva>();
         private string variF = "";
         private List<MODELO.Reserva> reservasCompletas = new List<MODELO.Reserva>();
         private Cabaña cabañaActual;
+        private EnvironmentVariableTarget hola;
 
         public Form_verReservas()
         {
@@ -73,9 +76,11 @@ namespace VISTA.Cabañas_y_alquiler
         {
             dataGridView1.DataSource = null;
 
-            reservasCompletas = contro_reser.ListarReservas()
+            var todasLasReservas = contro_reser.ListarReservas()
             .Where(r => r.Estado != "Cancelada")
             .ToList();
+
+            reservasCompletas = OrdenarYLimitarReservas(todasLasReservas);
 
             var reserva = reservasCompletas
                 .Select(r => new
@@ -93,6 +98,30 @@ namespace VISTA.Cabañas_y_alquiler
             dataGridView1.DataSource = reserva;
 
             ResaltarReservasEnCabañasDesactivadas();
+        }
+
+        private List<Reserva> OrdenarYLimitarReservas(List<Reserva> reservas)
+        {
+            var activas = reservas.Where(r => r.Estado == "Activa").OrderBy(r => r.FechaEntrada).ToList();
+            var pendientes = reservas.Where(r => r.Estado == "Pendiente").OrderBy(r => r.FechaEntrada).ToList();
+            var finalizadas = reservas.Where(r => r.Estado == "Finalizada").OrderByDescending(r => r.FechaSalida).ToList();
+            var otras = reservas.Where(r => r.Estado != "Activa" && r.Estado != "Pendiente" && r.Estado != "Finalizada").ToList();
+
+            int cantidadActivasPendientes = activas.Count + pendientes.Count;
+
+            int cantidadFinalizadasAMostrar = cantidadActivasPendientes >= LIMITE_RESERVAS_MOSTRADAS
+                ? FINALIZADAS_MINIMAS_A_MOSTRAR
+                : LIMITE_RESERVAS_MOSTRADAS - cantidadActivasPendientes;
+
+            var finalizadasAMostrar = finalizadas.Take(cantidadFinalizadasAMostrar).ToList();
+
+            var resultado = new List<Reserva>();
+            resultado.AddRange(activas);
+            resultado.AddRange(pendientes);
+            resultado.AddRange(finalizadasAMostrar);
+            resultado.AddRange(otras);
+
+            return resultado;
         }
 
         private void MODO_LISTA()
@@ -320,7 +349,7 @@ namespace VISTA.Cabañas_y_alquiler
 
             var reservas = contro_reser.ListarReservas();
 
-            listaReservasFiltro = reservas
+            var reservasFiltradas = reservas
             .Where(r =>
                 r.Estado != "Cancelada" &&
                 (string.IsNullOrEmpty(nombreCabañaFiltro) || r.Cabaña.Nombre.ToLower().Contains(nombreCabañaFiltro)) &&
@@ -330,6 +359,8 @@ namespace VISTA.Cabañas_y_alquiler
                 (!filtrarPorFechas || (r.FechaEntrada >= fechaEntradaFiltro && r.FechaSalida <= fechaSalidaFiltro))
             )
             .ToList();
+
+            listaReservasFiltro = OrdenarYLimitarReservas(reservasFiltradas);
 
             dataGridView1.DataSource = null;
 
@@ -480,9 +511,8 @@ namespace VISTA.Cabañas_y_alquiler
             }
             else
             {
-                var reservas = contro_reser.ListarReservas().Where(r => r.Estado != "Cancelada").ToList();
-                if (rowIndex >= 0 && rowIndex < reservas.Count)
-                    return reservas[rowIndex];
+                if (rowIndex >= 0 && rowIndex < reservasCompletas.Count)
+                    return reservasCompletas[rowIndex];
             }
 
             return null;

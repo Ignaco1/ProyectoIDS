@@ -44,7 +44,7 @@ namespace VISTA
             lb_capacidad.Text = $"Capacidad: {capacidad}";
             lb_precio.Text = $"Precio por noche: ${precio}";
 
-            string descripcionFormateada = FormatearDescripcion(descripcion, 3);
+            string descripcionFormateada = FormatearDescripcion(descripcion, 2);
             lb_descripcion.Text = $"Descripción: {descripcionFormateada}";
 
             imagenes = imagenesBytes;

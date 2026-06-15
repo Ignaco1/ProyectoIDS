@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel_carga = new Panel();
             groupBox_carga = new GroupBox();
             label2 = new Label();
@@ -65,9 +65,9 @@
             // 
             panel_carga.Controls.Add(groupBox_carga);
             panel_carga.Dock = DockStyle.Right;
-            panel_carga.Location = new Point(1482, 0);
+            panel_carga.Location = new Point(1419, 0);
             panel_carga.Name = "panel_carga";
-            panel_carga.Size = new Size(401, 1570);
+            panel_carga.Size = new Size(401, 1333);
             panel_carga.TabIndex = 2;
             // 
             // groupBox_carga
@@ -82,7 +82,7 @@
             groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
             groupBox_carga.Name = "groupBox_carga";
-            groupBox_carga.Size = new Size(401, 1570);
+            groupBox_carga.Size = new Size(401, 1333);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
@@ -92,7 +92,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(6, 147);
             label2.Name = "label2";
-            label2.Size = new Size(89, 21);
+            label2.Size = new Size(75, 20);
             label2.TabIndex = 11;
             label2.Text = "Permisos:";
             // 
@@ -101,7 +101,7 @@
             check_listaPermisos.FormattingEnabled = true;
             check_listaPermisos.Location = new Point(96, 147);
             check_listaPermisos.Name = "check_listaPermisos";
-            check_listaPermisos.Size = new Size(293, 895);
+            check_listaPermisos.Size = new Size(293, 886);
             check_listaPermisos.TabIndex = 10;
             // 
             // btn_cancelar
@@ -110,9 +110,9 @@
             btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
-            btn_cancelar.Location = new Point(266, 1533);
+            btn_cancelar.Location = new Point(266, 1296);
             btn_cancelar.Name = "btn_cancelar";
-            btn_cancelar.Size = new Size(129, 31);
+            btn_cancelar.Size = new Size(129, 27);
             btn_cancelar.TabIndex = 9;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = false;
@@ -124,9 +124,9 @@
             btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(6, 1533);
+            btn_guardar.Location = new Point(6, 1296);
             btn_guardar.Name = "btn_guardar";
-            btn_guardar.Size = new Size(129, 31);
+            btn_guardar.Size = new Size(129, 27);
             btn_guardar.TabIndex = 8;
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = false;
@@ -134,9 +134,9 @@
             // 
             // txt_nombre
             // 
-            txt_nombre.Location = new Point(155, 76);
+            txt_nombre.Location = new Point(132, 76);
             txt_nombre.Name = "txt_nombre";
-            txt_nombre.Size = new Size(234, 30);
+            txt_nombre.Size = new Size(257, 26);
             txt_nombre.TabIndex = 7;
             // 
             // label1
@@ -144,7 +144,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(6, 79);
             label1.Name = "label1";
-            label1.Size = new Size(143, 21);
+            label1.Size = new Size(120, 20);
             label1.TabIndex = 0;
             label1.Text = "Nombre grupo:";
             // 
@@ -154,7 +154,7 @@
             panel_lista_permisos.Dock = DockStyle.Fill;
             panel_lista_permisos.Location = new Point(0, 0);
             panel_lista_permisos.Name = "panel_lista_permisos";
-            panel_lista_permisos.Size = new Size(1482, 1570);
+            panel_lista_permisos.Size = new Size(1419, 1333);
             panel_lista_permisos.TabIndex = 3;
             // 
             // groupBox_grupos
@@ -167,7 +167,7 @@
             groupBox_grupos.ForeColor = Color.White;
             groupBox_grupos.Location = new Point(0, 0);
             groupBox_grupos.Name = "groupBox_grupos";
-            groupBox_grupos.Size = new Size(1482, 1570);
+            groupBox_grupos.Size = new Size(1419, 1333);
             groupBox_grupos.TabIndex = 0;
             groupBox_grupos.TabStop = false;
             groupBox_grupos.Text = "Lista de grupos";
@@ -178,40 +178,40 @@
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 27;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.ControlDark;
-            dataGridView1.Location = new Point(3, 89);
+            dataGridView1.Location = new Point(3, 85);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle5.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle6.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1476, 1420);
+            dataGridView1.Size = new Size(1413, 1187);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -223,16 +223,16 @@
             panel1.Controls.Add(txt_nombrePermisoFiltro);
             panel1.Controls.Add(label3);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 26);
+            panel1.Location = new Point(3, 22);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1476, 63);
+            panel1.Size = new Size(1413, 63);
             panel1.TabIndex = 1;
             // 
             // txt_nombreGrupoFiltro
             // 
             txt_nombreGrupoFiltro.Location = new Point(442, 20);
             txt_nombreGrupoFiltro.Name = "txt_nombreGrupoFiltro";
-            txt_nombreGrupoFiltro.Size = new Size(215, 30);
+            txt_nombreGrupoFiltro.Size = new Size(215, 26);
             txt_nombreGrupoFiltro.TabIndex = 7;
             txt_nombreGrupoFiltro.TextChanged += txt_nombreGrupoFiltro_TextChanged;
             // 
@@ -242,7 +242,7 @@
             label4.ForeColor = Color.White;
             label4.Location = new Point(273, 23);
             label4.Name = "label4";
-            label4.Size = new Size(172, 21);
+            label4.Size = new Size(144, 20);
             label4.TabIndex = 6;
             label4.Text = "Nombre de grupo:";
             // 
@@ -251,9 +251,9 @@
             btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
             btn_quitarFiltro.FlatAppearance.BorderSize = 0;
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
-            btn_quitarFiltro.Location = new Point(1332, 18);
+            btn_quitarFiltro.Location = new Point(1238, 20);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
-            btn_quitarFiltro.Size = new Size(129, 31);
+            btn_quitarFiltro.Size = new Size(161, 27);
             btn_quitarFiltro.TabIndex = 5;
             btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = false;
@@ -263,7 +263,7 @@
             // 
             txt_nombrePermisoFiltro.Location = new Point(881, 20);
             txt_nombrePermisoFiltro.Name = "txt_nombrePermisoFiltro";
-            txt_nombrePermisoFiltro.Size = new Size(215, 30);
+            txt_nombrePermisoFiltro.Size = new Size(215, 26);
             txt_nombrePermisoFiltro.TabIndex = 4;
             txt_nombrePermisoFiltro.TextChanged += txt_nombrePermisoFiltro_TextChanged;
             // 
@@ -273,7 +273,7 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(687, 23);
             label3.Name = "label3";
-            label3.Size = new Size(188, 21);
+            label3.Size = new Size(157, 20);
             label3.TabIndex = 3;
             label3.Text = "Nombre de permiso:";
             // 
@@ -283,9 +283,9 @@
             panel_botones.Controls.Add(btn_cerrar);
             panel_botones.Controls.Add(btn_asignarPermisos);
             panel_botones.Dock = DockStyle.Bottom;
-            panel_botones.Location = new Point(3, 1509);
+            panel_botones.Location = new Point(3, 1272);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(1476, 58);
+            panel_botones.Size = new Size(1413, 58);
             panel_botones.TabIndex = 0;
             // 
             // btn_modificarPermisos
@@ -296,7 +296,7 @@
             btn_modificarPermisos.ForeColor = Color.White;
             btn_modificarPermisos.Location = new Point(251, 6);
             btn_modificarPermisos.Name = "btn_modificarPermisos";
-            btn_modificarPermisos.Size = new Size(227, 31);
+            btn_modificarPermisos.Size = new Size(227, 27);
             btn_modificarPermisos.TabIndex = 6;
             btn_modificarPermisos.Text = "Modificar permisos";
             btn_modificarPermisos.UseVisualStyleBackColor = false;
@@ -309,9 +309,9 @@
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
             btn_cerrar.ForeColor = Color.White;
-            btn_cerrar.Location = new Point(1344, 24);
+            btn_cerrar.Location = new Point(1281, 24);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(129, 31);
+            btn_cerrar.Size = new Size(129, 27);
             btn_cerrar.TabIndex = 5;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -325,7 +325,7 @@
             btn_asignarPermisos.ForeColor = Color.White;
             btn_asignarPermisos.Location = new Point(9, 6);
             btn_asignarPermisos.Name = "btn_asignarPermisos";
-            btn_asignarPermisos.Size = new Size(227, 31);
+            btn_asignarPermisos.Size = new Size(227, 27);
             btn_asignarPermisos.TabIndex = 0;
             btn_asignarPermisos.Text = "Asignar permisos";
             btn_asignarPermisos.UseVisualStyleBackColor = false;
@@ -333,10 +333,10 @@
             // 
             // Form_asignarPermisos
             // 
-            AutoScaleDimensions = new SizeF(11F, 21F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1883, 1570);
+            ClientSize = new Size(1820, 1333);
             Controls.Add(panel_lista_permisos);
             Controls.Add(panel_carga);
             Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);

@@ -44,9 +44,9 @@
             // checkedListBox_motivos
             // 
             checkedListBox_motivos.FormattingEnabled = true;
-            checkedListBox_motivos.Location = new Point(16, 54);
+            checkedListBox_motivos.Location = new Point(18, 54);
             checkedListBox_motivos.Name = "checkedListBox_motivos";
-            checkedListBox_motivos.Size = new Size(306, 382);
+            checkedListBox_motivos.Size = new Size(333, 487);
             checkedListBox_motivos.TabIndex = 0;
             // 
             // btn_guardar
@@ -55,7 +55,7 @@
             btn_guardar.FlatAppearance.MouseDownBackColor = Color.LightGray;
             btn_guardar.FlatAppearance.MouseOverBackColor = Color.FromArgb(85, 85, 85);
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(114, 453);
+            btn_guardar.Location = new Point(144, 547);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(100, 40);
             btn_guardar.TabIndex = 2;
@@ -71,7 +71,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(338, 34);
+            panel1.Size = new Size(367, 34);
             panel1.TabIndex = 3;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -82,7 +82,7 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(0, 2);
             label1.Name = "label1";
-            label1.Size = new Size(245, 32);
+            label1.Size = new Size(207, 25);
             label1.TabIndex = 13;
             label1.Text = "Selección Motivos";
             label1.MouseDown += label1_MouseDown;
@@ -90,7 +90,7 @@
             // btn_cerrar
             // 
             btn_cerrar.Image = (Image)resources.GetObject("btn_cerrar.Image");
-            btn_cerrar.Location = new Point(306, 1);
+            btn_cerrar.Location = new Point(335, 1);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(32, 33);
             btn_cerrar.SizeMode = PictureBoxSizeMode.Zoom;
@@ -102,9 +102,9 @@
             // 
             panel2.BackColor = Color.FromArgb(0, 86, 172);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(328, 34);
+            panel2.Location = new Point(357, 34);
             panel2.Name = "panel2";
-            panel2.Size = new Size(10, 488);
+            panel2.Size = new Size(10, 570);
             panel2.TabIndex = 4;
             panel2.MouseDown += panel2_MouseDown;
             // 
@@ -114,7 +114,7 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 34);
             panel3.Name = "panel3";
-            panel3.Size = new Size(10, 488);
+            panel3.Size = new Size(10, 570);
             panel3.TabIndex = 5;
             panel3.MouseDown += panel3_MouseDown;
             // 
@@ -122,18 +122,18 @@
             // 
             panel4.BackColor = Color.FromArgb(0, 86, 172);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(10, 512);
+            panel4.Location = new Point(10, 594);
             panel4.Name = "panel4";
-            panel4.Size = new Size(318, 10);
+            panel4.Size = new Size(347, 10);
             panel4.TabIndex = 6;
             panel4.MouseDown += panel4_MouseDown;
             // 
             // Form_seleccionarMotivosCancelacion
             // 
-            AutoScaleDimensions = new SizeF(11F, 21F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(338, 522);
+            ClientSize = new Size(367, 604);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);

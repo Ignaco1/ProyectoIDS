@@ -48,7 +48,7 @@
             // 
             numericUpDown_dias.Location = new Point(100, 112);
             numericUpDown_dias.Name = "numericUpDown_dias";
-            numericUpDown_dias.Size = new Size(137, 30);
+            numericUpDown_dias.Size = new Size(137, 26);
             numericUpDown_dias.TabIndex = 0;
             // 
             // label1
@@ -57,7 +57,7 @@
             label1.Font = new Font("Century Gothic", 9.75F);
             label1.Location = new Point(44, 39);
             label1.Name = "label1";
-            label1.Size = new Size(265, 23);
+            label1.Size = new Size(223, 21);
             label1.TabIndex = 1;
             label1.Text = "Ingrese el numero de días";
             // 
@@ -67,7 +67,7 @@
             btn_guardar.FlatAppearance.MouseDownBackColor = Color.LightGray;
             btn_guardar.FlatAppearance.MouseOverBackColor = Color.FromArgb(85, 85, 85);
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(115, 168);
+            btn_guardar.Location = new Point(117, 168);
             btn_guardar.Name = "btn_guardar";
             btn_guardar.Size = new Size(101, 43);
             btn_guardar.TabIndex = 2;
@@ -94,7 +94,7 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(0, -5);
             label3.Name = "label3";
-            label3.Size = new Size(322, 32);
+            label3.Size = new Size(267, 25);
             label3.TabIndex = 13;
             label3.Text = "Duración Desactivación";
             label3.MouseDown += label3_MouseDown;
@@ -136,7 +136,7 @@
             label2.Font = new Font("Century Gothic", 9.75F);
             label2.Location = new Point(79, 62);
             label2.Name = "label2";
-            label2.Size = new Size(208, 23);
+            label2.Size = new Size(179, 21);
             label2.TabIndex = 6;
             label2.Text = "de la desactivación";
             // 
@@ -151,7 +151,7 @@
             // 
             // Form_duracionDesactivacion
             // 
-            AutoScaleDimensions = new SizeF(11F, 21F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(350, 236);

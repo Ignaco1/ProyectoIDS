@@ -54,8 +54,9 @@
             panel_imagen.Controls.Add(pictureBox3);
             panel_imagen.Dock = DockStyle.Left;
             panel_imagen.Location = new Point(0, 0);
+            panel_imagen.Margin = new Padding(3, 4, 3, 4);
             panel_imagen.Name = "panel_imagen";
-            panel_imagen.Size = new Size(250, 330);
+            panel_imagen.Size = new Size(286, 546);
             panel_imagen.TabIndex = 1;
             panel_imagen.MouseDown += panel_imagen_MouseDown;
             // 
@@ -63,9 +64,10 @@
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(12, 40);
+            pictureBox3.Location = new Point(14, 53);
+            pictureBox3.Margin = new Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(225, 234);
+            pictureBox3.Size = new Size(257, 418);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
@@ -74,9 +76,10 @@
             // btn_cerrar
             // 
             btn_cerrar.Image = (Image)resources.GetObject("btn_cerrar.Image");
-            btn_cerrar.Location = new Point(749, 0);
+            btn_cerrar.Location = new Point(1016, 0);
+            btn_cerrar.Margin = new Padding(3, 4, 3, 4);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(30, 30);
+            btn_cerrar.Size = new Size(34, 40);
             btn_cerrar.SizeMode = PictureBoxSizeMode.Zoom;
             btn_cerrar.TabIndex = 8;
             btn_cerrar.TabStop = false;
@@ -85,9 +88,10 @@
             // btn_minimizar
             // 
             btn_minimizar.Image = (Image)resources.GetObject("btn_minimizar.Image");
-            btn_minimizar.Location = new Point(722, 0);
+            btn_minimizar.Location = new Point(985, 0);
+            btn_minimizar.Margin = new Padding(3, 4, 3, 4);
             btn_minimizar.Name = "btn_minimizar";
-            btn_minimizar.Size = new Size(30, 30);
+            btn_minimizar.Size = new Size(34, 40);
             btn_minimizar.SizeMode = PictureBoxSizeMode.Zoom;
             btn_minimizar.TabIndex = 9;
             btn_minimizar.TabStop = false;
@@ -98,9 +102,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(357, -3);
+            label1.Location = new Point(483, 0);
             label1.Name = "label1";
-            label1.Size = new Size(313, 33);
+            label1.Size = new Size(395, 40);
             label1.TabIndex = 10;
             label1.Text = "Recuperar Contraseña";
             label1.MouseDown += label1_MouseDown;
@@ -113,9 +117,10 @@
             btn_aceptar.FlatStyle = FlatStyle.Flat;
             btn_aceptar.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_aceptar.ForeColor = Color.White;
-            btn_aceptar.Location = new Point(288, 245);
+            btn_aceptar.Location = new Point(432, 358);
+            btn_aceptar.Margin = new Padding(3, 4, 3, 4);
             btn_aceptar.Name = "btn_aceptar";
-            btn_aceptar.Size = new Size(450, 40);
+            btn_aceptar.Size = new Size(514, 53);
             btn_aceptar.TabIndex = 11;
             btn_aceptar.Text = "ACEPTAR";
             btn_aceptar.UseVisualStyleBackColor = false;
@@ -124,9 +129,10 @@
             // pictureBox_error
             // 
             pictureBox_error.Image = (Image)resources.GetObject("pictureBox_error.Image");
-            pictureBox_error.Location = new Point(288, 182);
+            pictureBox_error.Location = new Point(432, 282);
+            pictureBox_error.Margin = new Padding(3, 4, 3, 4);
             pictureBox_error.Name = "pictureBox_error";
-            pictureBox_error.Size = new Size(32, 31);
+            pictureBox_error.Size = new Size(37, 41);
             pictureBox_error.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox_error.TabIndex = 18;
             pictureBox_error.TabStop = false;
@@ -136,9 +142,9 @@
             label_error.AutoSize = true;
             label_error.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_error.ForeColor = Color.FromArgb(45, 150, 255);
-            label_error.Location = new Point(326, 190);
+            label_error.Location = new Point(476, 284);
             label_error.Name = "label_error";
-            label_error.Size = new Size(93, 17);
+            label_error.Size = new Size(123, 21);
             label_error.TabIndex = 17;
             label_error.Text = "Mensaje error";
             // 
@@ -146,9 +152,10 @@
             // 
             panel3.BackColor = SystemColors.AppWorkspace;
             panel3.Enabled = false;
-            panel3.Location = new Point(288, 175);
+            panel3.Location = new Point(432, 264);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(450, 1);
+            panel3.Size = new Size(514, 1);
             panel3.TabIndex = 21;
             // 
             // txt_email
@@ -157,9 +164,10 @@
             txt_email.BorderStyle = BorderStyle.None;
             txt_email.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_email.ForeColor = Color.White;
-            txt_email.Location = new Point(288, 149);
+            txt_email.Location = new Point(432, 230);
+            txt_email.Margin = new Padding(3, 4, 3, 4);
             txt_email.Name = "txt_email";
-            txt_email.Size = new Size(450, 20);
+            txt_email.Size = new Size(514, 25);
             txt_email.TabIndex = 22;
             txt_email.Text = "EMAIL";
             txt_email.Enter += txt_email_Enter;
@@ -171,9 +179,10 @@
             txt_usuario.BorderStyle = BorderStyle.None;
             txt_usuario.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_usuario.ForeColor = Color.White;
-            txt_usuario.Location = new Point(288, 84);
+            txt_usuario.Location = new Point(432, 143);
+            txt_usuario.Margin = new Padding(3, 4, 3, 4);
             txt_usuario.Name = "txt_usuario";
-            txt_usuario.Size = new Size(450, 20);
+            txt_usuario.Size = new Size(514, 25);
             txt_usuario.TabIndex = 19;
             txt_usuario.Text = "USUARIO";
             txt_usuario.Enter += txt_usuario_Enter;
@@ -183,17 +192,18 @@
             // 
             panel2.BackColor = SystemColors.AppWorkspace;
             panel2.Enabled = false;
-            panel2.Location = new Point(288, 109);
+            panel2.Location = new Point(432, 176);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(450, 1);
+            panel2.Size = new Size(514, 1);
             panel2.TabIndex = 20;
             // 
             // Form_recuperarContraseña
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 40, 81);
-            ClientSize = new Size(780, 330);
+            ClientSize = new Size(1051, 546);
             Controls.Add(panel3);
             Controls.Add(txt_email);
             Controls.Add(txt_usuario);
@@ -207,6 +217,7 @@
             Controls.Add(panel_imagen);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form_recuperarContraseña";
             Opacity = 0.95D;
             StartPosition = FormStartPosition.CenterScreen;

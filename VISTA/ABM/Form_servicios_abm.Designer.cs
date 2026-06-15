@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_servicios_abm));
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             groupBox_carga = new GroupBox();
+            label2 = new Label();
             pictureBox_imagenes = new PictureBox();
             btn_borrar = new PictureBox();
             flowLayoutPanel_imagenes = new FlowLayoutPanel();
@@ -79,15 +80,16 @@
             // 
             panel1.Controls.Add(groupBox_carga);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(1464, 0);
-            panel1.Margin = new Padding(4, 5, 4, 5);
+            panel1.Location = new Point(1447, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(419, 1580);
+            panel1.Size = new Size(373, 1333);
             panel1.TabIndex = 0;
             // 
             // groupBox_carga
             // 
             groupBox_carga.BackColor = Color.Gray;
+            groupBox_carga.Controls.Add(label2);
             groupBox_carga.Controls.Add(pictureBox_imagenes);
             groupBox_carga.Controls.Add(btn_borrar);
             groupBox_carga.Controls.Add(flowLayoutPanel_imagenes);
@@ -107,20 +109,31 @@
             groupBox_carga.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox_carga.ForeColor = Color.White;
             groupBox_carga.Location = new Point(0, 0);
-            groupBox_carga.Margin = new Padding(4, 5, 4, 5);
+            groupBox_carga.Margin = new Padding(3, 4, 3, 4);
             groupBox_carga.Name = "groupBox_carga";
-            groupBox_carga.Padding = new Padding(4, 5, 4, 5);
-            groupBox_carga.Size = new Size(419, 1580);
+            groupBox_carga.Padding = new Padding(3, 4, 3, 4);
+            groupBox_carga.Size = new Size(373, 1333);
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(81, 355);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(21, 22);
+            label2.TabIndex = 39;
+            label2.Text = "$";
+            // 
             // pictureBox_imagenes
             // 
-            pictureBox_imagenes.Location = new Point(69, 1220);
-            pictureBox_imagenes.Margin = new Padding(4, 5, 4, 5);
+            pictureBox_imagenes.Location = new Point(68, 988);
+            pictureBox_imagenes.Margin = new Padding(3, 4, 3, 4);
             pictureBox_imagenes.Name = "pictureBox_imagenes";
-            pictureBox_imagenes.Size = new Size(315, 249);
+            pictureBox_imagenes.Size = new Size(252, 199);
             pictureBox_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox_imagenes.TabIndex = 36;
             pictureBox_imagenes.TabStop = false;
@@ -128,10 +141,10 @@
             // btn_borrar
             // 
             btn_borrar.Image = (Image)resources.GetObject("btn_borrar.Image");
-            btn_borrar.Location = new Point(351, 952);
-            btn_borrar.Margin = new Padding(4, 5, 4, 5);
+            btn_borrar.Location = new Point(307, 765);
+            btn_borrar.Margin = new Padding(3, 4, 3, 4);
             btn_borrar.Name = "btn_borrar";
-            btn_borrar.Size = new Size(63, 95);
+            btn_borrar.Size = new Size(63, 63);
             btn_borrar.SizeMode = PictureBoxSizeMode.Zoom;
             btn_borrar.TabIndex = 38;
             btn_borrar.TabStop = false;
@@ -139,10 +152,10 @@
             // 
             // flowLayoutPanel_imagenes
             // 
-            flowLayoutPanel_imagenes.Location = new Point(21, 1057);
-            flowLayoutPanel_imagenes.Margin = new Padding(4, 5, 4, 5);
+            flowLayoutPanel_imagenes.Location = new Point(17, 846);
+            flowLayoutPanel_imagenes.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel_imagenes.Name = "flowLayoutPanel_imagenes";
-            flowLayoutPanel_imagenes.Size = new Size(389, 153);
+            flowLayoutPanel_imagenes.Size = new Size(350, 122);
             flowLayoutPanel_imagenes.TabIndex = 37;
             // 
             // btn_imagenes
@@ -150,10 +163,10 @@
             btn_imagenes.BackColor = Color.FromArgb(0, 84, 168);
             btn_imagenes.FlatAppearance.BorderSize = 0;
             btn_imagenes.FlatStyle = FlatStyle.Flat;
-            btn_imagenes.Location = new Point(202, 967);
-            btn_imagenes.Margin = new Padding(4, 5, 4, 5);
+            btn_imagenes.Location = new Point(169, 777);
+            btn_imagenes.Margin = new Padding(3, 4, 3, 4);
             btn_imagenes.Name = "btn_imagenes";
-            btn_imagenes.Size = new Size(67, 53);
+            btn_imagenes.Size = new Size(76, 39);
             btn_imagenes.TabIndex = 34;
             btn_imagenes.Text = "...";
             btn_imagenes.UseVisualStyleBackColor = false;
@@ -162,10 +175,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(21, 983);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(17, 786);
             label1.Name = "label1";
-            label1.Size = new Size(103, 21);
+            label1.Size = new Size(86, 20);
             label1.TabIndex = 35;
             label1.Text = "Imagenés:";
             // 
@@ -175,10 +187,10 @@
             btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelar.FlatAppearance.BorderSize = 0;
             btn_cancelar.FlatStyle = FlatStyle.Flat;
-            btn_cancelar.Location = new Point(267, 1539);
-            btn_cancelar.Margin = new Padding(4, 5, 4, 5);
+            btn_cancelar.Location = new Point(206, 1302);
+            btn_cancelar.Margin = new Padding(3, 4, 3, 4);
             btn_cancelar.Name = "btn_cancelar";
-            btn_cancelar.Size = new Size(147, 31);
+            btn_cancelar.Size = new Size(129, 27);
             btn_cancelar.TabIndex = 31;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = false;
@@ -190,10 +202,10 @@
             btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
             btn_guardar.FlatAppearance.BorderSize = 0;
             btn_guardar.FlatStyle = FlatStyle.Flat;
-            btn_guardar.Location = new Point(8, 1539);
-            btn_guardar.Margin = new Padding(4, 5, 4, 5);
+            btn_guardar.Location = new Point(6, 1300);
+            btn_guardar.Margin = new Padding(3, 4, 3, 4);
             btn_guardar.Name = "btn_guardar";
-            btn_guardar.Size = new Size(147, 31);
+            btn_guardar.Size = new Size(129, 27);
             btn_guardar.TabIndex = 30;
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = false;
@@ -202,73 +214,69 @@
             // check_listaCategorias
             // 
             check_listaCategorias.FormattingEnabled = true;
-            check_listaCategorias.Location = new Point(127, 512);
-            check_listaCategorias.Margin = new Padding(4, 5, 4, 5);
+            check_listaCategorias.Location = new Point(103, 416);
+            check_listaCategorias.Margin = new Padding(3, 4, 3, 4);
             check_listaCategorias.Name = "check_listaCategorias";
-            check_listaCategorias.Size = new Size(281, 409);
+            check_listaCategorias.Size = new Size(258, 319);
             check_listaCategorias.TabIndex = 29;
             // 
             // txt_importe
             // 
-            txt_importe.Location = new Point(127, 435);
-            txt_importe.Margin = new Padding(4, 5, 4, 5);
+            txt_importe.Location = new Point(103, 354);
+            txt_importe.Margin = new Padding(3, 4, 3, 4);
             txt_importe.Name = "txt_importe";
-            txt_importe.Size = new Size(257, 30);
+            txt_importe.Size = new Size(258, 26);
             txt_importe.TabIndex = 28;
             // 
             // txt_descripcion
             // 
-            txt_descripcion.Location = new Point(127, 193);
-            txt_descripcion.Margin = new Padding(4, 5, 4, 5);
+            txt_descripcion.Location = new Point(102, 129);
+            txt_descripcion.Margin = new Padding(3, 4, 3, 4);
             txt_descripcion.Name = "txt_descripcion";
-            txt_descripcion.Size = new Size(270, 30);
+            txt_descripcion.Size = new Size(259, 26);
             txt_descripcion.TabIndex = 27;
             // 
             // txt_nombre
             // 
-            txt_nombre.Location = new Point(127, 121);
-            txt_nombre.Margin = new Padding(4, 5, 4, 5);
+            txt_nombre.Location = new Point(102, 71);
+            txt_nombre.Margin = new Padding(3, 4, 3, 4);
             txt_nombre.Name = "txt_nombre";
-            txt_nombre.Size = new Size(270, 30);
+            txt_nombre.Size = new Size(259, 26);
             txt_nombre.TabIndex = 26;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(6, 512);
-            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Location = new Point(6, 416);
             label7.Name = "label7";
-            label7.Size = new Size(105, 21);
+            label7.Size = new Size(88, 20);
             label7.TabIndex = 25;
             label7.Text = "Categoria:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(6, 440);
-            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Location = new Point(6, 358);
             label6.Name = "label6";
-            label6.Size = new Size(85, 21);
+            label6.Size = new Size(71, 20);
             label6.TabIndex = 24;
             label6.Text = "Importe:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 198);
-            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Location = new Point(5, 133);
             label5.Name = "label5";
-            label5.Size = new Size(117, 21);
+            label5.Size = new Size(100, 20);
             label5.TabIndex = 23;
             label5.Text = "Descripción:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 126);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(5, 75);
             label4.Name = "label4";
-            label4.Size = new Size(86, 21);
+            label4.Size = new Size(72, 20);
             label4.TabIndex = 22;
             label4.Text = "Nombre:";
             // 
@@ -277,9 +285,9 @@
             panel2.Controls.Add(groupBox_grilla);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(4, 5, 4, 5);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1464, 1580);
+            panel2.Size = new Size(1447, 1333);
             panel2.TabIndex = 1;
             // 
             // groupBox_grilla
@@ -292,10 +300,10 @@
             groupBox_grilla.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox_grilla.ForeColor = Color.White;
             groupBox_grilla.Location = new Point(0, 0);
-            groupBox_grilla.Margin = new Padding(4, 5, 4, 5);
+            groupBox_grilla.Margin = new Padding(3, 4, 3, 4);
             groupBox_grilla.Name = "groupBox_grilla";
-            groupBox_grilla.Padding = new Padding(4, 5, 4, 5);
-            groupBox_grilla.Size = new Size(1464, 1580);
+            groupBox_grilla.Padding = new Padding(3, 4, 3, 4);
+            groupBox_grilla.Size = new Size(1447, 1333);
             groupBox_grilla.TabIndex = 0;
             groupBox_grilla.TabStop = false;
             groupBox_grilla.Text = "Lista de servicios";
@@ -306,49 +314,49 @@
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle9.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 34;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.ControlDark;
-            dataGridView1.Location = new Point(4, 121);
-            dataGridView1.Margin = new Padding(4, 5, 4, 5);
+            dataGridView1.Location = new Point(3, 97);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = Color.White;
-            dataGridViewCellStyle11.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle11.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle11.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridViewCellStyle12.BackColor = Color.White;
-            dataGridViewCellStyle12.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle12.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle12.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle4.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1456, 1326);
+            dataGridView1.Size = new Size(1441, 1130);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -360,20 +368,20 @@
             panel4.Controls.Add(txt_nombreFiltro);
             panel4.Controls.Add(label10);
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(4, 28);
-            panel4.Margin = new Padding(4, 5, 4, 5);
+            panel4.Location = new Point(3, 23);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1456, 93);
+            panel4.Size = new Size(1441, 74);
             panel4.TabIndex = 1;
             // 
             // cb_categoriasFiltro
             // 
             cb_categoriasFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_categoriasFiltro.FormattingEnabled = true;
-            cb_categoriasFiltro.Location = new Point(821, 30);
-            cb_categoriasFiltro.Margin = new Padding(4, 5, 4, 5);
+            cb_categoriasFiltro.Location = new Point(807, 22);
+            cb_categoriasFiltro.Margin = new Padding(3, 4, 3, 4);
             cb_categoriasFiltro.Name = "cb_categoriasFiltro";
-            cb_categoriasFiltro.Size = new Size(280, 29);
+            cb_categoriasFiltro.Size = new Size(225, 28);
             cb_categoriasFiltro.TabIndex = 43;
             cb_categoriasFiltro.SelectedIndexChanged += cb_categoriasFiltro_SelectedIndexChanged;
             // 
@@ -383,10 +391,10 @@
             btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
             btn_quitarFiltro.FlatAppearance.BorderSize = 0;
             btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
-            btn_quitarFiltro.Location = new Point(1299, 28);
-            btn_quitarFiltro.Margin = new Padding(4, 5, 4, 5);
+            btn_quitarFiltro.Location = new Point(1272, 22);
+            btn_quitarFiltro.Margin = new Padding(3, 4, 3, 4);
             btn_quitarFiltro.Name = "btn_quitarFiltro";
-            btn_quitarFiltro.Size = new Size(147, 31);
+            btn_quitarFiltro.Size = new Size(161, 27);
             btn_quitarFiltro.TabIndex = 42;
             btn_quitarFiltro.Text = "Limpiar filtro";
             btn_quitarFiltro.UseVisualStyleBackColor = false;
@@ -395,29 +403,27 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(710, 35);
-            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Location = new Point(718, 26);
             label9.Name = "label9";
-            label9.Size = new Size(105, 21);
+            label9.Size = new Size(88, 20);
             label9.TabIndex = 39;
             label9.Text = "Categoria:";
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(397, 29);
-            txt_nombreFiltro.Margin = new Padding(4, 5, 4, 5);
+            txt_nombreFiltro.Location = new Point(468, 21);
+            txt_nombreFiltro.Margin = new Padding(3, 4, 3, 4);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
-            txt_nombreFiltro.Size = new Size(193, 30);
+            txt_nombreFiltro.Size = new Size(155, 26);
             txt_nombreFiltro.TabIndex = 38;
             txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(305, 34);
-            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Location = new Point(394, 25);
             label10.Name = "label10";
-            label10.Size = new Size(86, 21);
+            label10.Size = new Size(72, 20);
             label10.TabIndex = 37;
             label10.Text = "Nombre:";
             // 
@@ -428,10 +434,10 @@
             panel3.Controls.Add(btn_agregar);
             panel3.Controls.Add(btn_cerrar);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(4, 1447);
-            panel3.Margin = new Padding(4, 5, 4, 5);
+            panel3.Location = new Point(3, 1227);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1456, 128);
+            panel3.Size = new Size(1441, 102);
             panel3.TabIndex = 0;
             // 
             // btn_eliminar
@@ -440,10 +446,10 @@
             btn_eliminar.BackColor = Color.FromArgb(0, 84, 168);
             btn_eliminar.FlatAppearance.BorderSize = 0;
             btn_eliminar.FlatStyle = FlatStyle.Flat;
-            btn_eliminar.Location = new Point(491, 12);
-            btn_eliminar.Margin = new Padding(4, 5, 4, 5);
+            btn_eliminar.Location = new Point(393, 10);
+            btn_eliminar.Margin = new Padding(3, 4, 3, 4);
             btn_eliminar.Name = "btn_eliminar";
-            btn_eliminar.Size = new Size(209, 31);
+            btn_eliminar.Size = new Size(167, 27);
             btn_eliminar.TabIndex = 35;
             btn_eliminar.Text = "Eliminar servicio";
             btn_eliminar.UseVisualStyleBackColor = false;
@@ -455,10 +461,10 @@
             btn_modificar.BackColor = Color.FromArgb(0, 84, 168);
             btn_modificar.FlatAppearance.BorderSize = 0;
             btn_modificar.FlatStyle = FlatStyle.Flat;
-            btn_modificar.Location = new Point(253, 12);
-            btn_modificar.Margin = new Padding(4, 5, 4, 5);
+            btn_modificar.Location = new Point(202, 10);
+            btn_modificar.Margin = new Padding(3, 4, 3, 4);
             btn_modificar.Name = "btn_modificar";
-            btn_modificar.Size = new Size(209, 31);
+            btn_modificar.Size = new Size(167, 27);
             btn_modificar.TabIndex = 34;
             btn_modificar.Text = "Modificar servicio";
             btn_modificar.UseVisualStyleBackColor = false;
@@ -470,10 +476,10 @@
             btn_agregar.BackColor = Color.FromArgb(0, 84, 168);
             btn_agregar.FlatAppearance.BorderSize = 0;
             btn_agregar.FlatStyle = FlatStyle.Flat;
-            btn_agregar.Location = new Point(16, 12);
-            btn_agregar.Margin = new Padding(4, 5, 4, 5);
+            btn_agregar.Location = new Point(13, 10);
+            btn_agregar.Margin = new Padding(3, 4, 3, 4);
             btn_agregar.Name = "btn_agregar";
-            btn_agregar.Size = new Size(209, 31);
+            btn_agregar.Size = new Size(167, 27);
             btn_agregar.TabIndex = 33;
             btn_agregar.Text = "Agregar servicio";
             btn_agregar.UseVisualStyleBackColor = false;
@@ -485,10 +491,10 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(1305, 92);
-            btn_cerrar.Margin = new Padding(4, 5, 4, 5);
+            btn_cerrar.Location = new Point(1309, 73);
+            btn_cerrar.Margin = new Padding(3, 4, 3, 4);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(147, 31);
+            btn_cerrar.Size = new Size(129, 27);
             btn_cerrar.TabIndex = 32;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -496,13 +502,13 @@
             // 
             // Form_servicios_abm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1883, 1580);
+            ClientSize = new Size(1820, 1333);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form_servicios_abm";
             Text = "Form_servicios_abm";
             Load += Form_servicios_abm_Load;
@@ -553,5 +559,6 @@
         private FlowLayoutPanel flowLayoutPanel_imagenes;
         private Button btn_imagenes;
         private Label label1;
+        private Label label2;
     }
 }

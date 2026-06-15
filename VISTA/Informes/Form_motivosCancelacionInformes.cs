@@ -74,7 +74,7 @@ namespace VISTA.Informes
                 { "Precio elevado", Color.Orange },
                 { "Otro", Color.Gold },
                 { "Rotura o arreglo de cabaña", Color.Red },
-                { "Error de carga en el sistema", Color.Gray },
+                { "Error de carga en el sistema", Color.SteelBlue },
                 { "Cancelación por motivos de salud", Color.Teal },
                 { "Cancelación por parte del cliente", Color.YellowGreen },
                 { "Condiciones climáticas", Color.LightBlue }
@@ -241,7 +241,7 @@ namespace VISTA.Informes
                             { "Precio elevado", Color.Orange },
                             { "Otro", Color.Gold },
                             { "Rotura o arreglo de cabaña", Color.Red },
-                            { "Error de carga en el sistema", Color.Gray },
+                            { "Error de carga en el sistema", Color.SteelBlue },
                             { "Cancelación por motivos de salud", Color.Teal },
                             { "Cancelación por parte del cliente", Color.YellowGreen },
                             { "Condiciones climáticas", Color.LightBlue }
@@ -352,7 +352,7 @@ namespace VISTA.Informes
                             { "Precio elevado", XLColor.Orange },
                             { "Otro", XLColor.Gold },
                             { "Rotura o arreglo de cabaña", XLColor.Red },
-                            { "Error de carga en el sistema", XLColor.Gray },
+                            { "Error de carga en el sistema", XLColor.SteelBlue },
                             { "Cancelación por motivos de salud", XLColor.Teal },
                             { "Cancelación por parte del cliente", XLColor.YellowGreen },
                             { "Condiciones climáticas", XLColor.LightBlue }

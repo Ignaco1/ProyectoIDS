@@ -369,7 +369,7 @@ namespace VISTA
 
         private void button12_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Form_reservaCabaña());
+            
         }
     }
 }
