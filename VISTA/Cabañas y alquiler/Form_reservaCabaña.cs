@@ -31,6 +31,7 @@ namespace VISTA.Cabañas_y_alquiler
             CargarFechasOcupadas();
             clienteActual = null;
             label_cliente.Text = "Cliente no seleccionado";
+            mc_fechas.DateSelected += mc_fechas_DateSelected;
         }
 
         private void CargarFechasOcupadas()
@@ -244,6 +245,8 @@ namespace VISTA.Cabañas_y_alquiler
                 MessageBox.Show("No se puede seleccionar esta fecha. La cabaña ya está ocupada o está desactivada.", "Error");
                 return;
             }
+
+            label_fechas.Text = $"{e.Start:dd/MM/yyyy} - {e.End:dd/MM/yyyy}";
         }
 
         private void btn_seleccionarCliente_Click(object sender, EventArgs e)

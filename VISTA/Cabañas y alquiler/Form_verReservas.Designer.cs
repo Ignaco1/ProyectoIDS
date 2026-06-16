@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             gb_carga = new GroupBox();
             btn_seleccionarCabaña = new Button();
@@ -223,14 +223,14 @@
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 27;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Dock = DockStyle.Fill;
@@ -240,21 +240,21 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle5.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle6.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1462, 1125);
             dataGridView1.TabIndex = 2;
@@ -346,7 +346,7 @@
             // dtp_entradaFiltro
             // 
             dtp_entradaFiltro.Format = DateTimePickerFormat.Short;
-            dtp_entradaFiltro.Location = new Point(480, 61);
+            dtp_entradaFiltro.Location = new Point(432, 61);
             dtp_entradaFiltro.Name = "dtp_entradaFiltro";
             dtp_entradaFiltro.Size = new Size(221, 26);
             dtp_entradaFiltro.TabIndex = 60;
@@ -354,7 +354,7 @@
             // 
             // txt_nombreCabañaFiltro
             // 
-            txt_nombreCabañaFiltro.Location = new Point(356, 11);
+            txt_nombreCabañaFiltro.Location = new Point(308, 11);
             txt_nombreCabañaFiltro.Name = "txt_nombreCabañaFiltro";
             txt_nombreCabañaFiltro.Size = new Size(185, 26);
             txt_nombreCabañaFiltro.TabIndex = 59;
@@ -364,7 +364,7 @@
             // 
             cb_estado.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_estado.FormattingEnabled = true;
-            cb_estado.Location = new Point(1084, 11);
+            cb_estado.Location = new Point(1036, 11);
             cb_estado.Name = "cb_estado";
             cb_estado.Size = new Size(169, 28);
             cb_estado.TabIndex = 58;
@@ -373,7 +373,7 @@
             // dtp_salidaFiltro
             // 
             dtp_salidaFiltro.Format = DateTimePickerFormat.Short;
-            dtp_salidaFiltro.Location = new Point(894, 63);
+            dtp_salidaFiltro.Location = new Point(846, 63);
             dtp_salidaFiltro.Name = "dtp_salidaFiltro";
             dtp_salidaFiltro.Size = new Size(221, 26);
             dtp_salidaFiltro.TabIndex = 57;
@@ -382,7 +382,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(732, 68);
+            label3.Location = new Point(684, 68);
             label3.Name = "label3";
             label3.Size = new Size(130, 20);
             label3.TabIndex = 55;
@@ -391,7 +391,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(298, 65);
+            label2.Location = new Point(250, 65);
             label2.Name = "label2";
             label2.Size = new Size(146, 20);
             label2.TabIndex = 54;
@@ -414,7 +414,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(932, 14);
+            label9.Location = new Point(884, 14);
             label9.Name = "label9";
             label9.Size = new Size(146, 20);
             label9.TabIndex = 49;
@@ -422,7 +422,7 @@
             // 
             // txt_nombreClienteFiltro
             // 
-            txt_nombreClienteFiltro.Location = new Point(720, 11);
+            txt_nombreClienteFiltro.Location = new Point(672, 11);
             txt_nombreClienteFiltro.Name = "txt_nombreClienteFiltro";
             txt_nombreClienteFiltro.Size = new Size(186, 26);
             txt_nombreClienteFiltro.TabIndex = 48;
@@ -431,7 +431,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(564, 14);
+            label8.Location = new Point(516, 14);
             label8.Name = "label8";
             label8.Size = new Size(150, 20);
             label8.TabIndex = 47;
@@ -440,7 +440,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(191, 14);
+            label1.Location = new Point(143, 14);
             label1.Name = "label1";
             label1.Size = new Size(159, 20);
             label1.TabIndex = 46;

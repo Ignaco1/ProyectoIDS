@@ -305,5 +305,14 @@ namespace VISTA
 
             variF = "";
         }
+
+        private void checkBox_seleccionarTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            bool marcar = checkBox_seleccionarTodos.Checked;
+            for (int i = 0; i < check_listaPermisos.Items.Count; i++)
+            {
+                check_listaPermisos.SetItemChecked(i, marcar);
+            }
+        }
     }
 }

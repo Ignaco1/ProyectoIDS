@@ -77,7 +77,7 @@
             panel_butones.Controls.Add(btn_realizarReserva);
             panel_butones.Dock = DockStyle.Bottom;
             panel_butones.Location = new Point(0, 1235);
-            panel_butones.Margin = new Padding(2, 2, 2, 2);
+            panel_butones.Margin = new Padding(2);
             panel_butones.Name = "panel_butones";
             panel_butones.Size = new Size(1820, 98);
             panel_butones.TabIndex = 1;
@@ -144,7 +144,7 @@
             panel_picture.Controls.Add(panel1);
             panel_picture.Dock = DockStyle.Left;
             panel_picture.Location = new Point(0, 0);
-            panel_picture.Margin = new Padding(2, 2, 2, 2);
+            panel_picture.Margin = new Padding(2);
             panel_picture.Name = "panel_picture";
             panel_picture.Size = new Size(781, 1235);
             panel_picture.TabIndex = 2;
@@ -152,11 +152,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(224, 98);
+            label5.Location = new Point(183, 142);
             label5.Name = "label5";
-            label5.Size = new Size(234, 23);
+            label5.Size = new Size(267, 27);
             label5.TabIndex = 47;
             label5.Text = "Nombre de la cabaña:";
             // 
@@ -164,11 +164,11 @@
             // 
             lb_descripcion.Anchor = AnchorStyles.Left;
             lb_descripcion.AutoSize = true;
-            lb_descripcion.Font = new Font("Microsoft Sans Serif", 12F);
+            lb_descripcion.Font = new Font("Century Gothic", 12F);
             lb_descripcion.ForeColor = Color.White;
-            lb_descripcion.Location = new Point(152, 938);
+            lb_descripcion.Location = new Point(162, 1019);
             lb_descripcion.Name = "lb_descripcion";
-            lb_descripcion.Size = new Size(16, 25);
+            lb_descripcion.Size = new Size(15, 23);
             lb_descripcion.TabIndex = 46;
             lb_descripcion.Text = "l";
             // 
@@ -176,11 +176,11 @@
             // 
             lb_precio.Anchor = AnchorStyles.Left;
             lb_precio.AutoSize = true;
-            lb_precio.Font = new Font("Microsoft Sans Serif", 12F);
+            lb_precio.Font = new Font("Century Gothic", 12F);
             lb_precio.ForeColor = Color.White;
-            lb_precio.Location = new Point(201, 846);
+            lb_precio.Location = new Point(211, 927);
             lb_precio.Name = "lb_precio";
-            lb_precio.Size = new Size(16, 25);
+            lb_precio.Size = new Size(15, 23);
             lb_precio.TabIndex = 45;
             lb_precio.Text = "l";
             // 
@@ -188,11 +188,11 @@
             // 
             lb_capacidad.Anchor = AnchorStyles.Left;
             lb_capacidad.AutoSize = true;
-            lb_capacidad.Font = new Font("Microsoft Sans Serif", 12F);
+            lb_capacidad.Font = new Font("Century Gothic", 12F);
             lb_capacidad.ForeColor = Color.White;
-            lb_capacidad.Location = new Point(141, 748);
+            lb_capacidad.Location = new Point(151, 829);
             lb_capacidad.Name = "lb_capacidad";
-            lb_capacidad.Size = new Size(16, 25);
+            lb_capacidad.Size = new Size(15, 23);
             lb_capacidad.TabIndex = 44;
             lb_capacidad.Text = "l";
             // 
@@ -200,22 +200,22 @@
             // 
             lb3.Anchor = AnchorStyles.Left;
             lb3.AutoSize = true;
-            lb3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            lb3.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             lb3.ForeColor = Color.White;
-            lb3.Location = new Point(18, 938);
+            lb3.Location = new Point(28, 1019);
             lb3.Name = "lb3";
-            lb3.Size = new Size(132, 25);
+            lb3.Size = new Size(132, 23);
             lb3.TabIndex = 43;
             lb3.Text = "Descripcion:";
             // 
             // lb_nombre
             // 
             lb_nombre.AutoSize = true;
-            lb_nombre.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lb_nombre.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lb_nombre.ForeColor = Color.White;
-            lb_nombre.Location = new Point(455, 97);
+            lb_nombre.Location = new Point(456, 142);
             lb_nombre.Name = "lb_nombre";
-            lb_nombre.Size = new Size(90, 23);
+            lb_nombre.Size = new Size(104, 27);
             lb_nombre.TabIndex = 42;
             lb_nombre.Text = "Nombre";
             // 
@@ -223,11 +223,11 @@
             // 
             lb2.Anchor = AnchorStyles.Left;
             lb2.AutoSize = true;
-            lb2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            lb2.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             lb2.ForeColor = Color.White;
-            lb2.Location = new Point(18, 846);
+            lb2.Location = new Point(28, 927);
             lb2.Name = "lb2";
-            lb2.Size = new Size(182, 25);
+            lb2.Size = new Size(184, 23);
             lb2.TabIndex = 41;
             lb2.Text = "Precio por noche:";
             // 
@@ -235,11 +235,11 @@
             // 
             lb1.Anchor = AnchorStyles.Left;
             lb1.AutoSize = true;
-            lb1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            lb1.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             lb1.ForeColor = Color.White;
-            lb1.Location = new Point(18, 748);
+            lb1.Location = new Point(28, 829);
             lb1.Name = "lb1";
-            lb1.Size = new Size(123, 25);
+            lb1.Size = new Size(128, 23);
             lb1.TabIndex = 40;
             lb1.Text = "Capacidad:";
             // 
@@ -253,7 +253,7 @@
             btn_anterior.FlatStyle = FlatStyle.Flat;
             btn_anterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_anterior.ForeColor = Color.White;
-            btn_anterior.Location = new Point(61, 147);
+            btn_anterior.Location = new Point(70, 179);
             btn_anterior.Margin = new Padding(3, 4, 3, 4);
             btn_anterior.Name = "btn_anterior";
             btn_anterior.Size = new Size(31, 543);
@@ -273,7 +273,7 @@
             btn_siguiente.FlatStyle = FlatStyle.Flat;
             btn_siguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_siguiente.ForeColor = Color.White;
-            btn_siguiente.Location = new Point(646, 147);
+            btn_siguiente.Location = new Point(655, 179);
             btn_siguiente.Margin = new Padding(3, 4, 3, 4);
             btn_siguiente.Name = "btn_siguiente";
             btn_siguiente.Size = new Size(31, 543);
@@ -286,7 +286,7 @@
             // pb_imagenes
             // 
             pb_imagenes.Anchor = AnchorStyles.Left;
-            pb_imagenes.Location = new Point(91, 181);
+            pb_imagenes.Location = new Point(100, 213);
             pb_imagenes.Margin = new Padding(3, 4, 3, 4);
             pb_imagenes.Name = "pb_imagenes";
             pb_imagenes.Size = new Size(557, 474);
@@ -339,7 +339,7 @@
             panel2.Controls.Add(panel4);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(781, 0);
-            panel2.Margin = new Padding(2, 2, 2, 2);
+            panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
             panel2.Size = new Size(1039, 774);
             panel2.TabIndex = 3;
@@ -348,33 +348,34 @@
             // 
             panel10.BackColor = Color.White;
             panel10.Enabled = false;
-            panel10.Location = new Point(321, 594);
+            panel10.Font = new Font("Century Gothic", 13.8F);
+            panel10.Location = new Point(284, 644);
             panel10.Margin = new Padding(3, 4, 3, 4);
             panel10.Name = "panel10";
-            panel10.Size = new Size(224, 2);
+            panel10.Size = new Size(256, 2);
             panel10.TabIndex = 45;
             // 
             // label_fechas
             // 
             label_fechas.AutoSize = true;
-            label_fechas.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label_fechas.Font = new Font("Century Gothic", 13.8F);
             label_fechas.ForeColor = Color.White;
-            label_fechas.Location = new Point(556, 572);
+            label_fechas.Location = new Point(558, 619);
             label_fechas.Margin = new Padding(2, 0, 2, 0);
             label_fechas.Name = "label_fechas";
-            label_fechas.Size = new Size(209, 23);
+            label_fechas.Size = new Size(182, 27);
             label_fechas.TabIndex = 44;
-            label_fechas.Text = "24/12/25 al 30/12/25";
+            label_fechas.Text = "Sin seleccionar";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(321, 572);
+            label7.Location = new Point(284, 619);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(236, 23);
+            label7.Size = new Size(270, 27);
             label7.TabIndex = 42;
             label7.Text = "Fechas seleccionadas:";
             // 
@@ -382,21 +383,22 @@
             // 
             panel9.BackColor = Color.White;
             panel9.Enabled = false;
-            panel9.Location = new Point(358, 124);
+            panel9.Font = new Font("Century Gothic", 13.8F);
+            panel9.Location = new Point(318, 160);
             panel9.Margin = new Padding(3, 4, 3, 4);
             panel9.Name = "panel9";
-            panel9.Size = new Size(376, 2);
+            panel9.Size = new Size(441, 2);
             panel9.TabIndex = 41;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Century Gothic", 13.8F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(442, 97);
+            label3.Location = new Point(413, 132);
             label3.Name = "label3";
-            label3.Size = new Size(301, 23);
+            label3.Size = new Size(352, 27);
             label3.TabIndex = 40;
             label3.Text = "Dias ocupados de la cabaña.";
             // 
@@ -404,18 +406,18 @@
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(358, 97);
+            label4.Location = new Point(318, 132);
             label4.Name = "label4";
-            label4.Size = new Size(87, 23);
+            label4.Size = new Size(100, 27);
             label4.TabIndex = 39;
             label4.Text = "Negrita:";
             // 
             // mc_fechas
             // 
             mc_fechas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mc_fechas.Location = new Point(415, 241);
+            mc_fechas.Location = new Point(398, 280);
             mc_fechas.Margin = new Padding(10, 12, 10, 12);
             mc_fechas.MaxSelectionCount = 30;
             mc_fechas.Name = "mc_fechas";
@@ -436,7 +438,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(487, 6);
+            label1.Location = new Point(474, 6);
             label1.Name = "label1";
             label1.Size = new Size(107, 32);
             label1.TabIndex = 36;
@@ -460,7 +462,7 @@
             panel5.Controls.Add(btn_seleccionarCliente);
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(781, 774);
-            panel5.Margin = new Padding(2, 2, 2, 2);
+            panel5.Margin = new Padding(2);
             panel5.Name = "panel5";
             panel5.Size = new Size(1039, 461);
             panel5.TabIndex = 4;
@@ -469,13 +471,13 @@
             // 
             label_cliente.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label_cliente.AutoSize = true;
-            label_cliente.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label_cliente.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_cliente.ForeColor = Color.White;
-            label_cliente.Location = new Point(102, 248);
+            label_cliente.Location = new Point(214, 245);
             label_cliente.Name = "label_cliente";
-            label_cliente.Size = new Size(92, 23);
+            label_cliente.Size = new Size(317, 27);
             label_cliente.TabIndex = 38;
-            label_cliente.Text = "Clientes:";
+            label_cliente.Text = "Clientes:  No seleccionado";
             // 
             // panel6
             // 
@@ -492,7 +494,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(487, 2);
+            label2.Location = new Point(474, 2);
             label2.Name = "label2";
             label2.Size = new Size(105, 32);
             label2.TabIndex = 36;
@@ -525,7 +527,7 @@
             Controls.Add(panel_picture);
             Controls.Add(panel_butones);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Form_reservaCabaña";
             Text = "Form_reservaCabaña";
             Load += Form_reservaCabaña_Load;

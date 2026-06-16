@@ -52,6 +52,7 @@
             btn_modificarPermisos = new Button();
             btn_cerrar = new Button();
             btn_asignarPermisos = new Button();
+            checkBox_seleccionarTodos = new CheckBox();
             panel_carga.SuspendLayout();
             groupBox_carga.SuspendLayout();
             panel_lista_permisos.SuspendLayout();
@@ -72,6 +73,7 @@
             // 
             // groupBox_carga
             // 
+            groupBox_carga.Controls.Add(checkBox_seleccionarTodos);
             groupBox_carga.Controls.Add(label2);
             groupBox_carga.Controls.Add(check_listaPermisos);
             groupBox_carga.Controls.Add(btn_cancelar);
@@ -90,7 +92,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 147);
+            label2.Location = new Point(12, 205);
             label2.Name = "label2";
             label2.Size = new Size(75, 20);
             label2.TabIndex = 11;
@@ -99,9 +101,9 @@
             // check_listaPermisos
             // 
             check_listaPermisos.FormattingEnabled = true;
-            check_listaPermisos.Location = new Point(96, 147);
+            check_listaPermisos.Location = new Point(102, 205);
             check_listaPermisos.Name = "check_listaPermisos";
-            check_listaPermisos.Size = new Size(293, 886);
+            check_listaPermisos.Size = new Size(293, 949);
             check_listaPermisos.TabIndex = 10;
             // 
             // btn_cancelar
@@ -331,6 +333,18 @@
             btn_asignarPermisos.UseVisualStyleBackColor = false;
             btn_asignarPermisos.Click += btn_asignarPermisos_Click;
             // 
+            // checkBox_seleccionarTodos
+            // 
+            checkBox_seleccionarTodos.AutoSize = true;
+            checkBox_seleccionarTodos.ForeColor = Color.Transparent;
+            checkBox_seleccionarTodos.Location = new Point(102, 175);
+            checkBox_seleccionarTodos.Name = "checkBox_seleccionarTodos";
+            checkBox_seleccionarTodos.Size = new Size(163, 24);
+            checkBox_seleccionarTodos.TabIndex = 12;
+            checkBox_seleccionarTodos.Text = "Seleccionar todos";
+            checkBox_seleccionarTodos.UseVisualStyleBackColor = true;
+            checkBox_seleccionarTodos.CheckedChanged += checkBox_seleccionarTodos_CheckedChanged;
+            // 
             // Form_asignarPermisos
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -382,5 +396,6 @@
         private Label label3;
         private TextBox txt_nombreGrupoFiltro;
         private Label label4;
+        private CheckBox checkBox_seleccionarTodos;
     }
 }

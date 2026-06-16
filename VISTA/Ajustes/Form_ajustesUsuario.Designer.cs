@@ -50,24 +50,27 @@
             panel_botones.Controls.Add(btn_datos);
             panel_botones.Dock = DockStyle.Top;
             panel_botones.Location = new Point(0, 0);
+            panel_botones.Margin = new Padding(3, 4, 3, 4);
             panel_botones.Name = "panel_botones";
-            panel_botones.Size = new Size(1318, 101);
+            panel_botones.Size = new Size(1820, 134);
             panel_botones.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1105, 0);
+            panel3.Location = new Point(1577, 0);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(211, 99);
+            panel3.Size = new Size(241, 132);
             panel3.TabIndex = 7;
             // 
             // panel2
             // 
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(211, 99);
+            panel2.Size = new Size(241, 132);
             panel2.TabIndex = 6;
             // 
             // btn_cambiarContra
@@ -78,9 +81,10 @@
             btn_cambiarContra.FlatStyle = FlatStyle.Flat;
             btn_cambiarContra.Font = new Font("Century Gothic", 9F);
             btn_cambiarContra.ForeColor = Color.White;
-            btn_cambiarContra.Location = new Point(959, 32);
+            btn_cambiarContra.Location = new Point(1373, 43);
+            btn_cambiarContra.Margin = new Padding(3, 4, 3, 4);
             btn_cambiarContra.Name = "btn_cambiarContra";
-            btn_cambiarContra.Size = new Size(142, 37);
+            btn_cambiarContra.Size = new Size(199, 49);
             btn_cambiarContra.TabIndex = 5;
             btn_cambiarContra.Text = "Cambiar contraseña";
             btn_cambiarContra.UseVisualStyleBackColor = false;
@@ -93,9 +97,10 @@
             btn_datos.FlatStyle = FlatStyle.Flat;
             btn_datos.Font = new Font("Century Gothic", 9F);
             btn_datos.ForeColor = Color.White;
-            btn_datos.Location = new Point(217, 32);
+            btn_datos.Location = new Point(248, 43);
+            btn_datos.Margin = new Padding(3, 4, 3, 4);
             btn_datos.Name = "btn_datos";
-            btn_datos.Size = new Size(142, 37);
+            btn_datos.Size = new Size(199, 49);
             btn_datos.TabIndex = 4;
             btn_datos.Text = "Mis datos";
             btn_datos.UseVisualStyleBackColor = false;
@@ -106,9 +111,10 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btn_cerrar);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 897);
+            panel1.Location = new Point(0, 1266);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1318, 51);
+            panel1.Size = new Size(1820, 67);
             panel1.TabIndex = 1;
             // 
             // btn_cerrar
@@ -119,9 +125,10 @@
             btn_cerrar.FlatStyle = FlatStyle.Flat;
             btn_cerrar.Font = new Font("Century Gothic", 9F);
             btn_cerrar.ForeColor = Color.White;
-            btn_cerrar.Location = new Point(1211, 23);
+            btn_cerrar.Location = new Point(1654, 34);
+            btn_cerrar.Margin = new Padding(3, 4, 3, 4);
             btn_cerrar.Name = "btn_cerrar";
-            btn_cerrar.Size = new Size(102, 23);
+            btn_cerrar.Size = new Size(161, 27);
             btn_cerrar.TabIndex = 1;
             btn_cerrar.Text = "Cerrar";
             btn_cerrar.UseVisualStyleBackColor = false;
@@ -130,21 +137,23 @@
             // panel_forms
             // 
             panel_forms.Dock = DockStyle.Fill;
-            panel_forms.Location = new Point(0, 101);
+            panel_forms.Location = new Point(0, 134);
+            panel_forms.Margin = new Padding(3, 4, 3, 4);
             panel_forms.Name = "panel_forms";
-            panel_forms.Size = new Size(1318, 796);
+            panel_forms.Size = new Size(1820, 1132);
             panel_forms.TabIndex = 2;
             // 
             // Form_ajustesUsuario
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1318, 948);
+            ClientSize = new Size(1820, 1333);
             Controls.Add(panel_forms);
             Controls.Add(panel1);
             Controls.Add(panel_botones);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form_ajustesUsuario";
             Text = "Form_ajustesUsuario";
             Load += Form_ajustesUsuario_Load;

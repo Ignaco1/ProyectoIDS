@@ -38,6 +38,11 @@ namespace CONTROLADORA.ServiciosCorreo
 
         public async Task EnviarCorreoAsync(string asunto, string mensaje, List<string> destinatarios)
         {
+            if (destinatarios == null || destinatarios.Count == 0)
+            {
+                throw new Exception("Debe indicar al menos un destinatario.");
+            }
+
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(remitenteEmail, remitenteNombre);
 
@@ -47,7 +52,8 @@ namespace CONTROLADORA.ServiciosCorreo
             var response = await client.SendEmailAsync(msg);
             if ((int)response.StatusCode >= 400)
             {
-                throw new Exception("Error al enviar correo con SendGrid.");
+                string body = await response.Body.ReadAsStringAsync();
+                throw new Exception($"SendGrid error {(int)response.StatusCode}: {body}");
             }
         }
     }

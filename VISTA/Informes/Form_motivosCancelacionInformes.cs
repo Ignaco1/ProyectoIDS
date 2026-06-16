@@ -215,7 +215,7 @@ namespace VISTA.Informes
 
                         iTextSharp.text.Image chartImage = iTextSharp.text.Image.GetInstance(imgPath);
                         chartImage.Alignment = Element.ALIGN_CENTER;
-                        chartImage.ScaleToFit(400f, 400f);
+                        chartImage.ScaleToFit(600f, 500f);
                         doc.Add(chartImage);
 
                         doc.Add(new Paragraph("\n\n\n"));
@@ -387,7 +387,7 @@ namespace VISTA.Informes
 
                         worksheet.AddPicture(imgPath)
                             .MoveTo(worksheet.Cell(2, 7))
-                            .WithSize(400, 800);
+                            .WithSize(500, 800);
 
                         workbook.SaveAs(path);
                     }

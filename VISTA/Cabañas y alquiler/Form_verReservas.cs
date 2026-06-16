@@ -25,7 +25,7 @@ namespace VISTA.Cabañas_y_alquiler
         private string variF = "";
         private List<MODELO.Reserva> reservasCompletas = new List<MODELO.Reserva>();
         private Cabaña cabañaActual;
-        private EnvironmentVariableTarget hola;
+
 
         public Form_verReservas()
         {
