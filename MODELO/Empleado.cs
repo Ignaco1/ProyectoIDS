@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MODELO
 {
-    [Table("Empleados")]
+    
     public class Empleado
     {
         public int EmpleadoId { get; set; }
@@ -16,8 +16,12 @@ namespace MODELO
         public string Dni { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-        public string Rol { get; set; }
-        public string Turno { get; set; }
+
+        public int RolEmpleadoId { get; set; }          
+        [ForeignKey("RolEmpleadoId")]
+        public virtual RolEmpleado RolEmpleado { get; set; }
+
+        public string Turno { get; set; }               
         public bool Activo { get; set; }
     }
 }

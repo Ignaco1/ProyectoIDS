@@ -35,12 +35,12 @@ namespace CONTROLADORA
         {
             using (var context = new Context())
             {
-                return context.Empleados.ToList().AsReadOnly();
+                return context.Empleados.Include(e => e.RolEmpleado).ToList().AsReadOnly();
             }
 
         }
 
-        public Empleado CrearEmpleado(string nombre, string apellido, string dni, string email, string telefono, string rol, string turno)
+        public Empleado CrearEmpleado(string nombre, string apellido, string dni, string email, string telefono, int rolEmpleadoId, string turno)
         {
             Empleado empleado = new Empleado();
 
@@ -49,7 +49,7 @@ namespace CONTROLADORA
             empleado.Dni = dni;
             empleado.Email = email;
             empleado.Telefono = telefono;
-            empleado.Rol = rol;
+            empleado.RolEmpleadoId = rolEmpleadoId;
             empleado.Turno = turno;
             empleado.Activo = true;
             return empleado;
@@ -68,7 +68,7 @@ namespace CONTROLADORA
                 }
                 catch (Exception ex)
                 {
-                    return "Ocurrio un error en el sistema:  " + ex.Message;
+                    return "Ocurrio un error en el sistema:  " + (ex.InnerException?.Message ?? ex.Message);
                 }
             }
 
@@ -88,7 +88,7 @@ namespace CONTROLADORA
                 }
                 catch (Exception ex)
                 {
-                    return "Ocurrio un error en el sistema:  " + ex.Message;
+                    return "Ocurrio un error en el sistema:  " + (ex.InnerException?.Message ?? ex.Message);
                 }
             }
 
@@ -108,7 +108,7 @@ namespace CONTROLADORA
                 }
                 catch (Exception ex)
                 {
-                    return "Ocurrio un error en el sistema:  " + ex.Message;
+                    return "Ocurrio un error en el sistema:  " + (ex.InnerException?.Message ?? ex.Message);
                 }
             }
         }
@@ -128,6 +128,36 @@ namespace CONTROLADORA
                 }
 
                 return false;
+            }
+        }
+
+        public string AsignarRolAEmpleado(int empleadoId, List<RolEmpleado> rolSeleccionado)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    var empleado = context.Empleados.FirstOrDefault(e => e.EmpleadoId == empleadoId);
+
+                    if (empleado == null)
+                        return "Empleado no encontrado.";
+
+                    var rolId = rolSeleccionado.Select(r => r.RolEmpleadoId).FirstOrDefault();
+
+                    var rolDesdeDb = context.RolesEmpleados.FirstOrDefault(r => r.RolEmpleadoId == rolId);
+
+                    if (rolDesdeDb == null)
+                        return "Rol no encontrado.";
+
+                    empleado.RolEmpleadoId = rolDesdeDb.RolEmpleadoId;
+
+                    context.SaveChanges();
+                    return "Rol asignado correctamente.";
+                }
+                catch (Exception ex)
+                {
+                    return "Ocurrio un error en el sistema:  " + (ex.InnerException?.Message ?? ex.Message);
+                }
             }
         }
     }

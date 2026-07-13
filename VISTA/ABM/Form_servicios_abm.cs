@@ -20,6 +20,7 @@ namespace VISTA.ABM
         string vari;
         int indice;
         string variF = "";
+        private bool _actualizandoCheck = false;
         private PictureBox imagenSeleccionada = null;
         private List<Servicio> listaServiciosFiltro = new List<Servicio>();
         private List<byte[]> imagenesBytes = new List<byte[]>();
@@ -28,6 +29,7 @@ namespace VISTA.ABM
         public Form_servicios_abm()
         {
             InitializeComponent();
+            check_listaCategorias.ItemCheck += check_listaCategorias_ItemCheck;
             ARMA_GRILLA();
             MODO_LISTA();
         }
@@ -469,6 +471,21 @@ namespace VISTA.ABM
                 pictureBox_imagenes.Image = imagenSeleccionada.Image;
             };
             return pb;
+        }
+
+        private void check_listaCategorias_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (_actualizandoCheck) return;
+            if (e.NewValue == CheckState.Checked)
+            {
+                _actualizandoCheck = true;
+                for (int i = 0; i < check_listaCategorias.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                        check_listaCategorias.SetItemChecked(i, false);
+                }
+                _actualizandoCheck = false;
+            }
         }
 
         private void btn_borrar_Click(object sender, EventArgs e)

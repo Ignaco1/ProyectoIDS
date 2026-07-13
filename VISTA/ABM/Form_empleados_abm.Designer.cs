@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             panel1 = new Panel();
             groupBox_carga = new GroupBox();
+            panel3 = new Panel();
+            check_listaRoles = new CheckedListBox();
             btn_cancelar = new Button();
             btn_guardar = new Button();
-            cb_rol = new ComboBox();
             cb_turno = new ComboBox();
             label2 = new Label();
             label1 = new Label();
@@ -92,9 +93,10 @@
             // groupBox_carga
             // 
             groupBox_carga.BackColor = Color.Gray;
+            groupBox_carga.Controls.Add(panel3);
+            groupBox_carga.Controls.Add(check_listaRoles);
             groupBox_carga.Controls.Add(btn_cancelar);
             groupBox_carga.Controls.Add(btn_guardar);
-            groupBox_carga.Controls.Add(cb_rol);
             groupBox_carga.Controls.Add(cb_turno);
             groupBox_carga.Controls.Add(label2);
             groupBox_carga.Controls.Add(label1);
@@ -119,6 +121,21 @@
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
+            // 
+            // panel3
+            // 
+            panel3.Location = new Point(73, 583);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(247, 2);
+            panel3.TabIndex = 30;
+            // 
+            // check_listaRoles
+            // 
+            check_listaRoles.FormattingEnabled = true;
+            check_listaRoles.Location = new Point(73, 478);
+            check_listaRoles.Name = "check_listaRoles";
+            check_listaRoles.Size = new Size(247, 550);
+            check_listaRoles.TabIndex = 29;
             // 
             // btn_cancelar
             // 
@@ -149,16 +166,6 @@
             btn_guardar.Text = "Guardar";
             btn_guardar.UseVisualStyleBackColor = false;
             btn_guardar.Click += btn_guardar_Click;
-            // 
-            // cb_rol
-            // 
-            cb_rol.DropDownStyle = ComboBoxStyle.DropDownList;
-            cb_rol.FormattingEnabled = true;
-            cb_rol.Location = new Point(99, 474);
-            cb_rol.Margin = new Padding(3, 4, 3, 4);
-            cb_rol.Name = "cb_rol";
-            cb_rol.Size = new Size(221, 28);
-            cb_rol.TabIndex = 26;
             // 
             // cb_turno
             // 
@@ -307,24 +314,24 @@
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle9.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dataGridView1.ColumnHeadersHeight = 34;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle10;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.ControlDark;
@@ -333,21 +340,21 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle3.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.White;
+            dataGridViewCellStyle11.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle11.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle4.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.BackColor = Color.White;
+            dataGridViewCellStyle12.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle12.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1482, 1090);
             dataGridView1.TabIndex = 2;
@@ -420,7 +427,7 @@
             btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
             btn_cerrar.FlatAppearance.BorderSize = 0;
             btn_cerrar.FlatStyle = FlatStyle.Flat;
-            btn_cerrar.Location = new Point(1357, 73);
+            btn_cerrar.Location = new Point(1360, 71);
             btn_cerrar.Margin = new Padding(3, 4, 3, 4);
             btn_cerrar.Name = "btn_cerrar";
             btn_cerrar.Size = new Size(122, 27);
@@ -458,7 +465,7 @@
             cb_rolFiltro.Location = new Point(421, 69);
             cb_rolFiltro.Margin = new Padding(3, 4, 3, 4);
             cb_rolFiltro.Name = "cb_rolFiltro";
-            cb_rolFiltro.Size = new Size(218, 28);
+            cb_rolFiltro.Size = new Size(264, 28);
             cb_rolFiltro.TabIndex = 41;
             cb_rolFiltro.SelectedIndexChanged += cb_rolFiltro_SelectedIndexChanged;
             // 
@@ -602,7 +609,6 @@
         private Label label6;
         private Label label5;
         private Label label4;
-        private ComboBox cb_rol;
         private ComboBox cb_turno;
         private Label label2;
         private Label label1;
@@ -623,5 +629,7 @@
         private Label label10;
         private ComboBox cb_rolFiltro;
         private ComboBox cb_turnoFiltro;
+        private CheckedListBox check_listaRoles;
+        private Panel panel3;
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251112033818_fff")]
-    partial class fff
+    [Migration("20260623121334_Test")]
+    partial class Test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -319,9 +319,8 @@ namespace MODELO.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RolEmpleadoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Telefono")
                         .IsRequired()
@@ -333,10 +332,12 @@ namespace MODELO.Migrations
 
                     b.HasKey("EmpleadoId");
 
+                    b.HasIndex("RolEmpleadoId");
+
                     b.ToTable("Empleados");
                 });
 
-            modelBuilder.Entity("MODELO.ImagenCabaña", b =>
+            modelBuilder.Entity("MODELO.Imagenes.ImagenCabaña", b =>
                 {
                     b.Property<int>("ImagenCabañaId")
                         .ValueGeneratedOnAdd()
@@ -356,6 +357,50 @@ namespace MODELO.Migrations
                     b.HasIndex("CabañaId");
 
                     b.ToTable("ImagenesCabaña");
+                });
+
+            modelBuilder.Entity("MODELO.Imagenes.ImagenMantenimiento", b =>
+                {
+                    b.Property<int>("ImagenMantenimientoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenMantenimientoId"));
+
+                    b.Property<byte[]>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("MantenimientoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagenMantenimientoId");
+
+                    b.HasIndex("MantenimientoId");
+
+                    b.ToTable("ImagenesMantenimiento");
+                });
+
+            modelBuilder.Entity("MODELO.Imagenes.ImagenServicio", b =>
+                {
+                    b.Property<int>("ImagenServicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenServicioId"));
+
+                    b.Property<byte[]>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ServicioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagenServicioId");
+
+                    b.HasIndex("ServicioId");
+
+                    b.ToTable("ImagenesServicio");
                 });
 
             modelBuilder.Entity("MODELO.Mantenimiento", b =>
@@ -458,6 +503,29 @@ namespace MODELO.Migrations
                     b.HasIndex("IdCliente");
 
                     b.ToTable("Reservas");
+                });
+
+            modelBuilder.Entity("MODELO.RolEmpleado", b =>
+                {
+                    b.Property<int>("RolEmpleadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolEmpleadoId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EsOperativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RolEmpleadoId");
+
+                    b.ToTable("RolesEmpleados");
                 });
 
             modelBuilder.Entity("MODELO.Servicio", b =>
@@ -600,7 +668,18 @@ namespace MODELO.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("MODELO.ImagenCabaña", b =>
+            modelBuilder.Entity("MODELO.Empleado", b =>
+                {
+                    b.HasOne("MODELO.RolEmpleado", "RolEmpleado")
+                        .WithMany("Empleados")
+                        .HasForeignKey("RolEmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RolEmpleado");
+                });
+
+            modelBuilder.Entity("MODELO.Imagenes.ImagenCabaña", b =>
                 {
                     b.HasOne("MODELO.Cabaña", "Cabaña")
                         .WithMany("Imagenes")
@@ -609,6 +688,28 @@ namespace MODELO.Migrations
                         .IsRequired();
 
                     b.Navigation("Cabaña");
+                });
+
+            modelBuilder.Entity("MODELO.Imagenes.ImagenMantenimiento", b =>
+                {
+                    b.HasOne("MODELO.Mantenimiento", "Mantenimiento")
+                        .WithMany("Imagenes")
+                        .HasForeignKey("MantenimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mantenimiento");
+                });
+
+            modelBuilder.Entity("MODELO.Imagenes.ImagenServicio", b =>
+                {
+                    b.HasOne("MODELO.Servicio", "Servicio")
+                        .WithMany("Imagenes")
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Servicio");
                 });
 
             modelBuilder.Entity("MODELO.Reserva", b =>
@@ -657,6 +758,21 @@ namespace MODELO.Migrations
                 });
 
             modelBuilder.Entity("MODELO.Cabaña", b =>
+                {
+                    b.Navigation("Imagenes");
+                });
+
+            modelBuilder.Entity("MODELO.Mantenimiento", b =>
+                {
+                    b.Navigation("Imagenes");
+                });
+
+            modelBuilder.Entity("MODELO.RolEmpleado", b =>
+                {
+                    b.Navigation("Empleados");
+                });
+
+            modelBuilder.Entity("MODELO.Servicio", b =>
                 {
                     b.Navigation("Imagenes");
                 });

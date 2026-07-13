@@ -27,12 +27,43 @@ namespace VISTA
         private List<Usuario> listaUsuariosFiltro = new List<Usuario>();
         private List<Usuario> usuariosFiltrados;
 
+        private bool _esPreCarga = false;
+        private string _preNombre = "";
+        private string _preApellido = "";
+        private string _preEmail = "";
+        private string _preRolNombre = "";
+
+        private bool _esPreCargaModificacion = false;
+        private Usuario _usuarioPreCarga;
+        private string _preRolNombreModificacion = "";
+
         public Form_usuarios_abm()
         {
             InitializeComponent();
             ARMA_GRILLA();
             MODO_LISTA();
+        }
 
+        public Form_usuarios_abm(string nombre, string apellido, string email, string rolNombre)
+        {
+            InitializeComponent();
+            ARMA_GRILLA();
+            MODO_LISTA();
+            _preNombre = nombre;
+            _preApellido = apellido;
+            _preEmail = email;
+            _preRolNombre = rolNombre;
+            _esPreCarga = true;
+        }
+
+        public Form_usuarios_abm(Usuario usuarioExistente, string nuevoRolNombre)
+        {
+            InitializeComponent();
+            ARMA_GRILLA();
+            MODO_LISTA();
+            _usuarioPreCarga = usuarioExistente;
+            _preRolNombreModificacion = nuevoRolNombre;
+            _esPreCargaModificacion = true;
         }
 
         private void Form_usuarios_abm_Load(object sender, EventArgs e)
@@ -40,8 +71,46 @@ namespace VISTA
             CargarCombos();
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
-            btn_quitarFiltro.Location = new Point(754, 21);
 
+
+            if (_esPreCarga)
+            {
+                vari = "A";
+                txt_nombre.Text = _preNombre;
+                txt_apellido.Text = _preApellido;
+                txt_email.Text = _preEmail;
+                for (int i = 0; i < cb_tipoUsuario.Items.Count; i++)
+                {
+                    if (cb_tipoUsuario.Items[i].ToString().Equals(_preRolNombre, StringComparison.OrdinalIgnoreCase))
+                    {
+                        cb_tipoUsuario.SelectedIndex = i;
+                        break;
+                    }
+                }
+                MODO_CARGA();
+            }
+
+            if (_esPreCargaModificacion)
+            {
+                vari = "M";
+                CargarCombos(true, _preRolNombreModificacion);
+
+                txt_nombre.Text = _usuarioPreCarga.Nombre;
+                txt_apellido.Text = _usuarioPreCarga.Apellido;
+                txt_usuario.Text = _usuarioPreCarga.Nombre_usuario;
+                txt_email.Text = _usuarioPreCarga.Email;
+
+                for (int i = 0; i < cb_tipoUsuario.Items.Count; i++)
+                {
+                    if (cb_tipoUsuario.Items[i].ToString().Equals(_preRolNombreModificacion, StringComparison.OrdinalIgnoreCase))
+                    {
+                        cb_tipoUsuario.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                MODO_CARGA();
+            }
         }
 
 
@@ -98,6 +167,8 @@ namespace VISTA
         private void btn_agregar_Click(object sender, EventArgs e)
         {
             vari = "A";
+            _esPreCargaModificacion = false;
+            _usuarioPreCarga = null;
 
             CargarCombos(esModificacion: false);
 
@@ -198,7 +269,12 @@ namespace VISTA
             if (vari == "M")
             {
 
-                if (variF == "F")
+                if (_esPreCargaModificacion)
+                {
+                    usuario = _usuarioPreCarga;
+                    _esPreCargaModificacion = false;
+                }
+                else if (variF == "F")
                 {
                     usuario = listaUsuariosFiltro[indice];
                 }
@@ -297,6 +373,8 @@ namespace VISTA
 
             MODELO.Usuario usuario;
             vari = "M";
+            _esPreCargaModificacion = false;
+            _usuarioPreCarga = null;
 
             if (variF == "F")
             {
@@ -395,6 +473,8 @@ namespace VISTA
             MODO_LISTA();
             LIMPIAR();
             cb_tipoUsuario.Enabled = true;
+            _esPreCargaModificacion = false;
+            _usuarioPreCarga = null;
         }
 
         private void btn_quitarFiltro_Click(object sender, EventArgs e)
@@ -468,6 +548,7 @@ namespace VISTA
             variF = "F";
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
+
         }
 
         private void txt_nombreFiltro_TextChanged(object sender, EventArgs e)
@@ -476,6 +557,7 @@ namespace VISTA
             variF = "F";
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
+
         }
 
         private void txt_apellidoFiltro_TextChanged(object sender, EventArgs e)

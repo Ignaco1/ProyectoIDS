@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251118032310_ihaf")]
-    partial class ihaf
+    [Migration("20260623120544_RolesEmpleados_Empleados")]
+    partial class RolesEmpleados_Empleados
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -319,9 +319,8 @@ namespace MODELO.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RolEmpleadoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Telefono")
                         .IsRequired()
@@ -332,6 +331,8 @@ namespace MODELO.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmpleadoId");
+
+                    b.HasIndex("RolEmpleadoId");
 
                     b.ToTable("Empleados");
                 });
@@ -504,6 +505,29 @@ namespace MODELO.Migrations
                     b.ToTable("Reservas");
                 });
 
+            modelBuilder.Entity("MODELO.RolEmpleado", b =>
+                {
+                    b.Property<int>("RolEmpleadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolEmpleadoId"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EsOperativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RolEmpleadoId");
+
+                    b.ToTable("RolesEmpleados");
+                });
+
             modelBuilder.Entity("MODELO.Servicio", b =>
                 {
                     b.Property<int>("ServicioId")
@@ -644,6 +668,17 @@ namespace MODELO.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("MODELO.Empleado", b =>
+                {
+                    b.HasOne("MODELO.RolEmpleado", "RolEmpleado")
+                        .WithMany("Empleados")
+                        .HasForeignKey("RolEmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RolEmpleado");
+                });
+
             modelBuilder.Entity("MODELO.Imagenes.ImagenCabaña", b =>
                 {
                     b.HasOne("MODELO.Cabaña", "Cabaña")
@@ -730,6 +765,11 @@ namespace MODELO.Migrations
             modelBuilder.Entity("MODELO.Mantenimiento", b =>
                 {
                     b.Navigation("Imagenes");
+                });
+
+            modelBuilder.Entity("MODELO.RolEmpleado", b =>
+                {
+                    b.Navigation("Empleados");
                 });
 
             modelBuilder.Entity("MODELO.Servicio", b =>

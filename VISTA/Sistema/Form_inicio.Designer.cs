@@ -149,7 +149,7 @@
             btn_acceder.FlatStyle = FlatStyle.Flat;
             btn_acceder.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_acceder.ForeColor = Color.White;
-            btn_acceder.Location = new Point(429, 362);
+            btn_acceder.Location = new Point(429, 395);
             btn_acceder.Margin = new Padding(3, 4, 3, 4);
             btn_acceder.Name = "btn_acceder";
             btn_acceder.Size = new Size(514, 53);
@@ -165,7 +165,7 @@
             lbl_contra.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_contra.ForeColor = SystemColors.ControlText;
             lbl_contra.LinkColor = Color.White;
-            lbl_contra.Location = new Point(567, 442);
+            lbl_contra.Location = new Point(567, 475);
             lbl_contra.Name = "lbl_contra";
             lbl_contra.Size = new Size(264, 21);
             lbl_contra.TabIndex = 0;

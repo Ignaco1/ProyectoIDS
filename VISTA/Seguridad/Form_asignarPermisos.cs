@@ -92,6 +92,8 @@ namespace VISTA
             {
                 check_listaPermisos.SetItemChecked(i, false);
             }
+
+            checkBox_seleccionarTodos.Checked = false;
         }
 
         private void btn_asignarPermisos_Click(object sender, EventArgs e)

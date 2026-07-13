@@ -117,7 +117,7 @@
             btn_aceptar.FlatStyle = FlatStyle.Flat;
             btn_aceptar.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_aceptar.ForeColor = Color.White;
-            btn_aceptar.Location = new Point(432, 358);
+            btn_aceptar.Location = new Point(432, 432);
             btn_aceptar.Margin = new Padding(3, 4, 3, 4);
             btn_aceptar.Name = "btn_aceptar";
             btn_aceptar.Size = new Size(514, 53);
@@ -129,7 +129,7 @@
             // pictureBox_error
             // 
             pictureBox_error.Image = (Image)resources.GetObject("pictureBox_error.Image");
-            pictureBox_error.Location = new Point(432, 282);
+            pictureBox_error.Location = new Point(432, 291);
             pictureBox_error.Margin = new Padding(3, 4, 3, 4);
             pictureBox_error.Name = "pictureBox_error";
             pictureBox_error.Size = new Size(37, 41);
@@ -142,7 +142,7 @@
             label_error.AutoSize = true;
             label_error.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_error.ForeColor = Color.FromArgb(45, 150, 255);
-            label_error.Location = new Point(476, 284);
+            label_error.Location = new Point(476, 293);
             label_error.Name = "label_error";
             label_error.Size = new Size(123, 21);
             label_error.TabIndex = 17;
@@ -152,7 +152,7 @@
             // 
             panel3.BackColor = SystemColors.AppWorkspace;
             panel3.Enabled = false;
-            panel3.Location = new Point(432, 264);
+            panel3.Location = new Point(432, 273);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
             panel3.Size = new Size(514, 1);
@@ -164,7 +164,7 @@
             txt_email.BorderStyle = BorderStyle.None;
             txt_email.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_email.ForeColor = Color.White;
-            txt_email.Location = new Point(432, 230);
+            txt_email.Location = new Point(432, 239);
             txt_email.Margin = new Padding(3, 4, 3, 4);
             txt_email.Name = "txt_email";
             txt_email.Size = new Size(514, 25);
@@ -179,7 +179,7 @@
             txt_usuario.BorderStyle = BorderStyle.None;
             txt_usuario.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_usuario.ForeColor = Color.White;
-            txt_usuario.Location = new Point(432, 143);
+            txt_usuario.Location = new Point(432, 152);
             txt_usuario.Margin = new Padding(3, 4, 3, 4);
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(514, 25);
@@ -192,7 +192,7 @@
             // 
             panel2.BackColor = SystemColors.AppWorkspace;
             panel2.Enabled = false;
-            panel2.Location = new Point(432, 176);
+            panel2.Location = new Point(432, 185);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
             panel2.Size = new Size(514, 1);

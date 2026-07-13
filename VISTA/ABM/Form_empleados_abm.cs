@@ -20,14 +20,18 @@ namespace VISTA.ABM
     {
         CONTROLADORA.Controladora_empleados contro_emp = new CONTROLADORA.Controladora_empleados();
         CONTROLADORA.Controladora_grupos contro_grup = new CONTROLADORA.Controladora_grupos();
+        CONTROLADORA.Controladora_Roles_Empleados contro_rol = new CONTROLADORA.Controladora_Roles_Empleados();
+        CONTROLADORA.Controladora_usuarios contro_us = new CONTROLADORA.Controladora_usuarios();
         string vari;
         int indice;
         string variF = "";
+        private bool _actualizandoCheck = false;
         private List<Empleado> listaEmpleadosFiltro = new List<Empleado>();
 
         public Form_empleados_abm()
         {
             InitializeComponent();
+            check_listaRoles.ItemCheck += check_listaRoles_ItemCheck;
             ARMA_GRILLA();
             MODO_LISTA();
 
@@ -35,27 +39,16 @@ namespace VISTA.ABM
 
         private void CargarCombos(bool esModificacion = false, string grupoActual = "")
         {
-            cb_rol.Items.Clear();
             cb_rolFiltro.Items.Clear();
+            check_listaRoles.Items.Clear();
 
-            var grupos = contro_grup.ListarGrupos();
-            bool esSuperAdmin = UsuarioCache.UsuarioGrupoNombre.Equals("SuperAdministrador", StringComparison.OrdinalIgnoreCase);
 
-            foreach (var grupo in grupos)
+            var roles = contro_rol.ListarRoles().Where(r => r.Activo).ToList();
+            foreach (var rol in roles)
             {
-                if (!grupo.Nombre.Equals("SuperAdministrador", StringComparison.OrdinalIgnoreCase))
-                {
-                    cb_rol.Items.Add(grupo.Nombre);
-                }
-
-                if (esSuperAdmin || !grupo.Nombre.Equals("SuperAdministrador", StringComparison.OrdinalIgnoreCase))
-                {
-                    cb_rolFiltro.Items.Add(grupo.Nombre);
-                }
+                cb_rolFiltro.Items.Add(rol);
+                check_listaRoles.Items.Add(rol, false);
             }
-
-            cb_rol.Items.AddRange(new object[] { "Mantenimiento", "Limpieza", "Seguridad" });
-            cb_rolFiltro.Items.AddRange(new object[] { "Mantenimiento", "Limpieza", "Seguridad" });
 
             cb_turno.Items.AddRange(new object[] { "Mañana", "Tarde", "Noche" });
             cb_turnoFiltro.Items.AddRange(new object[] { "Mañana", "Tarde", "Noche" });
@@ -81,7 +74,7 @@ namespace VISTA.ABM
                     DNI = e.Dni,
                     e.Email,
                     e.Telefono,
-                    e.Rol,
+                    Rol = e.RolEmpleado.Nombre,
                     e.Turno
                 }).ToList();
 
@@ -110,6 +103,11 @@ namespace VISTA.ABM
             txt_telefono.Text = "";
             cb_rolFiltro.Text = "";
             cb_turnoFiltro.Text = "";
+
+            for (int i = 0; i < check_listaRoles.Items.Count; i++)
+            {
+                check_listaRoles.SetItemChecked(i, false);
+            }
         }
 
         private void btn_cerrar_Click(object sender, EventArgs e)
@@ -162,8 +160,17 @@ namespace VISTA.ABM
             txt_dni.Text = empleado.Dni;
             txt_email.Text = empleado.Email;
             txt_telefono.Text = empleado.Telefono;
-            cb_rol.Text = empleado.Rol;
             cb_turno.Text = empleado.Turno;
+
+            check_listaRoles.Items.Clear();
+
+            var todosLosRoles = contro_rol.ListarRoles().Where(r => r.Activo).ToList();
+
+            foreach (var rol in todosLosRoles)
+            {
+                bool estaAsignado = rol.RolEmpleadoId == empleado.RolEmpleadoId;
+                check_listaRoles.Items.Add(rol, estaAsignado);
+            }
 
             MODO_CARGA();
         }
@@ -223,9 +230,17 @@ namespace VISTA.ABM
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(cb_rol.Text))
+            var roles = check_listaRoles.CheckedItems.OfType<RolEmpleado>().ToList();
+
+            if (roles.Count == 0)
             {
-                MessageBox.Show("Seleccione el rol del empleado.", "Error");
+                MessageBox.Show("Debe seleccionar un rol para el empleado.", "Error");
+                return;
+            }
+
+            if (roles.Count > 1)
+            {
+                MessageBox.Show("Solo debe seleccionar un rol para el empleado, no más de eso.", "Error");
                 return;
             }
 
@@ -242,16 +257,26 @@ namespace VISTA.ABM
             {
                 if (!contro_emp.ValidaEmpleado(txt_dni.Text, txt_email.Text, 0))
                 {
-                    empleado = contro_emp.CrearEmpleado(txt_nombre.Text, txt_apellido.Text, txt_dni.Text, txt_email.Text, txt_telefono.Text, cb_rol.Text, cb_turno.Text);
+                    var rolSel = roles[0];
+                    empleado = contro_emp.CrearEmpleado(txt_nombre.Text, txt_apellido.Text, txt_dni.Text, txt_email.Text, txt_telefono.Text, rolSel.RolEmpleadoId, cb_turno.Text);
 
+                    bool guardadoExitoso = false;
                     try
                     {
                         string resultado = contro_emp.AgregarEmpleado(empleado);
                         MessageBox.Show(resultado);
+                        guardadoExitoso = true;
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Error al agregar el empleado: " + (ex.InnerException?.Message ?? ex.Message), "ERROR");
+                    }
+
+                    if (guardadoExitoso && !rolSel.EsOperativo)
+                    {
+                        var formUsuarios = new VISTA.Form_usuarios_abm(txt_nombre.Text, txt_apellido.Text, txt_email.Text, rolSel.Nombre);
+                        formUsuarios.StartPosition = FormStartPosition.CenterScreen;
+                        formUsuarios.ShowDialog();
                     }
                 }
                 else
@@ -275,19 +300,23 @@ namespace VISTA.ABM
 
                 if (!contro_emp.ValidaEmpleado(txt_dni.Text, txt_email.Text, empleado.EmpleadoId))
                 {
+                    var rolAnterior = empleado.RolEmpleado;
+                    var rolNuevo = roles[0];
+
                     empleado.Nombre = txt_nombre.Text;
                     empleado.Apellido = txt_apellido.Text;
                     empleado.Dni = txt_dni.Text;
                     empleado.Email = txt_email.Text;
                     empleado.Telefono = txt_telefono.Text;
-                    empleado.Rol = cb_rol.Text;
                     empleado.Turno = cb_turno.Text;
 
                     try
                     {
                         string resultado = contro_emp.ModificarEmpleado(empleado);
+                        contro_emp.AsignarRolAEmpleado(empleado.EmpleadoId, roles);
                         MessageBox.Show(resultado);
 
+                        ManejarCambioDeRolUsuario(rolAnterior, rolNuevo, empleado);
                     }
                     catch (Exception ex)
                     {
@@ -338,7 +367,7 @@ namespace VISTA.ABM
                 empleado = listaEmpleadosFiltro[indice];
             }
 
-            DialogResult resultado = MessageBox.Show($"Está seguro que desea dar de baja al empleado:\n\nNombre: {empleado.Nombre + " " + empleado.Apellido}\n\nDNI: {empleado.Dni}\n\nEmail: {empleado.Email}\n\nTelefono: {empleado.Telefono}\n\nTurno: {empleado.Turno}\n\nRol: {empleado.Rol}", "AVISO", MessageBoxButtons.YesNo);
+            DialogResult resultado = MessageBox.Show($"Está seguro que desea dar de baja al empleado:\n\nNombre: {empleado.Nombre + " " + empleado.Apellido}\n\nDNI: {empleado.Dni}\n\nEmail: {empleado.Email}\n\nTelefono: {empleado.Telefono}\n\nTurno: {empleado.Turno}\n\nRol: {empleado.RolEmpleado?.Nombre}", "AVISO", MessageBoxButtons.YesNo);
 
             if (resultado == DialogResult.Yes)
             {
@@ -426,7 +455,7 @@ namespace VISTA.ABM
             string dniFiltro = txt_dniFiltro.Text;
             string nombreFiltro = txt_nombreFiltro.Text.Trim().ToLower();
             string apellidoFiltro = txt_apellidoFiltro.Text.Trim().ToLower();
-            string rolFiltro = cb_rolFiltro.Text;
+            var rolFiltroSel = cb_rolFiltro.SelectedItem as RolEmpleado;
             string turnoFiltro = cb_turnoFiltro.Text;
 
             listaEmpleadosFiltro = contro_emp.ListarEmpleados()
@@ -434,7 +463,7 @@ namespace VISTA.ABM
                 (string.IsNullOrEmpty(dniFiltro) || c.Dni.Contains(dniFiltro)) &&
                 (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                 (string.IsNullOrEmpty(apellidoFiltro) || c.Apellido.ToLower().Contains(apellidoFiltro)) &&
-                (string.IsNullOrEmpty(rolFiltro) || c.Rol.Contains(rolFiltro)) &&
+                (rolFiltroSel == null || c.RolEmpleadoId == rolFiltroSel.RolEmpleadoId) &&
                 (string.IsNullOrEmpty(turnoFiltro) || c.Turno.Contains(turnoFiltro))
                 ).ToList();
 
@@ -447,7 +476,7 @@ namespace VISTA.ABM
                     DNI = e.Dni,
                     e.Email,
                     e.Telefono,
-                    e.Rol,
+                    Rol = e.RolEmpleado.Nombre,
                     e.Turno
                 }).ToList();
 
@@ -493,6 +522,62 @@ namespace VISTA.ABM
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
             variF = "F";
+        }
+
+        private void check_listaRoles_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (_actualizandoCheck) return;
+            if (e.NewValue == CheckState.Checked)
+            {
+                _actualizandoCheck = true;
+                for (int i = 0; i < check_listaRoles.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                        check_listaRoles.SetItemChecked(i, false);
+                }
+                _actualizandoCheck = false;
+            }
+        }
+
+        private void ManejarCambioDeRolUsuario(RolEmpleado rolAnterior, RolEmpleado rolNuevo, MODELO.Empleado empleado)
+        {
+            if (rolAnterior == null || rolNuevo == null) return;
+            if (rolAnterior.RolEmpleadoId == rolNuevo.RolEmpleadoId) return;
+
+            if (!rolAnterior.EsOperativo && rolNuevo.EsOperativo)
+            {
+                MessageBox.Show($"El empleado {empleado.Nombre} {empleado.Apellido} (DNI: {empleado.Dni}) ya no es un usuario del sistema.", "AVISO");
+
+                var formUsuarios = new VISTA.Form_usuarios_abm();
+                formUsuarios.StartPosition = FormStartPosition.CenterScreen;
+                formUsuarios.ShowDialog();
+                return;
+            }
+
+            if (!rolAnterior.EsOperativo && !rolNuevo.EsOperativo)
+            {
+                var usuarioExistente = contro_us.ListarUsuarios()
+                    .FirstOrDefault(u => u.Email.Equals(empleado.Email, StringComparison.OrdinalIgnoreCase));
+
+                if (usuarioExistente == null)
+                {
+                    MessageBox.Show($"No se encontró el usuario del sistema asociado al empleado {empleado.Nombre} {empleado.Apellido}. Verifique manualmente.", "AVISO");
+                    return;
+                }
+
+                var formUsuarios = new VISTA.Form_usuarios_abm(usuarioExistente, rolNuevo.Nombre);
+                formUsuarios.StartPosition = FormStartPosition.CenterScreen;
+                formUsuarios.ShowDialog();
+                return;
+            }
+
+            if (rolAnterior.EsOperativo && !rolNuevo.EsOperativo)
+            {
+                var formUsuarios = new VISTA.Form_usuarios_abm(empleado.Nombre, empleado.Apellido, empleado.Email, rolNuevo.Nombre);
+                formUsuarios.StartPosition = FormStartPosition.CenterScreen;
+                formUsuarios.ShowDialog();
+                return;
+            }
         }
     }
 }
