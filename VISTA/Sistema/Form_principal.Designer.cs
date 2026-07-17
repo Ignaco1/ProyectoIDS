@@ -42,12 +42,12 @@
             btn_motivosCancelacion = new Button();
             btn_informes = new Button();
             panel_mantenimientos = new Panel();
-            button11 = new Button();
-            button12 = new Button();
+            btn_verMantenimientos = new Button();
+            btn_asignarMantenimientos = new Button();
             btn_mantenimientos = new Button();
             panel_servicios = new Panel();
-            button8 = new Button();
-            button9 = new Button();
+            btn_verServicios = new Button();
+            btn_asignarServicios = new Button();
             btn_servicios = new Button();
             panel_reservas = new Panel();
             button6 = new Button();
@@ -292,8 +292,8 @@
             // panel_mantenimientos
             // 
             panel_mantenimientos.BackColor = Color.FromArgb(40, 40, 40);
-            panel_mantenimientos.Controls.Add(button11);
-            panel_mantenimientos.Controls.Add(button12);
+            panel_mantenimientos.Controls.Add(btn_verMantenimientos);
+            panel_mantenimientos.Controls.Add(btn_asignarMantenimientos);
             panel_mantenimientos.Dock = DockStyle.Top;
             panel_mantenimientos.Location = new Point(0, 912);
             panel_mantenimientos.Margin = new Padding(3, 4, 3, 4);
@@ -301,44 +301,45 @@
             panel_mantenimientos.Size = new Size(367, 80);
             panel_mantenimientos.TabIndex = 33;
             // 
-            // button11
+            // btn_verMantenimientos
             // 
-            button11.BackColor = Color.FromArgb(65, 65, 65);
-            button11.Dock = DockStyle.Top;
-            button11.FlatAppearance.BorderSize = 0;
-            button11.FlatStyle = FlatStyle.Flat;
-            button11.Font = new Font("Century Gothic", 9.75F);
-            button11.ForeColor = Color.White;
-            button11.Location = new Point(0, 40);
-            button11.Margin = new Padding(3, 4, 3, 4);
-            button11.Name = "button11";
-            button11.Padding = new Padding(40, 0, 0, 0);
-            button11.Size = new Size(367, 40);
-            button11.TabIndex = 10;
-            button11.Tag = "Ver mantenimientos";
-            button11.Text = "Ver mantenimientos";
-            button11.TextAlign = ContentAlignment.MiddleLeft;
-            button11.UseVisualStyleBackColor = false;
+            btn_verMantenimientos.BackColor = Color.FromArgb(65, 65, 65);
+            btn_verMantenimientos.Dock = DockStyle.Top;
+            btn_verMantenimientos.FlatAppearance.BorderSize = 0;
+            btn_verMantenimientos.FlatStyle = FlatStyle.Flat;
+            btn_verMantenimientos.Font = new Font("Century Gothic", 9.75F);
+            btn_verMantenimientos.ForeColor = Color.White;
+            btn_verMantenimientos.Location = new Point(0, 40);
+            btn_verMantenimientos.Margin = new Padding(3, 4, 3, 4);
+            btn_verMantenimientos.Name = "btn_verMantenimientos";
+            btn_verMantenimientos.Padding = new Padding(40, 0, 0, 0);
+            btn_verMantenimientos.Size = new Size(367, 40);
+            btn_verMantenimientos.TabIndex = 10;
+            btn_verMantenimientos.Tag = "Ver mantenimientos";
+            btn_verMantenimientos.Text = "Ver mantenimientos";
+            btn_verMantenimientos.TextAlign = ContentAlignment.MiddleLeft;
+            btn_verMantenimientos.UseVisualStyleBackColor = false;
+            btn_verMantenimientos.Click += btn_verMantenimientos_Click;
             // 
-            // button12
+            // btn_asignarMantenimientos
             // 
-            button12.BackColor = Color.FromArgb(65, 65, 65);
-            button12.Dock = DockStyle.Top;
-            button12.FlatAppearance.BorderSize = 0;
-            button12.FlatStyle = FlatStyle.Flat;
-            button12.Font = new Font("Century Gothic", 9.75F);
-            button12.ForeColor = Color.White;
-            button12.Location = new Point(0, 0);
-            button12.Margin = new Padding(3, 4, 3, 4);
-            button12.Name = "button12";
-            button12.Padding = new Padding(40, 0, 0, 0);
-            button12.Size = new Size(367, 40);
-            button12.TabIndex = 9;
-            button12.Tag = "Asignar mantenimientos";
-            button12.Text = "Asignar mantenimientos";
-            button12.TextAlign = ContentAlignment.MiddleLeft;
-            button12.UseVisualStyleBackColor = false;
-            button12.Click += button12_Click;
+            btn_asignarMantenimientos.BackColor = Color.FromArgb(65, 65, 65);
+            btn_asignarMantenimientos.Dock = DockStyle.Top;
+            btn_asignarMantenimientos.FlatAppearance.BorderSize = 0;
+            btn_asignarMantenimientos.FlatStyle = FlatStyle.Flat;
+            btn_asignarMantenimientos.Font = new Font("Century Gothic", 9.75F);
+            btn_asignarMantenimientos.ForeColor = Color.White;
+            btn_asignarMantenimientos.Location = new Point(0, 0);
+            btn_asignarMantenimientos.Margin = new Padding(3, 4, 3, 4);
+            btn_asignarMantenimientos.Name = "btn_asignarMantenimientos";
+            btn_asignarMantenimientos.Padding = new Padding(40, 0, 0, 0);
+            btn_asignarMantenimientos.Size = new Size(367, 40);
+            btn_asignarMantenimientos.TabIndex = 9;
+            btn_asignarMantenimientos.Tag = "Asignar mantenimientos";
+            btn_asignarMantenimientos.Text = "Asignar mantenimientos";
+            btn_asignarMantenimientos.TextAlign = ContentAlignment.MiddleLeft;
+            btn_asignarMantenimientos.UseVisualStyleBackColor = false;
+            btn_asignarMantenimientos.Click += btn_asignarMantenimientos_Click;
             // 
             // btn_mantenimientos
             // 
@@ -363,8 +364,8 @@
             // panel_servicios
             // 
             panel_servicios.BackColor = Color.FromArgb(40, 40, 40);
-            panel_servicios.Controls.Add(button8);
-            panel_servicios.Controls.Add(button9);
+            panel_servicios.Controls.Add(btn_verServicios);
+            panel_servicios.Controls.Add(btn_asignarServicios);
             panel_servicios.Dock = DockStyle.Top;
             panel_servicios.Location = new Point(0, 792);
             panel_servicios.Margin = new Padding(3, 4, 3, 4);
@@ -372,43 +373,45 @@
             panel_servicios.Size = new Size(367, 80);
             panel_servicios.TabIndex = 31;
             // 
-            // button8
+            // btn_verServicios
             // 
-            button8.BackColor = Color.FromArgb(65, 65, 65);
-            button8.Dock = DockStyle.Top;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Century Gothic", 9.75F);
-            button8.ForeColor = Color.White;
-            button8.Location = new Point(0, 40);
-            button8.Margin = new Padding(3, 4, 3, 4);
-            button8.Name = "button8";
-            button8.Padding = new Padding(40, 0, 0, 0);
-            button8.Size = new Size(367, 40);
-            button8.TabIndex = 8;
-            button8.Tag = "Ver servicios";
-            button8.Text = "Ver servicios";
-            button8.TextAlign = ContentAlignment.MiddleLeft;
-            button8.UseVisualStyleBackColor = false;
+            btn_verServicios.BackColor = Color.FromArgb(65, 65, 65);
+            btn_verServicios.Dock = DockStyle.Top;
+            btn_verServicios.FlatAppearance.BorderSize = 0;
+            btn_verServicios.FlatStyle = FlatStyle.Flat;
+            btn_verServicios.Font = new Font("Century Gothic", 9.75F);
+            btn_verServicios.ForeColor = Color.White;
+            btn_verServicios.Location = new Point(0, 40);
+            btn_verServicios.Margin = new Padding(3, 4, 3, 4);
+            btn_verServicios.Name = "btn_verServicios";
+            btn_verServicios.Padding = new Padding(40, 0, 0, 0);
+            btn_verServicios.Size = new Size(367, 40);
+            btn_verServicios.TabIndex = 8;
+            btn_verServicios.Tag = "Ver servicios";
+            btn_verServicios.Text = "Ver servicios";
+            btn_verServicios.TextAlign = ContentAlignment.MiddleLeft;
+            btn_verServicios.UseVisualStyleBackColor = false;
+            btn_verServicios.Click += btn_verServicios_Click;
             // 
-            // button9
+            // btn_asignarServicios
             // 
-            button9.BackColor = Color.FromArgb(65, 65, 65);
-            button9.Dock = DockStyle.Top;
-            button9.FlatAppearance.BorderSize = 0;
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Century Gothic", 9.75F);
-            button9.ForeColor = Color.White;
-            button9.Location = new Point(0, 0);
-            button9.Margin = new Padding(3, 4, 3, 4);
-            button9.Name = "button9";
-            button9.Padding = new Padding(40, 0, 0, 0);
-            button9.Size = new Size(367, 40);
-            button9.TabIndex = 7;
-            button9.Tag = "Asignar servicios";
-            button9.Text = "Asignar servicios";
-            button9.TextAlign = ContentAlignment.MiddleLeft;
-            button9.UseVisualStyleBackColor = false;
+            btn_asignarServicios.BackColor = Color.FromArgb(65, 65, 65);
+            btn_asignarServicios.Dock = DockStyle.Top;
+            btn_asignarServicios.FlatAppearance.BorderSize = 0;
+            btn_asignarServicios.FlatStyle = FlatStyle.Flat;
+            btn_asignarServicios.Font = new Font("Century Gothic", 9.75F);
+            btn_asignarServicios.ForeColor = Color.White;
+            btn_asignarServicios.Location = new Point(0, 0);
+            btn_asignarServicios.Margin = new Padding(3, 4, 3, 4);
+            btn_asignarServicios.Name = "btn_asignarServicios";
+            btn_asignarServicios.Padding = new Padding(40, 0, 0, 0);
+            btn_asignarServicios.Size = new Size(367, 40);
+            btn_asignarServicios.TabIndex = 7;
+            btn_asignarServicios.Tag = "Asignar servicios";
+            btn_asignarServicios.Text = "Asignar servicios";
+            btn_asignarServicios.TextAlign = ContentAlignment.MiddleLeft;
+            btn_asignarServicios.UseVisualStyleBackColor = false;
+            btn_asignarServicios.Click += btn_asignarServicios_Click;
             // 
             // btn_servicios
             // 
@@ -970,15 +973,15 @@
         private Button btn_empleados_abm;
         private Button button6;
         private Panel panel_servicios;
-        private Button button8;
-        private Button button9;
+        private Button btn_verServicios;
+        private Button btn_asignarServicios;
         private Button btn_servicios;
         private Panel panel5;
         private Button button14;
         private Button button15;
         private Panel panel_mantenimientos;
-        private Button button11;
-        private Button button12;
+        private Button btn_verMantenimientos;
+        private Button btn_asignarMantenimientos;
         private Button btn_mantenimientos;
     }
 }

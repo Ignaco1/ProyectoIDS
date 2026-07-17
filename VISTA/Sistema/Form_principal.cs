@@ -367,9 +367,25 @@ namespace VISTA
             AbrirForms(new Form_mantenimientos_abm());
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void btn_asignarServicios_Click(object sender, EventArgs e)
         {
-            
+            AbrirForms(new Form_desplegarServicios());
+
+        }
+
+        private void btn_verServicios_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_verServiciosAsignados());
+        }
+
+        private void btn_asignarMantenimientos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_verMantenimientos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

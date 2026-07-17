@@ -9,17 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VISTA.Cabañas_y_alquiler;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace VISTA.Servicios_y_asignacion
+namespace VISTA
 {
     public partial class UC_Servicio : UserControl
     {
-        public string ServicioNombre { get; set; }
+        public string CabañaNombre { get; set; }
         private List<byte[]> imagenes = new List<byte[]>();
         private int indiceImagenActual = 0;
         private Action<Form> abrirFormulario;
-        public Servicio DatosServicio { get; set; }
+        public Cabaña DatosCabaña { get; set; }
 
         public UC_Servicio()
         {
@@ -30,6 +29,7 @@ namespace VISTA.Servicios_y_asignacion
             {
                 c.Click += UC_Servicio_Click;
             }
+
         }
 
         private void UC_Servicio_Load(object sender, EventArgs e)
@@ -37,13 +37,15 @@ namespace VISTA.Servicios_y_asignacion
 
         }
 
-        public void Configurar(string nombre, string categoria, decimal importe, string descripcion, List<byte[]> imagenesBytes)
+        public void Configurar(string nombre, int capacidad, decimal precio, string descripcion, List<byte[]> imagenesBytes)
         {
-            ServicioNombre = nombre;
+            CabañaNombre = nombre;
             lb_nombre.Text = nombre;
-            lb_categoria.Text = $"Categoria: {categoria}";
-            lb_precio.Text = $"Importe: ${importe}";
-            lb_descripcion.Text = $"Descripción: {descripcion}";
+            lb_capacidad.Text = $"Capacidad: {capacidad}";
+            lb_precio.Text = $"Precio por noche: ${precio}";
+
+            string descripcionFormateada = FormatearDescripcion(descripcion, 2);
+            lb_descripcion.Text = $"Descripción: {descripcionFormateada}";
 
             imagenes = imagenesBytes;
 
@@ -52,6 +54,28 @@ namespace VISTA.Servicios_y_asignacion
                 indiceImagenActual = 0;
                 MostrarImagenActual();
             }
+        }
+
+        private string FormatearDescripcion(string descripcion, int palabrasPorLinea)
+        {
+            if (string.IsNullOrWhiteSpace(descripcion))
+                return "";
+
+            var palabras = descripcion.Split(' ');
+            var resultado = new StringBuilder();
+
+            for (int i = 0; i < palabras.Length; i++)
+            {
+                resultado.Append(palabras[i]);
+                resultado.Append(" ");
+
+                if ((i + 1) % palabrasPorLinea == 0)
+                {
+                    resultado.AppendLine();
+                }
+            }
+
+            return resultado.ToString().Trim();
         }
 
         private void MostrarImagenActual()
@@ -66,35 +90,26 @@ namespace VISTA.Servicios_y_asignacion
 
         private void UC_Servicio_Click(object sender, EventArgs e)
         {
-            //var formServicio = new Form_asignarServicio();
-            //var c = DatosServicio;
+            var formAlquiler = new Form_asignarServicio();
+            var c = DatosCabaña;
 
-            //DialogResult resultado = MessageBox.Show($"Abrir formulario para asignar el servicio: {ServicioNombre}", "AVISO", MessageBoxButtons.YesNo);
+            DialogResult resultado = MessageBox.Show($"Abrir formulario para alquilar la cabaña: {CabañaNombre}", "AVISO", MessageBoxButtons.YesNo);
 
-            //if (resultado == DialogResult.Yes)
-            //{
-            //    try
-            //    {
-            //        formServicio.Configurar(c.Nombre, c.Categorias, c.Importe, c.Descripcion, imagenes, c.ServicioId);
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    formAlquiler.Configurar(c.Nombre, c.Capacidad, c.PrecioPorNoche, c.Descripcion, imagenes, c.CabañaId);
 
-            //        abrirFormulario?.Invoke(formServicio);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show($"Error al abrir el formulario del servicio: {ServicioNombre}  " + ex.Message, "Error");
-            //        return;
-            //    }
-            //}
-        }
+                    abrirFormulario?.Invoke(formAlquiler);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al abrir el formulario de la cabaña: {CabañaNombre}  " + ex.Message, "Error");
+                    return;
+                }
+            }
 
-        public void SetAbrirFormulario(Action<Form> llamadaAlForm)
-        {
-            abrirFormulario = llamadaAlForm;
-        }
-
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            toolTip1.SetToolTip(panel1, "Presione para seleccionar el servicio");
 
         }
 
@@ -112,6 +127,16 @@ namespace VISTA.Servicios_y_asignacion
 
             indiceImagenActual = (indiceImagenActual - 1 + imagenes.Count) % imagenes.Count;
             MostrarImagenActual();
+        }
+
+        public void SetAbrirFormulario(Action<Form> llamadaAlForm)
+        {
+            abrirFormulario = llamadaAlForm;
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolTip1.SetToolTip(panel1, "Presione para realizar la reserva");
         }
     }
 }
