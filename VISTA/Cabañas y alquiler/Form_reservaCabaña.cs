@@ -1,4 +1,5 @@
 ﻿using MODELO;
+using MODELO.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,7 @@ namespace VISTA.Cabañas_y_alquiler
                 return;
 
             var reservas = contro_reser.ListarReservas()
-                .Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada")
+                .Where(r => r.IdCabaña == idCabañaSeleccionada && r.EstadoActual is not EstadoCancelada)
                 .ToList();
 
             DateTime hoy = DateTime.Today;

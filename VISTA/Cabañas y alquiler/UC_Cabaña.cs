@@ -90,6 +90,11 @@ namespace VISTA
 
         private void UC_Cabaña_Click(object sender, EventArgs e)
         {
+            LlamadaForm();
+        }
+
+        private void LlamadaForm()
+        {
             var formAlquiler = new Form_reservaCabaña();
             var c = DatosCabaña;
 
@@ -109,8 +114,6 @@ namespace VISTA
                     return;
                 }
             }
-
-
         }
 
         private void btn_siguiente_Click(object sender, EventArgs e)
@@ -137,6 +140,31 @@ namespace VISTA
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             toolTip1.SetToolTip(panel1, "Presione para realizar la reserva");
+        }
+
+        private void lb_capacidad_Click(object sender, EventArgs e)
+        {
+            LlamadaForm();
+        }
+
+        private void lb_precio_Click(object sender, EventArgs e)
+        {
+            LlamadaForm();
+        }
+
+        private void lb_descripcion_Click(object sender, EventArgs e)
+        {
+            LlamadaForm();
+        }
+
+        private void pb_imagenes_Click(object sender, EventArgs e)
+        {
+            LlamadaForm();
+        }
+
+        private void lb_nombre_Click(object sender, EventArgs e)
+        {
+            LlamadaForm();
         }
     }
 }

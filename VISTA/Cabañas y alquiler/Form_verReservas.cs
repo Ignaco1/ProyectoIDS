@@ -1,5 +1,6 @@
 ﻿using CAPA_COMUN.Cache;
 using MODELO;
+using MODELO.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,12 +21,13 @@ namespace VISTA.Cabañas_y_alquiler
         CONTROLADORA.Controladora_clientes contro_cli = new CONTROLADORA.Controladora_clientes();
         CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
         private const int LIMITE_RESERVAS_MOSTRADAS = 30;
-        private const int FINALIZADAS_MINIMAS_A_MOSTRAR = 5;
         private List<Reserva> listaReservasFiltro = new List<Reserva>();
         private string variF = "";
         private List<MODELO.Reserva> reservasCompletas = new List<MODELO.Reserva>();
         private Cabaña cabañaActual;
 
+        public bool ModoSeleccion { get; set; } = false;
+        public Reserva ReservaSeleccionada { get; private set; }
 
         public Form_verReservas()
         {
@@ -68,8 +70,9 @@ namespace VISTA.Cabañas_y_alquiler
             cb_cliente.Enabled = false;
             cb_cabaña.Enabled = false;
             cabañaActual = null;
+            variF = "";
 
-            ResaltarReservasEnCabañasDesactivadas();
+            ARMA_GRILLA();
         }
 
         private void ARMA_GRILLA()
@@ -77,10 +80,11 @@ namespace VISTA.Cabañas_y_alquiler
             dataGridView1.DataSource = null;
 
             var todasLasReservas = contro_reser.ListarReservas()
-            .Where(r => r.Estado != "Cancelada")
+            .Where(r => r.EstadoActual is not EstadoCancelada &&
+                (!ModoSeleccion || r.EstadoActual is EstadoPendiente or EstadoActiva))
             .ToList();
 
-            reservasCompletas = OrdenarYLimitarReservas(todasLasReservas);
+            reservasCompletas = contro_reser.OrdenarYLimitarReservas(todasLasReservas, LIMITE_RESERVAS_MOSTRADAS);
 
             var reserva = reservasCompletas
                 .Select(r => new
@@ -98,30 +102,6 @@ namespace VISTA.Cabañas_y_alquiler
             dataGridView1.DataSource = reserva;
 
             ResaltarReservasEnCabañasDesactivadas();
-        }
-
-        private List<Reserva> OrdenarYLimitarReservas(List<Reserva> reservas)
-        {
-            var activas = reservas.Where(r => r.Estado == "Activa").OrderBy(r => r.FechaEntrada).ToList();
-            var pendientes = reservas.Where(r => r.Estado == "Pendiente").OrderBy(r => r.FechaEntrada).ToList();
-            var finalizadas = reservas.Where(r => r.Estado == "Finalizada").OrderByDescending(r => r.FechaSalida).ToList();
-            var otras = reservas.Where(r => r.Estado != "Activa" && r.Estado != "Pendiente" && r.Estado != "Finalizada").ToList();
-
-            int cantidadActivasPendientes = activas.Count + pendientes.Count;
-
-            int cantidadFinalizadasAMostrar = cantidadActivasPendientes >= LIMITE_RESERVAS_MOSTRADAS
-                ? FINALIZADAS_MINIMAS_A_MOSTRAR
-                : LIMITE_RESERVAS_MOSTRADAS - cantidadActivasPendientes;
-
-            var finalizadasAMostrar = finalizadas.Take(cantidadFinalizadasAMostrar).ToList();
-
-            var resultado = new List<Reserva>();
-            resultado.AddRange(activas);
-            resultado.AddRange(pendientes);
-            resultado.AddRange(finalizadasAMostrar);
-            resultado.AddRange(otras);
-
-            return resultado;
         }
 
         private void MODO_LISTA()
@@ -351,16 +331,17 @@ namespace VISTA.Cabañas_y_alquiler
 
             var reservasFiltradas = reservas
             .Where(r =>
-                r.Estado != "Cancelada" &&
+                r.EstadoActual is not EstadoCancelada &&
+                (!ModoSeleccion || r.EstadoActual is EstadoPendiente or EstadoActiva) &&
                 (string.IsNullOrEmpty(nombreCabañaFiltro) || r.Cabaña.Nombre.ToLower().Contains(nombreCabañaFiltro)) &&
                 (string.IsNullOrEmpty(nombreClienteFiltro) || r.Cliente.Nombre.ToLower().Contains(nombreClienteFiltro) ||
                 r.Cliente.Apellido.ToLower().Contains(nombreClienteFiltro)) &&
-                (string.IsNullOrEmpty(estadoFiltro) || r.Estado.Equals(estadoFiltro, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(estadoFiltro) || (r.EstadoActual?.Nombre.Equals(estadoFiltro, StringComparison.OrdinalIgnoreCase) ?? false)) &&
                 (!filtrarPorFechas || (r.FechaEntrada >= fechaEntradaFiltro && r.FechaSalida <= fechaSalidaFiltro))
             )
             .ToList();
 
-            listaReservasFiltro = OrdenarYLimitarReservas(reservasFiltradas);
+            listaReservasFiltro = contro_reser.OrdenarYLimitarReservas(reservasFiltradas, LIMITE_RESERVAS_MOSTRADAS);
 
             dataGridView1.DataSource = null;
 
@@ -398,7 +379,7 @@ namespace VISTA.Cabañas_y_alquiler
                 return;
 
             var reservas = contro_reser.ListarReservas()
-            .Where(r => r.IdCabaña == cabaña.CabañaId && r.Estado != "Cancelada")
+            .Where(r => r.IdCabaña == cabaña.CabañaId && r.EstadoActual is not EstadoCancelada)
             .ToList();
 
             foreach (var reserva in reservas)
@@ -456,8 +437,6 @@ namespace VISTA.Cabañas_y_alquiler
             {
                 try
                 {
-                    reservaSeleccionada.Estado = "Cancelada";
-
                     var formMotivos = new Form_seleccionarMotivosCancelacion(reservaSeleccionada);
                     formMotivos.ShowDialog();
 
@@ -468,7 +447,7 @@ namespace VISTA.Cabañas_y_alquiler
                         return;
                     }
 
-                    contro_reser.ModificarReserva(reservaSeleccionada);
+                    contro_reser.CancelarReserva(reservaSeleccionada);
 
                     cabaña = contro_caba.ObtenerCabañaId(reservaSeleccionada.IdCabaña);
 
@@ -601,6 +580,22 @@ namespace VISTA.Cabañas_y_alquiler
                         fila.DefaultCellStyle.ForeColor = Color.White;
                     }
                 }
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!ModoSeleccion)
+                return;
+
+            Reserva reserva = ObtenerReservaSeleccionada();
+
+            if (reserva != null)
+            {
+                ReservaSeleccionada = reserva;
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 

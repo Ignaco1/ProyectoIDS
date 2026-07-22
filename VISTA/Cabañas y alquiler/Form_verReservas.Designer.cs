@@ -258,7 +258,8 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1462, 1125);
             dataGridView1.TabIndex = 2;
-            // 
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            //
             // panel4
             // 
             panel4.Controls.Add(btn_cancelarReserva);

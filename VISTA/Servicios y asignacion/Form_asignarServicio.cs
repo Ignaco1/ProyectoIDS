@@ -1,4 +1,4 @@
-﻿using MODELO;
+using MODELO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +15,10 @@ namespace VISTA.Cabañas_y_alquiler
     {
         private List<byte[]> imagenes = new List<byte[]>();
         private int indiceImagenActual = 0;
-        CONTROLADORA.Controladora_clientes contro_cli = new CONTROLADORA.Controladora_clientes();
-        CONTROLADORA.Controladora_cabañas contro_caba = new CONTROLADORA.Controladora_cabañas();
         CONTROLADORA.Controladora_reservas contro_reser = new CONTROLADORA.Controladora_reservas();
-        private int idCabañaSeleccionada;
-        private Cliente clienteActual;
+        CONTROLADORA.Controladora_AsignacionesServicio contro_asig = new CONTROLADORA.Controladora_AsignacionesServicio();
+        private int idServicioSeleccionado;
+        private Reserva reservaActual;
 
         public Form_asignarServicio()
         {
@@ -28,123 +27,67 @@ namespace VISTA.Cabañas_y_alquiler
 
         private void Form_asignarServicio_Load(object sender, EventArgs e)
         {
-            CargarFechasOcupadas();
-            clienteActual = null;
-            label_cliente.Text = "Cliente no seleccionado";
-            mc_fechas.DateSelected += mc_fechas_DateSelected;
+            dtp_fecha.Value = DateTime.Today;
+            tp_hora.Value = DateTime.Today.AddHours(10);
+            reservaActual = null;
+            label_reserva.Text = "Reserva no seleccionada";
+
+            dtp_fecha.ValueChanged += dtp_fecha_ValueChanged;
+            tp_hora.ValueChanged += tp_hora_ValueChanged;
+
+            ActualizarLabelFecha();
+            ActualizarLabelHora();
         }
 
-        private void CargarFechasOcupadas()
+        private void dtp_fecha_ValueChanged(object sender, EventArgs e)
         {
-            List<DateTime> fechasOcupadas = new List<DateTime>();
-
-            var cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
-
-            if (cabaña == null)
-                return;
-
-            var reservas = contro_reser.ListarReservas()
-                .Where(r => r.IdCabaña == idCabañaSeleccionada && r.Estado != "Cancelada")
-                .ToList();
-
-            DateTime hoy = DateTime.Today;
-
-
-            foreach (var reserva in reservas)
-            {
-
-                if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue &&
-                    reserva.FechaEntrada <= cabaña.FechaFinDesactivacion.Value)
-                {
-                    continue;
-                }
-
-                DateTime fecha = reserva.FechaEntrada.Date;
-
-                while (fecha <= reserva.FechaSalida.Date)
-                {
-                    fechasOcupadas.Add(fecha);
-                    fecha = fecha.AddDays(1);
-                }
-            }
-
-            if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
-            {
-                DateTime fin = cabaña.FechaFinDesactivacion.Value;
-
-                if (hoy <= fin)
-                {
-                    for (DateTime fecha = hoy; fecha <= fin; fecha = fecha.AddDays(1))
-                    {
-                        fechasOcupadas.Add(fecha);
-                    }
-                }
-            }
-
-            mc_fechas.BoldedDates = fechasOcupadas.Distinct().OrderBy(d => d).ToArray();
+            ActualizarLabelFecha();
         }
 
-        private void btn_realizarReserva_Click(object sender, EventArgs e)
+        private void tp_hora_ValueChanged(object sender, EventArgs e)
         {
-            MODELO.Reserva reserva = null;
+            ActualizarLabelHora();
+        }
 
-            #region VALIDACIONES
+        private void ActualizarLabelFecha()
+        {
+            label_fechas.Text = $"{dtp_fecha.Value:dd/MM/yyyy}";
+        }
 
-            if (clienteActual == null)
+        private void ActualizarLabelHora()
+        {
+            label_horaSeleccionada.Text = $"{tp_hora.Value:HH:mm}";
+        }
+
+        private void btn_asignarServicio_Click(object sender, EventArgs e)
+        {
+            if (reservaActual == null)
             {
-                MessageBox.Show("Debe seleccionar un cliente antes de realizar la reserva.", "Error");
+                MessageBox.Show("Debe seleccionar una reserva antes de asignar el servicio.", "Error");
                 return;
             }
 
-            DateTime fechaEntrada = mc_fechas.SelectionStart.Date;
-            DateTime fechaSalida = mc_fechas.SelectionEnd.Date;
+            DateTime fecha = dtp_fecha.Value.Date;
+            TimeSpan hora = tp_hora.Value.TimeOfDay;
 
-            if (mc_fechas.SelectionStart == mc_fechas.SelectionEnd)
+            if (!contro_asig.ExisteDisponibilidad(idServicioSeleccionado, fecha, hora))
             {
-                MessageBox.Show("Debe seleccionar un rango de fechas para la reserva (entrada y salida).", "Error");
+                MessageBox.Show("El servicio ya se encuentra asignado en esa fecha y horario.", "Error");
                 return;
             }
 
-            if (fechaEntrada > fechaSalida)
-            {
-                MessageBox.Show("La fecha de entrada no puede ser posterior a la de salida.", "Error");
-                return;
-            }
-
-            Cabaña cabaña = contro_caba.ObtenerCabañaId(idCabañaSeleccionada);
-
-            if (cabaña == null)
-            {
-                MessageBox.Show("No se pudo encontrar la cabaña seleccionada.", "Error");
-                return;
-            }
-
-            #endregion
-
-
-            decimal precioTotal = ObtenerPrecioTotal(cabaña, fechaEntrada, fechaSalida);
-
-            reserva = contro_reser.CrearReserva(idCabañaSeleccionada, clienteActual.ClienteId, fechaEntrada, fechaSalida, precioTotal);
-
-            bool esValida = contro_reser.ValidaReserva(cabaña, fechaEntrada, fechaSalida, reserva.ReservaId);
-
-            if (!esValida)
-            {
-                MessageBox.Show("Ya existe una reserva para esta cabaña en el rango de fechas seleccionado. O la cabaña se encuentra en reparación", "Error");
-                return;
-            }
+            var asignacion = contro_asig.CrearAsignacion(idServicioSeleccionado, reservaActual.ReservaId, fecha, hora);
 
             try
             {
-                string respuesta = contro_reser.AgregarReserva(reserva);
-                contro_reser.ActualizarEstadosReservas();
+                string respuesta = contro_asig.AgregarAsignacion(asignacion);
                 MessageBox.Show(respuesta);
 
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar la reserva:  " + ex.Message, "Error");
+                MessageBox.Show("Error al asignar el servicio:  " + ex.Message, "Error");
             }
         }
 
@@ -158,26 +101,23 @@ namespace VISTA.Cabañas_y_alquiler
             this.Close();
         }
 
-        public void Configurar(string nombre, int capacidad, decimal precio, string descripcion, List<byte[]> imagenesBytes, int idCabaña)
+        public void Configurar(string nombre, decimal importe, string descripcion, List<byte[]> imagenesBytes, int servicioId)
         {
             lb_nombre.Text = $"{nombre}";
-            lb_capacidad.Text = $"{capacidad}";
-            lb_precio.Text = $"${precio}";
+            lb_precio.Text = $"${importe}";
 
             string descripcionFormateada = FormatearDescripcion(descripcion, 7);
             lb_descripcion.Text = $"{descripcionFormateada}";
 
             imagenes = imagenesBytes;
 
-            idCabañaSeleccionada = idCabaña;
+            idServicioSeleccionado = servicioId;
 
             if (imagenes.Count > 0)
             {
                 indiceImagenActual = 0;
                 MostrarImagenActual();
             }
-
-            CargarFechasOcupadas();
         }
 
         private string FormatearDescripcion(string descripcion, int palabrasPorLinea)
@@ -200,16 +140,6 @@ namespace VISTA.Cabañas_y_alquiler
             }
 
             return resultado.ToString().Trim();
-        }
-
-        private decimal ObtenerPrecioTotal(Cabaña cabaña, DateTime fecha_entrada, DateTime fecha_salida)
-        {
-            int cantidadNoches = (fecha_salida - fecha_entrada).Days + 1;
-
-            if (cantidadNoches <= 0)
-                return 0;
-
-            return cantidadNoches * cabaña.PrecioPorNoche;
         }
 
         private void MostrarImagenActual()
@@ -238,33 +168,22 @@ namespace VISTA.Cabañas_y_alquiler
             MostrarImagenActual();
         }
 
-        private void mc_fechas_DateSelected(object sender, DateRangeEventArgs e)
+        private void btn_seleccionarReserva_Click(object sender, EventArgs e)
         {
-            if (mc_fechas.BoldedDates.Contains(e.Start))
+            Form_verReservas formReservas = new Form_verReservas();
+            formReservas.StartPosition = FormStartPosition.CenterScreen;
+
+            formReservas.ModoSeleccion = true;
+
+            if (formReservas.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("No se puede seleccionar esta fecha. La cabaña ya está ocupada o está desactivada.", "Error");
-                return;
-            }
+                Reserva reservaSeleccionada = formReservas.ReservaSeleccionada;
 
-            label_fechas.Text = $"{e.Start:dd/MM/yyyy} - {e.End:dd/MM/yyyy}";
-        }
-
-        private void btn_seleccionarCliente_Click(object sender, EventArgs e)
-        {
-            Form_clientes_abm formClientes = new Form_clientes_abm();
-            formClientes.StartPosition = FormStartPosition.CenterScreen;
-
-            formClientes.ModoSeleccion = true;
-
-            if (formClientes.ShowDialog() == DialogResult.OK)
-            {
-                Cliente clienteSeleccionado = formClientes.ClienteSeleccionado;
-
-                if (clienteSeleccionado != null)
+                if (reservaSeleccionada != null)
                 {
-                    this.clienteActual = clienteSeleccionado;
+                    this.reservaActual = reservaSeleccionada;
 
-                    label_cliente.Text = $"Cliente: {clienteSeleccionado.Nombre} {clienteSeleccionado.Apellido} - DNI: {clienteSeleccionado.Dni}";
+                    label_reserva.Text = $"Reserva #{reservaSeleccionada.ReservaId} - Cliente: {reservaSeleccionada.Cliente.Nombre} {reservaSeleccionada.Cliente.Apellido} - Cabaña: {reservaSeleccionada.Cabaña?.Nombre}";
                 }
             }
         }

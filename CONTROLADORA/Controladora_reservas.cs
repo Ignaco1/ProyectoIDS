@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MODELO.Composite;
+using MODELO.State;
 using System.Text.RegularExpressions;
 
 namespace CONTROLADORA
@@ -72,6 +73,12 @@ namespace CONTROLADORA
 
         }
 
+        public string CancelarReserva(Reserva reserva)
+        {
+            reserva.Cancelar();
+            return ModificarReserva(reserva);
+        }
+
         public string ModificarReserva(Reserva reserva)
         {
             using (var context = new Context())
@@ -114,7 +121,7 @@ namespace CONTROLADORA
             using (var context = new Context())
             {
                 var reservas = context.Reservas
-                    .Where(r => r.IdCabaña == cabaña.CabañaId && r.Estado != "Cancelada")
+                    .Where(r => r.IdCabaña == cabaña.CabañaId && r.Estado != EstadoCancelada.Instancia.Nombre)
                     .ToList();
 
                 if (!cabaña.Activa && cabaña.FechaFinDesactivacion.HasValue)
@@ -151,18 +158,32 @@ namespace CONTROLADORA
 
                 foreach (var reserva in reservas)
                 {
-                    if (reserva.Estado == "Cancelada") continue;
-
-                    if (hoy < reserva.FechaEntrada)
-                        reserva.Estado = "Pendiente";
-                    else if (hoy >= reserva.FechaEntrada && hoy <= reserva.FechaSalida)
-                        reserva.Estado = "Activa";
-                    else if (hoy > reserva.FechaSalida)
-                        reserva.Estado = "Finalizada";
+                    reserva.ActualizarEstadoSegunFecha(hoy);
                 }
 
                 context.SaveChanges();
             }
+        }
+
+        public List<Reserva> OrdenarYLimitarReservas(List<Reserva> reservas, int limite)
+        {
+            var masRecientes = reservas
+                .OrderByDescending(r => r.FechaEntrada)
+                .Take(limite)
+                .ToList();
+
+            var activas = masRecientes.Where(r => r.EstadoActual is EstadoActiva).OrderBy(r => r.FechaEntrada).ToList();
+            var pendientes = masRecientes.Where(r => r.EstadoActual is EstadoPendiente).OrderBy(r => r.FechaEntrada).ToList();
+            var finalizadas = masRecientes.Where(r => r.EstadoActual is EstadoFinalizada).OrderByDescending(r => r.FechaSalida).ToList();
+            var otras = masRecientes.Where(r => r.EstadoActual is not (EstadoActiva or EstadoPendiente or EstadoFinalizada)).ToList();
+
+            var resultado = new List<Reserva>();
+            resultado.AddRange(activas);
+            resultado.AddRange(pendientes);
+            resultado.AddRange(finalizadas);
+            resultado.AddRange(otras);
+
+            return resultado;
         }
 
         public List<(Cliente cliente, DateTime fechaEntrada, DateTime fechaSalida)> ObtenerClientesConReservasActivasPorCabaña(int idCabaña)
@@ -183,7 +204,7 @@ namespace CONTROLADORA
                     .Where(r => r.IdCabaña == idCabaña
                         && r.FechaSalida >= hoy
                         && r.FechaEntrada <= fechaLimite
-                        && (r.Estado == "Pendiente" || r.Estado == "Activa"))
+                        && (r.Estado == EstadoPendiente.Instancia.Nombre || r.Estado == EstadoActiva.Instancia.Nombre))
                     .ToList();
 
                 var datos = reservas.Select(r => (r.Cliente, r.FechaEntrada, r.FechaSalida)).ToList();

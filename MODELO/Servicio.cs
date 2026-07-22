@@ -19,5 +19,10 @@ namespace MODELO
         public virtual ICollection<ImagenServicio> Imagenes { get; set; } = new List<ImagenServicio>();
 
         public virtual ICollection<Categoria> Categorias { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

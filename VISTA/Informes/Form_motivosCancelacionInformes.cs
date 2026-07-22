@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text;
 using MODELO.Composite;
+using MODELO.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +42,7 @@ namespace VISTA.Informes
             var fechaSalida = dtp_hasta.Value.Date;
 
             var reservasCanceladas = contro_reser.ListarReservas()
-            .Where(r => r.Estado == "Cancelada" && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
+            .Where(r => r.EstadoActual is EstadoCancelada && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
             .ToList();
 
             label_nroCabañas.Text = $"Cantidad de reservas canceladas entre las fechas {fechaEntrada.Date.ToString("dd/MM/yyyy")} - {fechaSalida.Date.ToString("dd/MM/yyyy")} = {reservasCanceladas.Count.ToString()}";
@@ -165,7 +166,7 @@ namespace VISTA.Informes
                 var fechaSalida = dtp_hasta.Value.Date;
 
                 var reservasCanceladas = contro_reser.ListarReservas()
-                .Where(r => r.Estado == "Cancelada" && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
+                .Where(r => r.EstadoActual is EstadoCancelada && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
                 .ToList();
 
                 var motivosAgrupados = reservasCanceladas
@@ -289,7 +290,7 @@ namespace VISTA.Informes
                 var fechaSalida = dtp_hasta.Value.Date;
 
                 var reservasCanceladas = contro_reser.ListarReservas()
-                .Where(r => r.Estado == "Cancelada" && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
+                .Where(r => r.EstadoActual is EstadoCancelada && r.MotivosCancelacion.Any() && r.FechaEntrada >= fechaEntrada && r.FechaEntrada <= fechaSalida)
                 .ToList();
 
                 var motivosAgrupados = reservasCanceladas

@@ -25,6 +25,8 @@ namespace VISTA.ABM
         private List<Servicio> listaServiciosFiltro = new List<Servicio>();
         private List<byte[]> imagenesBytes = new List<byte[]>();
         private List<int> imagenesAEliminar = new List<int>();
+        public bool ModoSeleccion { get; set; } = false;
+        public Servicio ServicioSeleccionado { get; private set; }
 
         public Form_servicios_abm()
         {
@@ -114,6 +116,27 @@ namespace VISTA.ABM
             }
 
             indice = dataGridView1.CurrentRow.Index;
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!ModoSeleccion)
+                return;
+
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            int rowIndex = dataGridView1.CurrentRow.Index;
+
+            Servicio servicio = (variF == "")
+                ? contro_serv.ListarServicios()[rowIndex]
+                : listaServiciosFiltro[rowIndex];
+
+            ServicioSeleccionado = servicio;
+
+            this.DialogResult = DialogResult.OK;
+
+            this.Close();
         }
 
         private void btn_cerrar_Click(object sender, EventArgs e)

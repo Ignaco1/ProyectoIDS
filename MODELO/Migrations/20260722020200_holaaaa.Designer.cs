@@ -4,6 +4,7 @@ using MODELO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20260722020200_holaaaa")]
+    partial class holaaaa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,17 +25,17 @@ namespace MODELO.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AsignacionServicioMotivoCancelacionServicio", b =>
+            modelBuilder.Entity("AsignacionServicioMotivoCancelacion", b =>
                 {
                     b.Property<int>("AsignacionesServicioAsignacionServicioId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MotivosCancelacionMotivoCancelacionServicioId")
+                    b.Property<int>("MotivosCancelacionMotivoCancelacionId")
                         .HasColumnType("int");
 
-                    b.HasKey("AsignacionesServicioAsignacionServicioId", "MotivosCancelacionMotivoCancelacionServicioId");
+                    b.HasKey("AsignacionesServicioAsignacionServicioId", "MotivosCancelacionMotivoCancelacionId");
 
-                    b.HasIndex("MotivosCancelacionMotivoCancelacionServicioId");
+                    b.HasIndex("MotivosCancelacionMotivoCancelacionId");
 
                     b.ToTable("AsignacionServicioMotivoCancelacion", (string)null);
                 });
@@ -75,14 +78,17 @@ namespace MODELO.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AsignacionServicioId"));
 
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Cancelada")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<TimeSpan>("Hora")
                         .HasColumnType("time");
+
+                    b.Property<int?>("MotivoCancelacionServicioId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ReservaId")
                         .HasColumnType("int");
@@ -91,6 +97,8 @@ namespace MODELO.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("AsignacionServicioId");
+
+                    b.HasIndex("MotivoCancelacionServicioId");
 
                     b.HasIndex("ReservaId");
 
@@ -554,6 +562,9 @@ namespace MODELO.Migrations
                     b.Property<int>("IdCliente")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MotivoCancelacionServicioId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
 
@@ -562,6 +573,8 @@ namespace MODELO.Migrations
                     b.HasIndex("IdCabaña");
 
                     b.HasIndex("IdCliente");
+
+                    b.HasIndex("MotivoCancelacionServicioId");
 
                     b.ToTable("Reservas");
                 });
@@ -671,7 +684,7 @@ namespace MODELO.Migrations
                     b.ToTable("ReservaMotivoCancelacion", (string)null);
                 });
 
-            modelBuilder.Entity("AsignacionServicioMotivoCancelacionServicio", b =>
+            modelBuilder.Entity("AsignacionServicioMotivoCancelacion", b =>
                 {
                     b.HasOne("MODELO.AsignacionServicio", null)
                         .WithMany()
@@ -679,9 +692,9 @@ namespace MODELO.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MODELO.MotivoCancelacionServicio", null)
+                    b.HasOne("MODELO.MotivoCancelacion", null)
                         .WithMany()
-                        .HasForeignKey("MotivosCancelacionMotivoCancelacionServicioId")
+                        .HasForeignKey("MotivosCancelacionMotivoCancelacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -718,6 +731,10 @@ namespace MODELO.Migrations
 
             modelBuilder.Entity("MODELO.AsignacionServicio", b =>
                 {
+                    b.HasOne("MODELO.MotivoCancelacionServicio", null)
+                        .WithMany("AsignacionesServicio")
+                        .HasForeignKey("MotivoCancelacionServicioId");
+
                     b.HasOne("MODELO.Reserva", "Reserva")
                         .WithMany()
                         .HasForeignKey("ReservaId")
@@ -821,6 +838,10 @@ namespace MODELO.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MODELO.MotivoCancelacionServicio", null)
+                        .WithMany("Reservas")
+                        .HasForeignKey("MotivoCancelacionServicioId");
+
                     b.Navigation("Cabaña");
 
                     b.Navigation("Cliente");
@@ -860,6 +881,13 @@ namespace MODELO.Migrations
             modelBuilder.Entity("MODELO.Mantenimiento", b =>
                 {
                     b.Navigation("Imagenes");
+                });
+
+            modelBuilder.Entity("MODELO.MotivoCancelacionServicio", b =>
+                {
+                    b.Navigation("AsignacionesServicio");
+
+                    b.Navigation("Reservas");
                 });
 
             modelBuilder.Entity("MODELO.RolEmpleado", b =>

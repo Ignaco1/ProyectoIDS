@@ -178,5 +178,19 @@ namespace CONTROLADORA
 
             }
         }
+
+        public Servicio ObtenerServicioId(int id)
+        {
+            using (var context = new Context())
+            {
+                var servicio = context.Servicios.Include(s => s.Imagenes).ToList().FirstOrDefault(s => s.ServicioId == id);
+
+                if (servicio == null)
+                    return null;
+
+                return servicio;
+            }
+
+        }
     }
 }

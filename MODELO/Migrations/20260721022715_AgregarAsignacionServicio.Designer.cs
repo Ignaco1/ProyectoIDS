@@ -4,6 +4,7 @@ using MODELO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20260721022715_AgregarAsignacionServicio")]
+    partial class AgregarAsignacionServicio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace MODELO.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AsignacionServicioMotivoCancelacionServicio", b =>
-                {
-                    b.Property<int>("AsignacionesServicioAsignacionServicioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MotivosCancelacionMotivoCancelacionServicioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AsignacionesServicioAsignacionServicioId", "MotivosCancelacionMotivoCancelacionServicioId");
-
-                    b.HasIndex("MotivosCancelacionMotivoCancelacionServicioId");
-
-                    b.ToTable("AsignacionServicioMotivoCancelacion", (string)null);
-                });
 
             modelBuilder.Entity("CategoriaServicio", b =>
                 {
@@ -74,9 +62,6 @@ namespace MODELO.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AsignacionServicioId"));
-
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
@@ -488,23 +473,6 @@ namespace MODELO.Migrations
                     b.ToTable("MotivosCancelacion");
                 });
 
-            modelBuilder.Entity("MODELO.MotivoCancelacionServicio", b =>
-                {
-                    b.Property<int>("MotivoCancelacionServicioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MotivoCancelacionServicioId"));
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MotivoCancelacionServicioId");
-
-                    b.ToTable("MotivosCancelacionServicio");
-                });
-
             modelBuilder.Entity("MODELO.Pago", b =>
                 {
                     b.Property<int>("PagoId")
@@ -669,21 +637,6 @@ namespace MODELO.Migrations
                     b.HasIndex("ReservasReservaId");
 
                     b.ToTable("ReservaMotivoCancelacion", (string)null);
-                });
-
-            modelBuilder.Entity("AsignacionServicioMotivoCancelacionServicio", b =>
-                {
-                    b.HasOne("MODELO.AsignacionServicio", null)
-                        .WithMany()
-                        .HasForeignKey("AsignacionesServicioAsignacionServicioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MODELO.MotivoCancelacionServicio", null)
-                        .WithMany()
-                        .HasForeignKey("MotivosCancelacionMotivoCancelacionServicioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("CategoriaServicio", b =>

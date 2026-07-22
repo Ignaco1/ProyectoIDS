@@ -33,8 +33,7 @@
             btn_anterior = new Button();
             btn_siguiente = new Button();
             lb_descripcion = new Label();
-            lb_precio = new Label();
-            lb_capacidad = new Label();
+            lb_importe = new Label();
             lb_nombre = new Label();
             pb_imagenes = new PictureBox();
             toolTip1 = new ToolTip(components);
@@ -48,14 +47,13 @@
             panel1.Controls.Add(btn_anterior);
             panel1.Controls.Add(btn_siguiente);
             panel1.Controls.Add(lb_descripcion);
-            panel1.Controls.Add(lb_precio);
-            panel1.Controls.Add(lb_capacidad);
+            panel1.Controls.Add(lb_importe);
             panel1.Controls.Add(lb_nombre);
             panel1.Controls.Add(pb_imagenes);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(689, 364);
+            panel1.Size = new Size(588, 342);
             panel1.TabIndex = 0;
             panel1.MouseMove += panel1_MouseMove;
             // 
@@ -92,33 +90,27 @@
             btn_siguiente.Text = ">";
             btn_siguiente.UseVisualStyleBackColor = false;
             btn_siguiente.Click += btn_siguiente_Click;
-            // 
+            //
             // lb_descripcion
-            // 
-            lb_descripcion.AutoSize = true;
-            lb_descripcion.Location = new Point(371, 241);
+            //
+            lb_descripcion.AutoEllipsis = true;
+            lb_descripcion.AutoSize = false;
+            lb_descripcion.Location = new Point(373, 79);
             lb_descripcion.Name = "lb_descripcion";
-            lb_descripcion.Size = new Size(117, 21);
+            lb_descripcion.Size = new Size(200, 132);
             lb_descripcion.TabIndex = 12;
             lb_descripcion.Text = "Descripción:";
+            lb_descripcion.Click += lb_descripcion_Click;
             // 
-            // lb_precio
+            // lb_importe
             // 
-            lb_precio.AutoSize = true;
-            lb_precio.Location = new Point(371, 167);
-            lb_precio.Name = "lb_precio";
-            lb_precio.Size = new Size(167, 21);
-            lb_precio.TabIndex = 11;
-            lb_precio.Text = "Precio por noche:";
-            // 
-            // lb_capacidad
-            // 
-            lb_capacidad.AutoSize = true;
-            lb_capacidad.Location = new Point(371, 85);
-            lb_capacidad.Name = "lb_capacidad";
-            lb_capacidad.Size = new Size(117, 21);
-            lb_capacidad.TabIndex = 10;
-            lb_capacidad.Text = "Capacidad:";
+            lb_importe.AutoSize = true;
+            lb_importe.Location = new Point(373, 221);
+            lb_importe.Name = "lb_importe";
+            lb_importe.Size = new Size(71, 20);
+            lb_importe.TabIndex = 11;
+            lb_importe.Text = "Importe:";
+            lb_importe.Click += lb_importe_Click;
             // 
             // lb_nombre
             // 
@@ -126,9 +118,10 @@
             lb_nombre.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_nombre.Location = new Point(148, 13);
             lb_nombre.Name = "lb_nombre";
-            lb_nombre.Size = new Size(70, 23);
+            lb_nombre.Size = new Size(60, 19);
             lb_nombre.TabIndex = 9;
             lb_nombre.Text = "label1";
+            lb_nombre.Click += lb_nombre_Click;
             // 
             // pb_imagenes
             // 
@@ -138,17 +131,18 @@
             pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pb_imagenes.TabIndex = 8;
             pb_imagenes.TabStop = false;
+            pb_imagenes.Click += pb_imagenes_Click;
             // 
             // UC_Servicio
             // 
-            AutoScaleDimensions = new SizeF(11F, 21F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panel1);
             Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
             Name = "UC_Servicio";
-            Size = new Size(689, 364);
+            Size = new Size(588, 342);
             Load += UC_Servicio_Load;
             Click += UC_Servicio_Click;
             panel1.ResumeLayout(false);
@@ -161,12 +155,11 @@
 
         private Panel panel1;
         private Label lb_descripcion;
-        private Label lb_precio;
-        private Label lb_capacidad;
-        private Label lb_nombre;
+        private Label lb_importe;
         private PictureBox pb_imagenes;
         private Button btn_siguiente;
         private Button btn_anterior;
         private ToolTip toolTip1;
+        private Label lb_nombre;
     }
 }

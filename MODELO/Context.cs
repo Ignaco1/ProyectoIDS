@@ -33,6 +33,8 @@ namespace MODELO
         public DbSet<ImagenServicio> ImagenesServicio { get; set; }
         public DbSet<ImagenMantenimiento> ImagenesMantenimiento { get; set; }
         public DbSet<RolEmpleado> RolesEmpleados { get; set; }
+        public DbSet<AsignacionServicio> AsignacionesServicio { get; set; }
+        public DbSet<MotivoCancelacionServicio> MotivosCancelacionServicio { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
@@ -71,6 +73,23 @@ namespace MODELO
             .WithOne(i => i.Servicio)
             .HasForeignKey(i => i.ServicioId)
             .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AsignacionServicio>()
+            .HasOne(a => a.Servicio)
+            .WithMany()
+            .HasForeignKey(a => a.ServicioId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AsignacionServicio>()
+            .HasOne(a => a.Reserva)
+            .WithMany()
+            .HasForeignKey(a => a.ReservaId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AsignacionServicio>()
+            .HasMany(a => a.MotivosCancelacion)
+            .WithMany(m => m.AsignacionesServicio)
+            .UsingEntity(j => j.ToTable("AsignacionServicioMotivoCancelacion"));
 
         }
 

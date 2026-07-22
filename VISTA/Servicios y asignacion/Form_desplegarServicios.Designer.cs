@@ -29,21 +29,19 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            dtp_salida = new DateTimePicker();
-            dtp_entrada = new DateTimePicker();
-            label3 = new Label();
+            horaPicker = new DateTimePicker();
+            dtp_fechaSeleccionada = new DateTimePicker();
             label2 = new Label();
             txt_nombreFiltro = new TextBox();
-            txt_precioNocheFiltro = new TextBox();
+            txt_importeFiltro = new TextBox();
             label9 = new Label();
-            txt_capacidadFiltro = new TextBox();
-            label8 = new Label();
             label1 = new Label();
             btn_quitarFiltro = new Button();
             panel2 = new Panel();
             btn_cerrar = new Button();
             panel3 = new Panel();
-            flp_cabañas = new FlowLayoutPanel();
+            flp_servicios = new FlowLayoutPanel();
+            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -52,15 +50,13 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(dtp_salida);
-            panel1.Controls.Add(dtp_entrada);
             panel1.Controls.Add(label3);
+            panel1.Controls.Add(horaPicker);
+            panel1.Controls.Add(dtp_fechaSeleccionada);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txt_nombreFiltro);
-            panel1.Controls.Add(txt_precioNocheFiltro);
+            panel1.Controls.Add(txt_importeFiltro);
             panel1.Controls.Add(label9);
-            panel1.Controls.Add(txt_capacidadFiltro);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btn_quitarFiltro);
             panel1.Dock = DockStyle.Top;
@@ -69,89 +65,65 @@
             panel1.Size = new Size(1820, 93);
             panel1.TabIndex = 0;
             // 
-            // dtp_salida
+            // horaPicker
             // 
-            dtp_salida.Format = DateTimePickerFormat.Short;
-            dtp_salida.Location = new Point(1370, 60);
-            dtp_salida.Name = "dtp_salida";
-            dtp_salida.Size = new Size(238, 26);
-            dtp_salida.TabIndex = 49;
-            dtp_salida.ValueChanged += dtp_salida_ValueChanged;
+            horaPicker.Format = DateTimePickerFormat.Time;
+            horaPicker.Location = new Point(1432, 40);
+            horaPicker.Name = "horaPicker";
+            horaPicker.ShowUpDown = true;
+            horaPicker.Size = new Size(123, 26);
+            horaPicker.TabIndex = 49;
+            horaPicker.Value = new DateTime(2026, 7, 20, 23, 2, 28, 0);
+            horaPicker.ValueChanged += horaPicker_ValueChanged;
             // 
-            // dtp_entrada
+            // dtp_fechaSeleccionada
             // 
-            dtp_entrada.Format = DateTimePickerFormat.Short;
-            dtp_entrada.Location = new Point(1370, 13);
-            dtp_entrada.Name = "dtp_entrada";
-            dtp_entrada.Size = new Size(238, 26);
-            dtp_entrada.TabIndex = 48;
-            dtp_entrada.Value = new DateTime(2025, 7, 25, 18, 57, 0, 0);
-            dtp_entrada.ValueChanged += dtp_entrada_ValueChanged;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(1188, 65);
-            label3.Name = "label3";
-            label3.Size = new Size(130, 20);
-            label3.TabIndex = 47;
-            label3.Text = "Fecha de Salida:";
+            dtp_fechaSeleccionada.Format = DateTimePickerFormat.Short;
+            dtp_fechaSeleccionada.Location = new Point(1032, 40);
+            dtp_fechaSeleccionada.Name = "dtp_fechaSeleccionada";
+            dtp_fechaSeleccionada.Size = new Size(272, 26);
+            dtp_fechaSeleccionada.TabIndex = 48;
+            dtp_fechaSeleccionada.Value = new DateTime(2025, 7, 25, 18, 57, 0, 0);
+            dtp_fechaSeleccionada.ValueChanged += dtp_fechaSeleccionada_ValueChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1188, 20);
+            label2.Location = new Point(862, 44);
             label2.Name = "label2";
-            label2.Size = new Size(146, 20);
+            label2.Size = new Size(164, 20);
             label2.TabIndex = 46;
-            label2.Text = "Fecha de entrada:";
+            label2.Text = "Fecha seleccionada:";
             // 
             // txt_nombreFiltro
             // 
-            txt_nombreFiltro.Location = new Point(143, 37);
+            txt_nombreFiltro.Location = new Point(158, 42);
             txt_nombreFiltro.Name = "txt_nombreFiltro";
             txt_nombreFiltro.Size = new Size(239, 26);
             txt_nombreFiltro.TabIndex = 45;
             txt_nombreFiltro.TextChanged += txt_nombreFiltro_TextChanged;
             // 
-            // txt_precioNocheFiltro
+            // txt_importeFiltro
             // 
-            txt_precioNocheFiltro.Location = new Point(968, 37);
-            txt_precioNocheFiltro.Name = "txt_precioNocheFiltro";
-            txt_precioNocheFiltro.Size = new Size(163, 26);
-            txt_precioNocheFiltro.TabIndex = 44;
-            txt_precioNocheFiltro.TextChanged += txt_precioNocheFiltro_TextChanged;
+            txt_importeFiltro.Location = new Point(570, 40);
+            txt_importeFiltro.Name = "txt_importeFiltro";
+            txt_importeFiltro.Size = new Size(217, 26);
+            txt_importeFiltro.TabIndex = 44;
+            txt_importeFiltro.TextChanged += txt_precioNocheFiltro_TextChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(795, 41);
+            label9.Location = new Point(493, 42);
             label9.Name = "label9";
-            label9.Size = new Size(141, 20);
+            label9.Size = new Size(71, 20);
             label9.TabIndex = 43;
-            label9.Text = "Precio por noche:";
-            // 
-            // txt_capacidadFiltro
-            // 
-            txt_capacidadFiltro.Location = new Point(581, 37);
-            txt_capacidadFiltro.Name = "txt_capacidadFiltro";
-            txt_capacidadFiltro.Size = new Size(159, 26);
-            txt_capacidadFiltro.TabIndex = 42;
-            txt_capacidadFiltro.TextChanged += txt_capacidadFiltro_TextChanged;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(464, 40);
-            label8.Name = "label8";
-            label8.Size = new Size(98, 20);
-            label8.TabIndex = 41;
-            label8.Text = "Capacidad:";
+            label9.Text = "Importe:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(51, 42);
+            label1.Location = new Point(80, 44);
             label1.Name = "label1";
             label1.Size = new Size(72, 20);
             label1.TabIndex = 40;
@@ -197,21 +169,30 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(flp_cabañas);
+            panel3.Controls.Add(flp_servicios);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 93);
             panel3.Name = "panel3";
             panel3.Size = new Size(1820, 1182);
             panel3.TabIndex = 2;
             // 
-            // flp_cabañas
+            // flp_servicios
             // 
-            flp_cabañas.AutoScroll = true;
-            flp_cabañas.Dock = DockStyle.Fill;
-            flp_cabañas.Location = new Point(0, 0);
-            flp_cabañas.Name = "flp_cabañas";
-            flp_cabañas.Size = new Size(1820, 1182);
-            flp_cabañas.TabIndex = 0;
+            flp_servicios.AutoScroll = true;
+            flp_servicios.Dock = DockStyle.Fill;
+            flp_servicios.Location = new Point(0, 0);
+            flp_servicios.Name = "flp_servicios";
+            flp_servicios.Size = new Size(1820, 1182);
+            flp_servicios.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1378, 43);
+            label3.Name = "label3";
+            label3.Size = new Size(48, 20);
+            label3.TabIndex = 50;
+            label3.Text = "Hora:";
             // 
             // Form_desplegarServicios
             // 
@@ -241,17 +222,15 @@
         private Panel panel2;
         private Panel panel3;
         private Button btn_quitarFiltro;
-        private DateTimePicker dtp_salida;
-        private DateTimePicker dtp_entrada;
-        private Label label3;
+        private DateTimePicker dtp_fechaSeleccionada;
         private Label label2;
         private TextBox txt_nombreFiltro;
-        private TextBox txt_precioNocheFiltro;
+        private TextBox txt_importeFiltro;
         private Label label9;
-        private TextBox txt_capacidadFiltro;
-        private Label label8;
         private Label label1;
         private Button btn_cerrar;
-        private FlowLayoutPanel flp_cabañas;
+        private FlowLayoutPanel flp_servicios;
+        private DateTimePicker horaPicker;
+        private Label label3;
     }
 }

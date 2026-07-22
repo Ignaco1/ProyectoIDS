@@ -1,4 +1,4 @@
-﻿namespace VISTA.Cabañas_y_alquiler
+namespace VISTA.Cabañas_y_alquiler
 {
     partial class Form_verServiciosAsignados
     {
@@ -33,28 +33,34 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             gb_carga = new GroupBox();
-            btn_seleccionarCabaña = new Button();
-            mc_reservas = new MonthCalendar();
+            cb_reservas = new ComboBox();
+            cb_servicio = new ComboBox();
+            tp_hora = new DateTimePicker();
+            btn_seleccionarServicio = new Button();
+            dtp_fecha = new DateTimePicker();
             cb_cliente = new ComboBox();
             cb_cabaña = new ComboBox();
             label7 = new Label();
             label5 = new Label();
             label4 = new Label();
+            label6 = new Label();
+            label10 = new Label();
+            label11 = new Label();
             btn_cancelar = new Button();
             btn_guardar = new Button();
             panel2 = new Panel();
             gb_grilla = new GroupBox();
             dataGridView1 = new DataGridView();
             panel4 = new Panel();
-            btn_cancelarReserva = new Button();
+            btn_cancelarServicio = new Button();
             btn_cerrar = new Button();
             btn_eliminar = new Button();
             btn_modificar = new Button();
             panel3 = new Panel();
-            dtp_entradaFiltro = new DateTimePicker();
+            dtp_fechaFiltro = new DateTimePicker();
             txt_nombreCabañaFiltro = new TextBox();
             cb_estado = new ComboBox();
-            dtp_salidaFiltro = new DateTimePicker();
+            dtp_horaFiltro = new DateTimePicker();
             label3 = new Label();
             label2 = new Label();
             btn_quitarFiltro = new Button();
@@ -82,13 +88,19 @@
             // 
             // gb_carga
             // 
-            gb_carga.Controls.Add(btn_seleccionarCabaña);
-            gb_carga.Controls.Add(mc_reservas);
+            gb_carga.Controls.Add(cb_reservas);
+            gb_carga.Controls.Add(cb_servicio);
+            gb_carga.Controls.Add(tp_hora);
+            gb_carga.Controls.Add(btn_seleccionarServicio);
+            gb_carga.Controls.Add(dtp_fecha);
             gb_carga.Controls.Add(cb_cliente);
             gb_carga.Controls.Add(cb_cabaña);
             gb_carga.Controls.Add(label7);
             gb_carga.Controls.Add(label5);
             gb_carga.Controls.Add(label4);
+            gb_carga.Controls.Add(label6);
+            gb_carga.Controls.Add(label10);
+            gb_carga.Controls.Add(label11);
             gb_carga.Controls.Add(btn_cancelar);
             gb_carga.Controls.Add(btn_guardar);
             gb_carga.Dock = DockStyle.Fill;
@@ -98,51 +110,82 @@
             gb_carga.Size = new Size(352, 1333);
             gb_carga.TabIndex = 0;
             gb_carga.TabStop = false;
-            gb_carga.Text = "Carga de datos";
+            gb_carga.Text = "Modificar servicio asignado";
             // 
-            // btn_seleccionarCabaña
+            // cb_reservas
             // 
-            btn_seleccionarCabaña.BackColor = Color.FromArgb(0, 84, 168);
-            btn_seleccionarCabaña.FlatAppearance.BorderSize = 0;
-            btn_seleccionarCabaña.FlatStyle = FlatStyle.Flat;
-            btn_seleccionarCabaña.Location = new Point(87, 70);
-            btn_seleccionarCabaña.Name = "btn_seleccionarCabaña";
-            btn_seleccionarCabaña.Size = new Size(193, 27);
-            btn_seleccionarCabaña.TabIndex = 34;
-            btn_seleccionarCabaña.Text = "Seleccionar cabaña";
-            btn_seleccionarCabaña.UseVisualStyleBackColor = false;
-            btn_seleccionarCabaña.Click += btn_seleccionarCabaña_Click;
+            cb_reservas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_reservas.Enabled = false;
+            cb_reservas.FormattingEnabled = true;
+            cb_reservas.Location = new Point(88, 275);
+            cb_reservas.Name = "cb_reservas";
+            cb_reservas.Size = new Size(222, 28);
+            cb_reservas.TabIndex = 37;
             // 
-            // mc_reservas
+            // cb_servicio
             // 
-            mc_reservas.Location = new Point(52, 471);
-            mc_reservas.Margin = new Padding(9, 10, 9, 10);
-            mc_reservas.Name = "mc_reservas";
-            mc_reservas.TabIndex = 33;
+            cb_servicio.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_servicio.Enabled = false;
+            cb_servicio.FormattingEnabled = true;
+            cb_servicio.Location = new Point(88, 197);
+            cb_servicio.Name = "cb_servicio";
+            cb_servicio.Size = new Size(258, 28);
+            cb_servicio.TabIndex = 36;
+            // 
+            // tp_hora
+            // 
+            tp_hora.Format = DateTimePickerFormat.Time;
+            tp_hora.Location = new Point(88, 587);
+            tp_hora.Name = "tp_hora";
+            tp_hora.ShowUpDown = true;
+            tp_hora.Size = new Size(120, 26);
+            tp_hora.TabIndex = 35;
+            // 
+            // btn_seleccionarServicio
+            // 
+            btn_seleccionarServicio.BackColor = Color.FromArgb(0, 84, 168);
+            btn_seleccionarServicio.FlatAppearance.BorderSize = 0;
+            btn_seleccionarServicio.FlatStyle = FlatStyle.Flat;
+            btn_seleccionarServicio.Location = new Point(88, 70);
+            btn_seleccionarServicio.Name = "btn_seleccionarServicio";
+            btn_seleccionarServicio.Size = new Size(193, 27);
+            btn_seleccionarServicio.TabIndex = 34;
+            btn_seleccionarServicio.Text = "Seleccionar servicio";
+            btn_seleccionarServicio.UseVisualStyleBackColor = false;
+            btn_seleccionarServicio.Click += btn_seleccionarServicio_Click;
+            // 
+            // dtp_fecha
+            // 
+            dtp_fecha.Format = DateTimePickerFormat.Short;
+            dtp_fecha.Location = new Point(88, 511);
+            dtp_fecha.Name = "dtp_fecha";
+            dtp_fecha.Size = new Size(157, 26);
+            dtp_fecha.TabIndex = 33;
             // 
             // cb_cliente
             // 
             cb_cliente.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_cliente.Enabled = false;
             cb_cliente.FormattingEnabled = true;
-            cb_cliente.Location = new Point(87, 309);
+            cb_cliente.Location = new Point(88, 432);
             cb_cliente.Name = "cb_cliente";
-            cb_cliente.Size = new Size(259, 28);
+            cb_cliente.Size = new Size(258, 28);
             cb_cliente.TabIndex = 32;
             // 
             // cb_cabaña
             // 
             cb_cabaña.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_cabaña.Enabled = false;
             cb_cabaña.FormattingEnabled = true;
-            cb_cabaña.Location = new Point(94, 201);
+            cb_cabaña.Location = new Point(88, 351);
             cb_cabaña.Name = "cb_cabaña";
-            cb_cabaña.Size = new Size(252, 28);
+            cb_cabaña.Size = new Size(222, 28);
             cb_cabaña.TabIndex = 31;
-            cb_cabaña.SelectedIndexChanged += cb_cabaña_SelectedIndexChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(16, 312);
+            label7.Location = new Point(11, 435);
             label7.Name = "label7";
             label7.Size = new Size(65, 20);
             label7.TabIndex = 30;
@@ -151,20 +194,47 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(16, 416);
+            label5.Location = new Point(11, 516);
             label5.Name = "label5";
-            label5.Size = new Size(65, 20);
+            label5.Size = new Size(59, 20);
             label5.TabIndex = 28;
-            label5.Text = "Fechas:";
+            label5.Text = "Fecha:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(14, 204);
+            label4.Location = new Point(11, 354);
             label4.Name = "label4";
             label4.Size = new Size(74, 20);
             label4.TabIndex = 27;
             label4.Text = "Cabaña:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(11, 592);
+            label6.Name = "label6";
+            label6.Size = new Size(48, 20);
+            label6.TabIndex = 38;
+            label6.Text = "Hora:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(11, 200);
+            label10.Name = "label10";
+            label10.Size = new Size(71, 20);
+            label10.TabIndex = 39;
+            label10.Text = "Servicio:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(11, 275);
+            label11.Name = "label11";
+            label11.Size = new Size(73, 20);
+            label11.TabIndex = 40;
+            label11.Text = "Reserva:";
             // 
             // btn_cancelar
             // 
@@ -215,7 +285,7 @@
             gb_grilla.Size = new Size(1468, 1333);
             gb_grilla.TabIndex = 0;
             gb_grilla.TabStop = false;
-            gb_grilla.Text = "Lista de reservas";
+            gb_grilla.Text = "Servicios asignados";
             // 
             // dataGridView1
             // 
@@ -261,7 +331,7 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(btn_cancelarReserva);
+            panel4.Controls.Add(btn_cancelarServicio);
             panel4.Controls.Add(btn_cerrar);
             panel4.Controls.Add(btn_eliminar);
             panel4.Controls.Add(btn_modificar);
@@ -271,18 +341,18 @@
             panel4.Size = new Size(1462, 74);
             panel4.TabIndex = 1;
             // 
-            // btn_cancelarReserva
+            // btn_cancelarServicio
             // 
-            btn_cancelarReserva.BackColor = Color.FromArgb(0, 84, 168);
-            btn_cancelarReserva.FlatAppearance.BorderSize = 0;
-            btn_cancelarReserva.FlatStyle = FlatStyle.Flat;
-            btn_cancelarReserva.Location = new Point(444, 6);
-            btn_cancelarReserva.Name = "btn_cancelarReserva";
-            btn_cancelarReserva.Size = new Size(190, 31);
-            btn_cancelarReserva.TabIndex = 10;
-            btn_cancelarReserva.Text = "Cancelar reserva";
-            btn_cancelarReserva.UseVisualStyleBackColor = false;
-            btn_cancelarReserva.Click += btn_cancelarReserva_Click;
+            btn_cancelarServicio.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cancelarServicio.FlatAppearance.BorderSize = 0;
+            btn_cancelarServicio.FlatStyle = FlatStyle.Flat;
+            btn_cancelarServicio.Location = new Point(444, 6);
+            btn_cancelarServicio.Name = "btn_cancelarServicio";
+            btn_cancelarServicio.Size = new Size(190, 27);
+            btn_cancelarServicio.TabIndex = 10;
+            btn_cancelarServicio.Text = "Cancelar servicio";
+            btn_cancelarServicio.UseVisualStyleBackColor = false;
+            btn_cancelarServicio.Click += btn_cancelarServicio_Click;
             // 
             // btn_cerrar
             // 
@@ -307,7 +377,7 @@
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(190, 27);
             btn_eliminar.TabIndex = 8;
-            btn_eliminar.Text = "Eliminar reserva";
+            btn_eliminar.Text = "Eliminar servicio";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
             // 
@@ -320,16 +390,16 @@
             btn_modificar.Name = "btn_modificar";
             btn_modificar.Size = new Size(190, 27);
             btn_modificar.TabIndex = 7;
-            btn_modificar.Text = "Modificar reserva";
+            btn_modificar.Text = "Modificar servicio";
             btn_modificar.UseVisualStyleBackColor = false;
             btn_modificar.Click += btn_modificar_Click;
             // 
             // panel3
             // 
-            panel3.Controls.Add(dtp_entradaFiltro);
+            panel3.Controls.Add(dtp_fechaFiltro);
             panel3.Controls.Add(txt_nombreCabañaFiltro);
             panel3.Controls.Add(cb_estado);
-            panel3.Controls.Add(dtp_salidaFiltro);
+            panel3.Controls.Add(dtp_horaFiltro);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(btn_quitarFiltro);
@@ -343,18 +413,18 @@
             panel3.Size = new Size(1462, 109);
             panel3.TabIndex = 0;
             // 
-            // dtp_entradaFiltro
+            // dtp_fechaFiltro
             // 
-            dtp_entradaFiltro.Format = DateTimePickerFormat.Short;
-            dtp_entradaFiltro.Location = new Point(432, 61);
-            dtp_entradaFiltro.Name = "dtp_entradaFiltro";
-            dtp_entradaFiltro.Size = new Size(221, 26);
-            dtp_entradaFiltro.TabIndex = 60;
-            dtp_entradaFiltro.ValueChanged += dtp_salidaFiltro_ValueChanged;
+            dtp_fechaFiltro.Format = DateTimePickerFormat.Short;
+            dtp_fechaFiltro.Location = new Point(474, 64);
+            dtp_fechaFiltro.Name = "dtp_fechaFiltro";
+            dtp_fechaFiltro.Size = new Size(221, 26);
+            dtp_fechaFiltro.TabIndex = 60;
+            dtp_fechaFiltro.ValueChanged += dtp_fechaFiltro_ValueChanged;
             // 
             // txt_nombreCabañaFiltro
             // 
-            txt_nombreCabañaFiltro.Location = new Point(308, 11);
+            txt_nombreCabañaFiltro.Location = new Point(308, 15);
             txt_nombreCabañaFiltro.Name = "txt_nombreCabañaFiltro";
             txt_nombreCabañaFiltro.Size = new Size(185, 26);
             txt_nombreCabañaFiltro.TabIndex = 59;
@@ -364,38 +434,39 @@
             // 
             cb_estado.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_estado.FormattingEnabled = true;
-            cb_estado.Location = new Point(1036, 11);
+            cb_estado.Location = new Point(1036, 15);
             cb_estado.Name = "cb_estado";
             cb_estado.Size = new Size(169, 28);
             cb_estado.TabIndex = 58;
             cb_estado.SelectedIndexChanged += cb_estado_SelectedIndexChanged;
             // 
-            // dtp_salidaFiltro
+            // dtp_horaFiltro
             // 
-            dtp_salidaFiltro.Format = DateTimePickerFormat.Short;
-            dtp_salidaFiltro.Location = new Point(846, 63);
-            dtp_salidaFiltro.Name = "dtp_salidaFiltro";
-            dtp_salidaFiltro.Size = new Size(221, 26);
-            dtp_salidaFiltro.TabIndex = 57;
-            dtp_salidaFiltro.ValueChanged += dtp_salidaFiltro_ValueChanged;
+            dtp_horaFiltro.Format = DateTimePickerFormat.Time;
+            dtp_horaFiltro.Location = new Point(843, 64);
+            dtp_horaFiltro.Name = "dtp_horaFiltro";
+            dtp_horaFiltro.ShowUpDown = true;
+            dtp_horaFiltro.Size = new Size(169, 26);
+            dtp_horaFiltro.TabIndex = 57;
+            dtp_horaFiltro.ValueChanged += dtp_horaFiltro_ValueChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(684, 68);
+            label3.Location = new Point(789, 69);
             label3.Name = "label3";
-            label3.Size = new Size(130, 20);
+            label3.Size = new Size(48, 20);
             label3.TabIndex = 55;
-            label3.Text = "Fecha de Salida:";
+            label3.Text = "Hora:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(250, 65);
+            label2.Location = new Point(304, 69);
             label2.Name = "label2";
-            label2.Size = new Size(146, 20);
+            label2.Size = new Size(164, 20);
             label2.TabIndex = 54;
-            label2.Text = "Fecha de entrada:";
+            label2.Text = "Fecha seleccionada:";
             // 
             // btn_quitarFiltro
             // 
@@ -414,15 +485,15 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(884, 14);
+            label9.Location = new Point(884, 18);
             label9.Name = "label9";
             label9.Size = new Size(146, 20);
             label9.TabIndex = 49;
-            label9.Text = "Estado de reserva:";
+            label9.Text = "Estado del servicio:";
             // 
             // txt_nombreClienteFiltro
             // 
-            txt_nombreClienteFiltro.Location = new Point(672, 11);
+            txt_nombreClienteFiltro.Location = new Point(672, 15);
             txt_nombreClienteFiltro.Name = "txt_nombreClienteFiltro";
             txt_nombreClienteFiltro.Size = new Size(186, 26);
             txt_nombreClienteFiltro.TabIndex = 48;
@@ -431,7 +502,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(516, 14);
+            label8.Location = new Point(516, 18);
             label8.Name = "label8";
             label8.Size = new Size(150, 20);
             label8.TabIndex = 47;
@@ -440,13 +511,13 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(143, 14);
+            label1.Location = new Point(143, 18);
             label1.Name = "label1";
             label1.Size = new Size(159, 20);
             label1.TabIndex = 46;
             label1.Text = "Nombre de cabaña:";
             // 
-            // Form_verReservas
+            // Form_verServiciosAsignados
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -481,15 +552,13 @@
         private DataGridView dataGridView1;
         private Panel panel4;
         private Panel panel3;
-        private TextBox txt_nombreFiltro;
-        private TextBox txt_precioNocheFiltro;
         private Label label9;
         private TextBox txt_nombreClienteFiltro;
         private Label label8;
         private Label label1;
         private Button btn_quitarFiltro;
         private ComboBox cb_estado;
-        private DateTimePicker dtp_salidaFiltro;
+        private DateTimePicker dtp_horaFiltro;
         private Label label3;
         private Label label2;
         private Button btn_eliminar;
@@ -503,9 +572,15 @@
         private Label label7;
         private Label label5;
         private Label label4;
-        private MonthCalendar mc_reservas;
-        private Button btn_cancelarReserva;
-        private DateTimePicker dtp_entradaFiltro;
-        private Button btn_seleccionarCabaña;
+        private Label label6;
+        private Label label10;
+        private Label label11;
+        private DateTimePicker dtp_fecha;
+        private Button btn_cancelarServicio;
+        private DateTimePicker dtp_fechaFiltro;
+        private Button btn_seleccionarServicio;
+        private DateTimePicker tp_hora;
+        private ComboBox cb_servicio;
+        private ComboBox cb_reservas;
     }
 }

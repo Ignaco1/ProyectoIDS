@@ -92,33 +92,37 @@
             btn_siguiente.Text = ">";
             btn_siguiente.UseVisualStyleBackColor = false;
             btn_siguiente.Click += btn_siguiente_Click;
-            // 
+            //
             // lb_descripcion
-            // 
-            lb_descripcion.AutoSize = true;
+            //
+            lb_descripcion.AutoEllipsis = true;
+            lb_descripcion.AutoSize = false;
             lb_descripcion.Location = new Point(371, 241);
             lb_descripcion.Name = "lb_descripcion";
-            lb_descripcion.Size = new Size(117, 21);
+            lb_descripcion.Size = new Size(303, 108);
             lb_descripcion.TabIndex = 12;
             lb_descripcion.Text = "Descripción:";
+            lb_descripcion.Click += lb_descripcion_Click;
             // 
             // lb_precio
             // 
             lb_precio.AutoSize = true;
             lb_precio.Location = new Point(371, 167);
             lb_precio.Name = "lb_precio";
-            lb_precio.Size = new Size(167, 21);
+            lb_precio.Size = new Size(141, 20);
             lb_precio.TabIndex = 11;
             lb_precio.Text = "Precio por noche:";
+            lb_precio.Click += lb_precio_Click;
             // 
             // lb_capacidad
             // 
             lb_capacidad.AutoSize = true;
             lb_capacidad.Location = new Point(371, 85);
             lb_capacidad.Name = "lb_capacidad";
-            lb_capacidad.Size = new Size(117, 21);
+            lb_capacidad.Size = new Size(98, 20);
             lb_capacidad.TabIndex = 10;
             lb_capacidad.Text = "Capacidad:";
+            lb_capacidad.Click += lb_capacidad_Click;
             // 
             // lb_nombre
             // 
@@ -126,9 +130,10 @@
             lb_nombre.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_nombre.Location = new Point(148, 13);
             lb_nombre.Name = "lb_nombre";
-            lb_nombre.Size = new Size(70, 23);
+            lb_nombre.Size = new Size(60, 19);
             lb_nombre.TabIndex = 9;
             lb_nombre.Text = "label1";
+            lb_nombre.Click += lb_nombre_Click;
             // 
             // pb_imagenes
             // 
@@ -138,10 +143,11 @@
             pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
             pb_imagenes.TabIndex = 8;
             pb_imagenes.TabStop = false;
+            pb_imagenes.Click += pb_imagenes_Click;
             // 
             // UC_Cabaña
             // 
-            AutoScaleDimensions = new SizeF(11F, 21F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panel1);
