@@ -23,5 +23,10 @@ namespace MODELO
 
         public string Turno { get; set; }               
         public bool Activo { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre + " " + Apellido + " - " + " (DNI: " + Dni + ")";
+        }
     }
 }

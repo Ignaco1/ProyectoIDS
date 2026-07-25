@@ -291,6 +291,7 @@
             dataGridView1.Size = new Size(1445, 1082);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
             // panel4
             // 

@@ -140,6 +140,11 @@ namespace VISTA
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             toolTip1.SetToolTip(panel1, "Presione para realizar la reserva");
+            toolTip1.SetToolTip(lb_nombre, "Presione para realizar la reserva");
+            toolTip1.SetToolTip(lb_precio, "Presione para realizar la reserva");
+            toolTip1.SetToolTip(lb_descripcion, "Presione para realizar la reserva");
+            toolTip1.SetToolTip(pb_imagenes, "Presione para realizar la reserva");
+            toolTip1.SetToolTip(lb_capacidad, "Presione para realizar la reserva");
         }
 
         private void lb_capacidad_Click(object sender, EventArgs e)

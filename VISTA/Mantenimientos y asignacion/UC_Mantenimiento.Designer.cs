@@ -1,4 +1,4 @@
-﻿namespace VISTA.Mantenimientos_y_asignacion
+﻿namespace VISTA
 {
     partial class UC_Mantenimiento
     {
@@ -28,29 +28,124 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            btn_anterior = new Button();
+            btn_siguiente = new Button();
+            lb_descripcion = new Label();
+            lb_nombre = new Label();
+            pb_imagenes = new PictureBox();
+            toolTip1 = new ToolTip(components);
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pb_imagenes).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btn_anterior);
+            panel1.Controls.Add(btn_siguiente);
+            panel1.Controls.Add(lb_descripcion);
+            panel1.Controls.Add(lb_nombre);
+            panel1.Controls.Add(pb_imagenes);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(506, 274);
+            panel1.Size = new Size(588, 342);
             panel1.TabIndex = 0;
+            panel1.MouseMove += panel1_MouseMove;
+            // 
+            // btn_anterior
+            // 
+            btn_anterior.BackColor = Color.Transparent;
+            btn_anterior.FlatAppearance.BorderSize = 0;
+            btn_anterior.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn_anterior.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn_anterior.FlatStyle = FlatStyle.Flat;
+            btn_anterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_anterior.Location = new Point(16, 48);
+            btn_anterior.Name = "btn_anterior";
+            btn_anterior.Size = new Size(25, 270);
+            btn_anterior.TabIndex = 14;
+            btn_anterior.TabStop = false;
+            btn_anterior.Text = "<";
+            btn_anterior.UseVisualStyleBackColor = false;
+            btn_anterior.Click += btn_anterior_Click;
+            // 
+            // btn_siguiente
+            // 
+            btn_siguiente.BackColor = Color.Transparent;
+            btn_siguiente.FlatAppearance.BorderSize = 0;
+            btn_siguiente.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn_siguiente.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn_siguiente.FlatStyle = FlatStyle.Flat;
+            btn_siguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_siguiente.Location = new Point(325, 48);
+            btn_siguiente.Name = "btn_siguiente";
+            btn_siguiente.Size = new Size(25, 270);
+            btn_siguiente.TabIndex = 13;
+            btn_siguiente.TabStop = false;
+            btn_siguiente.Text = ">";
+            btn_siguiente.UseVisualStyleBackColor = false;
+            btn_siguiente.Click += btn_siguiente_Click;
+            // 
+            // lb_descripcion
+            // 
+            lb_descripcion.AutoEllipsis = true;
+            lb_descripcion.Location = new Point(366, 111);
+            lb_descripcion.Name = "lb_descripcion";
+            lb_descripcion.Size = new Size(200, 132);
+            lb_descripcion.TabIndex = 12;
+            lb_descripcion.Text = "Descripción:";
+            lb_descripcion.Click += lb_descripcion_Click;
+            // 
+            // lb_nombre
+            // 
+            lb_nombre.AutoSize = true;
+            lb_nombre.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_nombre.Location = new Point(148, 13);
+            lb_nombre.Name = "lb_nombre";
+            lb_nombre.Size = new Size(60, 19);
+            lb_nombre.TabIndex = 9;
+            lb_nombre.Text = "label1";
+            lb_nombre.Click += lb_nombre_Click;
+            // 
+            // pb_imagenes
+            // 
+            pb_imagenes.Location = new Point(31, 48);
+            pb_imagenes.Name = "pb_imagenes";
+            pb_imagenes.Size = new Size(296, 270);
+            pb_imagenes.SizeMode = PictureBoxSizeMode.Zoom;
+            pb_imagenes.TabIndex = 8;
+            pb_imagenes.TabStop = false;
+            pb_imagenes.Click += pb_imagenes_Click;
             // 
             // UC_Mantenimiento
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(panel1);
+            Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = Color.Black;
             Name = "UC_Mantenimiento";
-            Size = new Size(506, 274);
+            Size = new Size(588, 342);
+            Load += UC_Mantenimiento_Load;
+            Click += UC_Mantenimiento_Click;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pb_imagenes).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
+        private Label lb_descripcion;
+        private PictureBox pb_imagenes;
+        private Button btn_siguiente;
+        private Button btn_anterior;
+        private ToolTip toolTip1;
+        private Label lb_nombre;
     }
 }

@@ -17,5 +17,10 @@ namespace MODELO
         public bool Activo { get; set; }
 
         public virtual ICollection<ImagenMantenimiento> Imagenes { get; set; } = new List<ImagenMantenimiento>();
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

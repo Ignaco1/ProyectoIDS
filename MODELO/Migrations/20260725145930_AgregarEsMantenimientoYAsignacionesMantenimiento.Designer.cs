@@ -4,6 +4,7 @@ using MODELO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MODELO.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20260725145930_AgregarEsMantenimientoYAsignacionesMantenimiento")]
+    partial class AgregarEsMantenimientoYAsignacionesMantenimiento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace MODELO.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AsignacionMantenimientoMotivoCancelacionMantenimiento", b =>
-                {
-                    b.Property<int>("AsignacionesMantenimientoAsignacionMantenimientoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MotivosCancelacionMotivoCancelacionMantenimientoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AsignacionesMantenimientoAsignacionMantenimientoId", "MotivosCancelacionMotivoCancelacionMantenimientoId");
-
-                    b.HasIndex("MotivosCancelacionMotivoCancelacionMantenimientoId");
-
-                    b.ToTable("AsignacionMantenimientoMotivoCancelacion", (string)null);
-                });
 
             modelBuilder.Entity("AsignacionServicioMotivoCancelacionServicio", b =>
                 {
@@ -96,13 +84,11 @@ namespace MODELO.Migrations
                     b.Property<decimal>("Costo")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("DesactivaCabaña")
-                        .HasColumnType("bit");
-
                     b.Property<int>("EmpleadoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Estado")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaFin")
@@ -546,23 +532,6 @@ namespace MODELO.Migrations
                     b.ToTable("MotivosCancelacion");
                 });
 
-            modelBuilder.Entity("MODELO.MotivoCancelacionMantenimiento", b =>
-                {
-                    b.Property<int>("MotivoCancelacionMantenimientoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MotivoCancelacionMantenimientoId"));
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MotivoCancelacionMantenimientoId");
-
-                    b.ToTable("MotivosCancelacionMantenimiento");
-                });
-
             modelBuilder.Entity("MODELO.MotivoCancelacionServicio", b =>
                 {
                     b.Property<int>("MotivoCancelacionServicioId")
@@ -747,21 +716,6 @@ namespace MODELO.Migrations
                     b.HasIndex("ReservasReservaId");
 
                     b.ToTable("ReservaMotivoCancelacion", (string)null);
-                });
-
-            modelBuilder.Entity("AsignacionMantenimientoMotivoCancelacionMantenimiento", b =>
-                {
-                    b.HasOne("MODELO.AsignacionMantenimiento", null)
-                        .WithMany()
-                        .HasForeignKey("AsignacionesMantenimientoAsignacionMantenimientoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MODELO.MotivoCancelacionMantenimiento", null)
-                        .WithMany()
-                        .HasForeignKey("MotivosCancelacionMotivoCancelacionMantenimientoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AsignacionServicioMotivoCancelacionServicio", b =>

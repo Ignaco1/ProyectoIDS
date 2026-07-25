@@ -140,6 +140,11 @@ namespace VISTA
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             toolTip1.SetToolTip(panel1, "Presione para asignar el servicio");
+            toolTip1.SetToolTip(lb_nombre, "Presione para asignar el servicio");
+            toolTip1.SetToolTip(lb_importe, "Presione para asignar el servicio");
+            toolTip1.SetToolTip(lb_descripcion, "Presione para asignar el servicio");
+            toolTip1.SetToolTip(pb_imagenes, "Presione para asignar el servicio");
+
         }
 
         private void lb_descripcion_Click(object sender, EventArgs e)

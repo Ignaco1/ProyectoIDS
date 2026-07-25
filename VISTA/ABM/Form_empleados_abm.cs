@@ -28,6 +28,10 @@ namespace VISTA.ABM
         private bool _actualizandoCheck = false;
         private List<Empleado> listaEmpleadosFiltro = new List<Empleado>();
 
+        public Empleado EmpleadoSeleccionado { get; private set; }
+        public bool ModoSeleccion { get; set; } = false;
+        public bool SoloRolesMantenimiento { get; set; } = false;
+
         public Form_empleados_abm()
         {
             InitializeComponent();
@@ -37,6 +41,8 @@ namespace VISTA.ABM
 
         }
 
+        private bool EsRolDeMantenimiento(RolEmpleado rol) => rol.EsOperativo && rol.EsMantenimiento;
+
         private void CargarCombos(bool esModificacion = false, string grupoActual = "")
         {
             cb_rolFiltro.Items.Clear();
@@ -44,6 +50,13 @@ namespace VISTA.ABM
 
 
             var roles = contro_rol.ListarRoles().Where(r => r.Activo).ToList();
+
+            if (SoloRolesMantenimiento)
+            {
+                roles = roles.Where(EsRolDeMantenimiento).ToList();
+                panel_barra_roles.Visible = false;
+            }
+
             foreach (var rol in roles)
             {
                 cb_rolFiltro.Items.Add(rol);
@@ -59,6 +72,7 @@ namespace VISTA.ABM
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
             CargarCombos();
+            ARMA_GRILLA();
         }
 
         private void ARMA_GRILLA()
@@ -67,6 +81,7 @@ namespace VISTA.ABM
 
             var empleado = contro_emp.ListarEmpleados()
                 .Where(e => e.Activo)
+                .Where(e => !SoloRolesMantenimiento || EsRolDeMantenimiento(e.RolEmpleado))
                 .Select(e => new
                 {
                     ID = e.EmpleadoId,
@@ -464,7 +479,8 @@ namespace VISTA.ABM
                 (string.IsNullOrEmpty(nombreFiltro) || c.Nombre.ToLower().Contains(nombreFiltro)) &&
                 (string.IsNullOrEmpty(apellidoFiltro) || c.Apellido.ToLower().Contains(apellidoFiltro)) &&
                 (rolFiltroSel == null || c.RolEmpleadoId == rolFiltroSel.RolEmpleadoId) &&
-                (string.IsNullOrEmpty(turnoFiltro) || c.Turno.Contains(turnoFiltro))
+                (string.IsNullOrEmpty(turnoFiltro) || c.Turno.Contains(turnoFiltro)) &&
+                (!SoloRolesMantenimiento || EsRolDeMantenimiento(c.RolEmpleado))
                 ).ToList();
 
             var datosAmostrar = listaEmpleadosFiltro
@@ -522,6 +538,31 @@ namespace VISTA.ABM
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
             variF = "F";
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!ModoSeleccion)
+                return;
+
+            if (dataGridView1.CurrentRow != null)
+            {
+                Empleado empleado;
+
+                if (variF == "")
+                    empleado = contro_emp.ListarEmpleados()
+                        .Where(x => x.Activo)
+                        .Where(x => !SoloRolesMantenimiento || EsRolDeMantenimiento(x.RolEmpleado))
+                        .ToList()[dataGridView1.CurrentRow.Index];
+                else
+                    empleado = listaEmpleadosFiltro
+                        .Where(x => x.Activo)
+                        .ToList()[dataGridView1.CurrentRow.Index];
+
+                EmpleadoSeleccionado = empleado;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void check_listaRoles_ItemCheck(object sender, ItemCheckEventArgs e)

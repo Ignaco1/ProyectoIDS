@@ -23,6 +23,9 @@ namespace VISTA.ABM
         private List<byte[]> imagenesBytes = new List<byte[]>();
         private List<int> imagenesAEliminar = new List<int>();
 
+        public Mantenimiento MantenimientoSeleccionado { get; private set; }
+        public bool ModoSeleccion { get; set; } = false;
+
         public Form_mantenimientos_abm()
         {
             InitializeComponent();
@@ -417,6 +420,30 @@ namespace VISTA.ABM
             btn_quitarFiltro.Enabled = true;
             btn_quitarFiltro.Visible = true;
             variF = "F";
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!ModoSeleccion)
+                return;
+
+            if (dataGridView1.CurrentRow != null)
+            {
+                Mantenimiento mantenimiento;
+
+                if (variF == "")
+                    mantenimiento = contro_mant.ListarMantenimientos()
+                        .Where(x => x.Activo)
+                        .ToList()[dataGridView1.CurrentRow.Index];
+                else
+                    mantenimiento = listaMantenimientosFiltro
+                        .Where(x => x.Activo)
+                        .ToList()[dataGridView1.CurrentRow.Index];
+
+                MantenimientoSeleccionado = mantenimiento;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

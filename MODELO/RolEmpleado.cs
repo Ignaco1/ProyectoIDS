@@ -13,6 +13,7 @@ namespace MODELO
         public int RolEmpleadoId { get; set; }
         public string Nombre { get; set; }
         public bool EsOperativo { get; set; }
+        public bool EsMantenimiento { get; set; }
         public bool Activo { get; set; } = true;
 
         public virtual ICollection<Empleado> Empleados { get; set; } = new List<Empleado>();

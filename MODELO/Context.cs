@@ -35,6 +35,8 @@ namespace MODELO
         public DbSet<RolEmpleado> RolesEmpleados { get; set; }
         public DbSet<AsignacionServicio> AsignacionesServicio { get; set; }
         public DbSet<MotivoCancelacionServicio> MotivosCancelacionServicio { get; set; }
+        public DbSet<AsignacionMantenimiento> AsignacionesMantenimiento { get; set; }
+        public DbSet<MotivoCancelacionMantenimiento> MotivosCancelacionMantenimiento { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(cadena_conexion);
@@ -90,6 +92,29 @@ namespace MODELO
             .HasMany(a => a.MotivosCancelacion)
             .WithMany(m => m.AsignacionesServicio)
             .UsingEntity(j => j.ToTable("AsignacionServicioMotivoCancelacion"));
+
+            modelBuilder.Entity<AsignacionMantenimiento>()
+            .HasOne(a => a.Mantenimiento)
+            .WithMany()
+            .HasForeignKey(a => a.MantenimientoId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AsignacionMantenimiento>()
+            .HasOne(a => a.Cabaña)
+            .WithMany()
+            .HasForeignKey(a => a.CabañaId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AsignacionMantenimiento>()
+            .HasOne(a => a.Empleado)
+            .WithMany()
+            .HasForeignKey(a => a.EmpleadoId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AsignacionMantenimiento>()
+            .HasMany(a => a.MotivosCancelacion)
+            .WithMany(m => m.AsignacionesMantenimiento)
+            .UsingEntity(j => j.ToTable("AsignacionMantenimientoMotivoCancelacion"));
 
         }
 

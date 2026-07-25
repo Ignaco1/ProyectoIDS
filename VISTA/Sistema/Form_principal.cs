@@ -380,12 +380,12 @@ namespace VISTA
 
         private void btn_asignarMantenimientos_Click(object sender, EventArgs e)
         {
-
+            AbrirForms(new Form_desplegarMantenimientos());
         }
 
         private void btn_verMantenimientos_Click(object sender, EventArgs e)
         {
-
+            AbrirForms(new Form_verMantenimientosAsignados());
         }
     }
 }

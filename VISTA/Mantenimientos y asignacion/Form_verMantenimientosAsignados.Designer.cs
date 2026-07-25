@@ -1,0 +1,632 @@
+namespace VISTA.Cabañas_y_alquiler
+{
+    partial class Form_verMantenimientosAsignados
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            panel1 = new Panel();
+            gb_carga = new GroupBox();
+            cb_cabañas = new ComboBox();
+            cb_mantenimiento = new ComboBox();
+            btn_seleccionarMantenimiento = new Button();
+            dtp_fechaInicio = new DateTimePicker();
+            cb_empleado = new ComboBox();
+            label5 = new Label();
+            label4 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            btn_cancelar = new Button();
+            btn_guardar = new Button();
+            panel2 = new Panel();
+            gb_grilla = new GroupBox();
+            dataGridView1 = new DataGridView();
+            panel4 = new Panel();
+            btn_cancelarMantenimiento = new Button();
+            btn_cerrar = new Button();
+            btn_eliminar = new Button();
+            btn_modificar = new Button();
+            panel3 = new Panel();
+            dtp_fechaInicioFiltro = new DateTimePicker();
+            txt_nombreCabañaFiltro = new TextBox();
+            cb_estado = new ComboBox();
+            label3 = new Label();
+            label2 = new Label();
+            btn_quitarFiltro = new Button();
+            label9 = new Label();
+            txt_nombreEmpleadoFiltro = new TextBox();
+            label8 = new Label();
+            label1 = new Label();
+            dtp_fechaFinFiltro = new DateTimePicker();
+            dtp_fechaFin = new DateTimePicker();
+            btn_seleccionarEmpleado = new Button();
+            label7 = new Label();
+            label12 = new Label();
+            radioButton_no = new RadioButton();
+            radioButton_si = new RadioButton();
+            label13 = new Label();
+            panel1.SuspendLayout();
+            gb_carga.SuspendLayout();
+            panel2.SuspendLayout();
+            gb_grilla.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel4.SuspendLayout();
+            panel3.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(gb_carga);
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(1468, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(352, 1333);
+            panel1.TabIndex = 0;
+            // 
+            // gb_carga
+            // 
+            gb_carga.Controls.Add(label13);
+            gb_carga.Controls.Add(label7);
+            gb_carga.Controls.Add(label12);
+            gb_carga.Controls.Add(radioButton_no);
+            gb_carga.Controls.Add(radioButton_si);
+            gb_carga.Controls.Add(btn_seleccionarEmpleado);
+            gb_carga.Controls.Add(dtp_fechaFin);
+            gb_carga.Controls.Add(cb_cabañas);
+            gb_carga.Controls.Add(cb_mantenimiento);
+            gb_carga.Controls.Add(btn_seleccionarMantenimiento);
+            gb_carga.Controls.Add(dtp_fechaInicio);
+            gb_carga.Controls.Add(cb_empleado);
+            gb_carga.Controls.Add(label5);
+            gb_carga.Controls.Add(label4);
+            gb_carga.Controls.Add(label10);
+            gb_carga.Controls.Add(label11);
+            gb_carga.Controls.Add(btn_cancelar);
+            gb_carga.Controls.Add(btn_guardar);
+            gb_carga.Dock = DockStyle.Fill;
+            gb_carga.ForeColor = Color.White;
+            gb_carga.Location = new Point(0, 0);
+            gb_carga.Name = "gb_carga";
+            gb_carga.Size = new Size(352, 1333);
+            gb_carga.TabIndex = 0;
+            gb_carga.TabStop = false;
+            gb_carga.Text = "Modificar mantenimiento asignado";
+            // 
+            // cb_cabañas
+            // 
+            cb_cabañas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_cabañas.FormattingEnabled = true;
+            cb_cabañas.Location = new Point(88, 272);
+            cb_cabañas.Name = "cb_cabañas";
+            cb_cabañas.Size = new Size(222, 28);
+            cb_cabañas.TabIndex = 37;
+            // 
+            // cb_mantenimiento
+            // 
+            cb_mantenimiento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_mantenimiento.Enabled = false;
+            cb_mantenimiento.FormattingEnabled = true;
+            cb_mantenimiento.Location = new Point(141, 197);
+            cb_mantenimiento.Name = "cb_mantenimiento";
+            cb_mantenimiento.Size = new Size(205, 28);
+            cb_mantenimiento.TabIndex = 36;
+            // 
+            // btn_seleccionarMantenimiento
+            // 
+            btn_seleccionarMantenimiento.BackColor = Color.FromArgb(0, 84, 168);
+            btn_seleccionarMantenimiento.FlatAppearance.BorderSize = 0;
+            btn_seleccionarMantenimiento.FlatStyle = FlatStyle.Flat;
+            btn_seleccionarMantenimiento.Location = new Point(45, 85);
+            btn_seleccionarMantenimiento.Name = "btn_seleccionarMantenimiento";
+            btn_seleccionarMantenimiento.Size = new Size(278, 27);
+            btn_seleccionarMantenimiento.TabIndex = 34;
+            btn_seleccionarMantenimiento.Text = "Seleccionar mantenimeinto";
+            btn_seleccionarMantenimiento.UseVisualStyleBackColor = false;
+            btn_seleccionarMantenimiento.Click += btn_seleccionarMantenimiento_Click;
+            // 
+            // dtp_fechaInicio
+            // 
+            dtp_fechaInicio.Format = DateTimePickerFormat.Short;
+            dtp_fechaInicio.Location = new Point(88, 506);
+            dtp_fechaInicio.Name = "dtp_fechaInicio";
+            dtp_fechaInicio.Size = new Size(203, 26);
+            dtp_fechaInicio.TabIndex = 33;
+            // 
+            // cb_empleado
+            // 
+            cb_empleado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_empleado.Enabled = false;
+            cb_empleado.FormattingEnabled = true;
+            cb_empleado.Location = new Point(101, 429);
+            cb_empleado.Name = "cb_empleado";
+            cb_empleado.Size = new Size(222, 28);
+            cb_empleado.TabIndex = 31;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(11, 511);
+            label5.Name = "label5";
+            label5.Size = new Size(59, 20);
+            label5.TabIndex = 28;
+            label5.Text = "Fecha:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(11, 432);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 20);
+            label4.TabIndex = 27;
+            label4.Text = "Empleado:";
+            //
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(11, 200);
+            label10.Name = "label10";
+            label10.Size = new Size(124, 20);
+            label10.TabIndex = 39;
+            label10.Text = "Mantenimiento:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(11, 275);
+            label11.Name = "label11";
+            label11.Size = new Size(74, 20);
+            label11.TabIndex = 40;
+            label11.Text = "Cabaña:";
+            // 
+            // btn_cancelar
+            // 
+            btn_cancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btn_cancelar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cancelar.FlatAppearance.BorderSize = 0;
+            btn_cancelar.FlatStyle = FlatStyle.Flat;
+            btn_cancelar.Location = new Point(226, 1300);
+            btn_cancelar.Name = "btn_cancelar";
+            btn_cancelar.Size = new Size(120, 27);
+            btn_cancelar.TabIndex = 26;
+            btn_cancelar.Text = "Cancelar";
+            btn_cancelar.UseVisualStyleBackColor = false;
+            btn_cancelar.Click += btn_cancelar_Click;
+            // 
+            // btn_guardar
+            // 
+            btn_guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btn_guardar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_guardar.FlatAppearance.BorderSize = 0;
+            btn_guardar.FlatStyle = FlatStyle.Flat;
+            btn_guardar.Location = new Point(6, 1300);
+            btn_guardar.Name = "btn_guardar";
+            btn_guardar.Size = new Size(120, 27);
+            btn_guardar.TabIndex = 25;
+            btn_guardar.Text = "Guardar";
+            btn_guardar.UseVisualStyleBackColor = false;
+            btn_guardar.Click += btn_guardar_Click;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(gb_grilla);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1468, 1333);
+            panel2.TabIndex = 1;
+            // 
+            // gb_grilla
+            // 
+            gb_grilla.Controls.Add(dataGridView1);
+            gb_grilla.Controls.Add(panel4);
+            gb_grilla.Controls.Add(panel3);
+            gb_grilla.Dock = DockStyle.Fill;
+            gb_grilla.ForeColor = Color.White;
+            gb_grilla.Location = new Point(0, 0);
+            gb_grilla.Name = "gb_grilla";
+            gb_grilla.Size = new Size(1468, 1333);
+            gb_grilla.TabIndex = 0;
+            gb_grilla.TabStop = false;
+            gb_grilla.Text = "Mantenimientos asignados";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle7.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridView1.ColumnHeadersHeight = 27;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.GridColor = SystemColors.ControlDark;
+            dataGridView1.Location = new Point(3, 131);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle8.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridViewCellStyle9.BackColor = Color.White;
+            dataGridViewCellStyle9.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle9.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1462, 1125);
+            dataGridView1.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(btn_cancelarMantenimiento);
+            panel4.Controls.Add(btn_cerrar);
+            panel4.Controls.Add(btn_eliminar);
+            panel4.Controls.Add(btn_modificar);
+            panel4.Dock = DockStyle.Bottom;
+            panel4.Location = new Point(3, 1256);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1462, 74);
+            panel4.TabIndex = 1;
+            // 
+            // btn_cancelarMantenimiento
+            // 
+            btn_cancelarMantenimiento.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cancelarMantenimiento.FlatAppearance.BorderSize = 0;
+            btn_cancelarMantenimiento.FlatStyle = FlatStyle.Flat;
+            btn_cancelarMantenimiento.Location = new Point(504, 6);
+            btn_cancelarMantenimiento.Name = "btn_cancelarMantenimiento";
+            btn_cancelarMantenimiento.Size = new Size(234, 27);
+            btn_cancelarMantenimiento.TabIndex = 10;
+            btn_cancelarMantenimiento.Text = "Cancelar mantenimiento";
+            btn_cancelarMantenimiento.UseVisualStyleBackColor = false;
+            btn_cancelarMantenimiento.Click += btn_cancelarMantenimiento_Click;
+            // 
+            // btn_cerrar
+            // 
+            btn_cerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btn_cerrar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_cerrar.FlatAppearance.BorderSize = 0;
+            btn_cerrar.FlatStyle = FlatStyle.Flat;
+            btn_cerrar.Location = new Point(1339, 44);
+            btn_cerrar.Name = "btn_cerrar";
+            btn_cerrar.Size = new Size(120, 27);
+            btn_cerrar.TabIndex = 9;
+            btn_cerrar.Text = "Cerrar";
+            btn_cerrar.UseVisualStyleBackColor = false;
+            btn_cerrar.Click += btn_cerrar_Click;
+            // 
+            // btn_eliminar
+            // 
+            btn_eliminar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_eliminar.FlatAppearance.BorderSize = 0;
+            btn_eliminar.FlatStyle = FlatStyle.Flat;
+            btn_eliminar.Location = new Point(255, 6);
+            btn_eliminar.Name = "btn_eliminar";
+            btn_eliminar.Size = new Size(234, 27);
+            btn_eliminar.TabIndex = 8;
+            btn_eliminar.Text = "Eliminar mantenimiento";
+            btn_eliminar.UseVisualStyleBackColor = false;
+            btn_eliminar.Click += btn_eliminar_Click;
+            // 
+            // btn_modificar
+            // 
+            btn_modificar.BackColor = Color.FromArgb(0, 84, 168);
+            btn_modificar.FlatAppearance.BorderSize = 0;
+            btn_modificar.FlatStyle = FlatStyle.Flat;
+            btn_modificar.Location = new Point(6, 6);
+            btn_modificar.Name = "btn_modificar";
+            btn_modificar.Size = new Size(234, 27);
+            btn_modificar.TabIndex = 7;
+            btn_modificar.Text = "Modificar mantenimiento";
+            btn_modificar.UseVisualStyleBackColor = false;
+            btn_modificar.Click += btn_modificar_Click;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(dtp_fechaFinFiltro);
+            panel3.Controls.Add(dtp_fechaInicioFiltro);
+            panel3.Controls.Add(txt_nombreCabañaFiltro);
+            panel3.Controls.Add(cb_estado);
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(btn_quitarFiltro);
+            panel3.Controls.Add(label9);
+            panel3.Controls.Add(txt_nombreEmpleadoFiltro);
+            panel3.Controls.Add(label8);
+            panel3.Controls.Add(label1);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(3, 22);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1462, 109);
+            panel3.TabIndex = 0;
+            // 
+            // dtp_fechaInicioFiltro
+            // 
+            dtp_fechaInicioFiltro.Format = DateTimePickerFormat.Short;
+            dtp_fechaInicioFiltro.Location = new Point(419, 65);
+            dtp_fechaInicioFiltro.Name = "dtp_fechaInicioFiltro";
+            dtp_fechaInicioFiltro.Size = new Size(221, 26);
+            dtp_fechaInicioFiltro.TabIndex = 60;
+            dtp_fechaInicioFiltro.ValueChanged += dtp_fechaInicioFiltro_ValueChanged;
+            // 
+            // txt_nombreCabañaFiltro
+            // 
+            txt_nombreCabañaFiltro.Location = new Point(286, 16);
+            txt_nombreCabañaFiltro.Name = "txt_nombreCabañaFiltro";
+            txt_nombreCabañaFiltro.Size = new Size(185, 26);
+            txt_nombreCabañaFiltro.TabIndex = 59;
+            txt_nombreCabañaFiltro.TextChanged += txt_nombreCabañaFiltro_TextChanged;
+            // 
+            // cb_estado
+            // 
+            cb_estado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_estado.FormattingEnabled = true;
+            cb_estado.Location = new Point(1095, 16);
+            cb_estado.Name = "cb_estado";
+            cb_estado.Size = new Size(169, 28);
+            cb_estado.TabIndex = 58;
+            cb_estado.SelectedIndexChanged += cb_estado_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(767, 70);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 20);
+            label3.TabIndex = 55;
+            label3.Text = "Fecha fin:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(312, 70);
+            label2.Name = "label2";
+            label2.Size = new Size(101, 20);
+            label2.TabIndex = 54;
+            label2.Text = "Fecha inicio:";
+            // 
+            // btn_quitarFiltro
+            // 
+            btn_quitarFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_quitarFiltro.BackColor = Color.FromArgb(0, 84, 168);
+            btn_quitarFiltro.FlatAppearance.BorderSize = 0;
+            btn_quitarFiltro.FlatStyle = FlatStyle.Flat;
+            btn_quitarFiltro.Location = new Point(1288, 48);
+            btn_quitarFiltro.Name = "btn_quitarFiltro";
+            btn_quitarFiltro.Size = new Size(161, 27);
+            btn_quitarFiltro.TabIndex = 53;
+            btn_quitarFiltro.Text = "Limpiar filtro";
+            btn_quitarFiltro.UseVisualStyleBackColor = false;
+            btn_quitarFiltro.Click += btn_quitarFiltro_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(887, 19);
+            label9.Name = "label9";
+            label9.Size = new Size(202, 20);
+            label9.TabIndex = 49;
+            label9.Text = "Estado del mantenimiento:";
+            // 
+            // txt_nombreEmpleadoFiltro
+            // 
+            txt_nombreEmpleadoFiltro.Location = new Point(676, 16);
+            txt_nombreEmpleadoFiltro.Name = "txt_nombreEmpleadoFiltro";
+            txt_nombreEmpleadoFiltro.Size = new Size(186, 26);
+            txt_nombreEmpleadoFiltro.TabIndex = 48;
+            txt_nombreEmpleadoFiltro.TextChanged += txt_nombreEmpleadoFiltro_TextChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(494, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(176, 20);
+            label8.TabIndex = 47;
+            label8.Text = "Nombre de empleado:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(121, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(159, 20);
+            label1.TabIndex = 46;
+            label1.Text = "Nombre de cabaña:";
+            // 
+            // dtp_fechaFinFiltro
+            // 
+            dtp_fechaFinFiltro.Format = DateTimePickerFormat.Short;
+            dtp_fechaFinFiltro.Location = new Point(853, 65);
+            dtp_fechaFinFiltro.Name = "dtp_fechaFinFiltro";
+            dtp_fechaFinFiltro.Size = new Size(221, 26);
+            dtp_fechaFinFiltro.TabIndex = 61;
+            dtp_fechaFinFiltro.ValueChanged += dtp_fechaFinFiltro_ValueChanged;
+            // 
+            // dtp_fechaFin
+            // 
+            dtp_fechaFin.Format = DateTimePickerFormat.Short;
+            dtp_fechaFin.Location = new Point(88, 585);
+            dtp_fechaFin.Name = "dtp_fechaFin";
+            dtp_fechaFin.Size = new Size(203, 26);
+            dtp_fechaFin.TabIndex = 41;
+            // 
+            // btn_seleccionarEmpleado
+            // 
+            btn_seleccionarEmpleado.BackColor = Color.FromArgb(0, 84, 168);
+            btn_seleccionarEmpleado.FlatAppearance.BorderSize = 0;
+            btn_seleccionarEmpleado.FlatStyle = FlatStyle.Flat;
+            btn_seleccionarEmpleado.Location = new Point(45, 353);
+            btn_seleccionarEmpleado.Name = "btn_seleccionarEmpleado";
+            btn_seleccionarEmpleado.Size = new Size(278, 27);
+            btn_seleccionarEmpleado.TabIndex = 42;
+            btn_seleccionarEmpleado.Text = "Seleccionar empleado";
+            btn_seleccionarEmpleado.UseVisualStyleBackColor = false;
+            btn_seleccionarEmpleado.Click += btn_seleccionarEmpleado_Click;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(172, 657);
+            label7.Name = "label7";
+            label7.Size = new Size(21, 20);
+            label7.TabIndex = 56;
+            label7.Text = "SI";
+            // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label12.AutoSize = true;
+            label12.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.ForeColor = Color.White;
+            label12.Location = new Point(221, 657);
+            label12.Name = "label12";
+            label12.Size = new Size(33, 20);
+            label12.TabIndex = 55;
+            label12.Text = "NO";
+            // 
+            // radioButton_no
+            // 
+            radioButton_no.AutoSize = true;
+            radioButton_no.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioButton_no.Location = new Point(230, 680);
+            radioButton_no.Name = "radioButton_no";
+            radioButton_no.Size = new Size(17, 16);
+            radioButton_no.TabIndex = 54;
+            radioButton_no.TabStop = true;
+            radioButton_no.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_si
+            // 
+            radioButton_si.AutoSize = true;
+            radioButton_si.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioButton_si.Location = new Point(175, 680);
+            radioButton_si.Name = "radioButton_si";
+            radioButton_si.Size = new Size(17, 16);
+            radioButton_si.TabIndex = 53;
+            radioButton_si.TabStop = true;
+            radioButton_si.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(11, 676);
+            label13.Name = "label13";
+            label13.Size = new Size(120, 20);
+            label13.TabIndex = 57;
+            label13.Text = "Desactivación:";
+            // 
+            // Form_verMantenimientosAsignados
+            // 
+            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
+            ClientSize = new Size(1820, 1333);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = Color.White;
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Form_verMantenimientosAsignados";
+            Text = "Form_verMantenimientosAsignados";
+            Load += Form_verMantenimientosAsignados_Load;
+            panel1.ResumeLayout(false);
+            gb_carga.ResumeLayout(false);
+            gb_carga.PerformLayout();
+            panel2.ResumeLayout(false);
+            gb_grilla.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel4.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel1;
+        private GroupBox gb_carga;
+        private Panel panel2;
+        private GroupBox gb_grilla;
+        private DataGridView dataGridView1;
+        private Panel panel4;
+        private Panel panel3;
+        private Label label9;
+        private TextBox txt_nombreEmpleadoFiltro;
+        private Label label8;
+        private Label label1;
+        private Button btn_quitarFiltro;
+        private ComboBox cb_estado;
+        private Label label3;
+        private Label label2;
+        private Button btn_eliminar;
+        private Button btn_modificar;
+        private Button btn_cerrar;
+        private Button btn_cancelar;
+        private Button btn_guardar;
+        private TextBox txt_nombreCabañaFiltro;
+        private ComboBox cb_empleado;
+        private Label label5;
+        private Label label4;
+        private Label label10;
+        private Label label11;
+        private DateTimePicker dtp_fechaInicio;
+        private Button btn_cancelarMantenimiento;
+        private DateTimePicker dtp_fechaInicioFiltro;
+        private Button btn_seleccionarMantenimiento;
+        private ComboBox cb_mantenimiento;
+        private ComboBox cb_cabañas;
+        private DateTimePicker dtp_fechaFinFiltro;
+        private DateTimePicker dtp_fechaFin;
+        private Button btn_seleccionarEmpleado;
+        private Label label13;
+        private Label label7;
+        private Label label12;
+        private RadioButton radioButton_no;
+        private RadioButton radioButton_si;
+    }
+}
