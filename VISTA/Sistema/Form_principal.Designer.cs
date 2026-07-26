@@ -37,6 +37,7 @@
             btn_cerrar = new PictureBox();
             pictureBox2 = new PictureBox();
             panel_menuLateral = new Panel();
+            btn_auditoria = new Button();
             panel_informes = new Panel();
             btn_gastosMantenimeintos = new Button();
             btn_motivosCancelacion = new Button();
@@ -77,7 +78,6 @@
             lb_grupo = new Label();
             pictureBox1 = new PictureBox();
             panel_forms = new Panel();
-            btn_auditoria = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btn_restaurar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_maximizar).BeginInit();
@@ -220,6 +220,26 @@
             panel_menuLateral.TabIndex = 1;
             panel_menuLateral.MouseDown += panel_menuLateral_MouseDown_1;
             // 
+            // btn_auditoria
+            // 
+            btn_auditoria.BackColor = Color.FromArgb(0, 40, 81);
+            btn_auditoria.Dock = DockStyle.Top;
+            btn_auditoria.FlatAppearance.BorderSize = 0;
+            btn_auditoria.FlatStyle = FlatStyle.Flat;
+            btn_auditoria.Font = new Font("Century Gothic", 9.75F);
+            btn_auditoria.ForeColor = Color.White;
+            btn_auditoria.Location = new Point(0, 1112);
+            btn_auditoria.Margin = new Padding(3, 4, 3, 4);
+            btn_auditoria.Name = "btn_auditoria";
+            btn_auditoria.Padding = new Padding(11, 0, 0, 0);
+            btn_auditoria.Size = new Size(367, 40);
+            btn_auditoria.TabIndex = 37;
+            btn_auditoria.Tag = "Auditoria";
+            btn_auditoria.Text = "Auditoria";
+            btn_auditoria.TextAlign = ContentAlignment.MiddleLeft;
+            btn_auditoria.UseVisualStyleBackColor = false;
+            btn_auditoria.Click += btn_auditoria_Click;
+            // 
             // panel_informes
             // 
             panel_informes.BackColor = Color.FromArgb(40, 40, 40);
@@ -358,7 +378,7 @@
             btn_mantenimientos.Padding = new Padding(11, 0, 0, 0);
             btn_mantenimientos.Size = new Size(367, 40);
             btn_mantenimientos.TabIndex = 32;
-            btn_mantenimientos.Tag = "Cabañas y alquiler";
+            btn_mantenimientos.Tag = "Mantenimientos";
             btn_mantenimientos.Text = "Mantenimientos";
             btn_mantenimientos.TextAlign = ContentAlignment.MiddleLeft;
             btn_mantenimientos.UseVisualStyleBackColor = false;
@@ -430,7 +450,7 @@
             btn_servicios.Padding = new Padding(11, 0, 0, 0);
             btn_servicios.Size = new Size(367, 40);
             btn_servicios.TabIndex = 30;
-            btn_servicios.Tag = "Cabañas y alquiler";
+            btn_servicios.Tag = "Servicios";
             btn_servicios.Text = "Servicios";
             btn_servicios.TextAlign = ContentAlignment.MiddleLeft;
             btn_servicios.UseVisualStyleBackColor = false;
@@ -896,26 +916,6 @@
             panel_forms.Size = new Size(2194, 1333);
             panel_forms.TabIndex = 2;
             panel_forms.MouseDown += panel_forms_MouseDown;
-            // 
-            // btn_auditoria
-            // 
-            btn_auditoria.BackColor = Color.FromArgb(0, 40, 81);
-            btn_auditoria.Dock = DockStyle.Top;
-            btn_auditoria.FlatAppearance.BorderSize = 0;
-            btn_auditoria.FlatStyle = FlatStyle.Flat;
-            btn_auditoria.Font = new Font("Century Gothic", 9.75F);
-            btn_auditoria.ForeColor = Color.White;
-            btn_auditoria.Location = new Point(0, 1112);
-            btn_auditoria.Margin = new Padding(3, 4, 3, 4);
-            btn_auditoria.Name = "btn_auditoria";
-            btn_auditoria.Padding = new Padding(11, 0, 0, 0);
-            btn_auditoria.Size = new Size(367, 40);
-            btn_auditoria.TabIndex = 37;
-            btn_auditoria.Tag = "Auditoria";
-            btn_auditoria.Text = "Auditoria";
-            btn_auditoria.TextAlign = ContentAlignment.MiddleLeft;
-            btn_auditoria.UseVisualStyleBackColor = false;
-            btn_auditoria.Click += btn_auditoria_Click;
             // 
             // Form_principal
             // 

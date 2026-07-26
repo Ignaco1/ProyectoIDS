@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel_carga = new Panel();
             groupBox_carga = new GroupBox();
             txt_email = new TextBox();
@@ -241,14 +241,14 @@
             dataGridView.BackgroundColor = Color.White;
             dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle16.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle16.SelectionForeColor = Color.White;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 27;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView.Dock = DockStyle.Fill;
@@ -258,21 +258,21 @@
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
             dataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = Color.White;
-            dataGridViewCellStyle17.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle17.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle17.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle17.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView.RowHeadersWidth = 62;
-            dataGridViewCellStyle18.BackColor = Color.White;
-            dataGridViewCellStyle18.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle18.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle18.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(1490, 1172);
             dataGridView.TabIndex = 2;
@@ -394,6 +394,7 @@
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(182, 27);
             btn_eliminar.TabIndex = 2;
+            btn_eliminar.Tag = "Eliminar usuario";
             btn_eliminar.Text = "Eliminar usuario";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
@@ -407,6 +408,7 @@
             btn_modificar.Name = "btn_modificar";
             btn_modificar.Size = new Size(182, 27);
             btn_modificar.TabIndex = 1;
+            btn_modificar.Tag = "Modificar usuario";
             btn_modificar.Text = "Modificar usuario";
             btn_modificar.UseVisualStyleBackColor = false;
             btn_modificar.Click += btn_modificar_Click;
@@ -420,6 +422,7 @@
             btn_agregar.Name = "btn_agregar";
             btn_agregar.Size = new Size(182, 27);
             btn_agregar.TabIndex = 0;
+            btn_agregar.Tag = "Agregar usuario";
             btn_agregar.Text = "Agregar usuario";
             btn_agregar.UseVisualStyleBackColor = false;
             btn_agregar.Click += btn_agregar_Click;

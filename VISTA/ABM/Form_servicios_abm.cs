@@ -56,6 +56,7 @@ namespace VISTA.ABM
             txt_descripcion.ScrollBars = ScrollBars.Vertical;
             txt_descripcion.WordWrap = true;
             txt_descripcion.Height = 200;
+            AccesoUI.AplicarPermisos(this);
         }
 
         private void ARMA_GRILLA()

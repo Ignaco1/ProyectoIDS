@@ -103,6 +103,7 @@
             // 
             // panel1
             // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Dock = DockStyle.Right;
             panel1.Location = new Point(1763, 0);
             panel1.Name = "panel1";
@@ -111,6 +112,7 @@
             // 
             // panel2
             // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(btn_generar);
             panel2.Controls.Add(dtp_hasta);
             panel2.Controls.Add(dtp_desde);
@@ -132,6 +134,7 @@
             btn_generar.Name = "btn_generar";
             btn_generar.Size = new Size(184, 27);
             btn_generar.TabIndex = 5;
+            btn_generar.Tag = "";
             btn_generar.Text = "Generar informe";
             btn_generar.UseVisualStyleBackColor = false;
             btn_generar.Click += btn_generar_Click;
@@ -182,6 +185,7 @@
             // 
             // panel_grafico
             // 
+            panel_grafico.BorderStyle = BorderStyle.FixedSingle;
             panel_grafico.Dock = DockStyle.Right;
             panel_grafico.Location = new Point(1138, 114);
             panel_grafico.Name = "panel_grafico";
@@ -190,6 +194,7 @@
             // 
             // panel4
             // 
+            panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Dock = DockStyle.Left;
             panel4.Location = new Point(0, 114);
             panel4.Name = "panel4";
@@ -198,6 +203,7 @@
             // 
             // panel3
             // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(label_nroCabañas);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(104, 114);
@@ -217,6 +223,7 @@
             // 
             // flowLayoutPanel_datos
             // 
+            flowLayoutPanel_datos.BorderStyle = BorderStyle.FixedSingle;
             flowLayoutPanel_datos.Dock = DockStyle.Fill;
             flowLayoutPanel_datos.Location = new Point(104, 250);
             flowLayoutPanel_datos.Name = "flowLayoutPanel_datos";

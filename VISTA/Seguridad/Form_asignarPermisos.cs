@@ -43,6 +43,7 @@ namespace VISTA
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
             txt_nombre.Enabled = false;
+            AccesoUI.AplicarPermisos(this);
         }
 
         private void ARMA_GRILLA()

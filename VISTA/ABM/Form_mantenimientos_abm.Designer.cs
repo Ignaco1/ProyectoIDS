@@ -318,6 +318,7 @@
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(193, 27);
             btn_eliminar.TabIndex = 39;
+            btn_eliminar.Tag = "Eliminar mantenimiento";
             btn_eliminar.Text = "Eliminar mantenimiento";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
@@ -333,6 +334,7 @@
             btn_modificar.Name = "btn_modificar";
             btn_modificar.Size = new Size(222, 27);
             btn_modificar.TabIndex = 38;
+            btn_modificar.Tag = "Modificar mantenimiento";
             btn_modificar.Text = "Modificar mantenimiento";
             btn_modificar.UseVisualStyleBackColor = false;
             btn_modificar.Click += btn_modificar_Click;
@@ -348,6 +350,7 @@
             btn_agregar.Name = "btn_agregar";
             btn_agregar.Size = new Size(193, 27);
             btn_agregar.TabIndex = 37;
+            btn_agregar.Tag = "Agregar mantenimiento";
             btn_agregar.Text = "Agregar mantenimiento";
             btn_agregar.UseVisualStyleBackColor = false;
             btn_agregar.Click += btn_agregar_Click;

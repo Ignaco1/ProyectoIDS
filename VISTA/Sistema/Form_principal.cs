@@ -103,27 +103,6 @@ namespace VISTA
             }
         }
 
-        private void HabilitarBotones(Control padres)
-        {
-            foreach (Control control in padres.Controls)
-            {
-                if (control is Button boton && boton.Tag != null)
-                {
-                    string permisos = boton.Tag.ToString();
-
-                    boton.Enabled = UsuarioCache.Permisos.Any(p => p.Equals(permisos, StringComparison.OrdinalIgnoreCase));
-                    boton.Visible = UsuarioCache.Permisos.Any(p => p.Equals(permisos, StringComparison.OrdinalIgnoreCase));
-                }
-
-                if (control.HasChildren)
-                {
-                    HabilitarBotones(control);
-                }
-
-            }
-
-        }
-
         private void btn_minimizar_Click_1(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -166,7 +145,7 @@ namespace VISTA
         private void Form_principal_Load(object sender, EventArgs e)
         {
             CargarLabels();
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             IniciarTimerActualizador();
         }
 
@@ -202,19 +181,19 @@ namespace VISTA
 
         private void btn_ABM_Click(object sender, EventArgs e)
         {
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             MostrarSubmenu(panel_ABM);
         }
 
         private void btn_cabañas_alquiler_Click(object sender, EventArgs e)
         {
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             MostrarSubmenu(panel_reservas);
         }
 
         private void btn_informes_Click(object sender, EventArgs e)
         {
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             MostrarSubmenu(panel_informes);
         }
 
@@ -291,7 +270,7 @@ namespace VISTA
 
         private void btn_seguridad_Click(object sender, EventArgs e)
         {
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             MostrarSubmenu(panel_seguridad);
         }
 
@@ -342,13 +321,13 @@ namespace VISTA
 
         private void btn_servicios_Click(object sender, EventArgs e)
         {
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             MostrarSubmenu(panel_servicios);
         }
 
         private void btn_mantenimientos_Click(object sender, EventArgs e)
         {
-            HabilitarBotones(this);
+            AccesoUI.AplicarPermisos(this);
             MostrarSubmenu(panel_mantenimientos);
         }
 

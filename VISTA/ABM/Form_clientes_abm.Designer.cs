@@ -312,6 +312,7 @@
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(173, 27);
             btn_eliminar.TabIndex = 3;
+            btn_eliminar.Tag = "Eliminar cliente";
             btn_eliminar.Text = "Eliminar cliente";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
@@ -325,6 +326,7 @@
             btn_mod.Name = "btn_mod";
             btn_mod.Size = new Size(173, 27);
             btn_mod.TabIndex = 2;
+            btn_mod.Tag = "Modificar cliente";
             btn_mod.Text = "Modificar cliente";
             btn_mod.UseVisualStyleBackColor = false;
             btn_mod.Click += btn_mod_Click;
@@ -338,6 +340,7 @@
             btn_agregar.Name = "btn_agregar";
             btn_agregar.Size = new Size(173, 27);
             btn_agregar.TabIndex = 1;
+            btn_agregar.Tag = "Agregar cliente";
             btn_agregar.Text = "Agregar cliente";
             btn_agregar.UseVisualStyleBackColor = false;
             btn_agregar.Click += btn_agregar_Click;

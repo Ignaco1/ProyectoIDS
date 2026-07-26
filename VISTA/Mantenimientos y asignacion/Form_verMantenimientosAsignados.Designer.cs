@@ -28,11 +28,18 @@ namespace VISTA.Cabañas_y_alquiler
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             gb_carga = new GroupBox();
+            label13 = new Label();
+            label7 = new Label();
+            label12 = new Label();
+            radioButton_no = new RadioButton();
+            radioButton_si = new RadioButton();
+            btn_seleccionarEmpleado = new Button();
+            dtp_fechaFin = new DateTimePicker();
             cb_cabañas = new ComboBox();
             cb_mantenimiento = new ComboBox();
             btn_seleccionarMantenimiento = new Button();
@@ -53,6 +60,7 @@ namespace VISTA.Cabañas_y_alquiler
             btn_eliminar = new Button();
             btn_modificar = new Button();
             panel3 = new Panel();
+            dtp_fechaFinFiltro = new DateTimePicker();
             dtp_fechaInicioFiltro = new DateTimePicker();
             txt_nombreCabañaFiltro = new TextBox();
             cb_estado = new ComboBox();
@@ -63,14 +71,6 @@ namespace VISTA.Cabañas_y_alquiler
             txt_nombreEmpleadoFiltro = new TextBox();
             label8 = new Label();
             label1 = new Label();
-            dtp_fechaFinFiltro = new DateTimePicker();
-            dtp_fechaFin = new DateTimePicker();
-            btn_seleccionarEmpleado = new Button();
-            label7 = new Label();
-            label12 = new Label();
-            radioButton_no = new RadioButton();
-            radioButton_si = new RadioButton();
-            label13 = new Label();
             panel1.SuspendLayout();
             gb_carga.SuspendLayout();
             panel2.SuspendLayout();
@@ -117,6 +117,82 @@ namespace VISTA.Cabañas_y_alquiler
             gb_carga.TabIndex = 0;
             gb_carga.TabStop = false;
             gb_carga.Text = "Modificar mantenimiento asignado";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(11, 676);
+            label13.Name = "label13";
+            label13.Size = new Size(120, 20);
+            label13.TabIndex = 57;
+            label13.Text = "Desactivación:";
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(172, 657);
+            label7.Name = "label7";
+            label7.Size = new Size(21, 20);
+            label7.TabIndex = 56;
+            label7.Text = "SI";
+            // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label12.AutoSize = true;
+            label12.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.ForeColor = Color.White;
+            label12.Location = new Point(221, 657);
+            label12.Name = "label12";
+            label12.Size = new Size(33, 20);
+            label12.TabIndex = 55;
+            label12.Text = "NO";
+            // 
+            // radioButton_no
+            // 
+            radioButton_no.AutoSize = true;
+            radioButton_no.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioButton_no.Location = new Point(230, 680);
+            radioButton_no.Name = "radioButton_no";
+            radioButton_no.Size = new Size(17, 16);
+            radioButton_no.TabIndex = 54;
+            radioButton_no.TabStop = true;
+            radioButton_no.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_si
+            // 
+            radioButton_si.AutoSize = true;
+            radioButton_si.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioButton_si.Location = new Point(175, 680);
+            radioButton_si.Name = "radioButton_si";
+            radioButton_si.Size = new Size(17, 16);
+            radioButton_si.TabIndex = 53;
+            radioButton_si.TabStop = true;
+            radioButton_si.UseVisualStyleBackColor = true;
+            // 
+            // btn_seleccionarEmpleado
+            // 
+            btn_seleccionarEmpleado.BackColor = Color.FromArgb(0, 84, 168);
+            btn_seleccionarEmpleado.FlatAppearance.BorderSize = 0;
+            btn_seleccionarEmpleado.FlatStyle = FlatStyle.Flat;
+            btn_seleccionarEmpleado.Location = new Point(45, 353);
+            btn_seleccionarEmpleado.Name = "btn_seleccionarEmpleado";
+            btn_seleccionarEmpleado.Size = new Size(278, 27);
+            btn_seleccionarEmpleado.TabIndex = 42;
+            btn_seleccionarEmpleado.Text = "Seleccionar empleado";
+            btn_seleccionarEmpleado.UseVisualStyleBackColor = false;
+            btn_seleccionarEmpleado.Click += btn_seleccionarEmpleado_Click;
+            // 
+            // dtp_fechaFin
+            // 
+            dtp_fechaFin.Format = DateTimePickerFormat.Short;
+            dtp_fechaFin.Location = new Point(88, 585);
+            dtp_fechaFin.Name = "dtp_fechaFin";
+            dtp_fechaFin.Size = new Size(203, 26);
+            dtp_fechaFin.TabIndex = 41;
             // 
             // cb_cabañas
             // 
@@ -185,7 +261,7 @@ namespace VISTA.Cabañas_y_alquiler
             label4.Size = new Size(87, 20);
             label4.TabIndex = 27;
             label4.Text = "Empleado:";
-            //
+            // 
             // label10
             // 
             label10.AutoSize = true;
@@ -261,14 +337,14 @@ namespace VISTA.Cabañas_y_alquiler
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle7.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 27;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Dock = DockStyle.Fill;
@@ -278,21 +354,21 @@ namespace VISTA.Cabañas_y_alquiler
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle8.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridViewCellStyle9.BackColor = Color.White;
-            dataGridViewCellStyle9.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = Color.FromArgb(0, 84, 168);
-            dataGridViewCellStyle9.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(0, 84, 168);
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(0, 84, 168);
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(0, 84, 168);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1462, 1125);
             dataGridView1.TabIndex = 2;
@@ -314,10 +390,11 @@ namespace VISTA.Cabañas_y_alquiler
             btn_cancelarMantenimiento.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelarMantenimiento.FlatAppearance.BorderSize = 0;
             btn_cancelarMantenimiento.FlatStyle = FlatStyle.Flat;
-            btn_cancelarMantenimiento.Location = new Point(504, 6);
+            btn_cancelarMantenimiento.Location = new Point(257, 6);
             btn_cancelarMantenimiento.Name = "btn_cancelarMantenimiento";
             btn_cancelarMantenimiento.Size = new Size(234, 27);
             btn_cancelarMantenimiento.TabIndex = 10;
+            btn_cancelarMantenimiento.Tag = "Cancelar mantenimiento";
             btn_cancelarMantenimiento.Text = "Cancelar mantenimiento";
             btn_cancelarMantenimiento.UseVisualStyleBackColor = false;
             btn_cancelarMantenimiento.Click += btn_cancelarMantenimiento_Click;
@@ -341,11 +418,12 @@ namespace VISTA.Cabañas_y_alquiler
             btn_eliminar.BackColor = Color.FromArgb(0, 84, 168);
             btn_eliminar.FlatAppearance.BorderSize = 0;
             btn_eliminar.FlatStyle = FlatStyle.Flat;
-            btn_eliminar.Location = new Point(255, 6);
+            btn_eliminar.Location = new Point(506, 6);
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(234, 27);
             btn_eliminar.TabIndex = 8;
-            btn_eliminar.Text = "Eliminar mantenimiento";
+            btn_eliminar.Tag = "Eliminar mantenimiento asignado";
+            btn_eliminar.Text = "Eliminar mantenimiento asignado";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
             // 
@@ -358,7 +436,8 @@ namespace VISTA.Cabañas_y_alquiler
             btn_modificar.Name = "btn_modificar";
             btn_modificar.Size = new Size(234, 27);
             btn_modificar.TabIndex = 7;
-            btn_modificar.Text = "Modificar mantenimiento";
+            btn_modificar.Tag = "Modificar mantenimiento asignado";
+            btn_modificar.Text = "Modificar mantenimiento asignado";
             btn_modificar.UseVisualStyleBackColor = false;
             btn_modificar.Click += btn_modificar_Click;
             // 
@@ -380,6 +459,15 @@ namespace VISTA.Cabañas_y_alquiler
             panel3.Name = "panel3";
             panel3.Size = new Size(1462, 109);
             panel3.TabIndex = 0;
+            // 
+            // dtp_fechaFinFiltro
+            // 
+            dtp_fechaFinFiltro.Format = DateTimePickerFormat.Short;
+            dtp_fechaFinFiltro.Location = new Point(853, 65);
+            dtp_fechaFinFiltro.Name = "dtp_fechaFinFiltro";
+            dtp_fechaFinFiltro.Size = new Size(221, 26);
+            dtp_fechaFinFiltro.TabIndex = 61;
+            dtp_fechaFinFiltro.ValueChanged += dtp_fechaFinFiltro_ValueChanged;
             // 
             // dtp_fechaInicioFiltro
             // 
@@ -474,91 +562,6 @@ namespace VISTA.Cabañas_y_alquiler
             label1.Size = new Size(159, 20);
             label1.TabIndex = 46;
             label1.Text = "Nombre de cabaña:";
-            // 
-            // dtp_fechaFinFiltro
-            // 
-            dtp_fechaFinFiltro.Format = DateTimePickerFormat.Short;
-            dtp_fechaFinFiltro.Location = new Point(853, 65);
-            dtp_fechaFinFiltro.Name = "dtp_fechaFinFiltro";
-            dtp_fechaFinFiltro.Size = new Size(221, 26);
-            dtp_fechaFinFiltro.TabIndex = 61;
-            dtp_fechaFinFiltro.ValueChanged += dtp_fechaFinFiltro_ValueChanged;
-            // 
-            // dtp_fechaFin
-            // 
-            dtp_fechaFin.Format = DateTimePickerFormat.Short;
-            dtp_fechaFin.Location = new Point(88, 585);
-            dtp_fechaFin.Name = "dtp_fechaFin";
-            dtp_fechaFin.Size = new Size(203, 26);
-            dtp_fechaFin.TabIndex = 41;
-            // 
-            // btn_seleccionarEmpleado
-            // 
-            btn_seleccionarEmpleado.BackColor = Color.FromArgb(0, 84, 168);
-            btn_seleccionarEmpleado.FlatAppearance.BorderSize = 0;
-            btn_seleccionarEmpleado.FlatStyle = FlatStyle.Flat;
-            btn_seleccionarEmpleado.Location = new Point(45, 353);
-            btn_seleccionarEmpleado.Name = "btn_seleccionarEmpleado";
-            btn_seleccionarEmpleado.Size = new Size(278, 27);
-            btn_seleccionarEmpleado.TabIndex = 42;
-            btn_seleccionarEmpleado.Text = "Seleccionar empleado";
-            btn_seleccionarEmpleado.UseVisualStyleBackColor = false;
-            btn_seleccionarEmpleado.Click += btn_seleccionarEmpleado_Click;
-            // 
-            // label7
-            // 
-            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(172, 657);
-            label7.Name = "label7";
-            label7.Size = new Size(21, 20);
-            label7.TabIndex = 56;
-            label7.Text = "SI";
-            // 
-            // label12
-            // 
-            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label12.AutoSize = true;
-            label12.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.White;
-            label12.Location = new Point(221, 657);
-            label12.Name = "label12";
-            label12.Size = new Size(33, 20);
-            label12.TabIndex = 55;
-            label12.Text = "NO";
-            // 
-            // radioButton_no
-            // 
-            radioButton_no.AutoSize = true;
-            radioButton_no.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton_no.Location = new Point(230, 680);
-            radioButton_no.Name = "radioButton_no";
-            radioButton_no.Size = new Size(17, 16);
-            radioButton_no.TabIndex = 54;
-            radioButton_no.TabStop = true;
-            radioButton_no.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_si
-            // 
-            radioButton_si.AutoSize = true;
-            radioButton_si.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton_si.Location = new Point(175, 680);
-            radioButton_si.Name = "radioButton_si";
-            radioButton_si.Size = new Size(17, 16);
-            radioButton_si.TabIndex = 53;
-            radioButton_si.TabStop = true;
-            radioButton_si.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(11, 676);
-            label13.Name = "label13";
-            label13.Size = new Size(120, 20);
-            label13.TabIndex = 57;
-            label13.Text = "Desactivación:";
             // 
             // Form_verMantenimientosAsignados
             // 

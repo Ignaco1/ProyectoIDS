@@ -78,6 +78,7 @@ namespace VISTA
         {
             btn_quitarFiltro.Enabled = false;
             btn_quitarFiltro.Visible = false;
+            AccesoUI.AplicarPermisos(this);
         }
 
         private void btn_crearGrupo_Click(object sender, EventArgs e)

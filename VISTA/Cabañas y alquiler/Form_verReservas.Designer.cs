@@ -259,7 +259,7 @@
             dataGridView1.Size = new Size(1462, 1125);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
-            //
+            // 
             // panel4
             // 
             panel4.Controls.Add(btn_cancelarReserva);
@@ -277,10 +277,11 @@
             btn_cancelarReserva.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelarReserva.FlatAppearance.BorderSize = 0;
             btn_cancelarReserva.FlatStyle = FlatStyle.Flat;
-            btn_cancelarReserva.Location = new Point(444, 6);
+            btn_cancelarReserva.Location = new Point(215, 4);
             btn_cancelarReserva.Name = "btn_cancelarReserva";
-            btn_cancelarReserva.Size = new Size(190, 31);
+            btn_cancelarReserva.Size = new Size(190, 27);
             btn_cancelarReserva.TabIndex = 10;
+            btn_cancelarReserva.Tag = "Cancelar reserva";
             btn_cancelarReserva.Text = "Cancelar reserva";
             btn_cancelarReserva.UseVisualStyleBackColor = false;
             btn_cancelarReserva.Click += btn_cancelarReserva_Click;
@@ -304,10 +305,11 @@
             btn_eliminar.BackColor = Color.FromArgb(0, 84, 168);
             btn_eliminar.FlatAppearance.BorderSize = 0;
             btn_eliminar.FlatStyle = FlatStyle.Flat;
-            btn_eliminar.Location = new Point(227, 6);
+            btn_eliminar.Location = new Point(423, 6);
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(190, 27);
             btn_eliminar.TabIndex = 8;
+            btn_eliminar.Tag = "Eliminar reserva";
             btn_eliminar.Text = "Eliminar reserva";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
@@ -321,6 +323,7 @@
             btn_modificar.Name = "btn_modificar";
             btn_modificar.Size = new Size(190, 27);
             btn_modificar.TabIndex = 7;
+            btn_modificar.Tag = "Modificar reserva";
             btn_modificar.Text = "Modificar reserva";
             btn_modificar.UseVisualStyleBackColor = false;
             btn_modificar.Click += btn_modificar_Click;

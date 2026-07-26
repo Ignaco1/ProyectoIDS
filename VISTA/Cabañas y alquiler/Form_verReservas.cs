@@ -73,6 +73,7 @@ namespace VISTA.Cabañas_y_alquiler
             variF = "";
 
             ARMA_GRILLA();
+            AccesoUI.AplicarPermisos(this);
         }
 
         private void ARMA_GRILLA()

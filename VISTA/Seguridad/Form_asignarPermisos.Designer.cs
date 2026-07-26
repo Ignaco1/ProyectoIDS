@@ -33,6 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel_carga = new Panel();
             groupBox_carga = new GroupBox();
+            checkBox_seleccionarTodos = new CheckBox();
             label2 = new Label();
             check_listaPermisos = new CheckedListBox();
             btn_cancelar = new Button();
@@ -52,7 +53,6 @@
             btn_modificarPermisos = new Button();
             btn_cerrar = new Button();
             btn_asignarPermisos = new Button();
-            checkBox_seleccionarTodos = new CheckBox();
             panel_carga.SuspendLayout();
             groupBox_carga.SuspendLayout();
             panel_lista_permisos.SuspendLayout();
@@ -88,6 +88,18 @@
             groupBox_carga.TabIndex = 0;
             groupBox_carga.TabStop = false;
             groupBox_carga.Text = "Carga de datos";
+            // 
+            // checkBox_seleccionarTodos
+            // 
+            checkBox_seleccionarTodos.AutoSize = true;
+            checkBox_seleccionarTodos.ForeColor = Color.Transparent;
+            checkBox_seleccionarTodos.Location = new Point(102, 175);
+            checkBox_seleccionarTodos.Name = "checkBox_seleccionarTodos";
+            checkBox_seleccionarTodos.Size = new Size(163, 24);
+            checkBox_seleccionarTodos.TabIndex = 12;
+            checkBox_seleccionarTodos.Text = "Seleccionar todos";
+            checkBox_seleccionarTodos.UseVisualStyleBackColor = true;
+            checkBox_seleccionarTodos.CheckedChanged += checkBox_seleccionarTodos_CheckedChanged;
             // 
             // label2
             // 
@@ -300,7 +312,8 @@
             btn_modificarPermisos.Name = "btn_modificarPermisos";
             btn_modificarPermisos.Size = new Size(227, 27);
             btn_modificarPermisos.TabIndex = 6;
-            btn_modificarPermisos.Text = "Modificar permisos";
+            btn_modificarPermisos.Tag = "Modificar permisos asignados";
+            btn_modificarPermisos.Text = "Modificar permisos asignados";
             btn_modificarPermisos.UseVisualStyleBackColor = false;
             btn_modificarPermisos.Click += btn_modificarPermisos_Click;
             // 
@@ -329,21 +342,10 @@
             btn_asignarPermisos.Name = "btn_asignarPermisos";
             btn_asignarPermisos.Size = new Size(227, 27);
             btn_asignarPermisos.TabIndex = 0;
+            btn_asignarPermisos.Tag = "Asignar permisos";
             btn_asignarPermisos.Text = "Asignar permisos";
             btn_asignarPermisos.UseVisualStyleBackColor = false;
             btn_asignarPermisos.Click += btn_asignarPermisos_Click;
-            // 
-            // checkBox_seleccionarTodos
-            // 
-            checkBox_seleccionarTodos.AutoSize = true;
-            checkBox_seleccionarTodos.ForeColor = Color.Transparent;
-            checkBox_seleccionarTodos.Location = new Point(102, 175);
-            checkBox_seleccionarTodos.Name = "checkBox_seleccionarTodos";
-            checkBox_seleccionarTodos.Size = new Size(163, 24);
-            checkBox_seleccionarTodos.TabIndex = 12;
-            checkBox_seleccionarTodos.Text = "Seleccionar todos";
-            checkBox_seleccionarTodos.UseVisualStyleBackColor = true;
-            checkBox_seleccionarTodos.CheckedChanged += checkBox_seleccionarTodos_CheckedChanged;
             // 
             // Form_asignarPermisos
             // 

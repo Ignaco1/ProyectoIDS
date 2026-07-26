@@ -73,6 +73,7 @@ namespace VISTA.ABM
             btn_quitarFiltro.Visible = false;
             CargarCombos();
             ARMA_GRILLA();
+            AccesoUI.AplicarPermisos(this);
         }
 
         private void ARMA_GRILLA()

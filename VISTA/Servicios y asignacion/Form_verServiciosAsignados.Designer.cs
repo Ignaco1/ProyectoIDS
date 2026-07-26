@@ -346,10 +346,11 @@ namespace VISTA.Cabañas_y_alquiler
             btn_cancelarServicio.BackColor = Color.FromArgb(0, 84, 168);
             btn_cancelarServicio.FlatAppearance.BorderSize = 0;
             btn_cancelarServicio.FlatStyle = FlatStyle.Flat;
-            btn_cancelarServicio.Location = new Point(444, 6);
+            btn_cancelarServicio.Location = new Point(216, 6);
             btn_cancelarServicio.Name = "btn_cancelarServicio";
             btn_cancelarServicio.Size = new Size(190, 27);
             btn_cancelarServicio.TabIndex = 10;
+            btn_cancelarServicio.Tag = "Cancelar servicio";
             btn_cancelarServicio.Text = "Cancelar servicio";
             btn_cancelarServicio.UseVisualStyleBackColor = false;
             btn_cancelarServicio.Click += btn_cancelarServicio_Click;
@@ -373,11 +374,12 @@ namespace VISTA.Cabañas_y_alquiler
             btn_eliminar.BackColor = Color.FromArgb(0, 84, 168);
             btn_eliminar.FlatAppearance.BorderSize = 0;
             btn_eliminar.FlatStyle = FlatStyle.Flat;
-            btn_eliminar.Location = new Point(227, 6);
+            btn_eliminar.Location = new Point(429, 6);
             btn_eliminar.Name = "btn_eliminar";
             btn_eliminar.Size = new Size(190, 27);
             btn_eliminar.TabIndex = 8;
-            btn_eliminar.Text = "Eliminar servicio";
+            btn_eliminar.Tag = "Eliminar servicio asignado";
+            btn_eliminar.Text = "Eliminar servicio asignado";
             btn_eliminar.UseVisualStyleBackColor = false;
             btn_eliminar.Click += btn_eliminar_Click;
             // 
@@ -390,7 +392,8 @@ namespace VISTA.Cabañas_y_alquiler
             btn_modificar.Name = "btn_modificar";
             btn_modificar.Size = new Size(190, 27);
             btn_modificar.TabIndex = 7;
-            btn_modificar.Text = "Modificar servicio";
+            btn_modificar.Tag = "Modificar servicio asignado";
+            btn_modificar.Text = "Modificar servicio asignado";
             btn_modificar.UseVisualStyleBackColor = false;
             btn_modificar.Click += btn_modificar_Click;
             // 
@@ -487,7 +490,7 @@ namespace VISTA.Cabañas_y_alquiler
             label9.AutoSize = true;
             label9.Location = new Point(884, 18);
             label9.Name = "label9";
-            label9.Size = new Size(146, 20);
+            label9.Size = new Size(150, 20);
             label9.TabIndex = 49;
             label9.Text = "Estado del servicio:";
             // 
