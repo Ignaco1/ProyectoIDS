@@ -38,7 +38,7 @@
             pictureBox2 = new PictureBox();
             panel_menuLateral = new Panel();
             panel_informes = new Panel();
-            button14 = new Button();
+            btn_gastosMantenimeintos = new Button();
             btn_motivosCancelacion = new Button();
             btn_informes = new Button();
             panel_mantenimientos = new Panel();
@@ -77,6 +77,7 @@
             lb_grupo = new Label();
             pictureBox1 = new PictureBox();
             panel_forms = new Panel();
+            btn_auditoria = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btn_restaurar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_maximizar).BeginInit();
@@ -193,6 +194,7 @@
             // 
             panel_menuLateral.AutoScroll = true;
             panel_menuLateral.BackColor = Color.FromArgb(0, 40, 81);
+            panel_menuLateral.Controls.Add(btn_auditoria);
             panel_menuLateral.Controls.Add(panel_informes);
             panel_menuLateral.Controls.Add(btn_informes);
             panel_menuLateral.Controls.Add(panel_mantenimientos);
@@ -221,7 +223,7 @@
             // panel_informes
             // 
             panel_informes.BackColor = Color.FromArgb(40, 40, 40);
-            panel_informes.Controls.Add(button14);
+            panel_informes.Controls.Add(btn_gastosMantenimeintos);
             panel_informes.Controls.Add(btn_motivosCancelacion);
             panel_informes.Dock = DockStyle.Top;
             panel_informes.Location = new Point(0, 1032);
@@ -230,24 +232,25 @@
             panel_informes.Size = new Size(367, 80);
             panel_informes.TabIndex = 36;
             // 
-            // button14
+            // btn_gastosMantenimeintos
             // 
-            button14.BackColor = Color.FromArgb(65, 65, 65);
-            button14.Dock = DockStyle.Top;
-            button14.FlatAppearance.BorderSize = 0;
-            button14.FlatStyle = FlatStyle.Flat;
-            button14.Font = new Font("Century Gothic", 9.75F);
-            button14.ForeColor = Color.White;
-            button14.Location = new Point(0, 40);
-            button14.Margin = new Padding(3, 4, 3, 4);
-            button14.Name = "button14";
-            button14.Padding = new Padding(40, 0, 0, 0);
-            button14.Size = new Size(367, 40);
-            button14.TabIndex = 12;
-            button14.Tag = "Principales servicios";
-            button14.Text = "Principales servicios";
-            button14.TextAlign = ContentAlignment.MiddleLeft;
-            button14.UseVisualStyleBackColor = false;
+            btn_gastosMantenimeintos.BackColor = Color.FromArgb(65, 65, 65);
+            btn_gastosMantenimeintos.Dock = DockStyle.Top;
+            btn_gastosMantenimeintos.FlatAppearance.BorderSize = 0;
+            btn_gastosMantenimeintos.FlatStyle = FlatStyle.Flat;
+            btn_gastosMantenimeintos.Font = new Font("Century Gothic", 9.75F);
+            btn_gastosMantenimeintos.ForeColor = Color.White;
+            btn_gastosMantenimeintos.Location = new Point(0, 40);
+            btn_gastosMantenimeintos.Margin = new Padding(3, 4, 3, 4);
+            btn_gastosMantenimeintos.Name = "btn_gastosMantenimeintos";
+            btn_gastosMantenimeintos.Padding = new Padding(40, 0, 0, 0);
+            btn_gastosMantenimeintos.Size = new Size(367, 40);
+            btn_gastosMantenimeintos.TabIndex = 12;
+            btn_gastosMantenimeintos.Tag = "Gastos de mantenimiento";
+            btn_gastosMantenimeintos.Text = "Gastos de mantenimiento";
+            btn_gastosMantenimeintos.TextAlign = ContentAlignment.MiddleLeft;
+            btn_gastosMantenimeintos.UseVisualStyleBackColor = false;
+            btn_gastosMantenimeintos.Click += btn_gastosMantenimeintos_Click;
             // 
             // btn_motivosCancelacion
             // 
@@ -894,6 +897,26 @@
             panel_forms.TabIndex = 2;
             panel_forms.MouseDown += panel_forms_MouseDown;
             // 
+            // btn_auditoria
+            // 
+            btn_auditoria.BackColor = Color.FromArgb(0, 40, 81);
+            btn_auditoria.Dock = DockStyle.Top;
+            btn_auditoria.FlatAppearance.BorderSize = 0;
+            btn_auditoria.FlatStyle = FlatStyle.Flat;
+            btn_auditoria.Font = new Font("Century Gothic", 9.75F);
+            btn_auditoria.ForeColor = Color.White;
+            btn_auditoria.Location = new Point(0, 1112);
+            btn_auditoria.Margin = new Padding(3, 4, 3, 4);
+            btn_auditoria.Name = "btn_auditoria";
+            btn_auditoria.Padding = new Padding(11, 0, 0, 0);
+            btn_auditoria.Size = new Size(367, 40);
+            btn_auditoria.TabIndex = 37;
+            btn_auditoria.Tag = "Auditoria";
+            btn_auditoria.Text = "Auditoria";
+            btn_auditoria.TextAlign = ContentAlignment.MiddleLeft;
+            btn_auditoria.UseVisualStyleBackColor = false;
+            btn_auditoria.Click += btn_auditoria_Click;
+            // 
             // Form_principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -977,11 +1000,12 @@
         private Button btn_asignarServicios;
         private Button btn_servicios;
         private Panel panel5;
-        private Button button14;
+        private Button btn_gastosMantenimeintos;
         private Button button15;
         private Panel panel_mantenimientos;
         private Button btn_verMantenimientos;
         private Button btn_asignarMantenimientos;
         private Button btn_mantenimientos;
+        private Button btn_auditoria;
     }
 }

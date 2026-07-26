@@ -387,6 +387,16 @@ namespace VISTA
         {
             AbrirForms(new Form_verMantenimientosAsignados());
         }
+
+        private void btn_gastosMantenimeintos_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_gastosMantenimientosInforme());
+        }
+
+        private void btn_auditoria_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
