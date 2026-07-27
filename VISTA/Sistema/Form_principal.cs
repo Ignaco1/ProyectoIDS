@@ -86,6 +86,7 @@ namespace VISTA
             panel_informes.Visible = false;
             panel_mantenimientos.Visible = false;
             panel_servicios.Visible = false;
+            panel_auditorias.Visible = false;
 
         }
 
@@ -374,7 +375,18 @@ namespace VISTA
 
         private void btn_auditoria_Click(object sender, EventArgs e)
         {
+            AccesoUI.AplicarPermisos(this);
+            MostrarSubmenu(panel_auditorias);
+        }
 
+        private void btn_auditoriaUsuarios_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_auditoriaUsuarios());
+        }
+
+        private void btn_auditoriaClientes_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Form_auditoriaClientes());
         }
     }
 }

@@ -37,6 +37,9 @@
             btn_cerrar = new PictureBox();
             pictureBox2 = new PictureBox();
             panel_menuLateral = new Panel();
+            panel_auditorias = new Panel();
+            btn_auditoriaClientes = new Button();
+            btn_auditoriaUsuarios = new Button();
             btn_auditoria = new Button();
             panel_informes = new Panel();
             btn_gastosMantenimeintos = new Button();
@@ -85,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)btn_cerrar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel_menuLateral.SuspendLayout();
+            panel_auditorias.SuspendLayout();
             panel_informes.SuspendLayout();
             panel_mantenimientos.SuspendLayout();
             panel_servicios.SuspendLayout();
@@ -194,6 +198,7 @@
             // 
             panel_menuLateral.AutoScroll = true;
             panel_menuLateral.BackColor = Color.FromArgb(0, 40, 81);
+            panel_menuLateral.Controls.Add(panel_auditorias);
             panel_menuLateral.Controls.Add(btn_auditoria);
             panel_menuLateral.Controls.Add(panel_informes);
             panel_menuLateral.Controls.Add(btn_informes);
@@ -219,6 +224,58 @@
             panel_menuLateral.Size = new Size(367, 1333);
             panel_menuLateral.TabIndex = 1;
             panel_menuLateral.MouseDown += panel_menuLateral_MouseDown_1;
+            // 
+            // panel_auditorias
+            // 
+            panel_auditorias.BackColor = Color.FromArgb(40, 40, 40);
+            panel_auditorias.Controls.Add(btn_auditoriaClientes);
+            panel_auditorias.Controls.Add(btn_auditoriaUsuarios);
+            panel_auditorias.Dock = DockStyle.Top;
+            panel_auditorias.Location = new Point(0, 1152);
+            panel_auditorias.Margin = new Padding(3, 4, 3, 4);
+            panel_auditorias.Name = "panel_auditorias";
+            panel_auditorias.Size = new Size(367, 80);
+            panel_auditorias.TabIndex = 38;
+            // 
+            // btn_auditoriaClientes
+            // 
+            btn_auditoriaClientes.BackColor = Color.FromArgb(65, 65, 65);
+            btn_auditoriaClientes.Dock = DockStyle.Top;
+            btn_auditoriaClientes.FlatAppearance.BorderSize = 0;
+            btn_auditoriaClientes.FlatStyle = FlatStyle.Flat;
+            btn_auditoriaClientes.Font = new Font("Century Gothic", 9.75F);
+            btn_auditoriaClientes.ForeColor = Color.White;
+            btn_auditoriaClientes.Location = new Point(0, 40);
+            btn_auditoriaClientes.Margin = new Padding(3, 4, 3, 4);
+            btn_auditoriaClientes.Name = "btn_auditoriaClientes";
+            btn_auditoriaClientes.Padding = new Padding(40, 0, 0, 0);
+            btn_auditoriaClientes.Size = new Size(367, 40);
+            btn_auditoriaClientes.TabIndex = 12;
+            btn_auditoriaClientes.Tag = "Auditorias cambios clientes";
+            btn_auditoriaClientes.Text = "Auditorias cambios clientes";
+            btn_auditoriaClientes.TextAlign = ContentAlignment.MiddleLeft;
+            btn_auditoriaClientes.UseVisualStyleBackColor = false;
+            btn_auditoriaClientes.Click += btn_auditoriaClientes_Click;
+            // 
+            // btn_auditoriaUsuarios
+            // 
+            btn_auditoriaUsuarios.BackColor = Color.FromArgb(65, 65, 65);
+            btn_auditoriaUsuarios.Dock = DockStyle.Top;
+            btn_auditoriaUsuarios.FlatAppearance.BorderSize = 0;
+            btn_auditoriaUsuarios.FlatStyle = FlatStyle.Flat;
+            btn_auditoriaUsuarios.Font = new Font("Century Gothic", 9.75F);
+            btn_auditoriaUsuarios.ForeColor = Color.White;
+            btn_auditoriaUsuarios.Location = new Point(0, 0);
+            btn_auditoriaUsuarios.Margin = new Padding(3, 4, 3, 4);
+            btn_auditoriaUsuarios.Name = "btn_auditoriaUsuarios";
+            btn_auditoriaUsuarios.Padding = new Padding(40, 0, 0, 0);
+            btn_auditoriaUsuarios.Size = new Size(367, 40);
+            btn_auditoriaUsuarios.TabIndex = 11;
+            btn_auditoriaUsuarios.Tag = "Auditorias usuarios";
+            btn_auditoriaUsuarios.Text = "Auditorias usuarios";
+            btn_auditoriaUsuarios.TextAlign = ContentAlignment.MiddleLeft;
+            btn_auditoriaUsuarios.UseVisualStyleBackColor = false;
+            btn_auditoriaUsuarios.Click += btn_auditoriaUsuarios_Click;
             // 
             // btn_auditoria
             // 
@@ -939,6 +996,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel_menuLateral.ResumeLayout(false);
             panel_menuLateral.PerformLayout();
+            panel_auditorias.ResumeLayout(false);
             panel_informes.ResumeLayout(false);
             panel_mantenimientos.ResumeLayout(false);
             panel_servicios.ResumeLayout(false);
@@ -1007,5 +1065,8 @@
         private Button btn_asignarMantenimientos;
         private Button btn_mantenimientos;
         private Button btn_auditoria;
+        private Panel panel_auditorias;
+        private Button btn_auditoriaClientes;
+        private Button btn_auditoriaUsuarios;
     }
 }

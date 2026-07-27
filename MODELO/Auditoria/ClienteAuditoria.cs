@@ -20,7 +20,10 @@ namespace MODELO.Auditoria
         public string Telefono { get; set; }
 
         public int IdUsuario { get; set; }
-        public string NombreUsuario { get; set; } 
+
+        [ForeignKey("IdUsuario")]
+        public virtual Usuario Usuario { get; set; }
+        public string NombreUsuario { get; set; }
 
         public DateTime FechaMovimiento { get; set; }
         public int IdMovimiento { get; set; }
